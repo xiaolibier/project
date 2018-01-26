@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+	<style>
+		.updownbody .search_table tr:nth-child(2), .updownbody .search_table tr:nth-child(3), .updownbody .search_table tr:nth-child(4){display:table-row;}
+		
+	</style>
+</head>
+<body class="xiangmuguanli updownbody kechengguanli ">
+	<!-- 讲师姓名 -->
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei12">
+		
+	</ul>
+	<!-- <h4 class="page_title">角色管理</h4> -->
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">课件名称/编号</span>
+					<input id="skechengcode" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">讲师姓名/编号</span>
+					<input id="sjname" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">课件类型</span>
+					<select id="skechenglei" class="com_select com_select2">
+						<option value="">请选择</option>
+						<option value="视频">视频</option>
+						<option value="音频">音频</option>
+						<option value="图片">图片</option>
+					</select>
+				</td>	
+				<td>
+					<span class="sear_lable">创建时间</span>
+					<input class="com_input com_input4" id="start_time"  placeholder="起" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">创建时间</span>
+					<input class="com_input com_input4" id="end_time"  placeholder="止" type="text" />
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+		</table>
+		<span class="searBtnTd">
+			<a id="searchBtn" class="top_btn ">搜索</a>
+			<a id="searchAll" class="top_btn type2">清空条件</a>
+			<a class="upserBtn up" href="javascript:;" >收起</a>
+		</span>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		共<span id="totalElements" class="m_value">0</span>条结果
+		<a class="creat_forse xiangMu_xinJianXiangMu" id="new_project" >新建课件</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<!-- <table class="table1">
+			<tr>
+				<th style="min-width:30px;">编号</th>
+				<th style="min-width:60px;">课件名称</th>
+				<th style="min-width:60px;">讲师姓名</th>
+				<th style="min-width:60px;">课件类型</th>
+				<th style="min-width:60px;">学习时长</th>
+				<th style="min-width:60px;">创建时间</th>
+				<th style="min-width:90px;">操作</th>
+			</tr>
+			<tr>
+				<td>L1</td>
+				<td>如何做好BE/PK项目的前期准备</td>
+				<td>伊丽娜</td>
+				<td>视频</td>
+				<td>14：32：32</td>
+				<td>2016/7/23 14:23:12</td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">编辑</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr>
+			
+		</table> -->
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+			<!--  -->
+			<div class="sbox kejianshangchuan">
+				<h4 class="sbox_h4">本地上传课件<a href="javascript:;" onclick="closeSbox()" class="close_x"></a></h4>
+				<div class="sbox_c">
+					<span class="slable">课件上传</span><i class="star">*</i>
+					<div style="position:relative;">
+						<a id="uploadAbnt" style="margin-left:25px;font-size:13px;background-color:#59BA73;border:1px solid #59BA73;" href="javascript:;" class="sbox_btn btn2">选择文件</a>
+						<span id="firenamestr"></span>
+					</div>
+				</div>
+				<div class="sbox_c"><span class="slable">类型</span><i class="star"></i><input id="sleixing" class="sbox_input" style="border:none;" type="text"/></div>
+				<div class="sbox_c"><span class="slable">课件名称</span><i class="star">*</i><input id="skejianmingchegn" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">学习时长</span><i class="star"></i><input id="sxuexishichang" class="sbox_input"  style="border:none;" type="text"/></div>
+				<div class="sbox_c"><span class="slable">讲师</span><i class="star">*</i><input id="sjiangshi" class="sbox_input" type="text"/></div>
+				<div class="sbox_btn_div">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+			<!--  -->
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/libs/qiniu.min.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).html('资源管理');
+	$('#menu_show_t .s1',parent.document).html(' > 课件管理').addClass('active');
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	$('#new_project').on('click',shownewCenterSbox);
+	tableListShow();//显示列表
+	getTeachers();//填充讲师选择框
+	setGetSearchInput2('#sjiangshi','.choiseDanwei12');//定义可以搜索下拉的
+	
+	uploadToQiniu('uploadAbnt',1);//定义七牛云上传
+	uploader.bind('FileUploaded', function(up, file, info) {
+		var ty = file.type;
+		if(ty.indexOf('video') > -1){ty = '视频';}
+		else if(ty.indexOf('image') > -1){ty = '图片';}
+		else if(ty.indexOf('audio') > -1){ty = '音频';}
+		$('#sleixing').val(ty);
+		$('#firenamestr').html(file.name);
+		$('#skejianmingchegn').val(file.name);
+		getVideoInfo(file.name,'课件资源');//获取视频时长
+	});
+/* **************************************** setTing ******************************************** */	
+
+	//获取视频信息 时长
+	function getVideoInfo(name,type){
+		var name = name || '';
+		var type = type || '';
+		var condi = {};
+		condi.name = name;
+		condi.type = type;
+		var url = Base.serverUrl + "file/utils/getMediaInfo";
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var success =  data.success || '';
+				if(success){
+					var data =  data.result || '';
+					var data =  JSON.parse(data);
+					var d = data.format || {};
+					var duration = d.duration || '';
+					duration = formatSeconds(duration);//秒转成 hh:mm:ss
+					
+					$('#sxuexishichang').val(duration);
+				}else{
+					$('#sxuexishichang').val('00:00:00');
+				}
+			}
+		});
+	}
+	
+	//获取讲师姓名列表
+	function getTeachers(){
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "teacher/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '';
+					var data = data.content || [];
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || {};
+						var id = d.id || '';
+						var name = d.name || '';
+						var phone = d.phone || '';
+						var department = d.department || '';
+						var headImage = d.headImage || '';
+						var isDelete = d.isDelete || '';//
+						if(isDelete == 1){continue;}
+						html += '<li  tip="'+id+'">'+name+'</li>';
+					}
+					$('.choiseDanwei12').append(html);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//初始化弹窗
+	function reloadSbox(){
+		$('.kejianshangchuan input').val('');//清空弹窗
+		$('.kejianshangchuan select').val('');//清空弹窗
+		$('#noBtn').html('取消');
+		$('#firenamestr').html('');
+		$('#yesBtn').off().show();
+		$('.kejianshangchuan input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.kejianshangchuan select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	//显示新建窗口
+	function shownewCenterSbox(){
+		reloadSbox();//初始化弹窗
+		$('.kejianshangchuan .sbox_h4').html('新建课件');
+		showSbox('.kejianshangchuan');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc('new')});
+	}
+	//新建
+	window.centerFunc = function(is,id){
+		var is = is || '';
+		var id = id || '';
+		var sjiangshi = $('#sjiangshi').val() || '';
+		var sjiangshiid = $('#sjiangshi').attr('tipid') || '';
+		var sleixing = $('#sleixing').val() || '';
+		var skejianmingchegn = $('#skejianmingchegn').val() || '';
+		var sxuexishichang = $('#sxuexishichang').val() || '';
+		var firenamestr = $('#firenamestr').html() || '';
+		var src = $('#uploadAbnt').attr('src') || '';
+		if(skejianmingchegn == ''){Utils.alert('课件名称不能为空！');return false;}
+		if(sjiangshi == ''){Utils.alert('讲师不能为空！');return false;}
+		if(sjiangshiid == ''){Utils.alert('讲师id不能为空！');return false;}
+		$('#yesBtn').off();
+		var condi = {};
+		condi.teacherId = sjiangshiid;
+		condi.teacherName = sjiangshi;
+		condi.type  = sleixing;
+		condi.name  = skejianmingchegn;
+		condi.studyPeriod  = sxuexishichang;
+		condi.url  = src;
+		var url = Base.serverUrl + "course/ware/add";
+		if(is == 'change'){condi.id = id;url = Base.serverUrl + "course/ware/update";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					if(is == 'change'){tips = '修改成功！';}
+					Utils.alert(tips);
+					tableListShow(2);//列表
+					closeSbox();//关闭弹窗
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					Utils.alert(msg);
+					$('#yesBtn').off().on('click',function(){centerFunc('new')});
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		g.skechengcode = $('#skechengcode').val() || '';
+		g.sjname = $('#sjname').val() || '';
+		g.skechenglei = $('#skechenglei').val() || '';
+		g.start_time = $('#start_time').val() || '';
+		g.end_time = $('#end_time').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		if(is == 1 || is == 'pa'){//搜索条件
+			condi.name = g.skechengcode;//
+			condi.teacherName = g.sjname;//
+			condi.type = g.skechenglei;//
+			condi.startTime = g.start_time;//
+			condi.endTime = g.end_time;//
+			g.loadPage = true;//开启分页
+		}else if(is == 2){//搜索全部
+			$('#skechengcode').val('');
+			$('#sjname').val('');
+			$('#skechenglei').val('');
+			$('#start_time').val('');
+			$('#end_time').val('');
+			//全部的时候 清空搜索项
+			g.loadPage = true;//开启分页
+		}
+		var url = Base.serverUrl + "course/ware/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共模块数
+					$('#totalElements').html(totalElements);
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">编号</th>'
+							+'<th style="min-width:60px;">课件名称</th>'
+							+'<th style="min-width:60px;">讲师姓名</th>'
+							+'<th style="min-width:60px;">课件类型</th>'
+							+'<th style="min-width:60px;">学习时长</th>'
+							+'<th style="min-width:60px;">创建时间</th>'
+							+'<th style="min-width:90px;">操作</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var name = d.name || '';//名称
+						var teacherName = d.teacherName || '';//
+						var type = d.type || '';//
+						var studyPeriod = d.studyPeriod || '';//
+						var createTime = getDate(d.createTime || '');//
+						html+='<tr>'
+							+'<td>'+code+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td>'+teacherName+'</td>'
+							+'<td>'+type+'</td>'
+							+'<td>'+studyPeriod+'</td>'
+							+'<td>'+createTime+'</td>'
+							+'<td class="last">'
+								+ '<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn2">编辑</a>'
+								+'<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>'
+							+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					//Utils.alert(msg);
+					$('#tableList').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+				$('#tableList').html('');
+			}
+		});
+	}
+	
+	//编辑
+	window.change = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		getEdit(id);
+	}
+	//获取信息
+	function getEdit(id){
+		var id = id || '';
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "course/ware/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					var id = d.id || '';
+					$('#uploadAbnt').attr('src',d.url || '');
+					$('#firenamestr').html('src',d.url || '');
+					$('#sleixing').val(d.type || '');
+					$('#skejianmingchegn').val(d.name || '');
+					$('#sxuexishichang').val(d.studyPeriod || '');
+					$('#sjiangshi').val(d.teacherName || '');
+					$('#sjiangshi').attr('tipid',d.teacherId || '');
+					showSbox('.kejianshangchuan');//显示弹窗
+					$('#yesBtn').off().on('click',function(){centerFunc('change',id)});
+					
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//删除一项
+	window.deleteIt = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "course/ware/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+	//加载时间控件
+	var start = {
+	  elem: '#start_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(end);
+	 
+
+});
+
+</script>
+</html>

@@ -1,0 +1,96 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0;padding:0;list-style-type:none;}
+html{ overflow-x:hidden;-webkit-text-size-adjust:none;}
+body,dl,dd,h1,h2,h3,h4,h5,h6,p,form,ol,ul,li{margin:0;padding:0;}
+body{font:12px "微软雅黑",arial;}
+a{text-decoration:none; outline:none;}
+input{outline:none;}
+img{ vertical-align:top;}
+img,button,input{border:none;}
+table {border-collapse: collapse; border-spacing: 0;}
+i{font-style:normal;}
+h1,h2,h3,h4,h5,h6{font-weight:normal;}
+em{ font-style:normal;	}
+ul,li{list-style:none;}
+input[button]{cursor:pointer;}
+
+/*clearfix清除浮动*/
+.clearfix:after {
+    visibility:hidden;
+    display:block;
+    content:" ";
+    clear:both;
+    height:0;
+    line-height:0;
+}
+.clearfix {
+    zoom: 1;
+}
+.fontw{font-family:"微软雅黑",arial; }
+.bg01{ background:#fff;}
+.fl{float:left;}
+.fr{float:right;}
+.tl{ text-align:left;}
+.tc{ text-align:center;}
+.tr{ text-align:right;}
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+
+
+
+/*垂直方向的下按钮*/
+
+::-webkit-scrollbar-button:vertical:increment {
+    background:#D6F0FF;
+    height:6px;
+}
+
+
+
+
+/*横向的右边按钮*/
+
+::-webkit-scrollbar-button:horizontal:increment {
+    /*background:#D6F0FF url(/FronWeb/Images/y1204.png) no-repeat 2px 0px;*/
+    width:6px;
+}
+/*垂直方向的上按钮*/
+
+::-webkit-scrollbar-button:vertical:decrement {
+    /*background:#D6F0FF url(/FronWeb/Images/s1204.png) no-repeat 1px -2px;*/
+    height:6px;
+
+}
+
+/*横向的左按钮*/
+
+::-webkit-scrollbar-button:horizontal:decrement {
+    /*background:#D6F0FF url(/FronWeb/Images/z1204.png) no-repeat 1px 0px;*/
+    width:6px;
+}
+
+/*滚动槽的颜色 */
+::-webkit-scrollbar-track-piece {
+    background-color:#d6f0ff;
+}
+/* 滑轮的颜色 */
+
+::-webkit-scrollbar-thumb:vertical {
+    height: 10px;
+    background-color: #9cdbff;
+    border:1px solid #7bcfff;
+    border-radius:4px;
+}
+
+::-webkit-scrollbar-thumb:horizontal{
+    height: 10px;
+    background-color: #9cdbff;
+    border:1px solid #7bcfff;
+    border-radius:4px;
+
+}

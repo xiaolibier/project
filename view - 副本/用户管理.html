@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/select2/css/select2.min.css" />
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	<style>
+		.select2-container{float:right;margin-bottom:5px;}
+	</style>
+</head>
+<body class="xiangmuguanli yonghuguanli">
+	<ul class="choiseDanwei choiseDanwei3">
+		<li tip="">角色</li>
+	</ul>	
+	<!-- <h4 class="page_title">用户管理</h4> -->
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">姓名</span>
+					<input id="userName" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">电话</span>
+					<input id="userPhone" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">部门</span>
+					<select id="bumen" class="com_select com_select1"><option disabled selected>部门</option></select>
+				</td>
+				<td>
+					<span class="sear_lable">角色</span>
+					<select id="jiaose" class="com_select com_select2"><option disabled selected>角色</option></select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">用户状态</span>
+					<select id="userStatic" class="com_select com_select3">
+						<option value="">全部状态</option>
+						<option value="1">正常</option>
+						<option value="0">停用</option>
+					</select>
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td class="searBtnTd">
+					<a id="searchBtn" class="top_btn">搜索</a>
+					<a id="searchAll" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		<a class="creat_forse" id="newCenter" >新建用户</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<!-- <table class="table1">
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>头像</th>
+				<th>所属部门</th>
+				<th>所属角色</th>
+				<th>联系方式</th>
+				<th>邮箱</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>001</td>
+				<td>乔丹</td>
+				<td><i class="head_img"></i></td>
+				<td>技术部</td>
+				<td>分级员;打印员</td>
+				<td>18612425705</td>
+				<td></td>
+				<td>正常</td>
+				<td class="last">
+					<a class="cao_btn cao_btn0">修改</a>
+					<a class="cao_btn cao_btn5">删除</a>
+					<a class="cao_btn cao_btn4">权限</a>
+					
+					<a class="cao_btn cao_btn3">停用</a>
+				</td>
+			</tr>
+			<tr>
+				<td>002</td>
+				<td>乔丹</td>
+				<td><i class="head_img"></i></td>
+				<td>技术部</td>
+				<td>分级员;打印员</td>
+				<td>18612425705</td>
+				<td></td>
+				<td>停用</td>
+				<td class="last">
+					<a class="cao_btn cao_btn0">修改</a>
+					<a class="cao_btn cao_btn5">删除</a>
+					<a class="cao_btn cao_btn4">权限</a>
+					
+					<a class="cao_btn cao_btn2">启用</a>	
+				</td>
+			</tr>
+		</table> -->
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	
+	
+	
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+		
+			<div class="sbox xiugaizhongxin">
+				<h4 class="sbox_h4">用户管理</h4>
+				<div class="sbox_c"><span class="slable">用户头像</span><i class="star"></i>
+					<a class="positi">
+						<img height=60 width=60  id="head_img" src="" />
+						<form enctype="multipart/form-data" method="post" id="fileForm" name="fileForm">
+							<input id="orderMaterialFile" name="file" class="headUpload" type="file" />
+						</form>	
+					</a>
+				</div>
+				<div class="sbox_c"><span class="slable">用户姓名</span><i class="star">*</i><input id="xingming" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">手机号</span><i class="star">*</i><input id="lianxiPhone" maxlength=11 class="sbox_input" type="text"/></div>
+				<!-- <div class="sbox_c"><span class="slable">用户密码</span><i class="star"></i><input id="mima" class="sbox_input" type="text"/></div> -->
+				<div class="sbox_c"><span class="slable">所属部门</span><i class="star"></i>
+					<select id="suoshubumen" class="sbox_select">
+						<option value="">所属部门</option>
+					</select>
+				</div>
+				<div class="sbox_c"><span class="slable">所属角色</span><i class="star"></i>
+					<select id="suoshujiaose" style="width:81%;" multiple class="sbox_select">
+						<option value="">所属部门</option>
+					</select>
+				</div>	
+				<div class="sbox_c"><span class="slable">账号</span><i class="star"></i><input id="youxiangEmail" class="sbox_input" type="text"/></div>
+				<!-- <div class="sbox_c"><span class="slable">状态</span><i class="star"></i>
+					<select id="zhuangtai" class="sbox_select">
+						<option value="1">正常</option>
+						<option value="0">停用</option>
+					</select>
+				</div> -->
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+			<!-- 权限管理 -->
+			<div class="sbox quanxianguanli">
+				<div class="border_div">
+				<h4 class="sbox_h4"><a class="first active">稽查系统</a><!--a>商家端</a--></h4>
+				<div class="menu_panel">
+					<ul id="mpan_list" class="mpan_list">
+						<!-- <li>项目管理</li>
+						<li class="active">稽查管理</li>
+						<li>评审管理</li>
+						<li>评审管理</li>
+						<li>评审管理</li>
+						<li>评审管理</li>
+						<li>评审管理</li>
+						<li>评审管理</li> -->
+					</ul>
+				</div>
+				<div class="quan_panel">
+					<ul id="qpan_list" class="qpan_list">
+						<!-- <li><input class="sbox_check" type="checkbox" />菜单管理</li>
+						<li><input class="sbox_check" type="checkbox" />添加菜单</li>
+						<li><input class="sbox_check" type="checkbox" />修改菜单</li>
+						<li><input class="sbox_check" type="checkbox" />修改菜单</li>
+						<li><input class="sbox_check" type="checkbox" />修改菜单</li>
+						<li><input class="sbox_check" type="checkbox" />修改菜单</li>
+						<li><input class="sbox_check" type="checkbox" />修改菜单</li>
+						<li><input class="sbox_check" type="checkbox" />修改菜单</li>
+						<li><input class="sbox_check" type="checkbox" />修改菜单</li> -->
+					</ul>
+				</div>
+				</div>
+				<div  class="sbox_btn_div" style="text-align:center;margin-left:0;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">关闭</a>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/libs/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/js/jquery.form.js"></script>
+	<script type="text/javascript" src="../public/select2/js/select2.full.min.js"></script>
+	<script type="text/javascript" src="../public/select2/js/i18n/zh-CN.js"></script>
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.usrid = '';//存储用户id
+	
+/* **************************************** lodding ******************************************** */		
+	
+	
+	$('.cao_btn4').on('click',function(){
+		showSbox('.quanxianguanli');
+	});
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active');
+	//$('#menu_show_t .s0',parent.document).html('系统管理');
+	$('#menu_show_t .s0',parent.document).html('用户管理').addClass('active');
+	$('#newCenter').on('click',function(){shownewCenterSbox('new')});
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	
+	getbumenList();//获取部门列表
+	
+	reloadSbox();
+	//saveOrClearCookie(3,'yy_');//加载搜索条件
+	//tableListShow();//显示列表
+	
+/* **************************************** setTing ******************************************** */	
+	
+	
+	//填充权限弹窗 平台 菜单
+	function setquanxianmenu(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		var url = Base.serverUrl + "privilege/getPlatformsAndMenus";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data;
+					var html = '';
+					var fid = '';//第一按钮的id
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var platform = d.platform || '';//平台名称
+						var menu = d.menu || '';//菜单名称
+						var astr = '';
+						if(i == 0){fid = id;astr = 'active';}
+						html+='<li class="qumenu'+id+' '+astr+'" onclick="getquanxianbutton(\''+id+'\')" aid="'+id+'">'+menu+'</li>';
+					}	
+					$('#mpan_list').html(html);
+					//setMpanClick();//定义菜单的点击事件
+					getquanxianbutton(fid);//加载时获取菜单下按钮等
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//获取权限菜单下的按钮等
+	window.getquanxianbutton = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		$('.qumenu'+id).addClass('active').siblings('li').removeClass('active');
+		var condi = {};
+		condi.pid = id;
+		condi.userId = g.usrid;
+		var url = Base.serverUrl + "privilege/getPrivilegesByPidAndUserId";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data;
+					var html = '<li ><input class="sbox_check sbox_checkAll" type="checkbox" />全选</li>';
+					var _check = true;//判断是不是所有的都已经选中
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var platform = d.platform || '';//平台名称
+						var name = d.name || '';//菜单名称
+						var checked = d.checked || '';//权限状态
+						var check = checked ? 'checked="checked"' : '';
+						_check = checked ? true : false;
+						html+='<li aid="'+id+'"><input aid="'+id+'" class="sbox_check sbox_check0" '+check+' type="checkbox" />'+name+'</li>';
+					}	
+					$('#qpan_list').html(html);
+					if(_check){$('.sbox_checkAll').attr('checked','checked');}
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+					$('#qpan_list').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+				$('#qpan_list').html('');
+			}
+		});
+	}	
+	
+	//全选
+	$('#qpan_list').on('click','.sbox_checkAll',function(){
+		var _this = $(this) || '';
+		if(_this == ''){return false;}
+		var check = _this.is(':checked');
+		_this.parents('li').siblings('li').find('.sbox_check').each(function(){//判断每一个
+			var check0 = $(this).is(':checked');
+			if(check != check0){$(this).click();}
+		});
+	});
+	
+	//check设置权限
+	$('#qpan_list').on('click','.sbox_check0',function(){
+		var _check = $(this) || {};
+		var aid = _check.attr('aid') || '';
+		var add = '';
+		if(aid == ''){return false;}
+		var cho = _check.is(':checked');
+		if(cho){//选择 及添加权限
+			add = '1';
+		}else{//取消当前权限
+			add = '0';
+		}
+		var condi = {};
+		condi.id = g.usrid;
+		condi.privileges = aid;
+		condi.add = add;//1是添加 2 是删除权限
+		var url = Base.serverUrl + "user/setPrivileges";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					
+				}
+				else{
+					var msg = data.message || "设置失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+		
+		
+	});
+	//权限管理
+	window.quanxianFunc = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		g.usrid = id;
+		setquanxianmenu();//填充权限弹窗 平台 菜单
+		showSbox('.quanxianguanli');//显示弹窗
+	}
+	
+	/* 上传头像 */
+	$("#orderMaterialFile").change(function(){
+		var orderMaterialFile = $("#orderMaterialFile").val() || "";
+		if(orderMaterialFile != ""){
+			//uploadBtnUp();
+			uploadImage();
+		}
+	});
+	//上传头像 form 提交
+	function uploadImage(){
+		 var form = $("#fileForm"); 
+		 var options = { 
+			url: Base.serverUrl + "user/uploadUserIcon",
+			xhrFields: { withCredentials: true }, 
+			crossDomain: true, 
+			dataType: 'json', 
+			success: function(data) { 
+				//alert("success： " + JSON.stringify(data));
+				var src = data.result || [];
+				$('#head_img').attr('src',src);
+			}, 
+			error: function(err) {
+				Utils.alert("图片上传失败");
+			} 
+		 }; 
+		 form.ajaxSubmit(options); 
+	 } 
+	/* 上传头像 */
+	function uploadBtnUp(){
+		if(lastname()){
+			g.httpTip.show();
+			var condi = {};
+			condi.uid = g.login_token;
+			var url = Base.serverUrl + "user/uploadUserIcon";
+			$.ajaxFileUpload({
+				url: url, //用于文件上传的服务器端请求地址
+				data:condi,
+				secureuri: false, //一般设置为false
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				fileElementId: 'orderMaterialFile', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+				dataType: 'jsonp', //返回值类型 一般设置为json
+				success: function (data, status)  //服务器成功响应处理函数
+				{
+					g.httpTip.hide();
+					if(data != null && data != ""){
+						try{						
+							var obj = JSON.parse(data);
+						}
+						catch(e){
+							//Utils.alert("图片上传失败");
+						}
+					}else if(data == undefined){}
+				},
+				complete:function(data){
+					//getuserInfor();
+					console.log(data);
+				},
+				error: function (data, status, e)//服务器响应失败处理函数
+				{
+					Utils.alert("图片上传失败");
+					g.httpTip.hide();
+				}
+			});
+			return false;
+		}
+	}
+	//校验图片名字
+	function lastname(){
+		//获取欲上传的文件路径
+		var filepath = document.getElementById("orderMaterialFile").value;
+		//为了避免转义反斜杠出问题，这里将对其进行转换
+		var re = /(\\+)/g;
+		var filename=filepath.replace(re,"#");
+		//对路径字符串进行剪切截取
+		var one=filename.split("#");
+		//获取数组中最后一个，即文件名
+		var two=one[one.length-1];
+		//再对文件名进行截取，以取得后缀名
+		var three=two.split(".");
+		//获取截取的最后一个字符串，即为后缀名
+		var last=three[three.length-1];
+		//添加需要判断的后缀名类型
+		var tp ="jpg,gif,bmp,JPG,GIF,BMP,png";
+		//返回符合条件的后缀名在字符串中的位置
+		var rs=tp.indexOf(last);
+		//如果返回的结果大于或等于0，说明包含允许上传的文件类型
+		if(rs>=0){
+			return true;
+		}else{
+			Utils.alert("您选择的上传文件不是有效的图片文件！");
+			return false;
+		}
+	}
+	//关闭弹窗
+	$('.stip_content,.sbox').click(function(e){
+		$('.choiseDanwei').hide();
+		stopPropagation(e);
+	});
+	//选择角色
+	/* $("#suoshujiaose").click(function(e){
+		var choiseLi = $('.choiseDanwei3 li');
+		var _is = $(this);
+		var xx = _is.offset().left || 0;
+        var yy = _is.offset().top || 0;
+		var _top = yy + _is.height() -9;
+		//初始给选项 增加选中项
+		var _isval = _is.val() || '';
+		if(_isval != ''){
+			choiseLi.each(function(){
+				var _tti = $(this);
+				var _ttival = _tti.val() || '';
+				if(_tti.hasClass('active') && _ttival == ''){
+					if(_isval.indexOf(_ttival) > -1){_tti.addClass('active');}
+				}
+			});
+		}
+        $('.choiseDanwei').hide();
+		$('.choiseDanwei3').show().css({"left":xx,"top":_top});
+		choiseLi.off().on('click',function(e){
+			var _tis = $(this);
+			if(_tis.hasClass('active')){_tis.removeClass('active');}else{_tis.addClass('active');}
+			var _vdan= _tis.html() || '';
+			var _ttval = '';
+			choiseLi.each(function(){
+				var _tti = $(this);
+				//var _vv = _tti.attr('tip') || '';
+				var _vv = _tti.html() || '';
+				if(_tti.hasClass('active')){
+					_ttval = _ttval == '' ? _vv : _ttval + ',' + _vv;
+				}
+			});
+			_is.val(_ttval);
+			//_tis.parents('.choiseDanwei').hide();
+			stopPropagation(e);
+		});
+		stopPropagation(e);
+    }); */
+	
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//搜索条件 获取角色列表
+	function getjiaoseList(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		var url = Base.serverUrl + "role/getAllNoPage";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data;
+					var html = '<option value="">选择角色</option>';
+					var html3 = '';
+					//var html2 = '<li tip="">选择角色</li>';
+					var html2 = '';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var name = d.name || '';//名称
+						html+='<option value="'+id+'">'+name+'</option>';
+						html3+='<option value="'+name+'">'+name+'</option>';
+						html2+='<li tip="'+id+'">'+name+'</li>';
+					}	
+					$('#jiaose').html(html);
+					$('#suoshujiaose').html(html3);
+					$("#suoshujiaose").select2({tags: true});//定义多选控件
+					saveOrClearCookie(3,'yy_');//加载搜索条件
+					tableListShow(1);//显示列表
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//搜索条件 获取部门列表
+	function getbumenList(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "department/getAll";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data;
+					var html = '<option value="">选择部门</option>';
+					var html2 = '<option value="">选择部门</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var level = d.level || '';
+						var name = d.name || '';//名称
+						var pName = d.pName || '';//父级名称
+						var _name = level == '2' ? '&nbsp;&nbsp;&nbsp;&nbsp;'+name : name;
+						html+='<option value="'+name+'">'+_name+'</option>';
+						html2+='<option value="'+name+'">'+_name+'</option>';
+					}	
+					$('#bumen').html(html);
+					$('#suoshubumen').html(html2);
+					getjiaoseList();//获取角色列表
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//初始化弹窗
+	function reloadSbox(){
+		$('#head_img').attr('src','');//清空头像记录
+		$('.choiseDanwei li').removeClass('active');//清空弹窗的选择项
+		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		$('#noBtn').html('取消');
+		$('#yesBtn').off().show();
+		$('.xiugaizhongxin input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.xiugaizhongxin select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	//显示新建窗口
+	function shownewCenterSbox(){
+		reloadSbox();//初始化弹窗
+		//$('#mima').val('111111');
+		$('.xiugaizhongxin .sbox_h4').html('添加用户');
+		showSbox('.xiugaizhongxin');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc('new')});
+	}
+	//新建
+	window.centerFunc = function(is,id){
+		var is = is || '';
+		var id = id || '';
+		var xingming = $('#xingming').val() || '';
+		var pic = $('#head_img').attr('src') || '';
+		//var mima = $('#mima').val() || '';
+		var suoshubumen = $('#suoshubumen').val() || '';
+		var suoshujiaose = $('#suoshujiaose').val() || '';
+		suoshujiaose = suoshujiaose.length > 1 ? suoshujiaose.join(',') : suoshujiaose[0] || '' ;
+		var lianxiPhone = $('#lianxiPhone').val() || '';
+		var youxiangEmail = $('#youxiangEmail').val() || '';
+		var zhuangtai = $('#zhuangtai').val() || '';
+		if(xingming == ''){Utils.alert('姓名不能为空！');return false;}
+		//if(pic == ''){Utils.alert('头像不能为空！');return false;}
+		//if(mima == ''){Utils.alert('密码不能为空！');return false;}
+		//if(suoshubumen == ''){Utils.alert('所属部门不能为空！');return false;}
+		//if(suoshujiaose == ''){Utils.alert('所属角色不能为空！');return false;}
+		//if(lianxiPhone == ''){Utils.alert('联系方式不能为空！');return false;}
+		//if(youxiangEmail == ''){Utils.alert('邮箱不能为空！');return false;}
+		//if(zhuangtai == ''){Utils.alert('状态不能为空！');return false;}
+		$('#yesBtn').off();
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.name  = xingming;
+		//condi.password  = mima;
+		condi.icon  = pic;
+		//子集元素去掉前缀 例如 稽查部/稽查一部 去掉'稽查部/'
+		if(suoshubumen.indexOf('/') > -1){suoshubumen = suoshubumen.split('/')[1];}
+		condi.department  = suoshubumen;
+		condi.roles  = suoshujiaose;
+		condi.phone  = lianxiPhone;
+		condi.email  = youxiangEmail;
+		//condi.state  = zhuangtai;
+		var url = Base.serverUrl + "user/add";
+		if(is == 'change'){condi.id = id;url = Base.serverUrl + "user/update";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					if(is == 'change'){tips = '修改成功！';}
+					Utils.alert(tips);
+					tableListShow(2);//列表
+					closeSbox();//关闭弹窗
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					Utils.alert(msg);
+					$('#yesBtn').off().on('click',function(){centerFunc('new')});
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#yesBtn').off().on('click',function(){centerFunc('new')});
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+	 
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		var name = $('#userName').val() || '';
+		var phone = $('#userPhone').val() || '';
+		var department = $('#bumen').val() || '';
+		var role = $('#jiaose').val() || '';
+		var state = $('#userStatic').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		if(is == 1 || is == 'pa'){//搜索
+			//if(mokuaiInfo == ''){Utils.alert('模块名称/编号不能为空！');}
+			condi.name = name;
+			condi.phone = phone;
+			condi.department = department;
+			condi.role = role;
+			condi.state = state;
+			g.loadPage = true;//开启分页
+			saveOrClearCookie(2,'yy_');//存储搜索条件
+		}else if(is == 2){//搜索全部
+			$('#bumen,#jiaose,#userStatic').val('');
+			$('.btn_div input').val('');//全部的时候 清空搜索项
+			g.loadPage = true;//开启分页
+			saveOrClearCookie(1,'yy_');//清空搜索条件
+		}
+		var url = Base.serverUrl + "user/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共模块数
+					$('#totalElements').html(totalElements);
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">编号</th>'
+							+'<th style="min-width:30px;">姓名</th>'
+							+'<th style="min-width:30px;">账号</th>'
+							+'<th style="min-width:30px;">头像</th>'
+							+'<th style="min-width:52px;">所属部门</th>'
+							+'<th style="min-width:52px;">所属角色</th>'
+							+'<th style="min-width:52px;">联系方式</th>'
+							+'<th style="min-width:30px;">状态</th>'
+							+'<th style="min-width:150px;">操作</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var name = d.name || '';//名称
+						var icons = d.icons || '';//
+						var department = d.department || '';//
+						var roles = d.roles || '';//
+						var phone = d.phone || '';//
+						var email = d.email || '';//
+						var state_str = d.state_str || '';//
+						var state = d.state || '';//
+						var isBindWechat = d.isBindWechat || '';//
+						html+='<tr>'
+							+'<td>'+id+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td>'+email+'</td>'
+							+'<td><i style="background:url(\''+icons+'\') no-repeat center center;background-size:contain;" class="head_img"></i></td>'
+							+'<td>'+department+'</td>'
+							+'<td>'+roles+'</td>'
+							+'<td>'+phone+'</td>'
+							+'<td>'+state_str+'</td>'
+							+'<td class="last">'
+								+ '<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn1">修改</a>'
+								//+'<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn5">删除</a>'
+								+'<a href="javascript:;" onclick="chongzhi(\''+id+'\')" class="cao_btn cao_btn2">重置密码</a>'
+								+'<a href="javascript:;" onclick="quanxianFunc(\''+id+'\')" class="cao_btn cao_btn4">权限</a>';
+								if(state == 0){
+								html+='<a href="javascript:;" onclick="changeStatic(\''+id+'\',\'1\')" class="cao_btn cao_btn2">启用</a>';
+								}else if(state == 1){
+								html+='<a href="javascript:;" onclick="changeStatic(\''+id+'\',\'0\')" class="cao_btn cao_btn3">停用</a>';
+								}
+								if(isBindWechat == 1){
+								html+='<a href="javascript:;" onclick="jiebang(\''+id+'\')" class="cao_btn cao_btn8">解绑微信</a>';
+								}
+							html+='</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//重置密码
+	window.chongzhi = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认要重置此用户的密码吗？')){return false;}
+		var condi = {};
+		condi.userId = id;
+		var url = Base.serverUrl + "user/resetPassword"; //
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('重置密码成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "重置失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//解绑微信
+	window.jiebang = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认解除微信绑定吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "user/unbindByAdmin"; //
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('解绑成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "解绑失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//停用 启用用户
+	window.changeStatic = function(id,sta){
+		var id = id || '';
+		var sta = sta || '';
+		var tip = sta == '1' ? '启用' : '停用' ;
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认'+tip+'用户吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		condi.state = sta;
+		var url = Base.serverUrl + "user/changeState";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert(tip+'成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "修改失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//删除一项
+	window.deleteIt = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "user/deleteById";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//修改
+	window.change = function(id){
+		showOrChange(id,'change');
+	}
+	//查看
+	window.review = function(id){
+		showOrChange(id,'review');
+	}
+	//查看或者修改的 公共方法
+	window.showOrChange = function(id,is){
+		var id = id || '';
+		var is = is || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "user/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					
+					reloadSbox();//初始化弹窗
+					//赋值
+					$('#xingming').val(d.name || '');
+					//$('#mima').val(d.password || '');
+					$('#head_img').attr('src',d.icons || '');
+					$('#suoshubumen').val(d.department || '');
+					var _ro = d.roles || '';
+					if(_ro.indexOf(',') > -1){_ro = _ro.split(',');}
+					$('#suoshujiaose').val(_ro).select2();
+					//valchoiseDanwei('.choiseDanwei3',_ro);//选择角色弹窗 赋值
+					$('#lianxiPhone').val(d.phone || '');
+					$('#youxiangEmail').val(d.email || '');
+					$('#zhuangtai').val(d.state || '');
+
+					//弹窗
+					var tips = '';//判断弹窗标题
+					
+					if(is == 'review'){//弹窗是查看
+						tips = '用户详情';
+						$('#yesBtn').off().hide();
+						$('#noBtn').html('关闭');
+						$('.xiugaizhongxin input').attr('readonly',true).addClass('readonly');//清空
+						$('.xiugaizhongxin select').attr('disabled',true).addClass('readonly');//清空
+					}else{//弹窗是修改
+						tips = '修改用户';
+						$('#yesBtn').off().on('click',function(){centerFunc('change',id)});
+					}
+					$('.xiugaizhongxin .sbox_h4').html(tips);
+					showSbox('.xiugaizhongxin');//显示弹窗
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	
+	
+	
+	
+	
+	
+});
+
+</script>
+</html>

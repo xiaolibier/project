@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common2.css" />
+	<title>经纬传奇培训系统-支付页面</title>
+	
+</head>
+<body class="usr_common_body">
+	<!-- 公共头部 -->
+	<div class="com_header"></div>
+	<!--  -->
+	<div class="pay_div_body">
+		<div class="pay_div_title">
+		  请在24小时内完成支付<br /> 超出24小时再支付可能导致购买失败，需重新下单购买 
+		</div> 
+		<div class="moneytxt">
+			实付金额：<span class="needPrice">&yen; 99.00</span>
+		</div>
+		<div class="ddxq">
+			订单详情<div class="downarr"></div>
+		</div>
+		<table class="order_page_table">
+			<tr>
+				<th>课程名称</th>
+				<th>学期或课程有效期</th>
+				<th>小计（元）</th>
+			</tr>
+			<tr>
+				<td>SharePoint 2013 管理</td>
+				<td>永久有效</td>
+				<td>99</th>
+			</tr>
+		</table>
+		<div class="pay_or_div">
+			<p class="lb">支付方式</p>
+			<div class="pay_way_div">
+				<a href="javascript:;" class="pay_way_btn way1 active"><span class="f-pa"></span></a>
+				<a href="javascript:;" class="pay_way_btn way2"><span class="f-pa"></span></a>
+			</div>
+			<div class="pay_btns_div">
+				<a href="javascript:;" class="pay_abnt">去支付</a>
+				<div class="payTip">
+					下单后，请在24小时内完成支付。超出24小时再支付可能导致购买失败，需重新下单购买。 
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/js/common3.js"></script>
+	
+	
+	
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.page = Utils.getQueryString("page") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	
+/* **************************************** lodding ******************************************** */		
+	
+	//测试
+	$('.zhuanti_one').on('click',function(){
+		location.href="list2.html";
+	});
+	
+	
+/* **************************************** setTing ******************************************** */	
+	
+
+	
+});	
+</script>
+</body>
+</html>

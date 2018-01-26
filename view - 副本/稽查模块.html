@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli xiangmurenwu">
+	<h4 class="mokuaifaxian"><a id="mokuaiBtn" class="a active">模块信息</a><a id="faxianBtn" class="a">稽查发现</a><a id="binglijichaBtn" class="a">病例稽查</a></h4>
+	<div class="m_info">
+		<a style="float:none;" class="creat_forse type2 active" id="nowJiLu" >查看稽查记录表</a>
+		<a style="float:none;display:none;" class="creat_forse type2" id="oldJiLu" >查看原始稽查记录表</a>
+	</div>
+	<div class="m_info">
+		稽查发现数：<span id="totalElements" class="m_value">0</span>&nbsp;&nbsp;&nbsp;&nbsp;
+		<div id="online_tips" style="display:inline;display:none;">
+			已评审：<span id="elements1" class="m_value">0</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			已通过：<span id="elements2" class="m_value">0</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			评审后修改：<span id="elements3" class="m_value">0</span>&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+		<a style="float:none;display:none;" class="creat_forse type3 active" id="openOnLine" >开启在线评审情况</a>
+		<a style="float:none;display:none;" class="creat_forse type4 active" id="checkOnLine" >查看在线评审情况</a>
+	</div>
+	<div id="tableList" class="table_div">
+		
+	</div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.id = Utils.getQueryString("renjiid") || Utils.offLineStore.get("renjiid",false);//传值 从稽查任务传来 传任务id
+	g.code = Utils.getQueryString("renjicode") || Utils.offLineStore.get("renjicode",false);//传值 从稽查任务传来 传任务code
+	g.task = Utils.getQueryString("task") || Utils.offLineStore.get("task",false);//传值 从稽查任务传来 传是否已经生成报告 1是已经生成
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 20;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */	
+		
+	//跳转到稽查发现
+	$('#faxianBtn').on('click',function(){
+		parent.document.location.href = 'home.html?page=jichafaxian';
+		//parent.document.getElementById("iframeObj").src = '稽查发现.html?renjicode'+g.code;
+		
+	});
+	//跳转到病例稽查
+	$('#binglijichaBtn').on('click',function(){
+		parent.document.location.href = 'home.html?page=binglijicha';
+	});
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('稽查任务').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '稽查任务.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 稽查模块').addClass('active');
+	
+	$('#nowJiLu').on('click',newJiLuFunc);//查看稽查记录表
+	$('#checkOnLine').on('click',checkOnLineFunc);//查看在线修改页面
+	$('#openOnLine').on('click',openOnLineFunc);//开启在线评审
+	
+	loadPage();//加载页面
+	
+/* **************************************** setTing ******************************************** */	
+	
+	
+	//加载页面
+	function loadPage(){
+		if(g.task == '1'){//判断已经生成报告
+			$('#oldJiLu').show().on('click',oldJiLuFunc);//显示 查看原始稽查记录表
+		}else{
+			//onlineCheck(1);//显示 开启在线评审 按钮
+			getOnLinedata();//获取在线评审数据
+		}
+		tableListShow();//加载列表
+	}
+	
+	//显示开启在线评审  与 查看在线评审 公共方法
+	function onlineCheck(is){
+		var is = is || '';
+		if(is == 1){//显示开启
+			$('#openOnLine').show();
+			$('#online_tips').hide();
+			$('#checkOnLine').hide();
+		}else{//显示查看
+			$('#openOnLine').hide();
+			$('#online_tips').css('display','inline');
+			$('#checkOnLine').fadeIn();
+		}
+	}
+	
+	
+	
+	//获取在线评审数据
+	function getOnLinedata(){
+		var condi = {};
+		condi.code = g.code;
+		var url = Base.serverUrl + "task/online/review/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var unReview = d.unReview || '0';//待评审
+						var reviseAfterReview = d.reviseAfterReview || '0';//评审后修改
+						var passed = d.passed || '0';//已通过
+						var yitongguo = (parseInt(reviseAfterReview) + parseInt(passed)) || 0;//已评审
+						$('#elements1').html(yitongguo);
+						$('#elements2').html(passed);
+						$('#elements3').html(reviseAfterReview);
+						
+					}	
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//开启在线评审
+	function openOnLineFunc(){
+		if(!confirm('确认要开始在线评审吗？')){return false;}
+		var condi = {};
+		condi.task_id = g.id;
+		var url = Base.serverUrl + "task/online/review/on";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					onlineCheck();//显示查看在线评审
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//在线发现修改
+	function checkOnLineFunc(){
+		Utils.offLineStore.set("linerenid",g.id,false);//传值 到稽查记录表 传识别是不是原始稽查记录表
+		//parent.document.getElementById("iframeObj").src = '在线发现修改.html?jilu='+jilu;
+		var src = '在线发现修改.html?linerenid='+g.id;
+		parent.document.location.href = src;
+	}
+	//查看稽查记录表
+	function newJiLuFunc(){
+		var jilu = 'nowjilu';
+		Utils.offLineStore.set("jilu",jilu,false);//传值 到稽查记录表 传识别是不是原始稽查记录表
+		parent.document.getElementById("iframeObj").src = '稽查记录表.html?jilu='+jilu;
+	}
+	//查看原始稽查记录表
+	function oldJiLuFunc(){
+		var jilu = 'oldjilu';
+		Utils.offLineStore.set("jilu",jilu,false);//传值 到稽查记录表 传识别是不是原始稽查记录表
+		parent.document.getElementById("iframeObj").src = '稽查记录表.html?jilu='+jilu;
+	}
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+		$('.searchPage').show();
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+	 
+	//列表
+	function tableListShow(){
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.id = g.id;
+		var url = Base.serverUrl + "task/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					var online_review = data.online_review || false;//判断是否已经开启在线评审
+					//当没有生成报告 且 状态为已经开启在线评审的时候
+					if(g.task != '1'){
+						if(online_review){onlineCheck();}
+						else{onlineCheck(1);}
+					}
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:58px;">编号</th>'
+							+'<th style="min-width:125px;">稽查模块</th>'
+							//+'<th style="min-width:85px;">编辑状态</th>'
+							+'<th style="min-width:72px;">稽查发现数</th>'
+							+'<th style="min-width:58px;">模块信息填写</th>'
+							+'<th style="min-width:100px;">最近操作/时间</th>'
+							+'<th style="min-width:220px;">操作</th>'
+						+'</tr>';
+					var con = data.taskModules || [];
+					var ttDiscovery = 0;
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var module_id = d.module_id || '';
+						var module_name = d.module_name || '';
+						var module_state = d.module_state || '';
+						var editing = module_state.indexOf('正在编辑') > -1 ? 1 : 0;//判断是否正在编辑
+						module_state = editing ? '<span style="color:red;">' + module_state + '</span>' : module_state ;
+						var discovery_number = d.discovery_number || 0;
+						ttDiscovery += discovery_number;
+						var last_action = d.last_action || '';
+						var completed = d.completed || '';
+						var editor = d.editor || '';
+						var module_state = d.module_state || '';
+						var module_template = d.module_template || '';//用来识别是哪个模块
+						var last_modify = getDate(d.last_modify || '');
+						var caozuo = last_action == '' || last_modify ==  editor + '/' + last_action + last_modify ? '' : editor + '/' + last_action + '/' + last_modify ;
+						var wancheng = completed ? '' : 'style="color:red;"';
+						html+='<tr>'
+							+'<td>'+module_id+'</td>'
+							+'<td>'+module_name+'</td>'
+							//+'<td>'+module_state+'</td>'
+							+'<td>'+discovery_number+'</td>'
+							+'<td '+wancheng+'>'+module_state+'</td>'
+							+'<td>'+caozuo+'</td>'
+							+'<td class="last">'
+								+'<a href="javascript:;" onclick="change(\''+id+'\','+editing+',\''+module_template+'\')" class="cao_btn cao_btn1">编辑</a>'
+							+'</td>'
+						+'</tr>';
+					}
+					$('#totalElements').html(ttDiscovery);
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//编辑
+	window.change = function(id,editing,module_template){
+		var id = id || '';
+		var editing = editing || 0;
+		var module_template = module_template || '';//识别是哪个模块
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(module_template == ''){Utils.alert('模块无法识别！');return false;}
+		var doing = editing ? 'doing' : '';
+		Utils.offLineStore.set("mokuaiid",id,false);//传值 到稽查模块列表 传任务id
+		Utils.offLineStore.set("mokuaiediting",doing,false);//传值 到稽查模块列表 传是否有人正在编辑
+		Utils.offLineStore.set("mokuaitemplate",module_template,false);//传值 到稽查模块列表 传过去识别是哪个模块
+		parent.document.getElementById("iframeObj").src = '模块详情.html?mokuaiid='+id+'&mokuaiediting='+doing+'&mokuaitemplate='+module_template;
+	}
+	
+	
+});
+
+</script>
+</html>

@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	<style>
+		.updownbody .search_table tr:nth-child(2), .updownbody .search_table tr:nth-child(3), .updownbody .search_table tr:nth-child(4){display:table-row;}
+	</style>
+</head>
+<body class="xiangmuguanli jicharenwu updownbody">
+	<!-- 项目成员 -->
+	<ul class="choiseDanwei choiseDanwei12">
+		<li>加载失败</li>
+	</ul>
+	<!-- 中心名称 -->
+	<ul class="choiseDanwei choiseDanwei13">
+		<li>加载失败</li>
+	</ul>
+	<!-- <h4 class="page_title">稽查任务<a class="creat_forse">新建任务</a></h4> -->
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">任务编号</span>
+					<input id="xiangMuRenWuBianHao" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">药品/器械名称</span>
+					<input id="yaoPinQiXieName" class="com_input com_input2" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">评审人</span>
+					<select id="pingshenrenr" class="com_select com_select2">
+						<option value="">请选择</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">中心名称</span>
+					<input id="zhongXinName" class="com_input com_input2" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">项目成员</span>
+					<input id="XiangMuChengYuan" class="com_input com_input2" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">开始评审时间</span>
+					<input class="com_input com_input3"  id="start_time" placeholder="起" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">开始评审时间</span>
+					<input class="com_input com_input4" id="end_time" placeholder="止" type="text" />
+				</td>	
+				<td>
+					<span class="sear_lable">状态</span>
+					<select id="zhuangtair" class="com_select com_select2">
+						<option value="">请选择</option>
+						<option value=true >已开启</option>
+						<option value=false >未开启</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">开始稽查日期</span>
+					<input class="com_input com_input3"  id="start_time2" placeholder="起" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">开始稽查日期</span>
+					<input class="com_input com_input4" id="end_time2" placeholder="止" type="text" />
+				</td>
+				<td>
+				</td>	
+				<td style="height:30px;">
+				</td>
+			</tr>
+		</table>
+		<span class="searBtnTd">
+			<a id="searchBtn" class="top_btn jiChaRenWu_sousuo">搜索</a>
+			<a id="searchAll" class="top_btn type2">清空条件</a>
+			<a class="upserBtn up" href="javascript:;" >收起</a>
+		</span>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		<!-- 项目总数：<span id="totalElements" class="m_value">0</span> -->
+		<!-- <a class="daochuCommonBtn jiChaRenWu_daochu" id="daochu" >导出</a> -->
+	</div>
+	<div id="tableList" class="table_div">
+		<!-- <table class="table1">
+			<tr>
+				<th>任务编号</th>
+				<th>项目药品/器械名称</th>
+				<th>开始评审时间</th>
+				<th>稽查发现</th>
+				<th>待评审</th>
+				<th>评审后修改</th>
+				<th>已通过</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>3A-0058-17009-7</td>
+				<td>安立生坦片</td>
+				<td>2016/02/23 14 : 32 : 54</td>
+				<td>5</td>
+				<td>3</td>
+				<td>1</td>
+				<td>1</td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">查看评审</a>
+				</td>
+			</tr>
+		</table> -->
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div style="display:none;" class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		  </span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	<div style="display:none;" info="导出table" id="exportExcel"></div>
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/libs/excelTable.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.xrcode = Utils.getQueryString("xrcode") || "";//项目任务页面传来 传项目编号
+	g.ser = Utils.getQueryString("ser") || "";//从工作台获取搜索项
+	if(g.ser != ''){g.ser = decodeURI(g.ser)}//解码
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.ids = [];//存储当前所有项目id及其状态
+	g.quanxuan = 0;
+	
+/* **************************************** lodding ******************************************** */	
+	
+	//判断权限
+	//is_show('.jiChaRenWu_daochu');
+	//is_show('.jiChaRenWu_sousuo');
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	//$('#menu_show_t .s0',parent.document).html('项目管理');
+	$('#menu_show_t .s0',parent.document).html('在线评审').addClass('active');
+	
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	loadPage();//加载页面
+	
+	
+	
+/* **************************************** setTing ******************************************** */	
+	
+	setSearchBuMen('.choiseDanwei12','稽查部','li');//给项目成员 选框赋值
+	setGetSearchInput('#XiangMuChengYuan','.choiseDanwei12');//定义可以搜索下拉的
+	//setSearchRole('.choiseDanwei13','中心名称','li');//给项目经理 选框赋值
+	setGetSearchInput('#zhongXinName','.choiseDanwei13');//定义可以搜索下拉的
+	
+	//加载页面
+	function loadPage(){
+		
+		getZhongXinMingCheng();//填充中心名称下拉
+		//判断是不是从项目任务打开此页面
+		if(g.xrcode != '' || g.ser != ''){
+			if(g.ser != ''){$('#reWuZhuangTai').val(g.ser);}
+			if(g.xrcode != ''){$('#xiangMuRenWuBianHao').val(g.xrcode).attr('readonly',true).addClass('readonly');}//给搜索项 项目编号赋值
+			tableListShow(1);//显示列表
+		}else{
+			
+			tableListShow();//显示列表
+		}
+		
+	}
+	//填充中心名称下拉 从列表获取
+	function getZhongXinMingCheng(){
+		var condi = {};
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "task/online/review/params";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var data1 = data.centers || [];
+					var data2 = data.Managers || [];
+					var data3 = data.GroupLeaders || [];
+					var data4 = data.reviewers || [];
+					var html1 = '',html2 = '',html3 = '',html4 = '<option value="">请选择</option>';
+					for(var i=0,len=data1.length;i<len;i++){
+						var name = data1[i] || [];
+						html1 += '<li tip="'+name+'">'+name+'</li>';
+					}
+					for(var i=0,len=data4.length;i<len;i++){
+						var name = data4[i] || [];
+						html4 += '<option value="'+name+'">'+name+'</option>';
+					}
+					$('.choiseDanwei13').html(html1);
+					$('#pingshenrenr').html(html4);
+					saveOrClearCookie(3,'za_');//加载搜索条件
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+		$('.searchPage').show();
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+	 
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		g.xiangMuRenWuBianHao = $('#xiangMuRenWuBianHao').val() || '';
+		g.yaoPinQiXieName = $('#yaoPinQiXieName').val() || '';
+		g.pingshenrenr = $('#pingshenrenr').val() || '';
+		g.zhuangtair = $('#zhuangtair').val() || '';
+		g.zhongXinName = $('#zhongXinName').val() || '';
+		g.XiangMuChengYuan = $('#XiangMuChengYuan').val() || '';
+		g.start_time = $('#start_time').val() || '';
+		g.start_time2 = $('#start_time2').val() || '';
+		g.end_time = $('#end_time').val() || '';
+		g.end_time2 = $('#end_time2').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		if(is == 1 || is == 'pa'){//搜索条件
+			condi.code = g.xiangMuRenWuBianHao;//
+			condi.medicine = g.yaoPinQiXieName;
+			condi.online_reviewer = g.pingshenrenr;
+			condi.online_review = g.zhuangtair;
+			condi.center_name = g.zhongXinName;
+			condi.member = g.XiangMuChengYuan;
+			condi.status = g.reWuZhuangTai;
+			condi.online_review_start_head = g.start_time;
+			condi.audit_start_head = g.start_time2;
+			condi.online_review_start_tail = g.end_time;
+			condi.audit_start_tail = g.end_time2;
+			if(is != 'pa')g.loadPage = true;//开启分页
+			saveOrClearCookie(2,'za_');//存储搜索条件
+		}else if(is == 2){//搜索全部
+			$('#xiangMuRenWuBianHao').val('');
+			$('#yaoPinQiXieName').val('');
+			$('#pingshenrenr').val('');
+			$('#zhuangtair').val('');
+			$('#zhongXinName').val('');
+			$('#XiangMuChengYuan').val('');
+			$('#start_time2').val('');
+			$('#start_time').val('');
+			$('#end_time2').val('');//全部的时候 清空搜索项
+			$('#end_time').val('');//全部的时候 清空搜索项
+			g.loadPage = true;//开启分页
+			saveOrClearCookie(1,'za_');//清空搜索条件
+		}
+		var url = Base.serverUrl + "task/online/review/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					//$('#totalElements').html(totalElements);
+					var html = '';
+					var sstr = '';
+					if(g.quanxuan == 1){sstr = 'active';}
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:115px;">任务编号</th>'
+							+'<th style="min-width:100px;">药品/器械名称</th>'
+							+'<th style="min-width:90px;">开始稽查日期</th>'
+							+'<th style="min-width:150px;">评审人/开始评审时间</th>'
+							+'<th style="min-width:52px;">稽查发现</th>'
+							+'<th style="min-width:52px;">待评审</th>'
+							+'<th style="min-width:75px;">评审后修改</th>'
+							+'<th style="min-width:72px;">已通过</th>'
+							+'<th style="min-width:45px;">状态</th>'
+							+'<th style="min-width:120px;">操作</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.task_id || '';
+						var code = d.code || '';//
+						var medicine = d.medicine || '';//
+						var online_review_start_time = getDate(d.online_review_start_time || '');//
+						var task_start_time = getDate(d.task_start_time || '',2);//
+						var unReview = d.unReview || '0';//
+						var reviseAfterReview = d.reviseAfterReview || '0';//
+						var passed = d.passed || '0';
+						var total = d.total || '0';
+						var online_review = d.online_review || false;
+						var online_reviewer = d.online_reviewer || '';
+						var stat = online_review ? '已开启' : '未开启';
+						html+='<tr>'
+							+'<td>'+code+'</td>'
+							+'<td>'+medicine+'</td>'
+							+'<td>'+task_start_time+'</td>'
+							+'<td>'+online_reviewer+'/'+online_review_start_time+'</td>'
+							+'<td>'+total+'</td>'
+							+'<td>'+unReview+'</td>'
+							+'<td>'+reviseAfterReview+'</td>'
+							+'<td>'+passed+'</td>'
+							+'<td>'+stat+'</td>'
+							+'<td class="last">';
+							if(online_review)html+='<a onclick="chaoKanBaoGaoFunc(\''+id+'\')" href="javascript:;" class="cao_btn cao_btn2 jiChaRenWu_chakanbaogao">查看评审</a>';
+							if(!online_review)html+='<a onclick="kaiqiabnt(\''+id+'\')" href="javascript:;" class="cao_btn cao_btn1">开启评审</a>';
+							if(online_review)html+='<a onclick="tuilingabnt(\''+id+'\')" href="javascript:;" class="cao_btn cao_btn5">退领</a>';
+							html+='</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+					
+				}
+				else{
+					var msg = data.message || "获取任务信息失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//退领
+	window.tuilingabnt = function(id){
+		var id = id || '';
+		if(!confirm('确认要退领吗？')){return false;}
+		var condi = {};
+		condi.task_id = id;
+		var url = Base.serverUrl + "task/online/review/off";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('退领成功！');
+					tableListShow('pa');
+				}
+				else{
+					var msg = data.message || "退领失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//开启在线评审
+	window.kaiqiabnt = function(id){
+		var id = id || '';
+		if(!confirm('确认要开启在线评审吗？')){return false;}
+		var condi = {};
+		condi.task_id = id;
+		var url = Base.serverUrl + "task/online/review/on";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('开启在线评审成功！');
+					tableListShow('pa');
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//查看评审
+	window.chaoKanBaoGaoFunc = function(id){
+		var id = id || '';
+		Utils.offLineStore.set("zailinerenid",id,false);//传值 到在线发现评审 传任务id
+		var src = '在线发现评审.html?zailinerenid='+id;
+		parent.document.location.href = src;
+	}
+
+	//加载时间控件
+	var start = {
+	  elem: '#start_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	//加载时间控件
+	var start2 = {
+	  elem: '#start_time2',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end2 = {
+	  elem: '#end_time2',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start2);
+	laydate(end2);
+	laydate(start);
+	laydate(end);
+
+});
+
+</script>
+</html>
