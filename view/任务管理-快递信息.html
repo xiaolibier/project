@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+	<style>
+		.updownbody .search_table tr:nth-child(2), .updownbody .search_table tr:nth-child(3), .updownbody .search_table tr:nth-child(4){display:table-row;}
+		.xiangmuguanli .table1 tr th{line-height:20px;}
+	</style>
+</head>
+<body class="xiangmuguanli updownbody">
+	<h4 class="mokuaifaxian">
+		<a id="renwubianji1" class="a">任务实施</a>
+		<a id="renwubianji2" class="a">任务信息</a>
+		<a id="renwubianji3" class="a active">快递信息</a>
+		<!-- <a href="javascript:;" id="backPage" style="display:none;" class="jc_btn type5 last">返回</a> -->
+	</h4>
+
+	<div class="m_info">
+		<!-- 项目总数：<span id="totalElements" class="m_value">0</span> -->
+		<a class="daochuCommonBtn" id="daochu" >导出</a>
+		<a class="creat_forse" id="new_project" >新建快递</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<table class="table1">
+			<tr>
+				<th><div class="check_box"><i class="i"></i></div></th>
+				<th style="min-width:26px;">编号</th>
+				<th style="min-width:52px;">快递原因</th>
+				<th style="min-width:52px;">快递物品</th>
+				<th style="min-width:52px;">发件时间</th>
+				<th style="min-width:39px;">发件人</th>
+				<th style="min-width:52px;">发件信息</th>
+				<th style="min-width:39px;">收件人</th>
+				<th style="min-width:52px;">收件信息</th>
+				<th style="min-width:52px;">快递单号</th>
+				<th style="min-width:26px;">备注</th>
+				<th style="min-width:152px;">操作</th>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>2</td>
+				<td>身份证可以使用了回寄继续办理</td>
+				<td></td>
+				<td>2016-7-23</td>
+				<td>甲方</td>
+				<td></td>
+				<td>园区负责人</td>
+				<td></td>
+				<td>5555555</td>
+				<td></td>
+				<td class="last">
+					<a class="cao_btn cao_btn2">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>1</td>
+				<td>甲方需要身份证要回寄</td>
+				<td></td>
+				<td>2016-7-23</td>
+				<td>甲方</td>
+				<td></td>
+				<td>园区负责人</td>
+				<td></td>
+				<td>5555555</td>
+				<td></td>
+				<td class="last">
+					<a class="cao_btn cao_btn2">编辑</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div style="display:none;"  class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	
+	<div style="display:none;" info="导出table" id="exportExcel"></div>
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/libs/excelTable.js"></script>
+	<script type="text/javascript" src="../public/libs/exportjs/FileSaver.js"></script>
+	<script type="text/javascript" src="../public/libs/exportjs/jquery.wordexport.js"></script>
+	
+</body>
+
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.ser = Utils.getQueryString("ser") || "";//从工作台获取搜索项
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	//$('#menu_show_t .s0',parent.document).html('项目管理');
+	$('#menu_show_t .s0',parent.document).html('项目管理').addClass('active');
+	//$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	//$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	//$('#new_project').on('click',createNewProject);
+	loadPage();
+	
+	
+	//测试
+	$('#renwubianji1').on('click',function(){
+		parent.document.getElementById("iframeObj").src = '任务管理-任务实施.html';
+	});
+	$('#renwubianji2').on('click',function(){
+		parent.document.getElementById("iframeObj").src = '任务管理-任务信息.html';
+	});
+	$('#renwubianji3').on('click',function(){
+		parent.document.getElementById("iframeObj").src = '任务管理-快递信息.html';
+	});
+	
+	
+	
+/* **************************************** setTing ******************************************** */	
+
+	//加载页面
+	function loadPage(){
+
+	}
+
+
+});
+
+</script>
+</html>

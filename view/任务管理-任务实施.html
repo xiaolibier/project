@@ -18,8 +18,8 @@
 <body class="xiangmuguanli xiangmujibenxinxi">
 
 	<h4 class="mokuaifaxian">
-		<a id="renwubianji1" class="a">任务实施</a>
-		<a id="renwubianji2" class="a active">任务信息</a>
+		<a id="renwubianji1" class="a active">任务实施</a>
+		<a id="renwubianji2" class="a">任务信息</a>
 		<a id="renwubianji3" class="a">快递信息</a>
 		<!-- <a href="javascript:;" id="backPage" style="display:none;" class="jc_btn type5 last">返回</a> -->
 	</h4>
@@ -131,6 +131,7 @@ $(function(){
 	$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
 	getjichamokuai();//获取稽查模块
 	getShenBanFang();//加载申办方列表
+	
 	//测试
 	$('#renwubianji1').on('click',function(){
 		parent.document.getElementById("iframeObj").src = '任务管理-任务实施.html';
@@ -141,7 +142,6 @@ $(function(){
 	$('#renwubianji3').on('click',function(){
 		parent.document.getElementById("iframeObj").src = '任务管理-快递信息.html';
 	});
-	
 	
 /* **************************************** setTing ******************************************** */	
 	
