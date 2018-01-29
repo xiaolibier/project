@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<!-- <link rel="stylesheet" href="../public/libs/bootstrap/bootstrap.min.css" /> -->
+	<!-- <link rel="stylesheet" href="../public/libs/bootstrap/bootstrap-select.css" /> -->
+	<link rel="stylesheet" href="../public/select2/css/select2.min.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	<style>
+		.check_box .i, .check_box2 .i{margin-right:5px;}
+		.xiangmujibenxinxi .lable{width:200px;}
+	</style>
+</head>
+<body class="xiangmuguanli xiangmujibenxinxi">
+
+	<h4 class="page_title">客户基本信息
+		<!-- <a href="javascript:;" id="editBtn" class="creat_forse">编辑</a>
+		<a href="javascript:;" style="display:none;" id="change_ok_btn" class="creat_forse">保存</a>
+		<a href="javascript:;" style="display:none;" id="change_no_btn" class="creat_forse type1">取消</a> -->
+	</h4>
+	<div class="content_box1">
+
+		<div class="con_d"><span class="lable need">所属管家</span><i class="x">*</i><select id="suoshuguanjai" class="common_select">
+				<option value="">请选择</option>
+			</select>
+		</div>
+		<div class="con_d"><span class="lable need">客户类型</span><i class="x">*</i><select id="kehu_type" class="common_select">
+				<option value="">请选择</option>
+			</select>
+		</div>
+		<div class="con_d"><span class="lable need">客户名称</span><i class="x">*</i>
+			<input id="kehu_name" class="common_input common_inputr readonly1" type="text" />
+			<!-- &nbsp;&nbsp;&nbsp;&nbsp;
+			联系人：<span>0068</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			联系电话：<span>0068</span> -->
+		</div>
+		<div class="con_d"><span class="lable need">联系人</span><i class="x"></i><input id="lianxiren" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">电话</span><i class="x"></i><input id="dianhua" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">证件类型</span><i class="x">*</i><select id="zhengjiantype" class="common_select">
+				<option value="">请选择</option>
+			</select>
+		</div>
+		<div class="con_d"><span class="lable need">证件号码</span><i class="x"></i><input id="zhegnjianhaoma" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">地址</span><i class="x"></i><input id="dizhi" class="common_input" type="text" /></div>
+		<div id="fapiaoxinxi" class="con_d"><span class="lable need">发票信息</span><i class="x"></i>
+			<div class="common_radio" name="fapiaoxin"><i class="i"></i>普通发票</div>
+			<div class="common_radio" name="fapiaoxin"><i class="i"></i>增值税发票</div>
+		</div>
+		<div class="con_d"><span class="lable need">名称</span><i class="x"></i><input id="kaipiaomingcheng" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">税号</span><i class="x"></i><input id="shuihao" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">开户银行</span><i class="x"></i><input id="kaihuyinhang" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">银行账户</span><i class="x"></i><input id="yinhangzhanghu" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">单位地址</span><i class="x"></i><input id="danweidizhi" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">电话号码</span><i class="x"></i><input id="dianhuahaoma" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">邮寄地址</span><i class="x"></i><input id="youjidizhi" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">收件人</span><i class="x"></i><input id="shoujianren" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">电话</span><i class="x"></i><input id="shoujiandianhua" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">备注</span><i class="x">*</i><textarea id="beizhu" style="height:50px;" class="common_textarea"></textarea></div>
+		<div id="new_create_btn" class="btns_div"><a back='项目管理.html' class="common_abtn goback type1">取消</a><a href="javascript:;" id="create_new_btn" class="common_abtn type2">创建</a></div>
+	</div>
+
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.id = Utils.getQueryString("id") || "";//获取项目id
+	g.do = Utils.getQueryString("do") || "";//获取操作 是查看（check）还是修改（change）新建 （new）
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('客户管理').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '客户管理.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 客户基本信息').addClass('active');
+	
+
+	
+});
+
+</script>
+</html>

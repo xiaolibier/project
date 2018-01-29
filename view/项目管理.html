@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+	<style>
+		.updownbody .search_table tr:nth-child(2), .updownbody .search_table tr:nth-child(3), .updownbody .search_table tr:nth-child(4){display:table-row;}
+		.xiangmuguanli .table1 tr th{line-height:20px;}
+	</style>
+</head>
+<body class="xiangmuguanli updownbody">
+	
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">项目编号</span>
+					<input id="projectNum" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">个人/企业客户名称</span>
+					<input id="porsennamecode" class="com_input com_input2" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">联系人/电话</span>
+					<input id="namephone" class="com_input com_input2" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">所属管家</span>
+					<input id="suoshuguanjia" class="com_input com_input2" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">发票状态</span>
+					<select id="fapiaozhuangtai" class="com_select com_select2">
+						<option value="">请选择</option>
+						<option value="未开票">未开票</option>
+						<option value="已开票">已开票</option>
+						<option value="已寄出">已寄出</option>
+					</select>
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+		</table>
+		<span class="searBtnTd">
+			<a id="searchBtn" class="top_btn xiangMu_xiangMuSouSuo">搜索</a>
+			<a id="searchAll" class="top_btn type2">清空条件</a>
+			<a class="upserBtn up" href="javascript:;" >收起</a>
+		</span>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		<!-- 项目总数：<span id="totalElements" class="m_value">0</span> -->
+		<a class="daochuCommonBtn" id="daochu" >导出</a>
+		<a class="creat_forse" id="new_project" >新建项目</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<table class="table1">
+			<tr>
+				<th><div class="check_box"><i class="i"></i></div></th>
+				<th style="min-width:52px;">项目编号</th>
+				<th style="min-width:112px;">个人/企业客户名称</th>
+				<th style="min-width:52px;">客户类型</th>
+				<th style="min-width:52px;">合同类型</th>
+				<th style="min-width:52px;">合同金额</th>
+				<th style="min-width:45px;">联系人</th>
+				<th style="min-width:30px;">电话</th>
+				<th style="min-width:52px;">发票状态</th>
+				<th style="min-width:52px;">项目进度</th>
+				<th style="min-width:60px;">创建人/创建时间</th>
+				<th style="min-width:52px;">所属管家</th>
+				<th style="min-width:152px;">操作</th>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>？</td>
+				<td>林杨生</td>
+				<td>个人客户</td>
+				<td>咨询合同</td>
+				<td>100</td>
+				<td>林杨生</td>
+				<td>1503728374</td>
+				<td>未开票</td>
+				<td style="line-height:20px;"><span class="pro_t">10/15</span><br><li class="pro_b"><i class="pro_w"></i></li></td>
+				<td>林杨生/2016-7-23  12:32:44</td>
+				<td></td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">信息</a>
+					<a class="cao_btn cao_btn2">任务</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>？</td>
+				<td>林杨生</td>
+				<td>企业客户</td>
+				<td>办理合同</td>
+				<td>100</td>
+				<td>林杨生</td>
+				<td>1503728374</td>
+				<td>已开票</td>
+				<td style="line-height:20px;"><span class="pro_t">10/15</span><br><li class="pro_b"><i class="pro_w"></i></li></td>
+				<td>林杨生/2016-7-23  12:32:44</td>
+				<td></td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">信息</a>
+					<a class="cao_btn cao_btn2">任务</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>？</td>
+				<td>林杨生</td>
+				<td>企业客户</td>
+				<td>入驻合同</td>
+				<td>100</td>
+				<td>林杨生</td>
+				<td>1503728374</td>
+				<td>已寄出</td>
+				<td style="line-height:20px;"><span class="pro_t">10/15</span><br><li class="pro_b"><i class="pro_w"></i></li></td>
+				<td>林杨生/2016-7-23  12:32:44</td>
+				<td></td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">信息</a>
+					<a class="cao_btn cao_btn2">任务</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div style="display:none;"  class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	
+	<div style="display:none;" info="导出table" id="exportExcel"></div>
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/libs/excelTable.js"></script>
+	<script type="text/javascript" src="../public/libs/exportjs/FileSaver.js"></script>
+	<script type="text/javascript" src="../public/libs/exportjs/jquery.wordexport.js"></script>
+	
+</body>
+
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.ser = Utils.getQueryString("ser") || "";//从工作台获取搜索项
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	//$('#menu_show_t .s0',parent.document).html('项目管理');
+	$('#menu_show_t .s0',parent.document).html('项目管理').addClass('active');
+	//$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	//$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	//$('#new_project').on('click',createNewProject);
+	loadPage();
+	
+	
+	//测试
+	$('.cao_btn2').on('click',function(){
+		parent.document.getElementById("iframeObj").src = '项目任务.html';
+	});
+	$('.cao_btn1').on('click',function(){
+		parent.document.getElementById("iframeObj").src = '项目基本信息.html';
+	});
+	
+	
+	
+/* **************************************** setTing ******************************************** */	
+
+	//加载页面
+	function loadPage(){
+
+	}
+
+
+});
+
+</script>
+</html>

@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+	<style>
+		.updownbody .search_table tr:nth-child(2), .updownbody .search_table tr:nth-child(3), .updownbody .search_table tr:nth-child(4){display:table-row;}
+		.xiangmuguanli .table1 tr th{line-height:20px;}
+		.xiangmuguanli .table_div{overflow:hidden;overflow-x:auto;}
+	</style>
+</head>
+<body class="xiangmuguanli updownbody">
+	
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">项目/任务编号</span>
+					<input id="projecttaskNum" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">任务名称</span>
+					<input id="taskname" class="com_input com_input2" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">园区</span>
+					<select id="yuanqu" class="com_select com_select2">
+						<option value="">请选择</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">园区负责人</span>
+					<input id="yuanqumanager" class="com_input com_input2" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">所属管家</span>
+					<input id="suoshuguanjia" class="com_input com_input2" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">是否超时</span>
+					<select id="ischaoshi" class="com_select com_select2">
+						<option value="">请选择</option>
+						<option value="是">是</option>
+						<option value="否">否</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">是否办理完成</span>
+					<select id="isbanliwan" class="com_select com_select2">
+						<option value="">请选择</option>
+						<option value="是">是</option>
+						<option value="否">否</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">接单时间</span>
+					<input class="com_input com_input3"  id="start_time1" placeholder="起" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">接单时间</span>
+					<input class="com_input com_input4" id="end_time1" placeholder="止" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">办理完成时间</span>
+					<input class="com_input com_input3"  id="start_time2" placeholder="起" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">办理完成时间</span>
+					<input class="com_input com_input4" id="end_time2" placeholder="止" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">创建人</span>
+					<input id="chuangjainren" class="com_input com_input2" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td style="height:30px;">
+					
+				</td>
+			</tr>
+		</table>
+		<span class="searBtnTd">
+			<a id="searchBtn" class="top_btn xiangMu_xiangMuSouSuo">搜索</a>
+			<a id="searchAll" class="top_btn type2">清空条件</a>
+			<a class="upserBtn up" href="javascript:;" >收起</a>
+		</span>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		<!-- 项目总数：<span id="totalElements" class="m_value">0</span> -->
+		<a class="daochuCommonBtn" id="daochu" >导出</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<table class="table1">
+			<tr>
+				<th><div class="check_box"><i class="i"></i></div></th>
+				<th style="min-width:26px;">任务编号</th>
+				<th style="min-width:26px;">任务名称</th>
+				<th style="min-width:26px;">园区</th>
+				<th style="min-width:26px;">园区负责人</th>
+				<th style="min-width:26px;">所属管家</th>
+				<th style="min-width:26px;">任务状态</th>
+				<th style="min-width:26px;">快递寄出日期</th>
+				<th style="min-width:26px;">接单日期</th>
+				<th style="min-width:26px;">上传客户签字资料的扫描件</th>
+				<th style="min-width:26px;">上传营业执照</th>
+				<th style="min-width:26px;">超时</th>
+				<th style="min-width:26px;">上传刻章照片</th>
+				<th style="min-width:26px;">超时</th>
+				<th style="min-width:26px;">上传印鉴卡照片</th>
+				<th style="min-width:26px;">上传开户许可证，及银行卡口令照片</th>
+				<th style="min-width:26px;">回寄身份证</th>
+				<th style="min-width:26px;">税务办理</th>
+				<th style="min-width:26px;">购买税控盘照片，发票编号</th>
+				<th style="min-width:26px;">国、地税三方协议</th>
+				<th style="min-width:26px;">办理完成</th>
+				<th style="min-width:26px;">超时</th>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>3A-0058-17009-4</td>
+				<td>安立生坦片</td>
+				<td>A医院</td>
+				<td>杨坤</td>
+				<td>王娜</td>
+				<td>任务完成</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>6</td>
+				<td>2016-7-23</td>
+				<td>6</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>3A-0058-17009-4</td>
+				<td>安立生坦片</td>
+				<td>A医院</td>
+				<td>杨坤</td>
+				<td>王娜</td>
+				<td>审阅后修改</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>6</td>
+				<td>2016-7-23</td>
+				<td>6</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>3A-0058-17009-4</td>
+				<td>安立生坦片</td>
+				<td>A医院</td>
+				<td>杨坤</td>
+				<td>王娜</td>
+				<td>商务部确认</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>6</td>
+				<td>2016-7-23</td>
+				<td>6</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>3A-0058-17009-4</td>
+				<td>安立生坦片</td>
+				<td>A医院</td>
+				<td>杨坤</td>
+				<td>王娜</td>
+				<td>创建任务计划</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>2016-7-23</td>
+				<td>6</td>
+				<td>2016-7-23</td>
+				<td>6</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td>2016-7-23</td>
+				<td>0</td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+		</table>
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div style="display:none;"  class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	
+	<div style="display:none;" info="导出table" id="exportExcel"></div>
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/libs/excelTable.js"></script>
+	<script type="text/javascript" src="../public/libs/exportjs/FileSaver.js"></script>
+	<script type="text/javascript" src="../public/libs/exportjs/jquery.wordexport.js"></script>
+	
+</body>
+
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.ser = Utils.getQueryString("ser") || "";//从工作台获取搜索项
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	//$('#menu_show_t .s0',parent.document).html('项目管理');
+	$('#menu_show_t .s0',parent.document).html('任务管理').addClass('active');
+	//$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	//$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	//$('#new_project').on('click',createNewProject);
+	loadPage();
+	
+
+/* **************************************** setTing ******************************************** */	
+
+	//加载页面
+	function loadPage(){
+
+	}
+
+	//加载时间控件
+	var start = {
+	  elem: '#start_time1',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time1',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	//加载时间控件
+	var start2 = {
+	  elem: '#start_time2',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end2 = {
+	  elem: '#end_time2',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(start2);
+	laydate(end);
+	laydate(end2);
+	
+});
+
+</script>
+</html>
