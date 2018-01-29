@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli yijuguanli">
+	<!-- <h4 class="page_title">依据管理</h4> -->
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">模块名称</span>
+					<select id="mokuaiName" style="width:177px;" class="com_select com_select1"><option value="" disabled selected>模块名称</option></select>
+				</td>
+				<td>
+					<span class="sear_lable">分类名称</span>
+					<select id="fenleiName" style="width:280px;" class="com_select com_select2"><option value="" disabled selected>分类名称</option></select>
+				</td>
+				<td>
+					<span class="sear_lable">问题名称</span>
+					<select id="wentiName" style="width:177px;" class="com_select com_select3"><option value="" disabled selected>问题名称</option></select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">依据编号/名称</span>
+					<input id="yijuNameOr" style="width:170px;" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					
+				</td>
+				<td class="searBtnTd">
+					<a id="searchBtn" class="top_btn">搜索</a>
+					<a id="searchAll" style="margin-right:59px;" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		模块：<span id="mokuaiChoise" class="m_value">全部模块</span>&nbsp;&nbsp;&nbsp;
+		分类：<span id="fenleiChoise" class="m_value">全部分类</span>&nbsp;&nbsp;&nbsp;
+		问题：<span id="wentiChoise" class="m_value">全部问题</span>&nbsp;&nbsp;&nbsp;
+		依据数：<span id="totalElements" class="m_value">0</span>
+		<a class="creat_forse" id="newCenter" >新建依据</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<!-- <table class="table1">
+			<tr>
+				<th>稽查模块</th>
+				<th>分类</th>
+				<th>问题归类</th>
+				<th>依据编号</th>
+				<th>依据</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>保密性</td>
+				<td>数据保护(Confidentiality)</td>
+				<td>与研究无关或未授权人员查阅研究数据</td>
+				<td>002-001-0001-00001</td>
+				<td class="yiju_text">GCP-附录1 第21条 必须始终尊重受试者保护自身的权利。尽可能采取措施以尊重受试者的隐私、病人资料的保密并将对受试者身体和精神以及人格的影响减至最小。</td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">修改</a>
+					<a class="cao_btn cao_btn2">删除</a>
+				</td>
+			</tr>
+		</table> -->
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+			<div class="sbox xiugaizhongxin">
+				<h4 class="sbox_h4">依据管理</h4>
+				<!-- <div class="sbox_c"><span class="slable">依据编号</span><input id="yijubianhao" class="sbox_input" type="text"/></div> -->
+				<div class="sbox_c"><span class="slable">所属模块</span><i class="star">*</i><select id="suoshumokuai" class="sbox_select"><option>请选择</option></select></div>
+				<div class="sbox_c"><span class="slable">所属分类</span><i class="star">*</i><select id="suoshufenlei" class="sbox_select"><option>请选择</option></select></div>
+				<div class="sbox_c"><span class="slable">问题归类</span><i class="star">*</i><select id="wentiguilei" class="sbox_select"><option>请选择</option></select></div>
+				<div class="sbox_c"><span class="slable">条例</span><i class="star">*</i><textarea id="tiaoli" style="height:55px;" class="sbox_input"></textarea></div>
+				<div class="sbox_c"><span class="slable">依据</span><i class="star">*</i><textarea id="yiju" style="height:55px;" class="sbox_input"></textarea></div>
+				<div  class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+		</div>
+	</div>	
+		
+		
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.search = 1;//判断当前列表处于搜索状态
+	
+/* **************************************** lodding ******************************************** */		
+		
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	//$('#menu_show_t .s0',parent.document).html('知识库');
+	$('#menu_show_t .s0',parent.document).html('依据管理').addClass('active');
+	$('#searchAll').on('click',function(){g.search = 0;g.nowPage = 0;tableListShow(2)});
+	$('#newCenter').on('click',shownewCenterSbox);
+	$('#searchBtn').on('click',function(){g.search = 1;g.nowPage = 0;tableListShow(1)});
+	getModelName();//获取模块名称列表
+	reloadSbox();
+	tableListShow();//显示列表
+
+	
+/* **************************************** setTing ******************************************** */	
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		g.search = 1;
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//搜索条件 模块名称填充数据
+	function getModelName(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		var url = Base.serverUrl + "module/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.content || [];
+					var html = '<option value="">选择模块</option>';
+					var html2 = '<option value="">选择模块</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var name = d.name || '';//名称
+						html+='<option name="'+name+'" value="'+name+'">'+name+'</option>';
+						html2+='<option name="'+name+'" value="'+id+'">'+name+'</option>';
+					}	
+					$('#mokuaiName').html(html);
+					$('#suoshumokuai').html(html2);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	//根据模块获取分类
+	$('#mokuaiName,#suoshumokuai').change(function(){
+		var name1 = $(this).find('option:selected').attr('name') || '@#%^&*()(';
+		getFenlei(name1);
+	});
+	function getFenlei(name1,moren,x){
+		var name1 = name1 || '';
+		var moren = moren || '';
+		var x = x || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		condi.module_name = name1;
+		var url = Base.serverUrl + "category/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.content || [];
+					var html = '<option value="">选择分类</option>';
+					var html2 = '<option value="">选择分类</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var name = d.name || '';//名称
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						html+='<option '+_select+' name1="'+name1+'" name="'+name+'" value="'+name+'">'+name+'</option>';
+						html2+='<option '+_select+' name1="'+name1+'" name="'+name+'" value="'+id+'">'+name+'</option>';
+					}	
+					if(x != '1')$('#fenleiName').html(html);
+					$('#suoshufenlei').html(html2);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//根据分类获取问题
+	$('#fenleiName,#suoshufenlei').change(function(){
+		var module_name = $(this).find('option:selected').attr('name1') || '@#%^&*()(';
+		var category_name = $(this).find('option:selected').attr('name') || '@#%^&*()(';
+		getWenti(module_name,category_name);
+	});
+	
+	function getWenti(module_name,category_name,moren,x){
+		var module_name = module_name || '';
+		var category_name = category_name || '';
+		var moren = moren || '';
+		var x = x || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		condi.module_name = module_name;
+		condi.category_name = category_name;
+		var url = Base.serverUrl + "problem/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.content || [];
+					var html = '<option value="">选择问题</option>';
+					var html2 = '<option value="">选择问题</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var name = d.name || '';//名称
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						html+='<option '+_select+' value="'+name+'">'+name+'</option>';
+						html2+='<option '+_select+' value="'+id+'">'+name+'</option>';
+					}	
+					if(x != '1')$('#wentiName').html(html);
+					$('#wentiguilei').html(html2);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+		
+	
+	
+	//初始化弹窗
+	function reloadSbox(){
+		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		$('.xiugaizhongxin textarea').val('');//清空弹窗
+		$('#noBtn').html('取消');
+		$('#yesBtn').off().show();
+		$('.xiugaizhongxin input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.xiugaizhongxin select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	//显示新建窗口
+	function shownewCenterSbox(){
+		reloadSbox();//初始化弹窗
+		$('.xiugaizhongxin .sbox_h4').html('添加依据');
+		showSbox('.xiugaizhongxin');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc('new')});
+	}
+	//新建
+	window.centerFunc = function(is,id){
+		
+		var is = is || '';
+		var id = id || '';
+		//var yijubianhao = $('#yijubianhao').val() || '';
+		var wentiguilei = $('#wentiguilei').val() || '';
+		var suoshumokuai = $('#suoshumokuai').val() || '';
+		var suoshufenlei = $('#suoshufenlei').val() || '';
+		var yiju = $('#yiju').val() || '';
+		var tiaoli = $('#tiaoli').val() || '';
+		if(suoshumokuai == ''){Utils.alert('所属模块不能为空！');return false;}
+		if(suoshufenlei == ''){Utils.alert('所属分类不能为空！');return false;}
+		if(wentiguilei == ''){Utils.alert('问题归类不能为空！');return false;}
+		if(yiju == ''){Utils.alert('依据不能为空！');return false;}
+		if(tiaoli == ''){Utils.alert('条例不能为空！');return false;}
+		$('#yesBtn').off();
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		//condi.code = yijubianhao;
+		condi.name  = yiju;
+		condi.reference  = tiaoli;
+		condi.problem_id  = wentiguilei;
+		condi.module_id  = suoshumokuai;
+		condi.category_id  = suoshufenlei;
+		var url = Base.serverUrl + "reference/create";
+		if(is == 'change'){condi.id = id;url = Base.serverUrl + "reference/update";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					if(is == 'change'){tips = '修改成功！';}
+					Utils.alert(tips);
+					tableListShow(2);//列表
+					closeSbox();//关闭弹窗
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow();//列表
+	 }
+	 
+	
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		var mokuaiName = $('#mokuaiName').val() || '';
+		var fenleiName = $('#fenleiName').val() || '';
+		var wentiName = $('#wentiName').val() || '';
+		var yijuNameOr = $('#yijuNameOr').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		$('#mokuaiChoise').html('全部模块');
+		$('#fenleiChoise').html('全部分类');
+		$('#wentiChoise').html('全部问题');
+		if(is == 1 || g.search == 1 || g.search == 2){//搜索
+			//if(mokuaiInfo == ''){Utils.alert('模块名称/编号不能为空！');}
+			//显示选择项
+			$('#mokuaiChoise').html(mokuaiName || '全部模块');
+			$('#fenleiChoise').html(fenleiName || '全部分类');
+			$('#wentiChoise').html(wentiName || '全部问题');
+			condi.module_name = mokuaiName;
+			condi.category_name = fenleiName;
+			condi.problem_name = wentiName;
+			condi.name = yijuNameOr;
+			g.loadPage = true;//开启分页
+			if(g.search == 2){g.loadPage = false;}
+			g.search = 2;
+		}else if(is == 2){//搜索全部
+			$('#mokuaiName').val('');
+			$('#fenleiName').html('<option value="">选择分类</option>').val('');
+			$('#wentiName').html('<option value="">选择问题</option>').val('');
+			$('.btn_div input').val('');//全部的时候 清空搜索项
+			g.loadPage = true;//开启分页
+		}
+		var url = Base.serverUrl + "reference/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共模块数
+					$('#totalElements').html(totalElements);
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:58px;">依据编号</th>'
+							+'<th style="min-width:58px;">稽查模块</th>'
+							+'<th style="min-width:58px;">分类</th>'
+							+'<th style="min-width:58px;">问题归类</th>'
+							+'<th style="min-width:58px;">条例</th>'
+							+'<th style="min-width:58px;">依据详情</th>'
+							+'<th style="min-width:156px;">操作</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var category_name = d.category_name || '';//
+						var problem_name = d.problem_name || '';//
+						var reference = d.reference || '';//
+						var name = d.name || '';//问题归纳
+						var module_name = d.module_name || '';//
+						html+='<tr>'
+							+'<td>'+code+'</td>'
+							+'<td>'+module_name+'</td>'
+							+'<td>'+category_name+'</td>'
+							+'<td>'+problem_name+'</td>'
+							+'<td>'+reference+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td class="last">'
+								//+ '<a href="javascript:;" onclick="review(\''+id+'\')" class="cao_btn cao_btn1">查看</a>'
+								+'<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn2">修改</a>'
+								+'<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>'
+							+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//删除一项
+	window.deleteIt = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "reference/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//修改
+	window.change = function(id){
+		showOrChange(id,'change');
+	}
+	//查看
+	window.review = function(id){
+		showOrChange(id,'review');
+	}
+	//查看或者修改的 公共方法
+	window.showOrChange = function(id,is){
+		var id = id || '';
+		var is = is || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "reference/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					
+					reloadSbox();//初始化弹窗
+					//赋值
+					$('#suoshumokuai').val(d.module_id || '');
+					getFenlei(d.module_name,d.category_name,1);//查询分类并赋值
+					getWenti(d.module_name,d.category_name,d.problem_name,1);//查询问题并赋值
+					$('#yiju').val(d.name || '');
+					$('#tiaoli').val(d.reference || '');
+
+					//弹窗
+					var tips = '';//判断弹窗标题
+					
+					if(is == 'review'){//弹窗是查看
+						tips = '依据详情';
+						$('#yesBtn').off().hide();
+						$('#noBtn').html('关闭');
+						$('.xiugaizhongxin input').attr('readonly',true).addClass('readonly');//清空
+						$('.xiugaizhongxin select').attr('disabled',true).addClass('readonly');//清空
+					}else{//弹窗是修改
+						tips = '修改依据';
+						$('#yesBtn').off().on('click',function(){centerFunc('change',id)});
+					}
+					$('.xiugaizhongxin .sbox_h4').html(tips);
+					showSbox('.xiugaizhongxin');//显示弹窗
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+
+});
+
+</script>
+</html>

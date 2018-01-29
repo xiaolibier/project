@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__SYSWEB__/images/mainFrom.css" rel="stylesheet" type="text/css"/>
+<link href="__SYSWEB__/images/skinv2.0.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.STYLE1 {color: #FFFFFF}
+-->
+</style>
+<script language="javascript" src="__SYSWEB__/images/35Public.js"></script>
+</head>
+
+<body>
+<div class="con-ico">
+  <div class="con-fl" style="height:30px;">当前位置：我的站点 &gt; 业务咨询 </div>
+</div>
+<form action="__APP__/Admin/Mguest/guest_delete" method="post" name="Gforms" id="Gforms">
+  <table width="79%" border="0" cellpadding="0" cellspacing="1" bgcolor="#CDCDCD">
+    <tr>
+      <td width="5%" height="22" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>选中</strong></td>
+       <td width="7%" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>姓名</strong></td>
+       
+      <td width="13%" align="center" bgcolor="#F4F4F4" class="tdblodthnone" style=""><strong>联系地址</strong></td>
+      <td width="12%" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>电话</strong><strong></strong></td>
+      <td width="10%" align="center" bgcolor="#F4F4F4" class="tdblodthnone">是否查看</td>
+      <td width="18%" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>提交时间</strong></td>
+      <td width="15%" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>操作</strong></td>
+    </tr>
+    <volist name="info_detail" id="vo">
+    <tr bgcolor="#F4F4F4" onmouseover="this.style.backgroundColor=&quot;#FFFFFF&quot;" onmouseout="this.style.backgroundColor=&quot;&quot;">
+      <td align="center"><label>
+        <input name="nCID[]" type="checkbox" id="nCID[]" value="{$vo.GID}" />
+      </label></td>
+       <td align="center">{$vo.GName}</td>
+      
+      <td align="center" style="">{$vo.GEmail}</td>
+      <td align="center">{$vo.Gtel}</td>
+      <td align="center"><font color="#FF0000"><if condition="$vo.GState eq '1' "> <img src='__SYSWEB__/images/yes.gif'> <else/> <img src='__SYSWEB__/images/no.gif'> </if></font></td>
+      <td align="center">{$vo.GTime}</td>
+      <td align="center"><a href="__APP__/Admin/Mguest/guest_show?Save=Edit&id={$vo.GID}">查看详细</a></td>
+    </tr>
+   </volist>
+    <tr>
+      <td height="24" colspan="7" bgcolor="#E2EEE1"><label></label>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="20%"> &nbsp;
+                <input type="checkbox" name="chkall" value="on" onclick="CheckAll(this.form)" />
+全部选中(清空)</td>
+              <td width="10%"><input name="Submit" type="submit" class="Botton" id="Submit" onclick="return confirm('您确定要批量删除吗？');" value="批量删除" /></td>
+              <td width="10%"><select name="State" id="State">
+                <option value="1">True</option>
+                <option value="0">False</option>
+              </select></td>
+              <td width="60%"><input name="Submit" type="submit" class="Botton" id="Submit" onclick="return confirm('您确定要批量更新状态吗？');" value="状态更新" /></td>
+            </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="21" colspan="7" align="center" bgcolor="#E2EEE1" >{$page}</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

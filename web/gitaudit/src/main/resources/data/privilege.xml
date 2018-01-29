@@ -1,0 +1,69 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<bean id="SYSTEM_ADMIN" class="com.zhb.bean.Privilege">
+		<property name="name" value="系统管理"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+
+	<bean id="BUSINESS_ADMIN" class="com.zhb.bean.Privilege">
+		<property name="name" value="业务管理"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+
+	<bean id="PRINT" class="com.zhb.bean.Privilege">
+		<property name="name" value="报表打印"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+
+	<bean id="CHECK" class="com.zhb.bean.Privilege">
+		<property name="name" value="评审"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+
+	<bean id="CLASSIFY" class="com.zhb.bean.Privilege">
+		<property name="name" value="分级"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+	<bean id="EDIT_CENTER_REPORT" class="com.zhb.bean.Privilege">
+		<property name="name" value="修改单中心报告"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+	<bean id="EDIT_STAGE_REPORT" class="com.zhb.bean.Privilege">
+		<property name="name" value="修改项目阶段报告"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+	<bean id="EDIT_TASK_REPORT" class="com.zhb.bean.Privilege">
+		<property name="name" value="修改稽查记录表"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+	<bean id="EDIT_REPORT_SCORE" class="com.zhb.bean.Privilege">
+		<property name="name" value="修改中心评价表"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+	<bean id="EDIT_TASK" class="com.zhb.bean.Privilege">
+		<property name="name" value="修改稽查任务"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+
+	<bean id="ADD_PROJECT" class="com.zhb.bean.Privilege">
+		<property name="name" value="新建项目"></property>
+		<property name="groupId" value="-"></property>
+	</bean>
+</beans>

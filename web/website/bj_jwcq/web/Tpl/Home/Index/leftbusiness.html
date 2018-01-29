@@ -1,0 +1,11 @@
+<div class="jianjie_01 jianjie_center_left fl">
+    <!-- <span>业务范围</span> -->
+    <span>
+      <ul>
+	   <volist id="vo" name="datasrows">
+	  	 <li id="{$vo['Main_ID']}"><a href="{:U('business?id='.$vo['Main_ID'].'')}" title="{$vo.Main_Name}">{$vo.Main_Name|msubstr=0,7}</a></li>
+	  </volist>
+      </ul>
+    </span>
+  
+  </div>

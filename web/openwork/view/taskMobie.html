@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>在线审阅</title>
+	<style>
+		.member_bg .mem_list{border-bottom:1px solid #D8D8D8;}
+	</style>
+</head>
+<body class="projectLs taskMobie">
+	<!-- 项目列表 -->
+	<div class="project_tt">
+		<div class="member_bg">
+			<!--  -->
+			<div class="width_div">
+				<h4 class="title1">在线审阅</h4>
+				<h4 class="title2">任务编号：<span id="taskCode" class="span2"></span></h4>
+				<div id="faxianListDiv" class="faxian_list_div">
+					<!-- <div class="fld_cc">
+						<div class="fld_module" info="模块">1.<span>通用</span></div>
+						<div class="fld_faxian" info="发现问题详情">1）<span>受试者089：</span><span>入组前血生化检查肌酐75(27-62)umol/L，超过正常值范围上限，并不符合排除标准</span></div>
+						<div class="fld_fenji" info="分级">分级：<span>试验用药品／器械配置、分发、使用、回收</span></div>
+						<div class="fld_fenlei" info="分类">分类：<span>《试验方案》</span></div>
+						<div class="fld_wentiguina" info="问题归纳">问题归纳：<span>使用不规范</span></div>
+						<div class="fld_btndiv"><a class="cao_btn cao_btn1">审阅</a></div>
+						<div class="fld_talk_div">
+							<div>
+								<textarea class="fldt_text" placeholder="我也来说两句..."></textarea>
+								<div class="fldt_conet"><a style="margin-right:20px;" class="cao_btn cao_btn7">保存</a><a class="cao_btn cao_btn8">取消</a></div>
+							</div>
+							<div class="fld_talk_list">
+								<div class="fld_talk_one">
+									<div class="fld_head_div"><img class="fld_head" src="../public/img/head_small.png"/></div>
+									<div class="fld_head_right">
+										<div class="fld_usr_title">雷凯文／稽查经理<span class="fld_usr_title2">9月27日 下午3:08</span></div>
+										<div class="fld_usr_talk">入组前血生化检查肌酐75(27-62)umol/L，超过正常值范围上限，并不符合排除标准化检查肌酐化检查肌酐超过正常值范围</div>
+									</div>
+								</div>
+								<div class="fld_talk_one">
+									<div class="fld_head_div"><img class="fld_head" src="../public/img/head_small.png"/></div>
+									<div class="fld_head_right">
+										<div class="fld_usr_title">雷凯文／稽查经理<span class="fld_usr_title2">9月27日 下午3:08</span></div>
+										<div class="fld_usr_talk">入组前血生化检查肌酐75(27-62)umol/L，超过正常值范围上限，并不符合排除标准化检查肌酐化检查肌酐超过正常值范围</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 弹出层 -->
+	<div class="stip_bg"></div>
+	<div class="cancel_box">
+		<a href="javascript:;" class="common_box_btn type1">删除我的评论</a>
+		<a href="javascript:;" id="cancelYes" class="common_box_btn type2">删除</a>
+		<a href="javascript:;" id="cancelDelete" class="common_box_btn type3">取消</a>
+	</div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.xid = Utils.getQueryString("xid") || "";//从在线审阅pc端传来 传项目id
+	g.rid = Utils.getQueryString("rid") || "";//从在线审阅pc端传来 传任务id
+	g.usrid = Utils.getQueryString("usrid") || "";//从在线审阅pc端传来 传用户id
+	//g.xname = Utils.getQueryString("xname") || "";//从稽查发现或稽查任务页面传来 传项目名称
+	//if(g.xname != ''){g.xname = decodeURI(g.xname)}//解码
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	loadPage();//加载页面
+		
+	//返回到项目列表
+	//$('#pro_name_span').on('click',function(){
+	//	location.href="project.html";
+	//});
+	//取消 隐藏弹出层
+	$('#cancelDelete').on('click',hideCancelBox);
+	$('#cancelYes').on('click',cancelYes);
+	
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		 //$('#pro_name_span').html(g.xname);//给标题 项目名称赋值
+		tableListShow();//获取列表
+	}
+	
+	//隐藏弹出层
+	function hideCancelBox(){
+		$('.stip_bg').fadeOut(200);
+		$('.cancel_box').slideUp(200);
+		$('#cancelYes').removeAttr('cid');//初始化
+	}
+	
+	//删除一个 审阅
+	function cancelYes(){
+		var id = $(this).attr('cid') || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "open/multi/review/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					hideCancelBox();
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	} 
+	//获取列表
+	function tableListShow(){
+		var condi = {};
+		condi.task_id = g.rid;
+		var url = Base.serverUrl + "open/multi/review/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				g.totalPage = data.totalPages || 0;//总页数
+				g.totalElements = data.totalElements || 0;//总数
+				
+				if(status){
+					var data = data.result || {};
+					var data1 = data.openModuleLinkedList || [];
+					var code = data.code || '';
+					$('#taskCode').html(code);
+					var html = '';
+					//遍历项目成员
+					for(var q=0,lenq=data1.length;q<lenq;q++){
+						var mxu = q + 1;
+						var dq = data1[q] || {};
+						var mid = dq.id || '';
+						var name = dq.name || '';
+						var dataq = dq.openDiscoveryLinkedList || [];
+						if(dataq.length <= 0){continue;}
+						html+='<div class="fld_cc">'
+							+'<div class="fld_module" info="模块">'+mxu+'.<span>'+name+'</span></div>';
+						for(var i=0,len=dataq.length;i<len;i++){
+							var fxu = i + 1;
+							var d = dataq[i] || {};
+							var disid = d.id || '';
+							var classify = d.classify || '';
+							var grade = d.grade || '';
+							var module_name = d.module_name || '';
+							var patient_code = d.patient_code || '';
+							var problem = d.problem || '';
+							var problem_detail = d.problem_detail || '';
+							var task_module_id = d.task_module_id || '';
+							var data2 = d.openMultiReviewMessages || [];
+							var patient_str = patient_code != '' ? '受试者' + patient_code + '：' : '';
+							html+='<div class="faxianxbox">'
+							+'<div class="fld_faxian" info="发现问题详情">'+fxu+'）<span>'+patient_str+'</span><span>'+problem_detail+'</span></div>'
+							+'<div class="fld_fenji" info="分级">分级：<span>'+grade+'</span></div>'
+							+'<div class="fld_fenlei" info="分类">分类：<span>'+classify+'</span></div>'
+							+'<div class="fld_wentiguina" info="问题归纳">问题归纳：<span>'+problem+'</span></div>'
+							+'<div class="fld_btndiv fld_btndiv'+disid+'"><a href="javascript:;" onclick="showping(\''+disid+'\')" class="cao_btn cao_btn1">审阅</a></div>'
+							+'<div class="fld_talk_div">'
+								+'<div class="hidethisdiv hidethisdiv'+disid+'" style="display:none;">'
+									+'<textarea class="fldt_text" placeholder="我也来说两句..."></textarea>'
+									+'<div class="fldt_conet">'
+									+'<a href="javascript:;" onclick="saveit(\''+disid+'\')" style="margin-right:20px;" class="cao_btn cao_btn7">保存</a>'
+									+'<a href="javascript:;" onclick="cancelit(\''+disid+'\')" class="cao_btn cao_btn8">取消</a></div>'
+								+'</div>'
+								+'<div class="fld_talk_list">';
+								for(var j=0,len2=data2.length;j<len2;j++){
+									var ds = data2[j] || {};
+									var cid = ds.id || '';
+									var content = ds.content || '';
+									var role = ds.role || '';
+									var name = ds.name || '';
+									var user_id = ds.user_id || '';
+									var deletable = ds.deletable || false;
+									var src = ds.icon || '../public/img/head_small.png';
+									var create_time = getDate(ds.create_time || '');
+									var usrrore = role != '' ? name+'／'+role : name;
+									
+									var _delestr = '';
+									//if((g.usrid == user_id || g.login_token == user_id) && user_id != ''){_delestr = 'onclick="showdeletebox(\''+cid+'\')"';}
+									if(deletable){_delestr = 'onclick="showdeletebox(\''+cid+'\')"';}
+									
+									html+='<div '+_delestr+' class="fld_talk_one">'
+										//+'<a style="position:absolute;right:0;top:0;" onclick="deleteit(\''+cid+'\')" class="deletecaobtn cao_btn cao_btn3">删除</a>'
+										+'<div class="fld_head_div"><img class="fld_head" src="'+src+'"/></div>'
+										+'<div class="fld_head_right">'
+											+'<div class="fld_usr_title">'+usrrore+'<span class="fld_usr_title2">'+create_time+'</span></div>'
+											+'<div class="fld_usr_talk">'+content+'</div>'
+										+'</div>'
+									+'</div>';
+								}
+								html+='</div>'
+							+'</div>'
+							+'</div>';
+						}	
+						html+='</div>';
+					}
+					$('#faxianListDiv').html(html);
+
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+					$('#faxianListDiv').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#faxianListDiv').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//显示删除弹出层
+	window.showdeletebox = function(cid){
+		var cid = cid || '';
+		if(cid == ''){Utils.alert('审阅id不能为空！');return false;}
+		$('.stip_bg').fadeIn(0);
+		$('.cancel_box').slideDown(200);
+		$('#cancelYes').attr('cid',cid);
+	}
+	//取消审阅
+	window.cancelit = function(disid){
+		var disid = disid || '';
+		if(disid == ''){Utils.alert('发现id不能为空！');return false;}
+		$('.hidethisdiv'+disid).hide();//审阅框
+		$('.fld_btndiv'+disid).show();//审阅按钮
+	}
+	
+	//显示审阅框
+	window.showping = function(disid){
+		var disid = disid || '';
+		if(disid == ''){Utils.alert('发现id不能为空！');return false;}
+		$('.hidethisdiv'+disid).show().find('textarea').val('');//审阅框
+		$('.fld_btndiv'+disid).hide();//审阅按钮
+	}
+	
+	//添加任务成员
+	window.addtaskmem = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('任务id不能为空！');return false;}
+		shownewCenterSbox('ren',id);//弹出添加成员窗口
+	}
+	
+	//保存 新建审阅
+	window.saveit = function(disid){
+		var disid = disid || '';
+		var content = $('.hidethisdiv'+disid).find('.fldt_text').val() || '';
+		if(disid == ''){Utils.alert('id不能为空！');return false;}
+		if(content == ''){Utils.alert('审阅内容不能为空！');return false;}
+		//if(!confirm('确认保存审阅吗？')){return false;}
+		var condi = {};
+		condi.task_id  = g.rid;
+		condi.discovery_id = disid;
+		condi.content = content;
+		var url = Base.serverUrl + "open/multi/review/add";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('审阅成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "审阅失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	} 
+	
+	
+});
+</script>
+</html>

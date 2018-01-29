@@ -1,0 +1,43 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<bean id="P1" class="com.zhb.bean.Stage">
+		<property name="name" value="启动阶段"></property>
+	</bean>
+
+	<bean id="P2" class="com.zhb.bean.Stage">
+		<property name="name" value="入组早期"></property>
+	</bean>
+	
+	<bean id="P3" class="com.zhb.bean.Stage">
+		<property name="name" value="入组中期"></property>
+	</bean>
+	
+	<bean id="P4" class="com.zhb.bean.Stage">
+		<property name="name" value="入组末期"></property>
+	</bean>
+	
+	<bean id="P5" class="com.zhb.bean.Stage">
+		<property name="name" value="数据答疑阶段"></property>
+	</bean>
+	
+	<bean id="P6" class="com.zhb.bean.Stage">
+		<property name="name" value="数据库锁定后"></property>
+	</bean>
+</beans>

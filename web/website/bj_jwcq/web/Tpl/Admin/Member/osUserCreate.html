@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__SYSWEB__/images/skinv2.0.css" rel="stylesheet" type="text/css">
+<link href="__SYSWEB__/images/mainFrom.css" rel="stylesheet" type="text/css"/>
+	<script charset="utf-8" src="__SYSWEB__/images/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<div class="con-ico">
+  <div class="con-fl" style="height:30px;">当前位置：系统管理 &gt; 会员管理</div>
+</div>
+<table width="667"
+			border="0" cellPadding="0" cellSpacing="0" style="WIDTH: 800px; HEIGHT: 380px">
+  <tr>
+    <td width="667" colSpan="2" align="left" vAlign="top" style="HEIGHT: 381px"><form name="form1" method="post" action="__APP__/Admin/Member/add_user?id={$id}" onsubmit="return check_add()">
+      <table width="667" border="0" cellpadding="0" cellspacing="0" class="content-table">
+        <tr class="content-table">
+          <th align="right"> 属性项 </th>
+          <th> 属性值          </tr>
+        <tr>
+          <td width="81" height="21" align="right" bgcolor="#F4F4F4">用 户 名：</td>
+          <td width="586" bgcolor="#F4F4F4"><input name="OSName" type="text" class="input_3" value="{$madmin.SysU_Username}"></td>
+        </tr>
+        <tr>
+          <td height="21" align="right" bgcolor="#F4F4F4">用户密码：</td>
+          <td bgcolor="#F4F4F4"><input name="OSPass" type="password" class="input_3" value="" ></td>
+        </tr>
+        <tr>
+          <td height="21" align="right" bgcolor="#F4F4F4">确认密码：</td>
+          <td bgcolor="#F4F4F4"><input name="OSPassAgain" type="password" class="input_3" value="">
+                <input name="isPass" type="checkbox" id="isPass" value="1">
+            是否更改密码</td>
+        </tr>
+        <tr>
+          <td height="21" align="right" bgcolor="#F4F4F4">用户邮箱：</td> 
+          <td bgcolor="#F4F4F4"><input name="OSEmail" type="text" class="input_3" value="{$madmin.SysU_Email}"></td>
+        </tr>
+        <tr>
+          <td height="21" align="right" bgcolor="#F4F4F4">用户电话：</td>
+          <td bgcolor="#F4F4F4"><input name="OSTel" type="text" class="input_3" value="{$madmin.SysU_tel}"></td>
+        </tr>
+        <tr>
+          <td height="21" align="right" bgcolor="#F4F4F4">用户状态：</td>
+          <td bgcolor="#F4F4F4">
+		  <input name="OSState" type="radio" value="1"  <if condition="$SysU_State  eq '1' ">  checked  <else/> </if>>开启
+            <input type="radio" name="OSState" value="0"   <if condition="$SysU_State  eq '0' ">  checked <else/> </if>>
+            关闭 </td>
+        </tr>
+        <tr>
+          <td height="21" align="right" bgcolor="#F4F4F4">用户权限：</td>
+          <td bgcolor="#F4F4F4">
+		    <volist name="Datacheck" id="vo">
+		     <input type="checkbox" name="sys_role[]" tag="sys_role" value="{$vo.MID}" />{$vo.MName}
+		   </volist>
+		  </td>
+        </tr>
+        <tr>
+          <td height="30" align="right" bgcolor="#E2EEE1"><input name="soID" type="hidden" id="soID" value="">
+                <input type="hidden" name="action" value="{$submitact}"></td>
+          <td bgcolor="#E2EEE1"><input name="Submit" type="submit" class="Botton" value="{$buttonvalue}">
+                <input name="Submit" type="reset" class="Botton" value="重新设置"></td>
+        </tr>
+      </table>
+    </form></td>
+  </tr>
+</table>
+</body>
+</html>
+<script type="text/javascript">
+var s="{$SysU_Role}";
+if(s!="")
+{
+	var priv=s.split(",");
+	for(var i=0;i<priv.length;i++)
+	{
+		$("input[tag='sys_role']").each(function()
+		{
+			if($(this).val()==priv[i])$(this).attr("checked",true);	
+		});
+	}
+}
+
+var submits="{$submitact}";
+function check_add()
+{
+	if(document.form1.OSName.value=="")
+	{
+		alert("请输入用户名!");
+		document.form1.OSName.focus();
+		return false;
+	}
+	 
+	if(submits=="Add")
+	{
+	
+	
+		if(document.form1.OSPass.value=="")
+		{
+			alert("请输入用户密码!");
+			document.form1.OSPass.focus();
+			return false;
+		}
+		if(document.form1.OSPassAgain.value=="")
+		{
+			alert("请输入确认密码!");
+			document.form1.OSPassAgain.focus();
+			return false;
+		}
+		if(document.form1.OSPass.value!=document.form1.OSPassAgain.value)
+		{
+			alert("两次密码输入不一致,请重新输入!");
+			document.form1.OSPassAgain.focus();
+			return false;
+		}
+	}
+	else
+	{
+	
+	
+		if(document.getElementById('isPass').checked==true)
+		{
+			if(document.form1.OSPass.value=="")
+			{
+				alert("请输入用户密码!");
+				document.form1.OSPass.focus();
+				return false;
+			}
+			if(document.form1.OSPassAgain.value=="")
+			{
+				alert("请输入确认密码!");
+				document.form1.OSPassAgain.focus();
+				return false;
+			}
+			if(document.form1.OSPass.value!=document.form1.OSPassAgain.value)
+			{
+				alert("两次密码输入不一致,请重新输入!");
+				document.form1.OSPassAgain.focus();
+				return false;
+			}
+		}
+	}
+	
+	
+}
+
+</script>

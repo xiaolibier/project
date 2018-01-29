@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/select2/css/select2.min.css" />
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	<style>
+		.choiseDanwei21,.choiseDanwei22{margin-top:4px;width:286px;}
+		
+	</style>
+</head>
+<body class="xiangmuguanli xiangmurenwu">
+	<!-- 稽查组长 -->
+	<ul style="height:200px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei21">
+		<li>加载失败</li>
+	</ul>
+	<!-- 稽查员 -->
+	<ul class="choiseDanwei choiseDanwei22">
+		<li>加载失败</li>
+	</ul>
+	<div style="display:none;" class="m_info">
+		<a style="float:none;background-color:#388cff;color:#fff;" class="creat_forse type1" id="checkAllRenwu" >查看已生成任务</a>
+		<a class="creat_forse" style="float:none;" id="new_project" >添加中心任务</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<!-- <table class="table1">
+			<tr>
+				<th style="min-width:48px;">序号</th>
+				<th>中心名称</th>
+				<th>中心编号</th>
+				<th>项目阶段</th>
+				<th>机构负责人</th>
+				<th>实施科室</th>
+				<th>主要研究者</th>
+				<th>任务创建时间/创始人</th>
+				<th>计划开始时间</th>
+				<th>稽查组长</th>
+				<th>稽查员</th>
+				<th>任务状态</th>
+				<th style="min-width:190px;">操作</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>中国人民解放军南京军区南京总医院</td>
+				<td>06</td>
+				<td>数据库锁定</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="td10"><span class="time1">2016-7-23  12:32:44</span><br><span class="boy">侯思佳</span></td>
+				<td><span class="time1">2016-7-23</span></td>
+				<td></td>
+				<td></td>
+				<td>暂存</td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">编辑</a>
+					<a class="cao_btn cao_btn2">生成任务</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>中国人民解放军南京军区南京总医院</td>
+				<td>06</td>
+				<td>入组中期</td>
+				<td>李院长</td>
+				<td>外科</td>
+				<td>李某某</td>
+				<td class="td10"><span class="time1">2016-7-23  12:32:44</span><br><span class="boy">侯思佳</span></td>
+				<td><span class="time1">2016-7-23</span></td>
+				<td>侯思佳</td>
+				<td>侯思佳，范范</td>
+				<td>报告填写中</td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>中国人民解放军南京军区南京总医院</td>
+				<td>06</td>
+				<td>入组中期</td>
+				<td>李院长</td>
+				<td>外科</td>
+				<td>李某某</td>
+				<td class="td10"><span class="time1">2016-7-23  12:32:44</span><br><span class="boy">侯思佳</span></td>
+				<td><span class="time1">2016-7-23</span></td>
+				<td>侯思佳</td>
+				<td>侯思佳，范范</td>
+				<td>任务完成</td>
+				<td class="last">
+				</td>
+			</tr>
+		</table> -->
+	</div>
+	<!-- <div class="pages">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div> -->
+	
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+			<!-- 修改中心 -->
+			<div class="sbox xiugaizhongxin">
+				<h4 class="sbox_h4">修改任务</h4>
+				<div class="sbox_c"><span class="slable">机构负责人</span><i class="star">*</i><input id="jigoufuzeren" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">实施科室</span><i class="star">*</i><input id="shishikeshi" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">主要研究者</span><i class="star">*</i><input id="zhuyaoyanjiuzhe" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">计划开始时间</span><i class="star">*</i><input id="plantime" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">稽查组长</span><i class="star">*</i><input id="jichazuzhang" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">稽查员</span><i class="star"></i><select style="width:75%;" id="jichayuan" multiple class="sbox_select"></select></div>
+				<div class="sbox_btn_div">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" href="javascript:;" class="sbox_btn btn2">修改</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/select2/js/select2.full.min.js"></script>
+	<script type="text/javascript" src="../public/select2/js/i18n/zh-CN.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.id = Utils.getQueryString("rid") || Utils.offLineStore.get("rid",false);//从项目管理传来 项目id
+	g.rcode = Utils.getQueryString("rcode") || Utils.offLineStore.get("rcode",false);//从项目管理传来 项目code
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.nid = '';//现在的任务id
+	
+/* **************************************** lodding ******************************************** */		
+	
+	//setSearchRole('.choiseDanwei21','稽查员','li');//给选框赋值
+	setGetSearchInput('#jichazuzhang','.choiseDanwei21');//定义可以搜索下拉的
+	//setSearchRole('#jichayuan','稽查员','option','name');//给选框赋值
+	
+	setSearchBuMen('#jichayuan','稽查部','option','name');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei21','稽查部','li');//给项目成员 选框赋值
+	//setGetSearchInput('#jichayuan','.choiseDanwei22');//定义可以搜索下拉的
+	//setMoreSlide('#jichayuan','.choiseDanwei22');//定义可以多选
+	$("#jichayuan").select2({tags: true});//定义多选控件
+	
+	//测试
+	$('.xiangmurenwu').on('click','#new_project,.addnew',function(){
+		parent.document.getElementById("iframeObj").src = '添加任务.html';
+	});
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('项目管理').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '项目管理.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 项目任务').addClass('active');
+	$('#checkAllRenwu').on('click',checkAll);//查看已生成任务
+	tableListShow();//显示列表
+	
+/* **************************************** setTing ******************************************** */	
+	
+	//查看已生成任务
+	function checkAll(){
+		if(g.rcode == ''){Utils.alert('项目编号不能为空！');return false;}
+		$('.JiChaRenWuBtn',parent.document).click();
+		parent.document.getElementById("iframeObj").src = '稽查任务.html?xrcode='+g.rcode;
+	}
+	//修改任务
+	window.change = function(id){
+		var id = id || '';
+		var _do = 'change';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		getedit(id);//加载弹窗数据
+		shownewCenterSbox();//弹窗
+		
+	}
+	//修改任务
+	function getedit(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		g.nid = id;//现在的任务id
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "task/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					var center_name = d.center_name || '';
+					var stage = d.stage || '';
+					$('.xiugaizhongxin .sbox_h4').html(center_name+'/'+stage);
+					$('#jigoufuzeren').val(d.org_head || '');
+					$('#shishikeshi').val(d.org_departments || '');
+					$('#zhuyaoyanjiuzhe').val(d.main_researcher || '');
+					$('#jichazuzhang').val(d.project_group_leader || '');
+					var xval = d.project_group_member.split(',') || '';//
+					$('#jichayuan').val(xval).select2();
+					//valchoiseDanwei('.choiseDanwei22',(d.project_group_member || ''));//给弹窗多选下拉 赋 默认值
+					
+					var time = d.task_plan_start_time || '';
+					if(time != ''){
+						var newDate1 = new Date();
+						newDate1.setTime(time);
+						time = newDate1.format('yyyy-MM-dd') || '';
+					}
+					$('#plantime').val(time);
+				}
+				else{
+					var msg = data.message || "修改失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	//初始化弹窗
+	function reloadSbox(){
+		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		$('#noBtn').html('取消');
+		$('#yesBtn').off().show();
+		$('.xiugaizhongxin input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.xiugaizhongxin select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	//显示窗口
+	function shownewCenterSbox(){
+		reloadSbox();//初始化弹窗
+		$('.xiugaizhongxin .sbox_h4').html('修改任务');
+		showSbox('.xiugaizhongxin');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc()});
+	}
+	//修改
+	function centerFunc(){
+		var jigoufuzeren = $('#jigoufuzeren').val() || '';
+		var shishikeshi = $('#shishikeshi').val() || '';
+		var zhuyaoyanjiuzhe = $('#zhuyaoyanjiuzhe').val() || '';
+		var plantime = $('#plantime').val() || '';
+		var jichazuzhang = $('#jichazuzhang').val() || '';
+		var jichayuan = $('#jichayuan').val() || '';
+		var xiangmujieduan = setGetCheckValue('#xiangmujieduan');
+		if(jigoufuzeren == ''){Utils.alert('机构负责人不能为空！');return false;}
+		if(shishikeshi == ''){Utils.alert('实施科室不能为空！');return false;}
+		if(zhuyaoyanjiuzhe == ''){Utils.alert('主要研究者不能为空！');return false;}
+		if(plantime == ''){Utils.alert('计划开始时间不能为空！');return false;}
+		if(jichazuzhang == ''){Utils.alert('稽查组长不能为空！');return false;}
+		//if(jichayuan == ''){Utils.alert('稽查员不能为空！');return false;}
+		if(jichayuan.length > 0){jichayuan = jichayuan.join(',');}
+		$('#yesBtn').off();
+		var condi = {};
+		condi.id = g.nid;
+		condi.org_head = jigoufuzeren;
+		condi.org_departments = shishikeshi;
+		condi.main_researcher = zhuyaoyanjiuzhe;
+		condi.task_plan_start_time = plantime;
+		condi.project_group_leader = jichazuzhang;
+		condi.project_group_member = jichayuan;
+		var url = Base.serverUrl + "task/update";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					closeSbox();//关闭弹窗
+					Utils.alert('修改成功！');
+					tableListShow();//显示列表
+				}
+				else{
+					var msg = data.message || "修改失败";
+					Utils.alert(msg);
+					$('#yesBtn').off().on('click',function(){centerFunc()});
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#yesBtn').off().on('click',function(){centerFunc()});
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow();//列表
+	 }
+	 
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		var condi = {};
+		condi.project_id = g.id;
+		//condi.is_task = '';
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "task/find";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					//$('#totalElements').html(totalElements);
+					if(totalElements == 0){//中心任务为空时
+						$('.m_info').hide(0);
+						var pg = '<a class="addnew"><img style="width:503px; margin-left:181px;" src="../public/img/pnpg1.png"/></a>';
+						$('.xiangmurenwu').append(pg);
+						return false;
+					}else{
+						$('.m_info').show(0);
+					}
+					var html = '';
+					var sstr = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">序号</th>'
+							+'<th style="min-width:58px;">中心名称</th>'
+							+'<th style="min-width:58px;">项目阶段</th>'
+							+'<th style="min-width:61px;">机构负责人</th>'
+							+'<th style="min-width:58px;">实施科室</th>'
+							+'<th style="min-width:61px;">主要研究者</th>'
+							//+'<th style="min-width:125px;">任务创建时间/创始人</th>'
+							+'<th style="min-width:85px;">计划开始时间</th>'
+							+'<th style="min-width:58px;">稽查组长</th>'
+							+'<th style="min-width:36px;">稽查员</th>'
+							+'<th style="min-width:58px;">任务状态</th>'
+							+'<th style="min-width:177px;">操作</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var xu = len - i;
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';
+						var center_name = d.center_name || '';
+						var stage = d.stage || '';
+						var project_staging = d.project_staging || '';
+						var _pin = stage == "" || project_staging == "" ? project_staging + stage : project_staging  + '/' + stage ;
+						var org_head = d.org_head || '';
+						var org_departments = d.org_departments || '';
+						var main_researcher = d.main_researcher || '';
+						var task_create_time = getDate(d.task_create_time || '');
+						var task_creator = d.task_creator || '';
+						var task_plan_start_time = getDate((d.task_plan_start_time || ''),'2');
+						var project_group_leader = d.project_group_leader || '';
+						var project_group_member = d.project_group_member || '';
+						var status = d.status || '';
+						var _task = d._task || false;//判断是否已经生成
+						var _canceled = d._canceled || false;//任务取消
+						var stra = '';
+						var TandU = task_create_time == '' && task_creator == '' ? '' :  task_create_time+'/'+task_creator ;
+						html+='<tr>'
+							+'<td>'+xu+'</td>'
+							+'<td>'+center_name+'</td>'
+							+'<td>'+stage+'</td>'
+							+'<td>'+org_head+'</td>'
+							+'<td>'+org_departments+'</td>'
+							+'<td>'+main_researcher+'</td>'
+							//+'<td>'+TandU+'</td>'
+							+'<td>'+task_plan_start_time+'</td>'
+							+'<td>'+project_group_leader+'</td>'
+							+'<td>'+project_group_member+'</td>'
+							+'<td>'+status+'</td>'
+							+'<td class="last">';
+								if(!_canceled){html+='<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn1">编辑</a>';}
+								if(!_canceled && !_task){html+='<a href="javascript:;" onclick="makeRenwu(\''+id+'\')" class="cao_btn cao_btn2">生成任务</a>';}
+							    if(!_canceled && !_task){html+='<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>';}
+							html+='</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//生成任务
+	window.makeRenwu = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认生成任务吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "task/generate";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('生成成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "生成失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//删除一项
+	window.deleteIt = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "task/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//加载时间控件
+	var start = {
+	  elem: '#plantime',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	laydate(start);
+
+});
+
+</script>
+</html>

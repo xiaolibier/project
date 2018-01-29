@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	<style>
+		.xiangmuguanli .m_info .creat_forse{margin-right:10px;}
+		.xiangmuguanli .m_info .creat_forse.ty1{background-color:#ff3d55;}
+		.xiangmuguanli .m_info .creat_forse.ty2{background-color:#6d9ee1;}
+		.xiangmuguanli .m_info .creat_forse.ty3{background-color:#d25dfe;}
+		.xiangmuguanli .m_info .creat_forse.ty4{background-color:#00cc84;}
+		.xiangmuguanli .table1 tr.checkBox_th th{text-align:center;border-bottom:none;height:25px;line-height:25px;}
+		.xiangmuguanli .table1 tr.checkBox_th2 th{border-top:none;height:25px;line-height:25px;}
+		.xiangmuguanli .table1.table-hover tr.checkBox_th2 th{min-width:182px;}
+		.xiangmuguanli .table1.table-hover tr.checkBox_th2 th:nth-child(1){min-width:11px;}
+		.xiangmuguanli .table1.table-hover tr.checkBox_th2 th:nth-child(2){width:27px;}
+		.xiangmuguanli .table1.table-hover tr.checkBox_th2 th:nth-child(3){width:40px;}
+		.xiangmuguanli .table1.table-hover tr.checkBox_th2 th:nth-child(4){width:84px;}
+		
+		
+		.xiangmuguanli .table1 tr.checkBox_th th .check_box .i{height:11px;width:11px;}
+		.xiangmuguanli .table1 tr  .etd:active,.xiangmuguanli .table1 tr  .etc2{border:none;outline:none;}
+		.xiangmuguanli .table1 tr  .etd, .xiangmuguanli .table1 tr  .etd:active,.xiangmuguanli .table1 tr  .etc2{outline:none;height:100%;width:100%;min-width:160px;min-height:0;}
+		.xiangmuguanli .table1 tr  .etd.mmm,.xiangmuguanli .table1 tr  .etc2{height:25px;font-weight:600;}
+		.xiangmuguanli .table1 tr .etc2{height:25px;min-width:0;}
+		.xiangmuguanli .table_div{overflow:hidden;overflow-x:auto;}
+		.xiangmuguanli .table1 tr td{padding:10px;}
+		.xiangmuguanli .table1 tr th.padding_s, .xiangmuguanli .table1 tr td.padding_s{width:11px;}
+		.xiangmuguanli .table1{width:auto;}
+		.xiangmuguanli1 .table1.po tr.checkBox_th2{top:0;border-top:1px solid #dddee1;position:fixed;left:20px;border-left:none;}
+		.xiangmuguanli1 .table1.po tr.checkBox_th2 th{height:40px;}
+		.xiangmuguanli .table1 tr td{height:58px;}
+		.xiangmuguanli .table_div{min-height:572px;top:165px;left:0px;bottom:0;right:0;overflow:auto;margin-bottom:0;position:absolute;}
+		#shelter{
+		margin-left:20px;
+    box-shadow: 0px 3px 5px #888888;
+}
+#fixed_table #fix_head{
+    background: #FFFFFF;
+    
+}
+#fixed_table{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    table-layout:fixed;
+}
+.scroll_table_content{
+    width:100%; 
+    height:600px;
+    overflow:auto;
+}
+	</style>
+</head>
+<body class="xiangmuguanli jicharenwu">
+	<h4 class="mokuaifaxian">
+		<a id="mokuaiBtn" class="a">模块信息</a>
+		<a id="faxianBtn" class="a">稽查发现</a>
+		<a id="binglijichaBtn" class="a active">病例稽查</a>
+	</h4>
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">创建人</span>
+					<select id="chuangjianren" class="com_select com_select2">
+						<option value="">请选择</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">受试者编号</span>
+					<input id="patientcode" class="com_input com_input2" type="text" />
+				</td>
+				<td >
+				
+				</td>
+				<td class="searBtnTd">
+					<a id="searchBtn" class="top_btn">搜索</a>
+					<a id="searchAll" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info" style="padding-left:80px;">
+		<!-- 项目总数：<span id="totalElements" class="m_value">0</span> -->
+		<a class="daochuCommonBtn jiChaRenWu_daochu" id="daochu" >导出</a>
+		<a class="creat_forse ty1" style="float:none;" id="deleteOne" >删除</a>
+		<a class="creat_forse ty2" style="float:none;" id="addOneRow" >新增行</a>
+		<a class="creat_forse ty2" style="float:none;" id="addOneCol" >新增列</a>
+		<a class="creat_forse ty4" style="float:none;" id="showOne" >显示</a>
+	</div>
+	<div id="tableList" class="table_div queryList">
+		
+	</div>
+	
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+		
+			<!-- 选择显示列 -->
+			<div class="sbox quanxianguanli">
+				<div class="border_div">
+				<h4 class="sbox_h4"><a class="first active">选择需要显示的列</a></h4>
+				<div class="quan_panel">
+					<ul id="qpan_list" class="qpan_list">
+						<!-- <li><input class="sbox_check" type="checkbox" />全选</li>
+						<li><input class="sbox_check" type="checkbox" />列</li>
+						<li><input class="sbox_check" type="checkbox" />列</li>
+						<li><input class="sbox_check" type="checkbox" />列</li>
+						<li><input class="sbox_check" type="checkbox" />列</li>
+						<li><input class="sbox_check" type="checkbox" />列</li>
+						<li><input class="sbox_check" type="checkbox" />列</li>
+						<li><input class="sbox_check" type="checkbox" />列</li>
+						<li><input class="sbox_check" type="checkbox" />列</li> -->
+					</ul>
+				</div>
+				</div>
+				<div  class="sbox_btn_div" style="text-align:center;margin-left:0;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">关闭</a>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+		
+	
+	
+	<div style="display:none;" info="导出table" id="exportExcel"></div>
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/libs/excelTable.js"></script>
+
+</body>
+<script>
+$(function(){
+
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.usernamestr = Utils.offLineStore.get("usernamestr",false) || "";
+	g.rid = Utils.getQueryString("renjiid") || Utils.offLineStore.get("renjiid",false);//传值 从稽查任务传来 传任务id
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.ids = [];//存储当前所有项目id及其状态
+	g.ids2 = '';//存储当前选择的行或列
+	g.chuangjianren = '0';//存当前选择的筛选项 创建人id
+	g.quanxuan = 0;
+	
+/* **************************************** lodding ******************************************** */	
+	//跳转到稽查模块
+	$('#mokuaiBtn').on('click',function(){
+		parent.document.getElementById("iframeObj").src = '稽查模块.html';
+	});
+	//跳转到稽查发现
+	$('#faxianBtn').on('click',function(){
+		parent.document.location.href = 'home.html?page=jichafaxian';
+		//parent.document.getElementById("iframeObj").src = '稽查发现.html?renjicode'+g.code;
+		
+	});
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('稽查任务').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '稽查任务.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 病例稽查').addClass('active');
+
+	
+	$('#chuangjianren').change(function(){tableListShow(1)});
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	$('#showOne').on('click',function(){
+		getColList();//获取列 列表
+		showSbox('.quanxianguanli');
+	});//显示选择列弹窗
+	$('#deleteOne').on('click',deleteOneFunc);//删除选择的列或行
+	$('#addOneRow').on('click',addOneRowFunc);//新增行
+	$('#addOneCol').on('click',addOneColFunc);//新增列
+	loadPage();//加载页面
+	
+	
+	
+/* **************************************** setTing ******************************************** */	
+	
+	//加载页面
+	function loadPage(){
+		getBodyFunc();//获取创建人列表
+		//tableListShow(1);
+		
+	}
+	
+	$(window).scroll(setFixFunc);
+	//判断是否悬浮表头
+	function setFixFunc(){
+		var top1 = $('#tableList').offset().top;
+        var gun = $(document).scrollTop();
+        var top = top1-gun;
+        if (top <= 0) {
+          $('#tableList .table1').addClass('po');
+        }else{
+          $('#tableList .table1').removeClass('po');
+        }
+	}
+	
+	//改变表格为编辑状态
+	function changeFaXianFunc(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('获取对象失败！');return false;}
+		//_this.removeAttr('readonly').addClass('active');
+		_this.on('blur',function(){changeShuoMingFunc(_this)});
+	}
+	
+	//获取创建人列表
+	function getBodyFunc(){
+		var condi = {};
+		condi.task_id = g.rid;
+		var url = Base.serverUrl + "tools/medical/record/members";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || {};
+					var con = data || [];
+					var html = '';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.user_id || '0';
+						var name = d.user_name || '';//名称
+						var _select = '';
+						if(g.usernamestr == name && g.loadPage){//页面刚进来赋值为当前用户
+							_select = 'selected="selected"';
+							g.loadPage = false;
+						}
+						html+='<option '+_select+' value="'+id+'">'+name+'</option>';
+					}	
+					$('#chuangjianren').html(html);
+					g.chuangjianren = $('#chuangjianren').val() || '0';
+					tableListShow(1);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				_this.attr('readonly',true).removeClass('active');
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	//修改表格内容
+	function changeShuoMingFunc(obj){
+		var _this = obj || '';
+		if(_this == ''){Utils.alert('获取对象失败！');return false;}
+		var item_id = _this.attr('aid') || '';
+		var col_id = _this.attr('col_id') || '';
+		var row_id = _this.attr('row_id') || '';
+		var user_id = _this.attr('user_id') || '';
+		var mmm = _this.hasClass('mmm') || false;//判断是修改列明
+		var kkk = _this.hasClass('kkk') || false;//判断是修改受试者编号
+		var _val = _this.val() || '';
+		_val = trim2(_val);
+		var condi = {};
+		condi.item_id = item_id;
+		condi.col_id = col_id;
+		condi.row_id = row_id;
+		condi.content = _val;
+		condi.col_name = _val;//修改列明
+		condi.user_id = user_id;//修改受试者编号
+		condi.patient_code = _val;//修改受试者编号
+		condi.task_id = g.rid;//修改受试者编号
+		var url = Base.serverUrl + "tools/medical/record/item/update";
+		if(mmm){url = Base.serverUrl + "tools/medical/record/column/update";}
+		if(kkk){url = Base.serverUrl + "tools/medical/record/row/save";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					//Utils.alert('修改成功！');
+					//_this.attr('readonly',true).removeClass('active');
+					//tableListShow();//列表
+				}
+				else{
+					var msg = data.message || "修改失败";
+					_this.attr('readonly',true).removeClass('active');
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				_this.attr('readonly',true).removeClass('active');
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//新增列
+	function addOneColFunc(){
+		//if(!confirm('确认新增一列吗？')){return false;}
+		var condi = {};
+		condi.task_id = g.rid;
+		condi.col_name  = '';
+		//condi.col_name = '';
+		var url = Base.serverUrl + "tools/medical/record/column/create";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('新增成功！');
+					tableListShow(1);
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//新增行
+	function addOneRowFunc(){
+		//if(!confirm('确认新增一行吗？')){return false;}
+		var condi = {};
+		condi.task_id = g.rid;
+		condi.user_id  = g.chuangjianren;
+		condi.row_id  = '';
+		var url = Base.serverUrl + "tools/medical/record/row/save";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('新增成功！');
+					tableListShow(1);
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//删除选择的列或行
+	function deleteOneFunc(){
+		if(!confirm('确认删除一列或一行吗？')){return false;}
+		//行循环
+		var is_row = '',is_col = '';
+		$('.tocommon').each(function(){
+			var id = $(this).attr('idx') || '';
+			if($(this).hasClass('active')){
+				is_row = is_row == '' ? id : is_row + ',' + id ;
+			}
+		});
+		//列循环
+		$('.rowcommon').each(function(){
+			var id = $(this).attr('idx') || '';
+			if($(this).hasClass('active')){
+				is_col = is_col == '' ? id : is_col + ',' + id ;
+			}
+		});
+		if(is_row != '' && is_col != ''){Utils.alert('不能同时选择行和列！');return false;}
+		var condi = {};
+		condi.row_ids = is_row;
+		condi.col_ids = is_col;
+		var url = Base.serverUrl + "tools/medical/record/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow(1);
+				}
+				else{
+					var msg = data.message || "设置失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//全选
+	$('#qpan_list').on('click','.sbox_checkAll',function(){
+		var _this = $(this) || '';
+		if(_this == ''){return false;}
+		var check = _this.is(':checked');
+		var add = check ? true : false ;
+		choiseCommon('',add);getColList();
+		//_this.parents('li').siblings('li').find('.sbox_check').each(function(){//判断每一个
+		//	var check0 = $(this).is(':checked');
+		//	if(check != check0){$(this).click();}
+		//});
+	});
+	
+	//获取列 弹窗上列表
+	function getColList(){
+
+		var condi = {};
+		condi.task_id = g.rid;
+		//condi.user_id = g.chuangjianren;
+		var url = Base.serverUrl + "tools/medical/record/columns";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data;
+					var html = '<li ><input class="sbox_check sbox_checkAll" type="checkbox" />全选</li>';
+					var _check = true;//判断是不是所有的都已经选中
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.col_id || '';
+						var platform = d.platform || '';//平台名称
+						var name = d.col_name || '';//菜单名称
+						var checked = d.visible || '';//权限状态
+						var check = checked ? 'checked="checked"' : '';
+						_check = checked ? true : false;
+						html+='<li aid="'+id+'"><input aid="'+id+'" class="sbox_check sbox_check0" '+check+' type="checkbox" />'+name+'</li>';
+					}	
+					$('#qpan_list').html(html);
+					if(_check){$('.sbox_checkAll').attr('checked','checked');}
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+					//$('#qpan_list').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+				//$('#qpan_list').html('');
+			}
+		});
+	}	
+	//check设置选中和非选中 设置隐藏还是显示
+	$('#qpan_list').on('click','.sbox_check0',function(){
+		var _check = $(this) || {};
+		var col_id = _check.attr('aid') || '';
+		var add = '';
+		if(col_id == ''){return false;}
+		var cho = _check.is(':checked');
+		if(cho){//选择 及添加权限
+			add = true;
+		}else{//取消当前权限
+			add = false;
+		}
+		choiseCommon(col_id,add);
+		
+	});
+	
+	//选择的公共方法
+	function choiseCommon(col_id,add){
+		var col_id = col_id || '';
+		var add = add;
+		var condi = {};
+		condi.task_id = g.rid;
+		condi.user_id = g.chuangjianren;
+		condi.col_id = col_id;
+		condi.visible = add;//true是显示 false 是隐藏
+		var url = Base.serverUrl + "tools/medical/record/column/display";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					tableListShow(1);
+					getColList();
+				}
+				else{
+					var msg = data.message || "设置失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+	
+	//获取项目所有id列表
+	function getids(){
+		var condi = {};
+		condi.number = 10000;//
+		condi.task_id  = g.rid;
+		condi.user_id = g.chuangjianren;//
+		condi.patient_code = g.patientcode;
+		var url = Base.serverUrl + "tools/medical/record/search/row_ids";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					g.ids = [];
+					for(var i=0,len=d.length;i<len;i++){
+						var num = d[i] || '';
+						if(num != ''){
+							var zu = [num,0];
+							g.ids.push(zu);
+						}
+					}
+					//console.log(g.ids);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//设置获取当前选中的导出项 全选 全取消
+	function getSetIDS(id,sta){
+		var id = id || '';//id : all 全选 : no 全部取消
+		var sta = sta || '';
+		var res = '';
+		if(g.ids.length <= 0 ){return res;}
+		for(var i=0,len=g.ids.length;i<len;i++){
+			var d = g.ids[i] || '';
+			var num = d[0] || '';
+			var state = d[1] || 0;
+			//获取当前选中项
+			if(state == '1'){
+				if(res == ''){
+					res = num;
+				}else{
+					res = res + ',' + num;
+				}
+			}
+			//设置当前选中项
+			if(id != '' && sta != '' && id == num){
+				g.ids[i][1] = sta;
+			}
+			//全选
+			if(id == 'all' && sta == ''){
+				g.ids[i][1] = '1';
+			}
+			//全部取消
+			if(id == 'no' && sta == ''){
+				g.ids[i][1] = '0';
+			}
+		}
+		return res;
+	}				
+	//全选
+	function selAll(){
+		$('.xiangmuguanli').off('click','.check_box').on('click','.check_box',function(){
+			var _this = $(this) || {};
+			var _id = _this.attr('idx') || '';
+			if(_this.hasClass('active')){
+				_this.removeClass('active');
+				if(_id != ''){getSetIDS(_id,'0');}//取消选中当前项
+			}else{
+				_this.addClass('active');
+				if(_id != ''){getSetIDS(_id,'1');}//选中当前项
+			}
+		});
+		
+		$('.xiangmuguanli').off('click','.toAll').on('click','.toAll',function(){
+			//$(this).toggleClass('active');
+			if($(this).hasClass('active')){
+				$('.tocommon').addClass('active');
+				getSetIDS('all');//全选
+				g.quanxuan = 1;
+			}else{
+				$('.tocommon').removeClass('active');
+				getSetIDS('no');//全部取消
+				g.quanxuan = 0;
+			}
+		});
+		$('#daochu').off().on('click',toExcel);
+	}
+	
+	//导出excel
+	function toExcel(){
+		if(!$('.tocommon').hasClass('active')){Utils.alert('请选择需要导出的项目！');return false;}
+		exporttoexcel();//获取需要导出列表
+	}
+	
+	//获取需要导出的EXCEL列表
+	function exporttoexcel(){
+		$('#daochu').off().on('click',function(){Utils.alert('请稍后！');});
+		var ids = getSetIDS();
+		var condi = {};
+		condi.row_ids = ids;//当前页
+		condi.task_id  = g.rid;
+		condi.number = 1000;//
+		var url = Base.serverUrl + "tools/medical/record/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					//$('#totalElements').html(totalElements);
+					
+					var columnsList = data.columns || [];
+					var html = '';
+					var tr2 = '<table class="table1">'
+						+'<tr class="checkBox_th2">'
+							+'<th style="min-width:30px;">序号</th>'
+							+'<th style="min-width:45px;">创建人</th>'
+							+'<th style="min-width:60px;">受试者编号</th>';
+					for(var i=0,len=columnsList.length;i<len;i++){
+						var cd = columnsList[i] || {};
+						var col_id = cd.col_id || '';
+						var col_name = cd.col_name || '';
+						tr2+='<th>'+col_name+'</th>';
+						
+					}
+					tr2+='</tr>';
+					html = tr2;
+					var con = data.rows || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var dd = con[i] || '';
+						var items = dd.items || [];
+						var row_id_h = dd.row_id || '';//行id
+						var no = dd.no || '';//
+						var user_id1 = dd.user_id || '';//
+						var user_name = dd.user_name || '';//
+						var patient_code1 = dd.patient_code || '';//
+						html+='<tr>'
+							+'<td style="text-align:left;">'+no+'</td>'
+							+'<td style="text-align:left;">'+user_name+'</td>'
+							+'<td style="text-align:left;">'+patient_code1+'</td>';
+						for(var j=0,len2=items.length;j<len2;j++){
+							var di = items[j] || {};
+							var patient_code = di.patient_code || '';
+							var col_id = di.col_id || '';
+							var content = di.content || '';
+							var row_id = di.row_id || '';
+							var aid = di.id;
+							html+='<td style="text-align:left;">'+content+'</td>';
+							
+						}
+						html+='</tr>';
+					}	
+					 html+='</table>';
+					$('#exportExcel').html(html);
+					$('#daochu').ExportExcel('exportExcel');  //前面为控制按钮的id 例如 #btn，后面为table的id 例如 table(不加#)。
+					setTimeout(function(){$('#daochu').off().on('click',toExcel);},1000);
+				}
+				else{
+					var msg = data.message || "导出失败";
+					Utils.alert(msg);
+					$('#daochu').off().on('click',toExcel);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#daochu').off().on('click',toExcel);
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		g.chuangjianren = $('#chuangjianren').val() || '0';
+		g.patientcode = $('#patientcode').val() || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		condi.task_id  = g.rid;
+		condi.number = 1000;//g.showPages;//每页显示行数
+		condi.user_id = g.chuangjianren;//
+		if(is == 1 || is == 'pa'){//搜索条件
+			
+			condi.patient_code = g.patientcode;
+			getids();//查询当前筛选项下的所有ids
+			if(is != 'pa')g.loadPage = true;//开启分页
+		}else if(is == 2){//搜索全部
+			$('#patientcode').val('');
+			getids();//查询当前筛选项下的所有ids
+			g.loadPage = true;//开启分页
+		}
+		var url = Base.serverUrl + "tools/medical/record/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					//$('#totalElements').html(totalElements);
+					
+					var columnsList = data.columns || [];
+					var html = '';
+					var tr1 = '<table id="top_fix_table" class="table1">'
+						+'<tr class="checkBox_th">'
+							+'<th class="padding_s"></th>'
+							+'<th style="min-width:27px;width:27px;"></th>'
+							+'<th style="min-width:40px;width:40px;"></th>'
+							+'<th style="min-width:60px;width:60px;"></th>';
+					var tr2 = '<tr class="checkBox_th2 table_head">'
+							+'<th class="padding_s"><div class="check_box toAll"><i class="i"></i></div></th>'
+							+'<th style="min-width:27px;width:27px;"><textarea disabled="disabled" readonly class="etc2">序号</textarea></th>'
+							+'<th style="min-width:40px;width:40px;"><textarea disabled="disabled" readonly class="etc2">创建人</textarea></th>'
+							+'<th style="min-width:82px;width:82px;"><textarea disabled="disabled" readonly class="etc2">受试者编号</textarea></th>';
+					for(var i=0,len=columnsList.length;i<len;i++){
+						var cd = columnsList[i] || {};
+						var col_id = cd.col_id || '';
+						var col_name = cd.col_name || '';
+						tr1+='<th><div idx="'+col_id+'" class="check_box rowcommon "><i class="i"></i></div></th>';
+						tr2+='<th><textarea class="etd mmm" col_id="'+col_id+'" disid="">'+col_name+'</textarea></th>';
+						
+					}
+					tr1 += '</tr>';
+					tr2 += '</tr>';
+					html = tr1 + tr2;
+					var con = data.rows || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var dd = con[i] || '';
+						var items = dd.items || [];
+						var row_id_h = dd.row_id || '';//行id
+						var no = dd.no || '';//
+						var user_id1 = dd.user_id || '';//
+						var user_name = dd.user_name || '';//
+						var patient_code1 = dd.patient_code || '';//
+						html+='<tr>'
+							+'<td class="padding_s"><div idx="'+row_id_h+'" class="check_box tocommon"><i class="i"></i></div></td>'
+							+'<td>'+no+'</td>'
+							+'<td>'+user_name+'</td>'
+							+'<td><textarea class="etd kkk" style="min-width:80px;height:20px;line-height:20px;"  row_id="'+row_id_h+'" user_id="'+user_id1+'">'+patient_code1+'</textarea></td>';
+						for(var j=0,len2=items.length;j<len2;j++){
+							var di = items[j] || {};
+							var patient_code = di.patient_code || '';
+							var col_id = di.col_id || '';
+							var content = di.content || '';
+							var row_id = di.row_id || '';
+							var aid = di.id;
+							html+='<td><textarea class="etd"  aid="'+aid+'" row_id="'+row_id+'" col_id="'+col_id+'">'+content+'</textarea></td>';
+							
+						}
+						html+='</tr>';
+					}	
+					 html+='</table>';
+					 html+='<div id="test_width"></div>';//测试内容宽度
+					$('#tableList').html(html);
+					$('#tableList .etd').click(changeFaXianFunc);//列表 修改发现问题描述
+					selAll();//定义导出按钮
+					if(g.ids.length <= 0){getids();}
+					if(g.loadPage){
+						setscrollanimate();//定义表格滚动事件
+						g.loadPage = false;
+					}
+					
+				}
+				else{
+					var msg = data.message || "获取列表失败";
+					//Utils.alert(msg);
+					$('#tableList').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#tableList').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//加载时间控件
+	var start = {
+	  elem: '#start_time',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(end);
+	
+//-------------------------------------------------------------------------------------------------------
+//定义表格滚动事件
+function setscrollanimate(){
+  var sourceTable = $("#top_fix_table");//table id
+  var sourceTableHeight = sourceTable.height();
+
+  var sourceTableHead = $(".table_head");//table thead tr id
+  var headHeight = sourceTableHead.height();//table thead tr height
+  var sourceTableWidth = sourceTable.outerWidth(); //get source table width
+  var testDiv = $("#test_width"); //測試獲取內容寬度
+  var wrapDiv = $("#tableList"); //滾動條外層div，用於獲取div距離頭部的距離
+  var tempTop = wrapDiv.offset().top - $(window).scrollTop(); //滾動頭部距離網頁頂部的距離
+  //copy table and thead html tag from source table,
+  if($('#shelter').length <= 0)$('body').append('<div id="shelter"><div id="fixed_table_wrap"><table id="fixed_table"  border="0" cellpadding="4" cellspacing="0" class="table table1 table-hover"><thead></thead></table></div></div>');
+  var fixTopDiv = $("#shelter");
+  fixTopDiv.hide();
+  //only set top and left,beacuse i need the top bar can scroll left
+  fixTopDiv.css({
+    'height':headHeight,
+    'position':'fixed',
+    'top':tempTop+"px",
+    'left':'0px',
+    'width':testDiv.width()+"px",
+    'overflow':'hidden'
+    });
+  //set target table width equal source table width
+  $("#fixed_table_wrap,#fixed_table").css({'width':sourceTableWidth+"px"});
+
+  //only clone tr html and change thead tr id attr
+  var targetHead = sourceTableHead.clone().attr('id','fix_head');
+  //targetHead.appendTo('#fixed_table thead');
+  //targetHead.appendTo('#fixed_table thead');
+  $('#fixed_table thead').html('<tr class="checkBox_th2">'+targetHead.html()+'</tr>');
+  //mark target table thead td width,height equal source table thead td width,height
+  $("#table_head td").each(function(index,value){
+    var tempWidth = $(value).outerWidth();
+    var tempHeight = $(value).outerHeight();
+    $("#fixed_table td").eq(index).css({'width':tempWidth+"px",'height':tempHeight+"px"});
+  });
+
+
+  //Div中內容滾動
+  wrapDiv.scroll(function(){
+    //scroll left method
+    var sl=-Math.max(wrapDiv.scrollLeft(),$('document').scrollLeft());
+    if(isNaN(sl)){
+      sl = - wrapDiv.scrollLeft();
+    }
+    fixTopDiv.css("left",sl+'px');
+    //var scroll_top = wrapDiv.scrollTop() - headHeight + $(window).scrollTop();
+    var scroll_top = wrapDiv.scrollTop() - headHeight;
+    tempTop = wrapDiv.offset().top - $(window).scrollTop();
+    if(tempTop <= 0){
+      tempTop = 0;
+    }
+    var baseWidth = testDiv.width() + wrapDiv.scrollLeft();
+    //control  show or hide
+    if (scroll_top >= 0) {
+      fixTopDiv.css({'top':tempTop +"px",'width':baseWidth+"px"});
+      if(!fixTopDiv.is(':visible')){
+        fixTopDiv.show();
+      }
+    }else {
+      if(fixTopDiv.is(':visible')){
+        fixTopDiv.hide();
+      }
+    }
+	//console.log(scroll_top);
+  });
+
+//瀏覽器srcoll
+$(window).on('scroll',function(){
+  tempTop = wrapDiv.offset().top - $(window).scrollTop();
+  var scroll_top = wrapDiv.scrollTop() - headHeight + $(window).scrollTop();
+  var baseWidth = testDiv.width() + wrapDiv.scrollLeft();
+  if(tempTop <= 0){
+    tempTop = 0;
+  }
+  
+  fixTopDiv.css({'top':tempTop +"px",'width':baseWidth+"px"});
+  //control  show or hide
+    if (scroll_top >= 0) {
+      if(!fixTopDiv.is(':visible')){
+        //fixTopDiv.show();
+      }
+    }else {
+      if(fixTopDiv.is(':visible')){
+        fixTopDiv.hide();
+      }
+    }
+});
+
+
+}
+
+//-------------------------------------------------------------------------------------------------------
+	
+});
+</script>
+</html>

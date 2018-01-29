@@ -1,0 +1,332 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<bean id="1" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP：第十条　试验方案需经伦理委员会审议同意并签署批准意见后方可实施。在试验进行期间，试验方案的任何修改均应经伦理委员会批准；"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC101"></property>
+	</bean>
+
+	<bean id="2" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP：第十二条　伦理委员会应从保障受试者权益的角度严格按下列各项审议试验方案：（五）对试验方案提出的修正意见是否可接受。"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC101"></property>
+	</bean>
+
+	<bean id="3" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP：第十八条　临床试验中，若确有需要，可以按规定程序对试验方案作修正。"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC101"></property>
+	</bean>
+
+	<bean id="4" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH：2.6　临床试验的实施应当遵循事先已经得到研究机构审查委员会（ＩＲＢ）/独立的伦理委员会（ＩＥＣ）批准/赞成的试验方案。"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC101"></property>
+	</bean>
+
+	<bean id="5" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH：3.3.6 说明在IRB/IEC书面签署对试验的批准/赞成意见之前不得接纳对象进入试验"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC101"></property>
+	</bean>
+
+	<bean id="6" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH：4.5.2 研究者在没有取得申办者同意和事先得到IRB/IEC对于一个修改的审评与书面批准/赞成时，不应当偏离或改变方案，除非必需消除试验对象的直接危险或这些改变只涉及试验的供应或管理方面（如更换监察员，改变电话号码）。"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC101"></property>
+	</bean>
+
+	<bean id="7" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP ：第五十九条　试验用药品的使用由研究者负责，研究者必须保证所有试验用药品仅用于该临床试验的受试者，其剂量与用法应遵照试验方案，剩余的试验用药品退回申办者，上述过程需由专人负责并记录在案，试验用药品须有专人管理。研究者不得把试验用药品转交任何非临床试验参加者。"></property>
+		<property name="categoryId" value="IMP5"></property>
+		<property name="problemId" value="IMP501"></property>
+	</bean>
+
+	<bean id="8" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP：第四十七条　监查员应遵循标准操作规程，督促临床试验的进行，以保证临床试验按方案执行。具体内容包括：（三）确认所有数据的记录与报告正确完整，所有病例报告表填写正确，并与原始资料一致。所有错误或遗漏均已改正或注明，经研究者签名并注明日期。每一受试者的剂量改变、治疗变更、合并用药、间发疾病、失访、检查遗漏等均应确认并记录。核实入选受试者的退出与失访已在病例报告表中予以说明；"></property>
+		<property name="categoryId" value="IMP5"></property>
+		<property name="problemId" value="IMP501"></property>
+	</bean>
+
+	<bean id="9" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP：第三十七条　申办者向研究者提供具有易于识别、正确编码并贴有特殊标签的试验药物、标准品、对照药品或安慰剂，并保证质量合格。试验用药品应按试验方案的需要进行适当包装、保存。申办者应建立试验用药品的管理制度和记录系统。"></property>
+		<property name="categoryId" value="IMP5"></property>
+		<property name="problemId" value="IMP501"></property>
+	</bean>
+
+	<bean id="10" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH-GCP： 4.6.3　研究者/研究机构和/或受研究者/研究机构指派的一名药师或其他合适的个人，应当保存试验用药品交到试验单位的记录，在试验单位的存货清单，每位受试者的使用记录，和未使用的药品交还给申办者或另法处置的记录。这些记录应包含日期、数量、批号/系列号、时效期（如有）、和分配给试验用药品和试验受试者的特别编码。研究者应保持记载有按方案说明给予受试者药量的记录，并应与从申办者处收到的试验用药品总数一致。 "></property>
+		<property name="categoryId" value="IMP5"></property>
+		<property name="problemId" value="IMP501"></property>
+	</bean>
+
+	<bean id="11" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP：第四十七条　监查员应遵循标准操作规程，督促临床试验的进行，以保证临床试验按方案执行。具体内容包括：（五）核实试验用药品按照有关法规进行供应、储藏、分发、收回，并做相应的记录；"></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0001"></property>
+	</bean>
+
+	<bean id="12" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP：第五十八条　试验用药品的使用记录应包括数量、装运、递送、接受、分配、应用后剩余药物的回收与销毁等方面的信息。"></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0001"></property>
+	</bean>
+
+	<bean id="13" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH-GCP:   4.6.3研究者/研究机构和/或受研究者/研究机构指派的一名药师或其他合适的个人，应当保存试验用药品交到试验单位的记录，在试验单位的存货清单，每位对象的使用记录，和未使用的药品交还给申办者或另法处置的记录。这些记录应包含日期、数量、批号/系列号、时效期（如有）和分配给试验用药品和试验对象的特别编码。研究者应保持记载有按方案说明给予对象药量的记录，并应与从申办者处收到的试验用药品总数一致。"></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0001"></property>
+	</bean>
+
+	<bean id="14" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH-GCP: 4.6.5　研究者应当保证试验用药品只按已批准的方案使用。"></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0001"></property>
+	</bean>
+
+	<bean id="15" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH-GCP: 228公告2.3.1临床试验的原始记录，如执行方案、病例报告表（CRF）、采血记录、接种记录、观察记录、受试者日记卡等保存完整；核查任何一项不完整、不真实的数据。"></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0001"></property>
+	</bean>
+
+	<bean id="16" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP：第七条　药物临床试验机构的设施与条件应满足安全有效地进行临床试验的需要。所有研究者都应具备承担该项临床试验的专业特长、资格和能力，并经过培训。临床试验开始前，研究者和申办者应就试验方案、试验的监查、稽查和标准操作规程以及试验中的职责分工等达成书面协议。"></property>
+		<property name="categoryId" value="PER3"></property>
+		<property name="problemId" value="PER301"></property>
+	</bean>
+
+	<bean id="17" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH-GCP ：5.18.4  h）核实研究者及其试验职员正在按照方案和申办者与研究者/研究机构之间的其他书面协议执行特定的试验职责，没有将这些职责委派给未经授权的人。 "></property>
+		<property name="categoryId" value="PER3"></property>
+		<property name="problemId" value="PER301"></property>
+	</bean>
+
+	<bean id="18" class="com.zhb.bean.Reference">
+		<property name="name" value="《药品注册管理办法》"></property>
+		<property name="categoryId" value="IMP2"></property>
+		<property name="problemId" value="IMP201"></property>
+	</bean>
+
+	<bean id="19" class="com.zhb.bean.Reference">
+		<property name="name" value="228号文件：1.2.1"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC102"></property>
+	</bean>
+
+	<bean id="20" class="com.zhb.bean.Reference">
+		<property name="name" value="228号文件：2.3.8"></property>
+		<property name="categoryId" value="AE00"></property>
+		<property name="problemId" value="AE0003"></property>
+	</bean>
+
+	<bean id="21" class="com.zhb.bean.Reference">
+		<property name="name" value="228号文件：2.4.1"></property>
+		<property name="categoryId" value="PCO0"></property>
+		<property name="problemId" value="PC0001"></property>
+	</bean>
+
+	<bean id="22" class="com.zhb.bean.Reference">
+		<property name="name" value="228号文件：2.5.1"></property>
+		<property name="categoryId" value="IMP2"></property>
+		<property name="problemId" value="IMP201"></property>
+	</bean>
+
+	<bean id="23" class="com.zhb.bean.Reference">
+		<property name="name" value="228号文件：2.5.1"></property>
+		<property name="categoryId" value="IMP2"></property>
+		<property name="problemId" value="IMP202"></property>
+	</bean>
+
+	<bean id="24" class="com.zhb.bean.Reference">
+		<property name="name" value="228号文件：2.5.2"></property>
+		<property name="categoryId" value="IMP5"></property>
+		<property name="problemId" value="IMP504"></property>
+	</bean>
+
+	<bean id="25" class="com.zhb.bean.Reference">
+		<property name="name" value="228号文件：2.5.3"></property>
+		<property name="categoryId" value="IMP3"></property>
+		<property name="problemId" value="IMP301"></property>
+	</bean>
+
+	<bean id="26" class="com.zhb.bean.Reference">
+		<property name="name" value="228号文件：2.5.4"></property>
+		<property name="categoryId" value="IMP5"></property>
+		<property name="problemId" value="IMP502"></property>
+	</bean>
+
+	<bean id="27" class="com.zhb.bean.Reference">
+		<property name="name" value="228号文件：2.5.5"></property>
+		<property name="categoryId" value="IMP5"></property>
+		<property name="problemId" value="IMP503"></property>
+	</bean>
+
+	<bean id="28" class="com.zhb.bean.Reference">
+		<property name="name" value="228号文件：2.6.1"></property>
+		<property name="categoryId" value="SPE1"></property>
+		<property name="problemId" value="SPE101"></property>
+	</bean>
+
+	<bean id="29" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP第二十六条"></property>
+		<property name="categoryId" value="AE00"></property>
+		<property name="problemId" value="AE0002"></property>
+	</bean>
+
+	<bean id="30" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第七条"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC104"></property>
+	</bean>
+
+	<bean id="31" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第十三条"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC102"></property>
+	</bean>
+
+	<bean id="32" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第十四条"></property>
+		<property name="categoryId" value="IC00"></property>
+		<property name="problemId" value="IC0003"></property>
+	</bean>
+
+	<bean id="33" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第十五条"></property>
+		<property name="categoryId" value="IC00"></property>
+		<property name="problemId" value="IC0001"></property>
+	</bean>
+
+	<bean id="34" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第四十八条 "></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0002"></property>
+	</bean>
+
+	<bean id="35" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第四十八条"></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0003"></property>
+	</bean>
+
+	<bean id="36" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第四十八条"></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0005"></property>
+	</bean>
+
+	<bean id="37" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第四十八条"></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0006"></property>
+	</bean>
+
+	<bean id="38" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第四十六条"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC103"></property>
+	</bean>
+
+	<bean id="39" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第四十七条"></property>
+		<property name="categoryId" value="DOC1"></property>
+		<property name="problemId" value="DOC103"></property>
+	</bean>
+
+	<bean id="40" class="com.zhb.bean.Reference">
+		<property name="name" value="GCP-第五十八条"></property>
+		<property name="categoryId" value="IMP3"></property>
+		<property name="problemId" value="IMP301"></property>
+	</bean>
+
+	<bean id="41" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH-GCP 4.1"></property>
+		<property name="categoryId" value="PER3"></property>
+		<property name="problemId" value="PER302"></property>
+	</bean>
+
+	<bean id="42" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH-GCP 4.8"></property>
+		<property name="categoryId" value="IC00"></property>
+		<property name="problemId" value="IC0001"></property>
+	</bean>
+
+	<bean id="43" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH-GCP 4.9"></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0002"></property>
+	</bean>
+
+	<bean id="44" class="com.zhb.bean.Reference">
+		<property name="name" value="ICH-GCP 4.9 "></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0003"></property>
+	</bean>
+
+	<bean id="45" class="com.zhb.bean.Reference">
+		<property name="name" value="试验方案5.3.2排除标准"></property>
+		<property name="categoryId" value="EV00"></property>
+		<property name="problemId" value="EV0001"></property>
+	</bean>
+
+	<bean id="46" class="com.zhb.bean.Reference">
+		<property name="name" value="试验方案6.5伴随用药和治疗"></property>
+		<property name="categoryId" value="PCO0"></property>
+		<property name="problemId" value="PC0001"></property>
+	</bean>
+
+	<bean id="47" class="com.zhb.bean.Reference">
+		<property name="name" value="试验方案7.4.1不良事件"></property>
+		<property name="categoryId" value="AE00"></property>
+		<property name="problemId" value="AE0002"></property>
+	</bean>
+
+	<bean id="48" class="com.zhb.bean.Reference">
+		<property name="name" value="试验方案7.4.1不良事件"></property>
+		<property name="categoryId" value="AE00"></property>
+		<property name="problemId" value="AE0003"></property>
+	</bean>
+
+	<bean id="49" class="com.zhb.bean.Reference">
+		<property name="name" value="试验方案7.4.1不良事件"></property>
+		<property name="categoryId" value="AE00"></property>
+		<property name="problemId" value="AE0004"></property>
+	</bean>
+
+	<bean id="50" class="com.zhb.bean.Reference">
+		<property name="name" value="试验方案7.4.1不良事件"></property>
+		<property name="categoryId" value="SD00"></property>
+		<property name="problemId" value="SD0004"></property>
+	</bean>
+
+	<bean id="51" class="com.zhb.bean.Reference">
+		<property name="name" value="试验方案9.2受试者知情同意和知情同意书 "></property>
+		<property name="categoryId" value="IC00"></property>
+		<property name="problemId" value="IC0002"></property>
+	</bean>
+
+	<bean id="52" class="com.zhb.bean.Reference">
+		<property name="name" value="知情同意书 "></property>
+		<property name="categoryId" value="IC00"></property>
+		<property name="problemId" value="IC0003"></property>
+	</bean>
+
+</beans>

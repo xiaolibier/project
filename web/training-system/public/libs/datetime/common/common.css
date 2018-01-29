@@ -1,0 +1,111 @@
+/*����css*/
+body {
+    background: #EAEAEA;
+}
+.mt10 {
+    margin-top: 10px;
+}
+.mt20 {
+    margin-top: 20px;
+}
+.mt30 {
+    margin-top: 30px;
+}
+.inDis {
+    display: inline-block;
+}
+.red {
+    color: red;
+    font-size: 25px;
+    vertical-align: middle;
+}
+.fr {
+    float: right;
+}
+.pl10 {
+    padding-left: 10px;
+}
+.pl20 {
+    padding-left: 20px;
+}
+.pl30 {
+    padding-left: 30px;
+}
+.pr10 {
+	padding-right:10px;
+}
+.red_c {
+    color: red;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
+.mb20 {
+    margin-bottom: 20px;
+}
+a, a:visited, a:hover, a:active {
+    color: #000;
+    text-decoration: none;
+}
+.tc {
+    text-align: center;
+}
+.ft16 {
+    font-size: 16px;
+}
+.mb {
+    margin-bottom: 60px;
+}
+.clrWhit {
+    color: #ffffff;
+}
+.a_visited:visited, .a_visited:hover, .a_visited:active {
+    color: #ffffff;
+}
+.p20 {
+    padding: 20px;
+}
+.disB {
+    display: block;
+}
+.color_green {
+    color: #37CDCC;
+}
+.error {
+    border: 1px solid red !important;
+}
+label.error {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 200;
+    color: #37cdcc;
+    text-align: center;
+    border: none !important;
+}
+.pr {
+	position:absolute;
+}
+.vaT {
+	vertical-align: top;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+
+
+注意：
+手动添加lib包，在工程打包成war 的时候，可能lib添加失败。
+
+##支付宝支付配置说明
+###1.添加到本地maven
+mvn install:install-file -Dfile=libs/aliyun-java-sdk-core-3.3.1.jar -DgroupId=aliyun.com -DartifactId=aliyun -Dversion=3.3.1 -Dpackaging=jar
+mvn install:install-file -Dfile=libs/aliyun-java-sdk-dysmsapi-1.0.0.jar -DgroupId=aliyun.com -DartifactId=dysmsapi -Dversion=1.0.0 -Dpackaging=jar
+
+	<!--阿里平台短信-->
+		<dependency>
+			<groupId>aliyun.com</groupId>
+			<artifactId>aliyun</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>aliyun.com</groupId>
+			<artifactId>dysmsapi</artifactId>
+			<version>1.0.0</version>
+		</dependency>

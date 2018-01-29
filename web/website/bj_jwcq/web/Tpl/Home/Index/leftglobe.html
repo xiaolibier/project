@@ -1,0 +1,18 @@
+ <div class="jianjie_01 jianjie_center_left fl">
+    <!-- <span>全球合作</span> -->
+    <span>
+      <ul>
+	   <volist name="datasrows" id="vo">
+				<switch name="vo.Main_Type">
+				<case value="1"><li id="{$vo['Main_ID']}"><a href="{:U('globe?id='.$vo['Main_ID'].'')}" >{$vo.Main_Name}</a></li> </case>	
+				<case value="4"><li id="{$vo['Main_ID']}"><a href="{:U('globe?id='.$vo['Main_ID'].'')}" >{$vo.Main_Name}</a></li> </case>	
+				  
+	 			</switch>
+		</volist>
+	  
+	  
+     
+      </ul>
+    </span>
+  
+  </div>

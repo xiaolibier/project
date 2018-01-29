@@ -1,0 +1,32 @@
+<div class="header">
+	<div class="inner">
+    	<h1 class="logo"><a href="{:U('index')}"><img src="/web/Tpl/Public/img/logo.png" width="216" height="67" /></a></h1>
+        <div class="top">
+		
+		<form name="form1"  method="post" onsubmit="return check_search(this)" action="__APP__/Home/Index/searchlist">
+        	<div class="top_wrap">
+            	<div class="email"><a href="#">企业邮箱</a></div>
+                <input class="seach" type="text" id="ukey" name="ukey" />
+                <div class="btn"><!--<a href="#"><img src="/web/Tpl/Public/img/seach.png" width="33" height="22" /></a>-->
+				 <input type="submit"  value="  " class="button">
+				</div>
+            </div>
+			
+			</form>
+            <p class="nav"><a  id="index" href="{:U('index')}">首 页</a><span>|</span><a href="{:U('video')}" id="about">关于经纬</a><span>|</span><a href="{:U('business')}" id="business">业务范围</a><span>|</span><a href="{:U('globe')}" id="globe">全球合作</a><span>|</span><a href="{:U('news')}" id="news">经纬学院</a><span>|</span><a href="{:U('join')}" id="join">加入我们</a><span>|</span><a href="{:U('contact')}" id="contact">联系我们</a></p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  function check_search(theform)
+  {
+  	 if(theform.ukey.value=="")
+	 {
+	 	alert("请输入搜索内容!");
+		theform.ukey.focus();
+		return false;
+	 }
+  }
+  
+  </script>

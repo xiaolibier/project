@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli danzhongxinbaogaopingshen updownbody">
+	<!-- <h4 class="page_title">单中心报告评审</h4> -->
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">项目/任务编号</span>
+					<input id="xiangMuRenWuNum" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">认领人</span>
+					<select id="renLingRen" class="com_select com_select2">
+						<option value="">请选择</option>
+					</select>
+				</td>
+				<td >
+					<span class="sear_lable">提交评审时间</span>
+					<input class="com_input com_input3" id="start_time" placeholder="起" type="text" />
+					
+				</td>
+				<td >
+					<span class="sear_lable">提交评审时间</span>
+					<input class="com_input com_input4" id="end_time" placeholder="止" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td style="height:31px;">
+					
+				</td>
+			</tr>
+		</table>
+		<span class="searBtnTd">
+			<a id="searchBtn" class="top_btn danZhongXinBaoGao_sousuo">搜索</a>
+			<a id="searchAll" class="top_btn type2">清空条件</a>
+			<a class="upserBtn" href="javascript:;" >更多</a>
+		</span>
+		<div class="sear_line"></div>
+	</div>
+	<div id="choise_menu" class="m_info">
+		<a class="choise panel_lable danZhongXinBaoGao_dairenling active" val="待认领" >待认领(<span class="value">0</span>)</a>
+		<a class="choise panel_lable danZhongXinBaoGao_pingshenzhong" val="评审中" >评审中(<span class="value">0</span>)</a>
+		<a class="choise panel_lable danZhongXinBaoGao_pingshenhouxiugai" val="评审后修改" >评审后修改(<span class="value">0</span>)</a>
+		<a class="choise panel_lable danZhongXinBaoGao_yipingshen" val="已评审" >已评审(<span class="value">0</span>)</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<!-- <table class="table1">
+			<tr>
+				<th>任务编号</th>
+				<th>项目名称</th>
+				<th>项目中心</th>
+				<th>提交评审时间</th>
+				<th>认领人</th>
+				<th>开始时间</th>
+				<th>结束时间</th>
+				<th>评审用时</th>
+				<th>评审状态</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>3A-0058-17009-7</td>
+				<td class="text_in">中国健康男性受试者空腹和餐后单次口服安立生坦片的随机、开放、两周期交叉设计生物等效性试验</td>
+				<td>北京医科大学附属医院</td>
+				<td class="line_h"><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td>小明</td>
+				<td class="line_h"><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td class="line_h"><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td>1天1小时</td>
+				<td>待认领</td>
+				<td class="last">
+					<a class="cao_btn cao_btn2">认领</a>
+				</td>
+			</tr>
+			<tr>
+				<td>3A-0058-17009-7</td>
+				<td class="text_in">中国健康男性受试者空腹和餐后单次口服安立生坦片的随机、开放、两周期交叉设计生物等效性试验</td>
+				<td>北京医科大学附属医院</td>
+				<td class="line_h"><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td>小明</td>
+				<td class="line_h"><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td class="line_h"><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td>1天1小时</td>
+				<td>评审中</td>
+				<td class="last">
+					<a class="cao_btn cao_btn3">评审</a>
+				</td>
+			</tr>
+			<tr>
+				<td>3A-0058-17009-7</td>
+				<td class="text_in">中国健康男性受试者空腹和餐后单次口服安立生坦片的随机、开放、两周期交叉设计生物等效性试验</td>
+				<td>北京医科大学附属医院</td>
+				<td class="line_h"><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td>小明</td>
+				<td class="line_h"><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td class="line_h"><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td>1天1小时</td>
+				<td>已评审</td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">查看</a>
+				</td>
+			</tr>
+		</table> -->
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div style="display:none;" class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		  </span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.ser = Utils.getQueryString("ser") || "";//从工作台获取搜索项
+	if(g.ser != ''){g.ser = decodeURI(g.ser)}//解码
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	//判断权限
+	is_show('.danZhongXinBaoGao_sousuo');
+	is_show('.danZhongXinBaoGao_dairenling');
+	is_show('.danZhongXinBaoGao_pingshenzhong');
+	is_show('.danZhongXinBaoGao_pingshenhouxiugai');
+	is_show('.danZhongXinBaoGao_yipingshen');
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).html('单中心报告评审').addClass('active');
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	$('#choise_menu .choise').on('click',setGetList);//给状态添加点击事件
+	
+	loadPage();
+	
+
+/* **************************************** setTing ******************************************** */	
+	
+	
+	//加载页面
+	function loadPage(){
+		
+		if(g.ser != ''){//判断从工作台传搜索项过来
+			$('#choise_menu .choise').each(function(){
+				var _val = $(this).attr('val') || '';
+				if(_val != '' && _val == g.ser){
+					$(this).addClass('active').siblings('.choise').removeClass('active');
+				}
+			});
+			tableListShow(1);//显示列表
+		}else{
+			tableListShow();//显示列表
+		}
+		getrenlingrenList();//搜索条件 获取认领人列表 
+		
+	}
+	
+	//给状态添加点击事件
+	function setGetList(){
+		$(this).addClass('active').siblings('.choise').removeClass('active');
+		tableListShow(1);//显示列表
+	
+	}
+
+	//搜索条件 获取认领人列表 
+	function getrenlingrenList(){
+		var condi = {};
+		var url = Base.serverUrl + "task/reviewer/list";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data;
+					var html = '<option value="">请选择</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var name = con[i] || '';
+						html+='<option value="'+name+'">'+name+'</option>';
+					}	
+					$('#renLingRen').html(html);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		var xiangMuRenWuNum = $('#xiangMuRenWuNum').val() || '';
+		var renLingRen = $('#renLingRen').val() || '';
+		var start_time = $('#start_time').val() || '';
+		var end_time = $('#end_time').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		if(is == 1){//搜索条件
+			condi.code = xiangMuRenWuNum;//
+			condi.reviewer = renLingRen;//
+			condi.report_time_start = start_time;//
+			condi.report_time_end = end_time;//
+			g.loadPage = true;//开启分页
+		}else if(is == 2){//搜索全部
+			$('#xiangMuRenWuNum').val('');
+			$('#renLingRen').val('');
+			$('#start_time').val('');
+			$('#end_time').val('');
+			g.loadPage = true;//开启分页
+		}
+		var url = Base.serverUrl + "task/report/review/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:52px;">任务编号</th>'
+							+'<th style="min-width:52px;">项目名称</th>'
+							+'<th style="min-width:52px;">项目中心</th>'
+							+'<th style="min-width:0px;">提交评审时间</th>'
+							+'<th style="min-width:40px;">认领人</th>'
+							+'<th style="min-width:52px;">开始时间</th>'
+							+'<th style="min-width:52px;">结束时间</th>'
+							+'<th style="min-width:52px;">评审用时</th>'
+							+'<th style="min-width:52px;">评审状态</th>'
+							+'<th style="min-width:100px;">操作</th>'
+						+'</tr>';
+					var con = data || [];
+					
+					$('#choise_menu').find('.choise').each(function(){
+						var mname = $(this).attr('val') || '';
+					//for(var i=0,len=con.length;i<len;i++){
+						var d = con[mname] || '';
+						var totalElements = d.totalElements || 0;
+						
+						//var _str = mname+'（'+totalElements+'）';
+						$(this).find('.value').html(totalElements);
+						if(!$(this).hasClass('active')){
+							return true;
+						}
+						var con2 = d.content || [];
+						for(var j=0,len2=con2.length;j<len2;j++){
+							var dd = con2[j] || {};
+							var id = dd.id || '';//任务id
+							var code = dd.code || '';
+							var project_name = dd.project_name || '';
+							var center_name = dd.center_name || '';
+							var manager_report_time = getDate(dd.manager_report_time || '');
+							var review_start = getDate(dd.review_start || '');
+							var review_end = getDate(dd.review_end || '');
+							var time_used = dd.time_used || '';
+							var review = dd.review || '';
+							var status = dd.status || '';
+							
+							html+='<tr>'
+								+'<td>'+code+'</td>'
+								+'<td>'+project_name+'</td>'
+								+'<td>'+center_name+'</td>'
+								+'<td>'+manager_report_time+'</td>'
+								+'<td>'+review+'</td>'
+								+'<td>'+review_start+'</td>'
+								+'<td>'+review_end+'</td>'
+								+'<td>'+time_used+'</td>'
+								+'<td>'+status+'</td>'
+								+'<td class="last">';
+								if(status == '已评审' || status == '评审后修改' || mname == '已评审'){	
+									html+='<a href="javascript:;" onclick="check(\''+id+'\')" class="cao_btn cao_btn1 danZhongXinBaoGao_chakan">查看</a>';
+								}else if(status == '提交评审'){
+									html+='<a href="javascript:;" onclick="renLing(\''+id+'\')" class="cao_btn cao_btn2 danZhongXinBaoGao_renling">认领</a>';
+								}else if(status == '评审中'){
+									html+='<a href="javascript:;" onclick="PingShen(\''+id+'\')" class="cao_btn cao_btn2 danZhongXinBaoGao_pingshen">评审</a>';
+								}	
+								html+='</td>';
+							+'</tr>';
+						}	
+					});	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+					//判断权限
+					is_show('.danZhongXinBaoGao_chakan');
+					is_show('.danZhongXinBaoGao_renling');
+					is_show('.danZhongXinBaoGao_pingshen');
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//查看
+	window.check = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('任务id为空！');return false;}
+		var _do = 'check';
+		Utils.offLineStore.set("listtopingshenid",id,false);//传值 到稽查报告评审 传过去任务id
+		//if(!$('#slideLmenu',parent.document).hasClass('shou')){
+		//	parent.document.getElementById("slideLmenu").click();
+		//	$('.header',parent.document).hide();
+		//	$('.frame_div',parent.document).css('top','0px');
+		//}//展开收起左边栏
+		var src = '稽查报告评审.html?listtopingshenid='+id+'&do='+_do;
+		parent.document.location.href = src;
+	}
+	//评审
+	window.PingShen = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('任务id为空！');return false;}
+		var _do = 'pingshen';
+		Utils.offLineStore.set("listtopingshenid",id,false);//传值 到稽查报告评审 传过去任务id
+		//if(!$('#slideLmenu',parent.document).hasClass('shou')){
+		//	parent.document.getElementById("slideLmenu").click();
+		//	$('.header',parent.document).hide();
+		//	$('.frame_div',parent.document).css('top','0px');
+		//}//展开收起左边栏
+		var src = '稽查报告评审.html?listtopingshenid='+id+'&do='+_do;
+		parent.document.location.href = src;
+	}
+	//认领
+	window.renLing = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('任务id为空！');return false;}
+		if(!confirm('确认认领吗？')){return false;}
+		var condi = {};
+		condi.task_id = id;
+		var url = Base.serverUrl + "task/report/review/adopt";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('认领成功！');
+					tableListShow();
+				}
+				else{
+					var msg = data.message || "认领失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+	
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+		$('.searchPage').show();
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow();//列表
+	 }
+	 
+	//加载时间控件
+	var start = {
+	  elem: '#start_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(end);
+
+});
+
+</script>
+</html>

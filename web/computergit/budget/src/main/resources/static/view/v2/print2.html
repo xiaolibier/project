@@ -1,0 +1,2244 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../../public/css/common.css" />
+	<link rel="stylesheet" href="../../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body ng-app=""  class="xiangmuguanli">
+
+		<!-- 表格部分 -->
+		<div class="xdoc_main"  id="xdoc_body" style="width:1000px;position:relative;margin:0 auto;">
+		<!-- <input class="json1" type="text" /> -->
+		<table border="1" cellpadding="0" style="border-collapse:collapse;margin:0 auto;" cellspacing="0">
+		  <tr>
+		    <td colspan="8" align="center" bgcolor="#009999" style="overflow:hidden;"><h4 style="margin:0;line-height:45px;font-size:16px;"><strong>
+		      <!-- <img style="display:inline-block;float:left;vertical-align:bottom;" src="../../public/img/clip.jpg" alt="1233"  height="45"/> -->
+		      3AUDIT  |  让质量更有保证，让客户更有信心</strong></h4></td>
+	      </tr>
+		  <tr>
+		    <td colspan="8" align="center"><strong style="font-size:14px;">稽查费用预算2017版</strong></td>
+	      </tr>
+		  <tr>
+		    <td width="996" align="center">稽查类型：</td>
+		    <td width="996" align="center"><input class="json1 choisejichaleix0" value="BE/PK" type="text" /></td>
+		    <td width="996">　</td>
+		    <td width="996" align="center">本预算版本号：</td>
+		    <td width="996" align="center"><input class="json1 version" value="v1.0" readonly type="text" /></td>
+		    <td width="996">　</td>
+		    <td width="996" align="center">报价日期：</td>
+		    <td width="996" align="center"><input class="json1" id="cdate" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="996" align="center">申办方：</td>
+		    <td colspan="2" class="showtips" align="center"><input id="sponsor" class="json1" type="text" /></td>
+		    <td width="996" align="center">联系人：</td>
+		    <td width="996"><input class="json1" type="text" /></td>
+		    <td width="996">　</td>
+		    <td width="996" align="center">E-mail：</td>
+		    <td width="996"><input class="json1" style="min-width:122px;" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="996" align="center">项目名称：</td>
+		    <td colspan="5" width="996"><input id="name" onblur="blr('#name','.proname')" class="json1 long1" type="text" /></td>
+		    <td width="996" align="center">注册分类：</td>
+		    <td width="996"><input class="json1" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="996" align="center">临床中心数：</td>
+		    <td width="996"><input class="json1 linchuangzhongxi" readonly type="text" /></td>
+		    <td width="996">　</td>
+		    <td width="996" align="center">检测中心数：</td>
+		    <td width="996" align="center"><strong style="color:red;">
+		      <input readonly class="json1 jiancezhongxi" type="text" />
+		      <input readonly class="shujuzhongxi" type="hidden" />
+		      </strong></td>
+		    <td width="996">　</td>
+		    <td width="996" align="center">研究中心数：</td>
+		    <td width="996" align="center"><strong style="color:red;">
+		      <input class="json1 yanjiuzhongxinshu yanjiuzhongx" readonly onblur="blr('.yanjiuzhongx','.yanjiuzhongxinshu')" type="text" />
+		      </strong></td>
+	      </tr>
+		  <tr>
+		    <td width="996" align="center">病例数：</td>
+		    <td width="996" align="center"><strong style="color:red;">
+		      <input class="json1 binglishu" onblur="blr('.binglishu','.binglishun2')" type="text" />
+		      </strong></td>
+		    <td width="996">　</td>
+		    <td width="996" align="center">总采血点数：</td>
+		    <td width="996" align="center"><strong style="color:red;">
+		      <input readonly class="json1 danbinglifangshicishu xeverytotalcaixuedian" type="text" />
+		      </strong></td>
+		    <td width="996">　</td>
+		    <td width="996" align="center">稽查次数：</td>
+		    <td width="996" align="center"><strong style="color:red;">
+		      <input class="json1 jichacishu" onblur="blr('.jichacishu','.jichacishun')" readonly type="text" />
+		      <input info="临床稽查次数之和" class="linchuangjichacishu" readonly type="hidden" />
+		      <input info="检测稽查次数之和" class="jiancejichacishu" readonly type="hidden" />
+		      <input info="数据稽查次数之和" class="shujujichacishu" readonly type="hidden" />
+		      </strong></td>
+	      </tr>
+		  <tr>
+		    <td align="center">报价人：</td>
+		    <td align="center"><input id="baojiabody" class="json1" type="text" /></td>
+		    <td>&nbsp;</td>
+		    <td align="center">联系方式：</td>
+		    <td align="center"><input id="phonenum" class="json1" type="text" /></td>
+		    <td>&nbsp;</td>
+		    <td align="center">E-mail：</td>
+		    <td align="center"><input id="emailadd" class="json1" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="996" align="center">稽查均价（元/h）：</td>
+		    <td width="996" align="center"><input class="json1 danjiabz" value="600" onblur="blr('.danjiabz','.danjiacommon')"  type="text" /></td>
+		    <td width="996">　</td>
+		    <td width="996" align="center">试验周期（月）：</td>
+		    <td width="996" align="center"><strong style="color:red;">
+		      <input class="json1 shiyanzhouqi" ng-model="shiyanzhouqi" type="text" />
+		      </strong></td>
+		    <td width="996"> </td>
+		    <td width="996" align="center">&nbsp;</td>
+		    <td width="996" align="center">&nbsp;</td>
+	      </tr>
+		  <tr>
+		    <td width="996" rowspan="3" align="center">收费<br>
+		      标准</td>
+		    <td colspan="7" width="996"><input class="json1 long1" value=" 1、技术服务收费标准：稽查员600元/小时，稽查经理800元/小时，高级稽查经理1000元/小时" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td colspan="7" width="996"><input class="json1 long1" value=" 2、发票税点：7%" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td colspan="7" width="996"><input class="json1 long1" value=" 3、明细见附表" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="996" colspan="2" bgcolor="#009933"><strong style="font-size:14px">本次合作费用合计：</strong></td>
+		    <td width="996" colspan="6" bgcolor="#009933"><strong style="font-size:14px">
+		      <input class="json1 bg1" id="budget_price" value="" type="text" />
+		      </strong></td>
+	      </tr>
+		  <tr>
+		    <td width="996" colspan="8" align="center"><strong>明     细</strong></td>
+	      </tr>
+		  <tr>
+		    <td width="996" align="center">稽查次数</td>
+		    <td width="996" align="center">稽查病例数</td>
+		    <td width="996" align="center">稽查中心数</td>
+		    <td width="996" align="center">稽查时间<br>
+		      （小时）</td>
+		    <td width="996" align="center">差旅成本费<br>
+		      （元）</td>
+		    <td width="996" align="center">技术服务费<br>
+		      （元）</td>
+		    <td width="996" align="center">税费<br>
+		      （元）</td>
+		    <td width="996" align="center">项目总计<br>
+		      （元）</td>
+	      </tr>
+		  <tr>
+		    <td width="996" align="center"><input class="json1 jichacishun jichacishu" type="text" /></td>
+		    <td width="996" align="center"><input class="json1 binglishun2" type="text" /></td>
+		    <td width="996" align="center"><input class="json1 yanjiuzhongxinshu" id="center_number" type="text" /></td>
+		    <td width="996" align="center"><input class="json1 totalTime"  type="text" /></td>
+		    <td width="996" align="center"><input class="json1 bbyuqizong chailvmeimoney chalv" id="chailvchengbenfei" type="text" /></td>
+		    <td width="996" align="center"><input class="json1 totalMoney chalv" id="jishufuwufei" type="text" /></td>
+		    <td width="996" align="center"><input class="json1 chalv" id="shuifei" type="text" /></td>
+		    <td width="996"  align="center"><input class="json1" id="xiangmuzongji"  type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="996" colspan="8" align="center" bgcolor="#99FFCC"><strong style="font-size:14px">
+		      <input class="json1 bg2" value="每家中心每次稽查周期： 10个工作日（含准备、实施、报告）" type="text" />
+		      </strong></td>
+	      </tr>
+		  <tr>
+		    <td width="996" colspan="2" rowspan="2" align="center">北京经纬传奇医药科技有限公司（3AUDIT.COM）</td>
+		    <td width="996" align="center">邮箱：</td>
+		    <td width="996" colspan="3" align="center"><input class="json1" value="3audit@3audit.com" type="text" /></td>
+		    <td width="996" align="center">联系方式：</td>
+		    <td width="996" align="center"><input class="json1" value="010-85806088" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="996" align="center">地址：</td>
+		    <td width="996" colspan="3" align="center"><input class="json1" value="北京市东城区雍和大厦A座701-703" type="text" /></td>
+		    <td width="996" align="center">集团电话：</td>
+		    <td width="996" align="center"><input class="json1" value="4008157222" tsype="text" /></td>
+	      </tr>
+		  <!-- <tr>
+          <td width="996" colspan="8" align="center" bgcolor="#FFFF99"><strong style="font-size:14px">版权归经纬传奇所有，敬请保密！</strong></td>
+        </tr> -->
+		  </table>
+		<br/>
+		
+		<table border="1" cellspacing="0" cellpadding="0">
+		 <tr>
+				<td colspan="13" align="center" bgcolor="#009999" style="overflow:hidden;"><h4 style="margin:0;line-height:45px;"><strong style="font-size:14px"><!-- <img style="display:inline-block;float:left;vertical-align:bottom;" src="../../public/img/clip.jpg" alt="1233"  height="45"> -->3AUDIT稽查/自查费用预算明细</strong></h4></td>
+			</tr>
+          <tr>
+		    <td width="111" align="center" valign="top"><strong>序号</strong></td>
+		    <td width="144" align="center" valign="top"><strong>稽查范围</strong></td>
+		    <td width="77" align="center" valign="top"><strong>每小时服务费（元）</strong></td>
+		    <td width="111" align="center" valign="top"><strong>单位时间（h）</strong></td>
+		    <td width="111" align="center" valign="top"><strong>总费用（元）</strong></td>
+	      </tr>
+		  <tr>
+		    <td width="111" valign="middle">1.项目管理 </td>
+		    <td width="144" valign="middle">申办方沟通、制定稽查计划及清单、月度质量报告 </td>
+		    <td width="77" align="center" valign="middle"><input class="json6 ffdanjiacommon ffdanjia1"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffetimecommon ffetime1"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffttmoneycommon ffttmoney1" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="111" valign="middle">2.项目培训 </td>
+		    <td width="144" valign="middle">培训准备、方案、医学知识及稽查计划培训 </td>
+		    <td width="77" align="center" valign="middle"><input class="json6 ffdanjiacommon ffdanjia2"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffetimecommon ffetime2"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffttmoneycommon ffttmoney2" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="111" valign="middle">3.稽查准备 </td>
+		    <td width="144" valign="middle">稽查团队日程的确定与安排、CRA/PM/CRC沟通交流、稽查团队会议 </td>
+		    <td width="77" align="center" valign="middle"><input class="json6 ffdanjiacommon ffdanjia3"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffetimecommon ffetime3"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffttmoneycommon ffttmoney3" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="111" valign="middle">4.稽查实施 </td>
+		    <td width="144" valign="middle">研究文件夹、sop、知情同意、样本、实验室溯源等 </td>
+		    <td width="77" align="center" valign="middle"><input class="json6 ffdanjiacommon ffdanjia4"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffetimecommon ffetime4"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffttmoneycommon ffttmoney4" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="111" valign="middle">5.稽查原始资料 </td>
+		    <td width="144" valign="middle">研究病例、CRF、住院病历、电子系统等数据核对 </td>
+		    <td width="77" align="center" valign="middle"><input class="json6 ffdanjiacommon ffdanjia7"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffetimecommon ffetime7"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffttmoneycommon ffttmoney7" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="111" valign="middle">6.稽查总结与项目汇报 </td>
+		    <td width="144" valign="middle">NA</td>
+		    <td width="77" align="center" valign="middle"><input class="json6 ffdanjiacommon ffdanjia8"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffetimecommon ffetime8"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffttmoneycommon ffttmoney8" type="text" /></td>
+	      </tr>
+		  <tr>
+		    <td width="111" valign="middle">7.CAPA</td>
+		    <td width="144" valign="middle">制定与审查 </td>
+		    <td width="77" align="center" valign="middle"><input class="json6 ffdanjiacommon ffdanjia9"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffetimecommon ffetime9"  type="text" /></td>
+		    <td width="111" align="center" valign="middle"><input class="json6 ffttmoneycommon ffttmoney9" type="text" /></td>
+	      </tr>
+          <tr>
+		      <td  colspan="3" align="center" bgcolor="#009933"><strong>技术服务时间及费用总计</strong><strong style="font-size:14px">：</strong></td>
+		      <td colspan="1" align="center" bgcolor="#009933"><input class="json6 ffdanjiazongj"  type="text" /></td>
+              <td colspan="1" align="center" bgcolor="#009933"><input class="json6 ffzongjinezongj"  type="text" /></td>
+          </tr>
+		  </table>
+		<br/>
+        
+		  <!-- 费用明细表 -->
+		  <table border="1" id="bepktable" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:0 auto;">
+		    <tr>
+		      <td colspan="10" align="center" bgcolor="#009999" style="overflow:hidden;"><h4 style="margin:0;line-height:45px;font-size:16px;"><strong>项目情况，版本号：V3.3，版本日期20160601</strong></h4></td>
+	        </tr>
+		    <tr>
+		      <td width="44" align="center"><strong>编号</strong></td>
+		      <td width="85" align="center"><strong>人群</strong></td>
+		      <td width="265" align="center"><strong>项目名称</strong></td>
+		      <td width="85" align="center"><strong>给药方式</strong></td>
+		      <td width="65" align="center"><strong>剂量</strong></td>
+		      <td width="112" align="center"><strong>研究中心</strong></td>
+		      <td width="92" align="center"><strong>检测中心</strong></td>
+		      <td width="55" align="center"><strong>病例数</strong></td>
+		      <td width="80" align="center"><strong>每例采血点</strong></td>
+		      <td width="87" align="center"><strong>总采血点</strong></td>
+	        </tr>
+		    <tr>
+		      <td width="44" align="center">1 </td>
+		      <td width="85" align="center"><input class="json5 xrenquncommon xrenqun1" type="text" /></td>
+		      <td width="265" align="center"><input class="json5 xxiangmunamecommon xxiangmuname1" type="text" /></td>
+		      <td width="85" align="center"><input class="json5 xgeiyaofanshicommon xgeiyaofanshi1" type="text" /></td>
+		      <td width="65" align="center"><input class="json5 xjiliangcommon xjiliang1" type="text" /></td>
+		      <td width="112" align="center"><input class="json5 xyanjiuzhongxincommon xyanjiuzhongxin1" type="text" /></td>
+		      <td width="92" align="center"><input class="json5 xjiancezhongxincommon xjiancezhongxin1" type="text" /></td>
+		      <td width="55" align="center"><input class="json5 xbinglishucommon xbinglishu1" type="text" /></td>
+		      <td width="80" align="center"><input class="json5 xeverycaixuediancommon xeverycaixuedian1" type="text" /></td>
+		      <td width="87" align="center"><input class="json5 xtotalcaixuediancommon xtotalcaixuedian1" type="text" /></td>
+	        </tr>
+		    <tr>
+		      <td width="44" align="center">2 </td>
+		      <td width="85" align="center"><input class="json5 xrenquncommon xrenqun2" type="text" /></td>
+		      <td width="265" align="center"><input class="json5 xxiangmunamecommon xxiangmuname2" type="text" /></td>
+		      <td width="85" align="center"><input class="json5 xgeiyaofanshicommon xgeiyaofanshi2" type="text" /></td>
+		      <td width="65" align="center"><input class="json5 xjiliangcommon xjiliang2" type="text" /></td>
+		      <td width="112" align="center"><input class="json5 xyanjiuzhongxincommon xyanjiuzhongxin2" type="text" /></td>
+		      <td width="92" align="center"><input class="json5 xjiancezhongxincommon xjiancezhongxin2" type="text" /></td>
+		      <td width="55" align="center"><input class="json5 xbinglishucommon xbinglishu2" type="text" /></td>
+		      <td width="80" align="center"><input class="json5 xeverycaixuediancommon xeverycaixuedian2" type="text" /></td>
+		      <td width="87" align="center"><input class="json5 xtotalcaixuediancommon xtotalcaixuedian2" type="text" /></td>
+	        </tr>
+		    <tr>
+		      <td width="44" align="center">3 </td>
+		      <td width="85" align="center"><input class="json5 xrenquncommon xrenqun3" type="text" /></td>
+		      <td width="265" align="center"><input class="json5 xxiangmunamecommon xxiangmuname3" type="text" /></td>
+		      <td width="85" align="center"><input class="json5 xgeiyaofanshicommon xgeiyaofanshi3" type="text" /></td>
+		      <td width="65" align="center"><input class="json5 xjiliangcommon xjiliang3" type="text" /></td>
+		      <td width="112" align="center"><input class="json5 xyanjiuzhongxincommon xyanjiuzhongxin3" type="text" /></td>
+		      <td width="92" align="center"><input class="json5 xjiancezhongxincommon xjiancezhongxin3" type="text" /></td>
+		      <td width="55" align="center"><input class="json5 xbinglishucommon xbinglishu3" type="text" /></td>
+		      <td width="80" align="center"><input class="json5 xeverycaixuediancommon xeverycaixuedian3" type="text" /></td>
+		      <td width="87" align="center"><input class="json5 xtotalcaixuediancommon xtotalcaixuedian3" type="text" /></td>
+	        </tr>
+		    <tr>
+		      <td width="44" align="center">4 </td>
+		      <td width="85" align="center"><input class="json5 xrenquncommon xrenqun4" type="text" /></td>
+		      <td width="265" align="center"><input class="json5 xxiangmunamecommon xxiangmuname4" type="text" /></td>
+		      <td width="85" align="center"><input class="json5 xgeiyaofanshicommon xgeiyaofanshi4" type="text" /></td>
+		      <td width="65" align="center"><input class="json5 xjiliangcommon xjiliang4" type="text" /></td>
+		      <td width="112" align="center"><input class="json5 xyanjiuzhongxincommon xyanjiuzhongxin4" type="text" /></td>
+		      <td width="92" align="center"><input class="json5 xjiancezhongxincommon xjiancezhongxin4" type="text" /></td>
+		      <td width="55" align="center"><input class="json5 xbinglishucommon xbinglishu4" type="text" /></td>
+		      <td width="80" align="center"><input class="json5 xeverycaixuediancommon xeverycaixuedian4" type="text" /></td>
+		      <td width="87" align="center"><input class="json5 xtotalcaixuediancommon xtotalcaixuedian4" type="text" /></td>
+	        </tr>
+		    <tr>
+		      <td width="44" align="center">5 </td>
+		      <td width="85" align="center"><input class="json5 xrenquncommon xrenqun5" type="text" /></td>
+		      <td width="265" align="center"><input class="json5 xxiangmunamecommon xxiangmuname5" type="text" /></td>
+		      <td width="85" align="center"><input class="json5 xgeiyaofanshicommon xgeiyaofanshi5" type="text" /></td>
+		      <td width="65" align="center"><input class="json5 xjiliangcommon xjiliang5" type="text" /></td>
+		      <td width="112" align="center"><input class="json5 xyanjiuzhongxincommon xyanjiuzhongxin5" type="text" /></td>
+		      <td width="92" align="center"><input class="json5 xjiancezhongxincommon xjiancezhongxin5" type="text" /></td>
+		      <td width="55" align="center"><input class="json5 xbinglishucommon xbinglishu5" type="text" /></td>
+		      <td width="80" align="center"><input class="json5 xeverycaixuediancommon xeverycaixuedian5" type="text" /></td>
+		      <td width="87" align="center"><input class="json5 xtotalcaixuediancommon xtotalcaixuedian5" type="text" /></td>
+	        </tr>
+		    <tr>
+		      <td width="44" align="center">6 </td>
+		      <td width="85" align="center"><input class="json5 xrenquncommon xrenqun6" type="text" /></td>
+		      <td width="265" align="center"><input class="json5 xxiangmunamecommon xxiangmuname6" type="text" /></td>
+		      <td width="85" align="center"><input class="json5 xgeiyaofanshicommon xgeiyaofanshi6" type="text" /></td>
+		      <td width="65" align="center"><input class="json5 xjiliangcommon xjiliang6" type="text" /></td>
+		      <td width="112" align="center"><input class="json5 xyanjiuzhongxincommon xyanjiuzhongxin6" type="text" /></td>
+		      <td width="92" align="center"><input class="json5 xjiancezhongxincommon xjiancezhongxin6" type="text" /></td>
+		      <td width="55" align="center"><input class="json5 xbinglishucommon xbinglishu6" type="text" /></td>
+		      <td width="80" align="center"><input class="json5 xeverycaixuediancommon xeverycaixuedian6" type="text" /></td>
+		      <td width="87" align="center"><input class="json5 xtotalcaixuediancommon xtotalcaixuedian67" type="text" /></td>
+	        </tr>
+		    <tr>
+		      <td width="44" align="center">7 </td>
+		      <td width="85" align="center"><input class="json5 xrenquncommon xrenqun7" type="text" /></td>
+		      <td width="265" align="center"><input class="json5 xxiangmunamecommon xxiangmuname7" type="text" /></td>
+		      <td width="85" align="center"><input class="json5 xgeiyaofanshicommon xgeiyaofanshi7" type="text" /></td>
+		      <td width="65" align="center"><input class="json5 xjiliangcommon xjiliang7" type="text" /></td>
+		      <td width="112" align="center"><input class="json5 xyanjiuzhongxincommon xyanjiuzhongxin7" type="text" /></td>
+		      <td width="92" align="center"><input class="json5 xjiancezhongxincommon xjiancezhongxin7" type="text" /></td>
+		      <td width="55" align="center"><input class="json5 xbinglishucommon xbinglishu7" type="text" /></td>
+		      <td width="80" align="center"><input class="json5 xeverycaixuediancommon xeverycaixuedian7" type="text" /></td>
+		      <td width="87" align="center"><input class="json5 xtotalcaixuediancommon xtotalcaixuedian7" type="text" /></td>
+	        </tr>
+		    <tr>
+		      <td width="44" align="center" bgcolor="#009933">　</td>
+		      <td width="85" align="center" bgcolor="#009933">　</td>
+		      <td width="265" align="center" bgcolor="#009933">　</td>
+		      <td width="85" align="center" bgcolor="#009933">　</td>
+		      <td width="65" align="center" bgcolor="#009933">　</td>
+		      <td width="112" align="center" bgcolor="#009933">　</td>
+		      <td width="92" align="center" bgcolor="#009933">　</td>
+		      <td width="55" align="center" bgcolor="#009933"><input class="json5 bg2  xtotalbinglishu" type="text" /></td>
+		      <td width="80" align="center" bgcolor="#009933">　</td>
+		      <td width="87" align="center" bgcolor="#009933"><input class="json5 bg2  xeverytotalcaixuedian" type="text" /></td>
+	        </tr>
+	      </table>
+		  <br/>
+		  <table border="1" id="table2" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:0 auto;">
+		    <tr>
+		      <td colspan="20" align="center" bgcolor="#009999" style="overflow:hidden;"><h4 style="margin:0;line-height:45px;"><strong style="font-size:14px">
+		        <!-- <img style="display:inline-block;float:left;vertical-align:bottom;" src="../../public/img/clip.jpg" alt="1233"  height="45"> -->
+		        3AUDIT费用明细2017版</strong></h4></td>
+		      <td align="center" colspan="2" bgcolor="#FFFFFF" >备注</td>
+	        </tr>
+		    <tr align="center">
+		      <td colspan="21" align="left">项目名称：
+		        <input class="json2 wd proname" readonly type="text" /></td>
+	        </tr>
+		    <!--tr align="center">
+			    <td colspan="21" align="left">项目概述：</td>
+		      </tr>
+			  <tr align="center">
+			    <td colspan="21"><textarea class="json2" ></textarea></td>
+		      </tr-->
+		    <!--tr>
+			    <td colspan="2" align="center">　</td>
+			    <td colspan="13">　</td>
+			    <td colspan="3"><strong>稽查均价（元/h）：</strong></td>
+			    <td colspan="2"><input class="json2 hd danjiabz" value="600" onblur="blr('.danjiabz','.danjiacommon')"  type="text" /></td>
+			    <td bgcolor="#FFFFFF">　</td>
+		      </tr-->
+		    <tr class="tablecell1" align="center">
+		      <td colspan="21" align="left"><strong><span class="nbs nbs1">1</span>.项目管理</strong></td>
+	        </tr>
+		    <tr class="tablecell1">
+		      <td rowspan="2" align="center">No.</td>
+		      <td rowspan="2">任务</td>
+		      <td colspan="4" align="center">职责分工</td>
+		      <td rowspan="2" align="center">任务时间（h/月或h/项目）</td>
+		      <td colspan="2" align="center">单位时间（h）</td>
+		      <td colspan="2" align="center">参与人数</td>
+		      <td colspan="2" align="center">频次</td>
+		      <td colspan="2" align="center">总时间（h）</td>
+		      <td rowspan="2" align="center">单价(元/h)</td>
+		      <td colspan="2" align="center">费用(元)</td>
+		      <td colspan="2" align="center">总费用(元)</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell1">
+		      <td align="center">Sponsor</td>
+		      <td width="31" align="center"> CRO </td>
+		      <td align="center"> Site </td>
+		      <td align="center">3AUDIT</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="41" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="53" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预算</td>
+		      <td align="center" bgcolor="#F6F6F6">结算</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell1">
+		      <td align="center">1</td>
+		      <td>申办方沟通</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='1' class="json2 dowchoice"  readonly  value="2h/月" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy1" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash1 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu1" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash1 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish1 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu1" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh1 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia1"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu1" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh1 bg2" type="text" /></td>
+		      <td align="center">&nbsp;</td>
+		      <td align="center" bgcolor="#F6F6F6">&nbsp;</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell1">
+		      <td align="center">2</td>
+		      <td>项目管理</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='2' class="json2 dowchoice"  readonly  value="4h/月" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy2" value="4" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash2 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu2" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash2 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish2 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu2" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh2 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia2"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu2" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh2 bg2" type="text" /></td>
+		      <td align="center">&nbsp;</td>
+		      <td align="center" bgcolor="#F6F6F6">&nbsp;</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell1">
+		      <td align="center">3</td>
+		      <td>制定稽查计划、稽查清单和工具</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='3' class="json2 dowchoice"  readonly  value="16h/项目" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy3" value="16" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash3 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu3" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash3 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py3" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish3 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu3" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh3 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia3"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu3" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh3 bg2" type="text" /></td>
+		      <td align="center">&nbsp;</td>
+		      <td align="center" bgcolor="#F6F6F6">&nbsp;</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea2" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell1">
+		      <td align="center">4</td>
+		      <td>团队组建和分工准备</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='4' class="json2 dowchoice"  readonly  value="2h/项目" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy4" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash4 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu4" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash4 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py4" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish4 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu4" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh4 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia4"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu4" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh4 bg2" type="text" /></td>
+		      <td align="center">&nbsp;</td>
+		      <td align="center" bgcolor="#F6F6F6">&nbsp;</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea3" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell1">
+		      <td align="center">5</td>
+		      <td>月度项目质量报告</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='5' class="json2 dowchoice"  readonly  value="4h/月" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy5" value="4" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash5 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu5" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash5 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py5" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish5 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu5" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh5 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia5"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu5" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh5 bg2" type="text" /></td>
+		      <td align="center">&nbsp;</td>
+		      <td align="center" bgcolor="#F6F6F6">&nbsp;</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea4" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell1">
+		      <td colspan="2" align="center" bgcolor="#99FF66">小结</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td width="31" align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonyutt zonyutt1 bg2" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#99FF66"><input class="json2 zonshtt zonshtt1  bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt feyutt1 bg2"   type="text" /></td>
+		      <td width="53" align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt1 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt jisuantt  feyutt1 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt1 bg2"   type="text" /></td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea51" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell2" align="center">
+		      <td colspan="21" align="left"><strong><span class="nbs nbs2">2</span>.项目培训</strong></td>
+	        </tr>
+		    <tr class="tablecell2">
+		      <td rowspan="2" align="center">No.</td>
+		      <td rowspan="2">任务</td>
+		      <td colspan="4" align="center">职责分工</td>
+		      <td rowspan="2" align="center">任务时间（h/月或h/项目）</td>
+		      <td colspan="2" align="center">单位时间（h）</td>
+		      <td colspan="2" align="center">参与人数</td>
+		      <td colspan="2" align="center">频次</td>
+		      <td colspan="2" align="center">总时间（h）</td>
+		      <td rowspan="2" align="center">单价(元/h)</td>
+		      <td colspan="2" align="center">费用(元)</td>
+		      <td colspan="2" align="center">总费用(元)</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell2">
+		      <td align="center">Sponsor</td>
+		      <td width="31" align="center">CRO</td>
+		      <td align="center">Site</td>
+		      <td align="center">3AUDIT</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="41" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="53" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预算</td>
+		      <td align="center" bgcolor="#F6F6F6">结算</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell2">
+		      <td align="center">1</td>
+		      <td>培训准备</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='6' class="json2 dowchoice"  readonly  value="8h/项目" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy6" value="8" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash6 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu6" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash6 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py6" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish6 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu6" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh6 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia6"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu6" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh6 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea5" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell2">
+		      <td align="center">2</td>
+		      <td>方案、医学知识培训</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='7' class="json2 dowchoice"  readonly  value="4h/项目" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy7" value="4" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash7 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu7" value="3" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash7 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py7" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish7 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu7" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh7 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia7"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu7" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh7 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea6" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell2">
+		      <td align="center">3</td>
+		      <td>稽查计划的培训</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='8' class="json2 dowchoice"  readonly  value="2h/项目" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy8" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash8 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu8" value="3" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash8 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py8" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish8 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu8" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh8 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia8"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu8" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh8 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea7" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell2">
+		      <td colspan="2" align="center" bgcolor="#99FF66">小结</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td width="31" align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonyutt zonyutt2 bg2"   type="text" /></td>
+		      <td width="41" align="center" bgcolor="#99FF66"><input class="json2 zonshtt zonshtt2  bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt feyutt2 bg2"   type="text" /></td>
+		      <td width="53" align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt2 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt jisuantt feyutt2 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt2 bg2"   type="text" /></td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea50" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell3" align="center">
+		      <td colspan="21" align="left"><strong><span class="nbs nbs3">3</span>.稽查准备</strong></td>
+	        </tr>
+		    <tr class="tablecell3">
+		      <td rowspan="2" align="center">No.</td>
+		      <td rowspan="2">任务</td>
+		      <td colspan="4" align="center">职责分工</td>
+		      <td rowspan="2" align="center">任务时间（h/月或h/项目）</td>
+		      <td colspan="2" align="center">单位时间（h）</td>
+		      <td colspan="2" align="center">参与人数</td>
+		      <td colspan="2" align="center">频次</td>
+		      <td colspan="2" align="center">总时间（h）</td>
+		      <td rowspan="2" align="center">单价(元/h)</td>
+		      <td colspan="2" align="center">费用(元)</td>
+		      <td colspan="2" align="center">总费用(元)</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell3">
+		      <td align="center">Sponsor</td>
+		      <td width="31" align="center">CRO</td>
+		      <td align="center">Site</td>
+		      <td align="center">3AUDIT</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="41" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="53" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预算</td>
+		      <td align="center" bgcolor="#F6F6F6">结算</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell3">
+		      <td align="center">1</td>
+		      <td>方案、知情同意书、CRF表及研究病历等材料技术审查</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='9' class="json2 dowchoice"  readonly  value="0h/项目" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy9" value="0" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash9 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu9" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash9 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py9" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish9 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu9" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh9 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia9"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu9" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh9 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea8" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell3">
+		      <td height="40" align="center">2</td>
+		      <td>稽查团队日程的确定与安排</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='10' class="json2 dowchoice"  readonly  value="1h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy10" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash10 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu10" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash10 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py10" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish10  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu10" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh10 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia10"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu10" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh10 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea9" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell3">
+		      <td align="center">3</td>
+		      <td>CRA/PM/CRC沟通交流</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='11' class="json2 dowchoice"  readonly  value="1h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy11" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash11 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu11" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash11 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py11" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish11 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu11" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh11 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia11"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu11" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh11 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea10" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell3">
+		      <td align="center">4</td>
+		      <td>稽查团队会议</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='12' class="json2 dowchoice"  readonly  value="0.5h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy12" value="0.5" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash12 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu12" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash12 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py12" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish12 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu12" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh12 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia12"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu12" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh12 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea11" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell3">
+		      <td align="center">5</td>
+		      <td>后勤保障（餐、宿、行）</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='13' class="json2 dowchoice"  readonly  value="0.25h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy13" value="0.25" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash13 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu13" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash13 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py13" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish13 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu13" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh13 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia13"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu13" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh13 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea12" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell3">
+		      <td colspan="2" align="center" bgcolor="#99FF66">小结</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td width="31" align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonyutt zonyutt3 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonshtt zonshtt3  bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt feyutt3 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt3 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt jisuantt feyutt3 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt3 bg2"   type="text" /></td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea49" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell4" align="center">
+		      <td colspan="21" align="left"><strong><span class="nbs nbs4">4</span>.稽查实施</strong></td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td colspan="2" align="center"><strong>临床部分</strong></td>
+		      <td colspan="19" align="center">　</td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td rowspan="2" align="center">No.</td>
+		      <td rowspan="2">任务</td>
+		      <td colspan="4" align="center">职责分工</td>
+		      <td rowspan="2" align="center">任务时间（h/月或h/项目）</td>
+		      <td colspan="2" align="center">单位时间（h）</td>
+		      <td colspan="2" align="center">参与人数</td>
+		      <td colspan="2" align="center">频次</td>
+		      <td colspan="2" align="center">总时间（h）</td>
+		      <td rowspan="2" align="center">单价(元/h)</td>
+		      <td colspan="2" align="center">费用(元)</td>
+		      <td colspan="2" align="center">总费用(元)</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td align="center">Sponsor</td>
+		      <td width="31" align="center">CRO</td>
+		      <td align="center">Site</td>
+		      <td align="center">3AUDIT</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="41" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="53" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预算</td>
+		      <td align="center" bgcolor="#F6F6F6">结算</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td align="center">1</td>
+		      <td>首次会议</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='14' class="json2 dowchoice"  readonly  value="0.5h/临床稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy14" value="0.5" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash14 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu14" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash14 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py14" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish14 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu14" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh14 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia14"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu14" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh14 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea13" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td align="center">2</td>
+		      <td>研究者文件夹、SOPs查阅</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">&nbsp;</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='15' class="json2 dowchoice"  readonly  value="3h/临床稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy15" value="3" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash15 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu15" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash15 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py15" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish15  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu15" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh15 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia15"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu15" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh15 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea14" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td align="center">3</td>
+		      <td>知情同意书核查</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='16' class="json2 dowchoice"  readonly  value="1h/临床稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy16" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash16 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu16" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash16 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py16" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish16 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu16" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh16 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia16"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu16" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh16 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea15" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td align="center">4</td>
+		      <td>试验用药与物资稽查</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='17' class="json2 dowchoice"  readonly  value="1h/临床稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy17" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash17 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu17" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash17 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py17" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish17 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu17" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh17 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia17"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu17" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh17 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea16" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td align="center">5</td>
+		      <td>实验室检查单溯源</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">&nbsp;</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='18' class="json2 dowchoice"  readonly  value="2h/临床稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy18" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash18  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu18" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash18 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py18" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish18 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu18" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh18 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia18"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu18" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh18 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea17" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td align="center">6</td>
+		      <td>分中心稽查总结会</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='19' class="json2 dowchoice"  readonly  value="0.5h/临床稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy19" value="0.5" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash19 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu19" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash19 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py19" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish19  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu19" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh19 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia19"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu19" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh19 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea18" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td align="center">7</td>
+		      <td>往返差旅时间（含市内）</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">&nbsp;</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='20' class="json2 dowchoice"  readonly  value="4h/临床稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy20" value="4" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash20 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu20" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash20 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py20" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish20 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu20" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh20 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia20"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu20" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh20 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea19" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell4">
+		      <td colspan="2" align="center" bgcolor="#99FF66">小结</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td width="31" align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonyutt zonyutt4 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonshtt zonshtt4  bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt feyutt4 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt4 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt jisuantt feyutt4 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt4 bg2"   type="text" /></td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea48" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5" align="center">
+		      <td colspan="21" align="left"><strong><span class="nbs nbs4 nbs42">4</span>.稽查实施</strong></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td colspan="2" align="center"><strong>检测部分</strong></td>
+		      <td colspan="19" align="center">　</td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td rowspan="2" align="center">No.</td>
+		      <td rowspan="2">任务</td>
+		      <td colspan="4" align="center">职责分工</td>
+		      <td rowspan="2" align="center">任务时间（h/月或h/项目）</td>
+		      <td colspan="2" align="center">单位时间（h）</td>
+		      <td colspan="2" align="center">参与人数</td>
+		      <td colspan="2" align="center">频次</td>
+		      <td colspan="2" align="center">总时间（h）</td>
+		      <td rowspan="2" align="center">单价(元/h)</td>
+		      <td colspan="2" align="center">费用(元)</td>
+		      <td colspan="2" align="center">总费用(元)</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">Sponsor</td>
+		      <td width="31" align="center">CRO</td>
+		      <td align="center">Site</td>
+		      <td align="center">3AUDIT</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="41" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="53" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预算</td>
+		      <td align="center" bgcolor="#F6F6F6">结算</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">1</td>
+		      <td>首次会议</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='21' class="json2 dowchoice"  readonly  value="0.5h/检测稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy21" value="0.5" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash21 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu21" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash21 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py21" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish21 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu21" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh21 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia21"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu21" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh21 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea22" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">2</td>
+		      <td>相关制度与SOPs查阅</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='22' class="json2 dowchoice"  readonly  value="3h/检测稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy22" value="3" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash22 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu22" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash22 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py22" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish22  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu22" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh22 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia22"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu22" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh22 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea23" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">3</td>
+		      <td>实验室检测设备与条件</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='23' class="json2 dowchoice"  readonly  value="2h/检测稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy23" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash23 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu23" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash23 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py23" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish23 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu23" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh23 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia23"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu23" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh23 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea24" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">4</td>
+		      <td>生物样本的管理</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='24' class="json2 dowchoice"  readonly  value="1h/检测稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy24" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash24 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu24" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash24 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py24" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish24 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu24" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh24 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia24"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu24" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh24 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea25" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">5</td>
+		      <td>相关记录</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='25' class="json2 dowchoice"  readonly  value="2h/检测稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy25" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash25  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu25" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash25 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py25" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish25 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu25" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh25 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia25"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu25" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh25 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea26" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">6</td>
+		      <td>总结报告</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='26' class="json2 dowchoice"  readonly  value="16h/检测稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy26" value="16" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash26 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu26" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash26 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py26" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish26  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu26" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh26 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia26"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu26" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh26 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea27" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">7</td>
+		      <td>检测中心稽查总结会</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='27' class="json2 dowchoice"  readonly  value="0.5h/检测稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy27" value="0.5" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash27 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu27" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash27 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py27" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish27 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu27" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh27 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia27"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu27" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh27 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea28" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">8</td>
+		      <td>往返差旅时间（含市内）</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">&nbsp;</td>
+		      <td width="36" align="center">&nbsp;</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='28' class="json2 dowchoice"  readonly  value="4h/检测稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy28" value="4" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash28 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu28" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash28 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py28" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish28 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu28" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh28 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia28"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu28" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh28 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea29" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td colspan="2" align="center" bgcolor="#99FF66">小结</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td width="31" align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonyutt zonyutt5 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonshtt zonshtt5  bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt feyutt5 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt5 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt jisuantt feyutt5 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt5 bg2"   type="text" /></td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea47" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell6" align="center">
+		      <td colspan="21" align="left"><strong><span class="nbs nbs4 nbs43">4</span>.稽查实施</strong></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td colspan="2" align="center"><strong>数据管理部分</strong></td>
+		      <td colspan="19" align="center">　</td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td rowspan="2" align="center">No.</td>
+		      <td rowspan="2">任务</td>
+		      <td colspan="4" align="center">职责分工</td>
+		      <td rowspan="2" align="center">任务时间（h/月或h/项目）</td>
+		      <td colspan="2" align="center">单位时间（h）</td>
+		      <td colspan="2" align="center">参与人数</td>
+		      <td colspan="2" align="center">频次</td>
+		      <td colspan="2" align="center">总时间（h）</td>
+		      <td rowspan="2" align="center">单价(元/h)</td>
+		      <td colspan="2" align="center">费用(元)</td>
+		      <td colspan="2" align="center">总费用(元)</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">Sponsor</td>
+		      <td width="31" align="center">CRO</td>
+		      <td align="center">Site</td>
+		      <td align="center">3AUDIT</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="41" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="53" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预算</td>
+		      <td align="center" bgcolor="#F6F6F6">结算</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">1</td>
+		      <td>首次会议</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='29' class="json2 dowchoice"  readonly  value="0.5h/数据稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy29" value="0.5" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash29 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu29" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash29 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py29" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish29 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu29" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh29 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia29"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu29" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh29 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea22" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">2</td>
+		      <td>SOPs查阅</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='30' class="json2 dowchoice"  readonly  value="3h/数据稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy30" value="3" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash30 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu30" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash30 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py30" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish30  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu30" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh30 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia30"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu30" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh30 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea23" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">3</td>
+		      <td>人员资质审核</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">&nbsp;</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='31' class="json2 dowchoice"  readonly  value="0.5h/数据稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy31" value="0.5" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash31 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu31" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash31 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py31" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish31 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu31" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh31 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia31"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu31" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh31 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea24" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">4</td>
+		      <td>数据管理相关文件审阅（项目层面的数据管理计划、数据核查计划、数据库锁定流程、AE/PV一致性核对等）</td>
+		      <td width="51" align="center">&nbsp;</td>
+		      <td width="31" align="center">&nbsp;</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='32' class="json2 dowchoice"  readonly  value="3h/数据稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy32" value="3" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash32 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu32" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash32 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py32" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish32 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu32" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh32 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia32"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu32" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh32 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea25" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">5</td>
+		      <td>EDC系统核查（系统验证过程、随机系统、稽查轨迹、账号管理等）</td>
+		      <td width="51" align="center">√　</td>
+		      <td width="31" align="center">√　</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='33' class="json2 dowchoice"  readonly  value="2h/数据稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy33" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash33  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu33" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash33 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py33" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish33 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu33" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh33 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia33"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu33" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh33 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea26" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">6</td>
+		      <td>统计分析相关文件审阅（统计分析计划、统计分析报告等）</td>
+		      <td width="51" align="center">&nbsp;</td>
+		      <td width="31" align="center">&nbsp;</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='34' class="json2 dowchoice"  readonly  value="1.5h/数据稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy34" value="1.5" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash34 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu34" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash34 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py34" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish34  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu34" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh34 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia34"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu34" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh34 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea27" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">7</td>
+		      <td>稽查总结会</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='35' class="json2 dowchoice"  readonly  value="1h/数据稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy35" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash35 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu35" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash35 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py35" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish35 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu35" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh35 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia35"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu35" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh35 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea28" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td align="center">8</td>
+		      <td>往返差旅时间（含市内）</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">&nbsp;</td>
+		      <td width="36" align="center">&nbsp;</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='36' class="json2 dowchoice"  readonly  value="4h/数据稽查次数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy36" value="4" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash36 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu36" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash36 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py36" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish36 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu36" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh36 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia36"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu36" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh36 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea29" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell5">
+		      <td colspan="2" align="center" bgcolor="#99FF66">小结</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td width="31" align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonyutt zonyutt6 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonshtt zonshtt6  bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt feyutt6 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt6 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt jisuantt feyutt6 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt6 bg2"   type="text" /></td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea47" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell7" align="center">
+		      <td colspan="21" align="left"><strong><span class="nbs nbs5">5</span>.稽查原始资料</strong></td>
+	        </tr>
+		    <tr class="tablecell6">
+		      <td rowspan="2" align="center">No.</td>
+		      <td rowspan="2">任务</td>
+		      <td colspan="4" align="center">职责分工</td>
+		      <td rowspan="2" align="center">任务时间</td>
+		      <td colspan="2" align="center">单位时间（m）</td>
+		      <td colspan="2" align="center">参与人数</td>
+		      <td colspan="2" align="center">频次</td>
+		      <td colspan="2" align="center">总时间（h）</td>
+		      <td rowspan="2" align="center">单价(元/h)</td>
+		      <td colspan="2" align="center">费用(元)</td>
+		      <td colspan="2" align="center">总费用(元)</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell6">
+		      <td align="center">Sponsor</td>
+		      <td width="31" align="center">CRO</td>
+		      <td align="center">Site</td>
+		      <td align="center">3AUDIT</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="41" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="53" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预算</td>
+		      <td align="center" bgcolor="#F6F6F6">结算</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell6">
+		      <td align="center">1</td>
+		      <td>研究病历、CRF、住院病历等数据核对</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='37' class="json2 dowchoice" readonly  value="20分钟/病例数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy37 binglieach" value="20" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash37 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu37" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash37 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py37 binglieach" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish37 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu37" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh37 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia37"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu37" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh37 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea31" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell6">
+		      <td align="center">2</td>
+		      <td>研究病历、CRF、住院病历等数据核对</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='38' class="json2 dowchoice"  readonly  value="20分钟/病例数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy38 binglieach" value="20" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash38 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu38" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash38 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py38 binglieach" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish38 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu38" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh38 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia38"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu38" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh38 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea32" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell6">
+		      <td align="center">3</td>
+		      <td>研究病历、CRF、住院病历等数据核对</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='39' class="json2 dowchoice"  readonly  value="20分钟/病例数" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy39 binglieach" value="20" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash39 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu39" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash39 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py39 binglieach" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish39 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu39" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh39 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia39"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu39" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh39 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea32" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell6">
+		      <td align="center">4</td>
+		      <td>检测部分的图谱分析</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td style="min-width:95px;" align="center"><input ste='40' class="json2 dowchoice"  readonly  value="5分钟/采血点" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy40" value="5" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash40 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu40" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash40 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py40"  type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish40 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu40" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh40 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia40"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu40" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh40 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea33" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell6">
+		      <td colspan="2" align="center" bgcolor="#99FF66">小结</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td width="31" align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonyutt zonyutt7 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonshtt zonshtt7  bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt feyutt7 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt7 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 jisuantt feyutt feyutt7 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt7 bg2"   type="text" /></td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea43" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell8" align="center">
+		      <td colspan="21" align="left"><strong><span class="nbs nbs6">6</span>.稽查总结与项目汇报</strong></td>
+	        </tr>
+		    <tr class="tablecell7">
+		      <td rowspan="2" align="center">No.</td>
+		      <td rowspan="2">任务</td>
+		      <td colspan="4" align="center">职责分工</td>
+		      <td rowspan="2" align="center">任务时间（h/月或h/项目）</td>
+		      <td colspan="2" align="center">单位时间（h）</td>
+		      <td colspan="2" align="center">参与人数</td>
+		      <td colspan="2" align="center">频次</td>
+		      <td colspan="2" align="center">总时间（h）</td>
+		      <td rowspan="2" align="center">单价(元/h)</td>
+		      <td colspan="2" align="center">费用(元)</td>
+		      <td colspan="2" align="center">总费用(元)</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell7">
+		      <td align="center">Sponsor</td>
+		      <td width="31" align="center">CRO</td>
+		      <td align="center">Site</td>
+		      <td align="center">3AUDIT</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="41" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="53" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预算</td>
+		      <td align="center" bgcolor="#F6F6F6">结算</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell7">
+		      <td align="center">1</td>
+		      <td>稽查报告撰写</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='41' class="json2 dowchoice"  readonly  value="16h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy41" value="16" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash41  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu41" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash41 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py41" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish41 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu41" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh41 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia41"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu41" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh41 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea34" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell7">
+		      <td align="center">2</td>
+		      <td>稽查报告审核</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='42' class="json2 dowchoice"  readonly  value="4h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy42" value="4" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash42 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu42" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash42 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py42" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish42  bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu42" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh42 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia42"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu42" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh42 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea35" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell7">
+		      <td align="center">3</td>
+		      <td>分中心稽查小结会议</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='43' class="json2 dowchoice"  readonly  value="1h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy43" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash43 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu43" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash43 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py43" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish43 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu43" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh43 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia43"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu43" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh43 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea36" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell7">
+		      <td align="center">4</td>
+		      <td>稽查报告汇总</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='44' class="json2 dowchoice"  readonly  value="2h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy44" value="2" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash44 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu44" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash44 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py44" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish44 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu44" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh44 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia44"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu44" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh44 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea37" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell7">
+		      <td align="center">5</td>
+		      <td>稽查结果汇报</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='45' class="json2 dowchoice"  readonly  value="4h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy45" value="4" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash45 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu45" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash45 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py45" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish45 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu45" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh45 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia45"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu45" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh45 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea38" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell7">
+		      <td colspan="2" align="center" bgcolor="#99FF66">小结</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td width="31" align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonyutt zonyutt8 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonshtt zonshtt8  bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt feyutt8 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt8 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feyutt jisuantt feyutt8 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt8 bg2"   type="text" /></td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea42" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell9" align="center">
+		      <td colspan="21" align="left"><strong><span class="nbs nbs7">7</span>.CAPA</strong></td>
+	        </tr>
+		    <tr class="tablecell8">
+		      <td rowspan="2" align="center">No.</td>
+		      <td rowspan="2">任务</td>
+		      <td colspan="4" align="center">职责分工</td>
+		      <td rowspan="2" align="center">任务时间（h/月或h/项目）</td>
+		      <td colspan="2" align="center">单位时间（h）</td>
+		      <td colspan="2" align="center">参与人数</td>
+		      <td colspan="2" align="center">频次</td>
+		      <td colspan="2" align="center">总时间（h）</td>
+		      <td rowspan="2" align="center">单价(元/h)</td>
+		      <td colspan="2" align="center">费用(元)</td>
+		      <td colspan="2" align="center">总费用(元)</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell8">
+		      <td align="center">Sponsor</td>
+		      <td width="31" align="center">CRO</td>
+		      <td align="center">Site</td>
+		      <td align="center">3AUDIT</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="41" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预期</td>
+		      <td width="53" align="center" bgcolor="#F6F6F6">实际</td>
+		      <td align="center">预算</td>
+		      <td align="center" bgcolor="#F6F6F6">结算</td>
+		      <td bgcolor="#FFFFFF">　</td>
+	        </tr>
+		    <tr class="tablecell8">
+		      <td align="center">1</td>
+		      <td>CAPA表格制定</td>
+		      <td width="51" align="center">　</td>
+		      <td width="31" align="center">　</td>
+		      <td width="36" align="center">　</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='46' class="json2 dowchoice"  readonly  value="4h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy46" value="4" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash46 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu46" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash46 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py46" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish46 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu46" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh46 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia46"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu46" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh46 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea39" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell8">
+		      <td align="center">2</td>
+		      <td>CAPA跟踪审查</td>
+		      <td width="51" align="center">√</td>
+		      <td width="31" align="center">√</td>
+		      <td width="36" align="center">√</td>
+		      <td width="47" align="center">√</td>
+		      <td align="center"><input ste='47' class="json2 dowchoice"  readonly  value="3h/次" type="text" /></td>
+		      <td align="center"><input class="json2 dycommon dy47" value="3" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 dashcommon dash47 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 cayucommon cayu47" value="1" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 cashcommon cash47 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 pycommon py47" type="text" /></td>
+		      <td align="center" bgcolor="#F6F6F6"><input class="json2 pishcommon pish47 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 zonyucommon zonyu47" type="text" /></td>
+		      <td width="41" align="center" bgcolor="#F6F6F6"><input class="json2 zonshcommon zonsh47 bg2" type="text" /></td>
+		      <td align="center"><input class="json2 danjiacommon danjia47"  type="text" /></td>
+		      <td align="center"><input class="json2 feyucommon feyu47" type="text" /></td>
+		      <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 feshcommon fesh47 bg2" type="text" /></td>
+		      <td align="center">　</td>
+		      <td align="center" bgcolor="#F6F6F6">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea40" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr class="tablecell8">
+		      <td colspan="2" align="center" bgcolor="#99FF66">小结</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td width="31" align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">&nbsp;</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonyutt zonyutt9 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 zonshtt zonshtt9  bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66">　</td>
+		      <td align="center" style="min-width:51px;" bgcolor="#99FF66"><input class="json2 feyutt feyutt9 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt9 bg2"   type="text" /></td>
+		      <td align="center" style="min-width:51px;" bgcolor="#99FF66"><input class="json2 feyutt jisuantt feyutt9 bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#99FF66"><input class="json2 feshtt feshtt9 bg2"   type="text" /></td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea44" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <tr>
+		      <td colspan="2" align="center" bgcolor="#00CC33"><strong>技术服务时间及费用总计</strong></td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td width="31" align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33">&nbsp;</td>
+		      <td align="center" bgcolor="#00CC33">&nbsp;</td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33"><input class="json2 totalTime bg2"   type="text" /></td>
+		      <td width="41" align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td width="53" align="center" bgcolor="#00CC33">　</td>
+		      <td align="center" bgcolor="#00CC33"><input class="json2 totalMoney bg2"   type="text" /></td>
+		      <td align="center" bgcolor="#00CC33">　</td>
+		      <td bgcolor="#FFFFFF"><textarea name="textarea45" class="json2 bz" ></textarea></td>
+	        </tr>
+		    <!--tr>
+			    <td colspan="2" align="left"><strong><span class="nbs nbs8">8</span>.差旅成本</strong></td>
+			    <td align="center">　</td>
+			    <td width="31" align="center">　</td>
+			    <td align="center">　</td>
+			    <td align="center">　</td>
+			    <td align="center">　</td>
+			    <td align="center">　</td>
+			    <td align="center" bgcolor="#F6F6F6">　</td>
+			    <td align="center">&nbsp;</td>
+			    <td align="center">&nbsp;</td>
+			    <td align="center">　</td>
+			    <td align="center" bgcolor="#F6F6F6">　</td>
+			    <td align="center">　</td>
+			    <td width="41" align="center" bgcolor="#F6F6F6">　</td>
+			    <td align="center">　</td>
+			    <td align="center">　</td>
+			    <td width="53" align="center" bgcolor="#F6F6F6">　</td>
+			    <td align="center">　</td>
+			    <td align="center" bgcolor="#F6F6F6">　</td>
+			    <td bgcolor="#FFFFFF">　</td>
+		      </tr>
+			  <tr>
+			    <td align="center">No.</td>
+			    <td>任务</td>
+			    <td align="center">申办者</td>
+			    <td width="31" align="center">CRO</td>
+			    <td align="center">Site</td>
+			    <td align="center">3AUDIT</td>
+			    <td colspan="3" align="center">每中心往返差旅（元）</td>
+			    <td colspan="2" align="center">参与人数</td>
+			    <td colspan="2" align="center">频次</td>
+			    <td colspan="2" align="center">&nbsp;</td>
+			    <td align="center">&nbsp;</td>
+			    <td colspan="2" align="center">费用(元)</td>
+			    <td align="center">总费用</td>
+			    <td align="center" bgcolor="#F6F6F6">　</td>
+			    <td bgcolor="#FFFFFF">　</td>
+		      </tr>
+			  <tr>
+			    <td align="center">　</td>
+			    <td>　</td>
+			    <td align="center">　</td>
+			    <td width="31" align="center">　</td>
+			    <td align="center">　</td>
+			    <td align="center">　</td>
+			    <td align="center">　</td>
+			    <td align="center">预期</td>
+			    <td align="center" bgcolor="#F6F6F6">实际</td>
+			    <td align="center">预期</td>
+			    <td align="center" bgcolor="#F6F6F6">实际</td>
+			    <td align="center">预期</td>
+			    <td align="center" bgcolor="#F6F6F6">实际</td>
+			    <td align="center">&nbsp;</td>
+			    <td width="41" align="center" bgcolor="#F6F6F6">&nbsp;</td>
+			    <td align="center">　</td>
+			    <td align="center">预期</td>
+			    <td width="53" align="center" bgcolor="#F6F6F6">实际</td>
+			    <td align="center">预期</td>
+			    <td align="center" bgcolor="#F6F6F6">实际</td>
+			    <td bgcolor="#FFFFFF">　</td>
+		      </tr>
+			  <tr>
+			    <td align="center">1</td>
+			    <td>稽查员差旅成本</td>
+			    <td align="center">　</td>
+			    <td align="center">　</td>
+			    <td align="center">　</td>
+			    <td align="center">√</td>
+			    <td colspan="2" align="center"><input ste='41' class="json2 bbchailvyqyuan chailvmeimoney" type="text" /></td>
+			    <td align="center" bgcolor="#F6F6F6"><input class="json2 bbchailvyqyuans bg2" type="text" /></td>
+			    <td align="center"><input class="json2 bbchailvmyq" value="2" type="text" /></td>
+			    <td align="center" bgcolor="#F6F6F6"><input class="json2 bbchailvmyqs bg2" type="text" /></td>
+			    <td align="center"><input class="json2 bbfashengc jichacishun" type="text" /></td>
+			    <td align="center" bgcolor="#F6F6F6"><input class="json2 bbsites bg2" type="text" /></td>
+			    <td align="center"><input class="json2 bbsite yanjiuzhongxinshu" style="display:none;" type="text" /></td>
+			    <td width="41" align="center" bgcolor="#F6F6F6"></td>
+			    <td align="center">&nbsp;</td>
+			    <td align="center"><input class="json2 bbyuqizong" type="text" /></td>
+			    <td width="53" align="center" bgcolor="#F6F6F6"><input class="json2 bbyuqizongs bg2" type="text" /></td>
+			    <td align="center">　</td>
+			    <td align="center" bgcolor="#F6F6F6">　</td>
+			    <td bgcolor="#FFFFFF"><textarea name="textarea41" class="json2 bz" ></textarea></td>
+		      </tr>
+			  <tr>
+			    <td colspan="2" align="center" bgcolor="#00CC33"><strong>差旅成本</strong></td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td width="31" align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33">&nbsp;</td>
+			    <td align="center" bgcolor="#00CC33">&nbsp;</td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td width="41" align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33">　</td>
+			    <td width="53" align="center" bgcolor="#00CC33">　</td>
+			    <td align="center" bgcolor="#00CC33"><input class="json2 bbyuqizong bg2"   type="text" /></td>
+			    <td align="center" bgcolor="#00CC33"><input class="json2 bbyuqizongs bg2"   type="text" /></td>
+			    <td bgcolor="#FFFFFF"><textarea name="textarea46" class="json2 bz" ></textarea></td>
+		      </tr-->
+	      </table>
+		  <br/>  
+		<table border="1" id="chailvTable" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:0 auto;">
+	      <tr>
+				<td colspan="13" align="center" bgcolor="#009999" style="overflow:hidden;"><h4 style="margin:0;line-height:45px;"><strong style="font-size:14px"><!-- <img style="display:inline-block;float:left;vertical-align:bottom;" src="../../public/img/clip.jpg" alt="1233"  height="45"> -->3AUDIT差旅费标准2017版</strong></h4></td>
+			</tr>
+		    <tr>
+		      <td width="922" colspan="10" align="center"><strong>根据项目情况核算出单次稽查的出差天数（天）</strong></td>
+		      <td width="922" colspan="3" align="center"><input class="json3 ccdays" type="text" /></td>
+	        </tr>
+		    <tr>
+		      <td width="922" colspan="13" align="center"><strong>稽查员出差总开销</strong></td>
+	        </tr>
+		    <tr>
+		      <td width="922" rowspan="2" align="center"><strong>地区</strong></td>
+		      <td width="922" rowspan="2" align="center"><strong>出行方式</strong></td>
+		      <td width="922" rowspan="2" align="center"><strong>往返交通费（参考价格）</strong></td>
+		      <td width="922" rowspan="2" align="center"><strong>频次</strong></td>
+		      <td width="922" colspan="3" align="center"><strong>住宿费</strong></td>
+		      <td width="922" colspan="5" align="center"><strong>补助</strong></td>
+		      <td width="922" rowspan="2" align="center"><strong>出差成本</strong></td>
+	        </tr>
+		    <tr id="tableInsert1">
+		      <td width="922" align="center">住宿天数</td>
+		      <td width="922" align="center">单价</td>
+		      <td width="922" align="center">小计</td>
+		      <td width="922" align="center">技术奖励</td>
+		      <td width="922" align="center">餐饮补助</td>
+		      <td width="922" align="center">通讯</td>
+		      <td width="922" align="center">交通</td>
+		      <td width="922" align="center">小计/天/人</td>
+	        </tr>
+		    
+		    <tr>
+		      <td width="922" colspan="9" align="center" bgcolor="#009933"><strong style="font-size:14px">稽查差旅费总共：</strong></td>
+		      <td colspan="4" align="center" bgcolor="#009933"><strong><input class="json3 chailvmeimoney" type="text" /></strong></td>
+	        </tr>
+	      </table>
+          
+		  <table border="1" id="chailvTable2" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:0 auto;">
+		    <tr>
+				<td colspan="4" align="center" bgcolor="#009999" style="overflow:hidden;"><h4 style="margin:0;line-height:45px;"><strong style="font-size:14px"><!-- <img style="display:inline-block;float:left;vertical-align:bottom;" src="../../public/img/clip.jpg" alt="1233"  height="45"> -->3AUDIT差旅费标准2017版</strong></h4></td>
+			</tr>
+		    
+		    
+		    <tr>
+		      <td width="922" rowspan="2" align="center"><strong>序号</strong></td>
+		      <td width="922" rowspan="2" align="center"><strong>目的地</strong></td>
+		      <td width="922" rowspan="2" align="center"><strong>往返次数（次）</strong></td>
+	        </tr>
+		    <tr id="tableInsert2">
+		      <td width="922" align="center"><strong>预计费用（元）</strong></td>
+	        </tr>
+		    
+		    <tr>
+		      <td width="922" colspan="3" align="center" bgcolor="#009933"><strong style="font-size:14px">稽查差旅费总共：</strong></td>
+		      <td colspan="1" align="center" bgcolor="#009933"><strong><input class="json6 chailvmeimoney" type="text" /></strong></td>
+	        </tr>
+	      </table>
+
+		
+</div>
+	
+	
+	
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script type="text/javascript" src="http://www.xdocin.com/xdoc.js"></script>
+	<script type="text/javascript" src="../../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../../public/libs/json.js"></script>
+	<script type="text/javascript" src="../../public/libs/base.js"></script>
+	<script type="text/javascript" src="../../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../../public/js/common2.js"></script>
+	<script type="text/javascript" src="../../public/js/v2/edit2.js"></script>
+</body>
+
+<script>
+$(function(){
+
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active');
+	$('#menu_show_t .s0',parent.document).html('预算管理').bind('click',function(){
+		parent.document.getElementById("iframeObj").src = 'list.html';
+	}).css('cursor','pointer');
+	$('#menu_show_t .s1',parent.document).html(' > 预算详情').addClass('active');
+	
+	
+});
+var app = angular.module('xdoc', []);
+	app.controller('xdocc', function($scope) {
+		//var a = $scope.shuifei;
+		//var b = $scope.jishufuwufei2;
+		//var c = $scope.chailvchengbenfei2;
+		//$scope.xiangmuzongji = $scope.shuifei+$scope.jishufuwufei2+$scope.chailvchengbenfei2;
+
+	});
+	//加载时间控件
+	var start = {
+	  elem: '#cdate',
+	  format: 'YYYY/MM/DD',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	laydate(start);
+</script>
+</html>

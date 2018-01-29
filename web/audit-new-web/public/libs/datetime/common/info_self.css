@@ -1,0 +1,402 @@
+/*css*/
+/*zzj*/
+/*
+个人信息*/
+.info_all {
+    font-size: 14px;
+    font-weight: bold;
+}
+.prompt {
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    font-size: 14px;
+    color: red;
+    line-height: 20px;
+}
+.info_tit {
+    font-size: 14px;
+    padding: 20px 20px 15px 0px;
+}
+.lable_tit {
+    width: 25%;
+    text-align: right;
+}
+.input_w {
+    width: 72%;
+}
+.text_show {
+    height: 35px;
+    padding-left: 10px;
+    margin-left: 5%;
+}
+.select_w {
+    width: 80%;
+    font-weight: 200;
+    height: 35px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border:1px solid #D0D0D0;
+    margin-left: 5%;
+}
+.info_bar {
+    height: 1px;
+    border-bottom: 1px solid #ccc;
+    box-bottom-shadow: #fff 0px 0px 2px;
+}
+.show_staff, .show_staff:visited, .show_staff:hover, .show_staff:active {
+    color: #7EB4B4;
+    text-decoration: underline;
+}
+.info_tip {
+    font-size: 12px;
+    font-weight: 200;
+    padding-left: 10px;
+}
+.info_tit_det {
+    padding-left: 0;
+}
+.textarea_info {
+    width: 100%;
+    height: 120px;
+    border-radius:5px;
+    padding:5px;
+}
+.info_upImg {
+    position: relative;
+    vertical-align: middle;
+}
+.info_upImg input {
+    position: absolute;
+    width: 80px;
+    height: 62px;
+    background: #fff;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    z-index: 10px;
+}
+.info_upImg img {
+    display: block;
+    width: 80px;
+
+}
+.submit_btn {
+    background: #37CDCC;
+    margin: 20px 0;
+    width: 100%;
+    color: #fff;
+    padding: 10px 0;
+}
+.submit_btn:visited {
+    color: #fff;
+}
+.submit_btn:hover {
+    color: #ffffff;
+}
+.submit_btn:active {
+    width: 99%;
+    background-color: #00FFFF;
+    color: #000;
+}
+.info_box {
+    margin:0 20px;
+}
+.lable_tit .pr10 {
+	margin-right:10px;
+}
+.info_user_list {
+	font-weight:200;
+}
+.confirm_add_user {
+	width: 80%;
+    background: #37CDCC;
+    color: #FFFFFF;
+    padding: 10px 0;
+    margin-bottom:20px;
+}
+.user_close {
+	float:right;
+	margin-right:10px;
+	margin-top:5px;
+	font-size:16px;
+}
+.info_text {
+	width: 80%;
+    height: 35px;
+    padding-left: 10px;
+    margin-left: 5%;
+}
+
+/*订单详情*/
+.cost_price {
+    font-size: 16px;
+}
+.tit_img {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    display: inline-block;
+}
+.coupons_list {
+    width: 20%;
+    height: 30px;
+}
+.line_bar {
+    height: 4px;
+    border-top: 1px solid #999;
+    width: 6%;
+}
+.coupons_box {
+    display: none;
+}
+.coupons_conf {
+    background: #37CDCC;
+    margin: 20px 0;
+    width: 30%;
+    color: #fff;
+    display: inline-block;
+}
+.pay_box {
+    background: #ffffff;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    font-weight: bold;
+    display: table;
+}
+.pay_num {
+    line-height: 60px;
+    display: table-cell;
+}
+.pay_face {
+    line-height: 60px;
+    background: #D1D1D1;
+    display: table-cell;
+}
+.pay_online {
+    vertical-align: middle;
+
+    background: #37CDCC;
+    display: table-cell;
+}
+
+.pay_fav {
+    font-size: 12px;
+}
+.alert_box {
+    position: relative;
+}
+
+.coupons_list {
+            text-align: center;
+        }
+        .coupons_num {
+            width: 70%;
+            display: inline-block;
+            text-align: center;
+        }
+        .coupons_num em {
+            font-size: 16px;
+        }
+
+/*弹框样式*/
+.alert_box {
+    display: none;
+}
+.bg_color {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: #000000;
+    opacity: 0.5;
+}
+.alert_info {
+    position: fixed;
+    z-index: 1001;
+    width: 100%;
+    height: 100%;
+    display: table;
+    left: 0;
+    top: 0;
+
+}
+.alert_cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+.content_all {
+    margin: 0 8%;
+    background: #FFFFFF;
+    border-radius: 5px;
+}
+.show_staff .tit_img {
+	margin:0;
+	margin-top:-10px;
+}
+.user_info_details {
+	width:70%;
+}
+
+/*弹框框架结束*/
+.success_tit {
+    color: #37CDCC;
+    font-size: 16px;
+    font-weight: bold;
+}
+.success_num {
+    display: block;
+}
+.back_home {
+    display: block;
+    background: #37CDCC;
+    color: #FFFFFF;
+    width: 70%;
+    font-weight: bold;
+    margin-left: 15%;
+}
+.check_record {
+    display: block;
+    background: #D1D1D1;
+    color: #FFFFFF;
+    width: 70%;
+    font-weight: bold;
+    margin-left: 15%;
+}
+
+/*就诊人信息管理*/
+.info_per_list {
+    margin-bottom: 60px;
+}
+.info_per_list li {
+    border-bottom: 1px solid #EAEAEA;
+    background: #FFFFFF;
+    padding: 20px;
+    font-weight: bold;
+}
+.info_per_list .selected {
+    background: #37CDCC;
+    color: #FFFFFF;
+}
+.info_confirm {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+.info_confirm a {
+    width: 80%;
+    background: #37CDCC;
+    color: #FFFFFF;
+    padding: 10px 0;
+}
+
+/*修改就诊人信息*/
+.triangle {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: -5px;
+    margin-right: 5px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.addCase {
+    height: 1px;
+    position: relative;
+}
+.addCase a {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 16px;
+}
+.img_list {
+    vertical-align: middle;
+}
+.img_show {
+    position: relative;
+    margin-right: 15px;
+}
+.img_show img {
+    width: 70px;
+    height: 62px;
+}
+.img_close {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    color: #FFFFFF;
+    background: red;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 200;
+}
+.img_show {
+    margin-bottom: 15px;
+}
+.saveData {
+	width: 80%;
+    background: #37CDCC;
+    color: #FFFFFF;
+    padding: 10px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

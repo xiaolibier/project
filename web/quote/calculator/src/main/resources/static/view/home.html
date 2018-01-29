@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>稽查报价计算器</title>
+	
+</head>
+<body class="quote">
+	
+	<div class="head_div">
+		<span class="title1">稽查预算</span><br>
+		<span class="title2">北京经纬传奇医药科技有限公司，稽查预算工具</span>
+	</div>
+	<div id="run_div" class="input_div">
+		<div class="panel"><a str="临床" href="javascript:;" class="panel_a active">临床预算</a><a str="BE/PK" href="javascript:;" class="panel_a">BE/PK预算</a></div>
+		<div class="id_div"><span class="lable">项目简称：</span><input id="xiangmuname" class="common_input" type="text" /></div>
+		<div class="id_div"><span class="lable">稽查总院次：</span><input id="jichacishu" class="common_input" type="text" /></div>
+		<div class="id_div">
+			<span class="lable">稽查病例数：</span><input id="jichacenter" class="common_input type2" type="text" />
+			<div id="bepkdiv" style="display:block;display:none;"><span style="margin-left:20px;width:130px;" class="lable">每例采血点数：</span><input id="caixuedian" class="common_input type2" type="text" /></div>
+			<div id="abcdiv" style="display:block;"><span style="margin-left:20px;width:130px;" class="lable">单病例访视次数：</span><input id="danbingli"  class="common_input type2" type="text" /></div>
+		</div>
+		<div class="id_div">
+			<span class="lable">稽查均价(元/h)：</span><input id="junjia" value="600" class="common_input type2" type="text" />
+			<span style="margin-left:20px;width:130px;" class="lable">税费：</span><select id="huilv" style="width:169px;height:49px;" class="common_input spancolor type2" type="text" /><option value="0.067">6.7%</option><option value="0.07">7%</option></select>
+		</div>
+		<div class="btn_div">
+			<a href="javascript:;" id="runBtn" class="dobtn">计&nbsp;&nbsp;&nbsp;算</a>
+			<a href="javascript:;" id="clearitBtn" class="clearbtn">清除数据</a>
+		</div>
+	</div>
+	<div id="result_content" style="display:none;margin-bottom:40px;" class="table_div">
+		<div class="res_div">
+			<span class="res_lable">计算结果：</span>
+			<span id="resVla" class="res_val">0</span><span class="res_val">元</span>
+			<a href="javascript:;" id="saveitBtn" class="saveBtn">保存到我的预算</a>
+		</div>
+		<table class="table0">
+			<tr>
+				<th style="width:254px;">项目简称</th>
+				<th>稽查总院次</th>
+				<th>稽查病例数</th>
+				<th>稽查服务时间(h)</th>
+				<th>稽查均价(元/h)</th>
+				<th>差旅费成本(元)</th>
+				<th>技术服务费(元)</th>
+				<th>税费(元)</th>
+				<th>总计(元)</th>
+			</tr>
+			<tr>
+				<td id="rval1"></td>
+				<td id="rval2"></td>
+				<td id="rval3"></td>
+				<td id="rval4"></td>
+				<td id="rval5"></td>
+				<td id="rval6"></td>
+				<td id="rval7"></td>
+				<td id="rval8"></td>
+				<td id="rval9" class="resc"></td>
+			</tr>
+		</table>
+	</div>
+	<div id="historyres" style="margin:0px auto 70px;display:none;" class="table_div">
+		<div class="res_div">
+			<span class="res_lable2">我的预算：</span>
+		</div>
+		<div id="history_list">
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("logininyusuan",false) || "";//手机号
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.type = '临床';//存类型 临床 BE/PK
+	
+/* **************************************** lodding ******************************************** */		
+	
+	loadPage();//加载页面
+	$('#saveitBtn').on('click',savedata);//保存预算
+	$('.panel_a').on('click',changePanel);//改变
+	$('#runBtn').on('click',runFunc);//计算
+	$('#clearitBtn').on('click',clearFunc);//清空数据
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		if(g.login_token == ''){location.href="login.html";return false;}
+		tableListShow();//获取列表
+	}
+	
+	//计算
+	function runFunc(){
+		var abc = g.type == '临床';
+		var bepk = g.type == 'BE/PK';
+		var a = trim2($('#xiangmuname').val() || '');//项目简称
+		var b = trim2($('#jichacishu').val() || '');//稽查总院次
+		var c = trim2($('#jichacenter').val() || '');//稽查病例数
+		var d1 = trim2($('#danbingli').val() || '');//单病例访视次数
+		var d2 = trim2($('#caixuedian').val() || '');//采血点数
+		var e = trim2($('#junjia').val() || '');//稽查均价
+		var f = trim2($('#huilv').val() || '');//税费
+		if(a == ''){Utils.alert("项目简称不能为空！");return false;}
+		if(b == ''){Utils.alert("稽查总院次不能为空！");return false;}
+		if(c == ''){Utils.alert("稽查病例数不能为空！");return false;}
+		if(abc && d1 == ''){Utils.alert("单病例访视次数不能为空！");return false;}
+		if(bepk && d2 == ''){Utils.alert("采血点数不能为空！");return false;}
+		if(e == ''){Utils.alert("稽查均价不能为空！");return false;}
+		if(f == ''){Utils.alert("税费不能为空！");return false;}
+		$('#rval1').html(a);
+		$('#rval2').html(b);
+		$('#rval3').html(c);
+		//计算稽查服务时间
+		var ftime = 0;
+		if(abc){ftime = parseInt(12+8+3.75*b+29*b+0.15*c*d1+0.15*c+4+15*b+7*b);}
+		if(bepk){ftime = parseInt(12+8+3.75*b+30*b+c/3+c*d2/12+4+15*b+7*b);}
+		$('#rval4').html(ftime);
+		$('#rval5').html(e);
+		//计算差旅成本
+		var chai = parseInt(4500*b);
+		$('#rval6').html(chai);
+		//计算技术服务费
+		var fumoney = parseInt(e*ftime);
+		$('#rval7').html(fumoney);
+		//计算税费
+		var shuimoney = parseInt(f*fumoney);
+		$('#rval8').html(shuimoney);
+		//计算总计
+		var ttmoney = parseInt(chai+fumoney+shuimoney);
+		$('#rval9').html(ttmoney);
+		var qqttmoney = comdify(ttmoney);//千分位
+		$('#resVla').html(qqttmoney);
+		
+		
+		$('#result_content').slideDown(200);
+		$('html, body').animate({scrollTop: $(document).height()}, 300); //滚动到底部
+	}
+	
+	//清空数据
+	function clearFunc(){
+		$('#run_div').find('input.common_input').val('');//清空弹窗
+		$('#result_content').hide();
+		$('#junjia').val(600);
+	}
+	
+	//改变计算器
+	function changePanel(){
+		var str = $(this).attr('str') || '';
+		$(this).addClass('active').siblings('.panel_a').removeClass('active');
+		g.type = str;
+		if(g.type == '临床'){$('#abcdiv').show();$('#bepkdiv').hide();}
+		if(g.type == 'BE/PK'){$('#abcdiv').hide();$('#bepkdiv').show();}
+	}
+	
+	//blur 修改用户title
+	function savedata(){
+		if(!confirm('确认要保存吗？')){return false;}
+		var rval1 = trim2($('#rval1').html() || '');
+		var rval2 = trim2($('#rval2').html() || '');
+		var rval3 = trim2($('#rval3').html() || '');
+		var rval4 = trim2($('#rval4').html() || '');
+		var rval5 = trim2($('#rval5').html() || '');
+		var rval6 = trim2($('#rval6').html() || '');
+		var rval7 = trim2($('#rval7').html() || '');
+		var rval8 = trim2($('#rval8').html() || '');
+		var rval9 = trim2($('#rval9').html() || '');
+		
+		
+		var condi = {};
+		condi.phone  = g.login_token;
+		condi.type  = g.type;
+		condi.name  = rval1;
+		condi.audit_num  = rval2;
+		condi.patient_num  = rval3;
+		condi.audit_time  = rval4;
+		condi.average_cost  = rval5;
+		condi.travell_cost  = rval6;
+		condi.tech_serve_cost  = rval7;
+		condi.tax  = rval8;
+		condi.total_cost  = rval9;
+		var url = Base.serverUrl + "/open/calculator/add";
+		$('#saveitBtn').off();
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert("保存成功！");
+					tableListShow();
+					$('#saveitBtn').on('click',savedata);//保存预算
+					$('html, body').animate({scrollTop: $(document).height()}, 300); //滚动到底部
+				}
+				else{
+					var msg = data.message || "保存失败";
+					Utils.alert(msg);
+					$('#saveitBtn').on('click',savedata);//保存预算
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				$('#saveitBtn').on('click',savedata);//保存预算
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//获取列表
+	function tableListShow(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = 1000;//g.showPages;//每页显示行数
+		condi.phone  = g.login_token;
+		var url = Base.serverUrl + "/open/calculator/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				
+				if(status){
+					var data = data.result || [];
+					var html = '';
+					html += '<table class="table0">'
+						+'<tr>'
+							+'<th>序号</th>'
+							+'<th style="width:165px;">项目简称</th>'
+							+'<th>类型</th>'
+							+'<th>稽查总院次</th>'
+							+'<th>稽查病例数</th>'
+							+'<th>稽查服务时间(h)</th>'
+							+'<th>稽查均价(元/h)</th>'
+							+'<th>差旅费成本(元)</th>'
+							+'<th>技术服务费(元)</th>'
+							+'<th>税费(元)</th>'
+							+'<th>总计(元)</th>'
+							+'<th>操作</th>'
+						+'</tr>';
+					//判断结果是否为空
+					if(data.length <= 0){$('#history_list').html('');$('#historyres').hide();}
+					else{$('#historyres').show();}
+					var ttm = 0;
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || {};
+						var id = d.id || '';
+						var xu = i + 1;
+						var name = d.name || '';
+						var audit_num = d.audit_num || '';
+						var patient_num = d.patient_num || '';
+						var center_num = d.center_num || '';
+						var audit_time = d.audit_time || '';
+						var average_cost = d.average_cost || '';
+						var travell_cost = d.travell_cost || '';
+						var tech_serve_cost = d.tech_serve_cost || '';
+						var tax = d.tax || '';
+						var total_cost = d.total_cost || '';
+						var type = d.type || '';
+						ttm += parseInt(total_cost);//加到总数上
+						html += '<tr>'
+							+'<td>'+xu+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td>'+type+'</td>'
+							+'<td>'+audit_num+'</td>'
+							+'<td>'+patient_num+'</td>'
+							+'<td>'+audit_time+'</td>'
+							+'<td>'+average_cost+'</td>'
+							+'<td>'+travell_cost+'</td>'
+							+'<td>'+tech_serve_cost+'</td>'
+							+'<td>'+tax+'</td>'
+							+'<td class="resc">'+total_cost+'</td>'
+							+'<td><a href="javascript:;" onclick="deleteit(\''+id+'\')" class="table_btn">删除</a></td>'
+						+'</tr>';
+					}
+					ttm = comdify(ttm);//千分位
+					html += '<tr>'
+							+'<td style="text-align:right;height:45px;line-height:45px;font-size:20px;color: #1C1C1C;background-color:#ECFBF1;" colspan=12>总费用：'+ttm+'元</td>'
+						+'</tr>';
+					$('#history_list').html(html);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+					$('#history_list').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#history_list').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//删除
+	window.deleteit = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		condi.phone  = g.login_token;
+		var url = Base.serverUrl + "/open/calculator/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow();//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	} 
+	
+});
+</script>
+</html>

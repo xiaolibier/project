@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	<style>
+		.it_title{height:80px;line-height:80px;background: #F8F8F9;margin-bottom:20px;}
+		.it_title .usico{margin:0px 15px 0 20px;display:inline-block;vertical-align:middle;width:45px;height:45px;border-radius:500px;background:url('../public/img/Mask.png') no-repeat center center;background-size:contain;}
+		.it_title .usame{display:inline-block;vertical-align:middle;font-size: 16px;color: #101010;}
+		.it_title .usphone{display:inline-block;vertical-align:middle;font-size: 14px;color: #101010;}
+		.xiangmuguanli .table_div{margin:0px 20px 45px;}
+		.search_table{margin:0px 20px 0px;}
+		.bd_title{margin-left:20px;margin-bottom:10px;padding-left:5px;border-left:5px solid #2D8CF0;font-size: 14px;color: #101010;}
+		.bd_title .col{font-size:12px;color: #EA5B60;}
+	</style>
+</head>
+<body class="xiangmuguanli yonghuguanli">
+	<h4 class="it_title">
+		<i class="usico"></i>
+		<span class="usame"></span>
+		<span class="usphone"></span>
+	</h4>
+	<!--  -->
+	<div class="btn_div">
+		<h4 class="bd_title">企业管理员权限</h4>
+		<!-- <table class="search_table">
+			<tr><td>
+				<span class="sear_lable">申办方名称/ID</span>
+				<input id="serinputval1" class="com_input com_input1" type="text" />
+				<a id="searchBtn1" class="top_btn">搜索</a>
+			</td></tr>
+		</table> -->
+	</div>
+	<div id="tableList1" class="table_div"></div>
+	<!--  -->
+	<div class="btn_div">
+		<h4 class="bd_title">项目权限<span class="col">（如果已经有企业管理员权限，这里只显示绑定的其他企业项目的权限）</span></h4>
+		<!-- <table class="search_table">
+			<tr><td>
+				<span class="sear_lable">申办方名称/ID</span>
+				<input id="serinputval2" class="com_input com_input1" type="text" />
+				<a id="searchBtn2" class="top_btn">搜索</a>
+			</td></tr>
+		</table> -->
+	</div>
+	<div id="tableList2" class="table_div"></div>
+	<!--  -->
+	<div class="btn_div">
+		<h4 class="bd_title">任务权限<span class="col">（如果已经有企业管理员权限和项目权限，这里只显示绑定的其他任务的权限）</span></h4>
+		<!-- <table class="search_table">
+			<tr><td>
+				<span class="sear_lable">任务名称／ID</span>
+				<input id="serinputval3" class="com_input com_input1" type="text" />
+				<a id="searchBtn3" class="top_btn">搜索</a>
+			</td></tr>
+		</table> -->
+	</div>
+	<div id="tableList3" class="table_div"></div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.id = Utils.getQueryString("id") || Utils.offLineStore.get("uidtoquan",false);;//从新注册用户管理 传来 传用户id
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.usrid = '';//存储用户id
+	
+/* **************************************** lodding ******************************************** */		
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('新注册用户管理').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '新注册用户管理.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 用户权限').addClass('active');
+	//$('#searchBtn1').on('click',tableListShow);
+	
+	tableListShow();//加载列表
+/* **************************************** setTing ******************************************** */	
+	
+
+	//列表
+	function tableListShow(){
+		//var serinputval = $('#serinputval1').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.userId  = g.id;
+		var url = Base.serverUrl + "user/open/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var us = data.userInfo || {};
+					var icos = us.wechatHeadImgUrl || '../public/img/Mask.png';
+					var name = us.name || '';
+					var phone = us.phone || '';
+					$('.usico').css({'background':'url("'+icos+'") no-repeat center center','background-size':'contain'})
+					$('.usame').html(name);
+					$('.usphone').html(phone);
+					
+					var html1 = '',html2 = '',html3 = '';
+					html1 += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">申办方ID</th>'
+							+'<th style="min-width:30px;">申办方名称</th>'
+							+'<th style="min-width:30px;">使用期限</th>'
+							+'<th style="min-width:30px;">剩余天数</th>'
+							+'<th style="min-width:52px;">分配时间/操作人</th>'
+						+'</tr>';
+					html2 += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">项目ID</th>'
+							+'<th style="min-width:30px;">项目名称</th>'
+							+'<th style="min-width:30px;">使用期限</th>'
+							+'<th style="min-width:30px;">剩余天数</th>'
+							+'<th style="min-width:52px;">分配时间/操作人</th>'
+						+'</tr>';
+					html3 += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">任务ID</th>'
+							+'<th style="min-width:30px;">中心名称</th>'
+							+'<th style="min-width:30px;">使用期限</th>'
+							+'<th style="min-width:30px;">剩余天数</th>'
+							+'<th style="min-width:52px;">分配时间/操作人</th>'
+						+'</tr>';
+						
+					var data1 = data.sponorManager || [];
+					var data2 = data.projectManager || [];
+					var data3 = data.taskManager || [];
+					
+					for(var i=0,len=data1.length;i<len;i++){
+						var d = data1[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//
+						var name = d.name || '';//
+						var expire = d.expire || '';//
+						var creator = d.creator || '';//
+						var create_time = getDate(d.create_time || '');//
+						var start_time = getDate((d.start_time || ''),2);//
+						var end_time = getDate((d.end_time || ''),2);//
+						var ccstr = create_time +'/'+ creator;
+						var ssstr = start_time +' - '+ end_time;
+						html1+='<tr>'
+							+'<td>'+code+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td>'+ssstr+'</td>'
+							+'<td>'+expire+'</td>'
+							+'<td>'+ccstr+'</td>'
+						+'</tr>';
+					}
+					for(var i=0,len=data2.length;i<len;i++){
+						var d = data2[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//
+						var name = d.name || '';//
+						var expire = d.expire || '';//
+						var creator = d.creator || '';//
+						var create_time = getDate(d.create_time || '');//
+						var start_time = getDate((d.start_time || ''),2);//
+						var end_time = getDate((d.end_time || ''),2);//
+						var ccstr = create_time +'/'+ creator;
+						var ssstr = start_time +' - '+ end_time;
+						html2+='<tr>'
+							+'<td>'+code+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td>'+ssstr+'</td>'
+							+'<td>'+expire+'</td>'
+							+'<td>'+ccstr+'</td>'
+						+'</tr>';
+					}
+					for(var i=0,len=data3.length;i<len;i++){
+						var d = data3[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//
+						var centerName = d.centerName || '';//
+						var expire = d.expire || '';//
+						var creator = d.creator || '';//
+						var create_time = getDate(d.create_time || '');//
+						var start_time = getDate((d.start_time || ''),2);//
+						var end_time = getDate((d.end_time || ''),2);//
+						var ccstr = create_time +'/'+ creator;
+						var ssstr = start_time +' - '+ end_time;
+						html3+='<tr>'
+							+'<td>'+code+'</td>'
+							+'<td>'+centerName+'</td>'
+							+'<td>'+ssstr+'</td>'
+							+'<td>'+expire+'</td>'
+							+'<td>'+ccstr+'</td>'
+						+'</tr>';
+					}
+					
+					 html1+='</table>';
+					 html2+='</table>';
+					 html3+='</table>';
+					 
+					$('#tableList1').html(html1);
+					$('#tableList2').html(html2);
+					$('#tableList3').html(html3);
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+
+	
+});
+
+</script>
+</html>

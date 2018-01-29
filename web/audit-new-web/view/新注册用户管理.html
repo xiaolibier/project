@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	<style>
+		.select2-container{float:right;margin-bottom:5px;}
+	</style>
+</head>
+<body class="xiangmuguanli yonghuguanli">
+	<!-- <h4 class="page_title">用户管理</h4> -->
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">用户姓名</span>
+					<input id="userName" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">电话</span>
+					<input id="userPhone" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">平台权限</span>
+					<select id="workquanxian" class="com_select com_select3">
+						<option value="">全部</option>
+						<option value="已分配">已分配</option>
+						<option value="未分配">未分配</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">微信绑定</span>
+					<select id="workbangwei" class="com_select com_select3">
+						<option value="">全部</option>
+						<option value="已绑定">已绑定</option>
+						<option value="未绑定">未绑定</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">注册时间</span>
+					<input id="regdate1" placeholder="起" class="com_input com_input4" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">注册时间</span>
+					<input id="regdate2" placeholder="止" class="com_input com_input4" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">任务ID</span>
+					<input id="rewuid" class="com_input com_input1" type="text" />
+				</td>
+				<td class="searBtnTd">
+					<a id="searchBtn" class="top_btn">搜索</a>
+					<a id="searchAll" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		<!-- <a class="creat_forse" id="newCenter" >新建用户</a> -->
+	</div>
+	<div id="tableList" class="table_div">
+		
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.usrid = '';//存储用户id
+	
+/* **************************************** lodding ******************************************** */		
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	//$('#menu_show_t .s0',parent.document).html('系统管理');
+	$('#menu_show_t .s0',parent.document).html('新注册用户管理').addClass('active');
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	
+	saveOrClearCookie(3,'xy_');//加载存储的搜索条件
+	tableListShow(1);//加载列表
+/* **************************************** setTing ******************************************** */	
+	
+
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+	 
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		var userName = $('#userName').val() || '';
+		var userPhone = $('#userPhone').val() || '';
+		var workquanxian = $('#workquanxian').val() || '';
+		var workbangwei = $('#workbangwei').val() || '';
+		var regdate1 = $('#regdate1').val() || '';
+		var regdate2 = $('#regdate2').val() || '';
+		var rewuid = $('#rewuid').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		if(is == 1 || is == 'pa'){//搜索
+			//if(mokuaiInfo == ''){Utils.alert('模块名称/编号不能为空！');}
+			condi.userName = userName;
+			condi.phone = userPhone;
+			condi.platform = workquanxian;
+			condi.bindWeChat = workbangwei;
+			condi.startTime = regdate1;
+			condi.endTime = regdate2;
+			condi.taskCode = rewuid;
+			g.loadPage = true;//开启分页
+			saveOrClearCookie(2,'xy_');//存储搜索条件
+		}else if(is == 2){//搜索全部
+			$('#userName').val('');
+			$('#userPhone').val('');
+			$('#workquanxian').val('');
+			$('#workbangwei').val('');
+			$('#regdate1').val('');
+			$('#regdate2').val('');
+			$('#rewuid').val('');
+			g.loadPage = true;//开启分页
+			saveOrClearCookie(1,'xy_');//清空搜索条件
+		}
+		var url = Base.serverUrl + "user/new/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共模块数
+					$('#totalElements').html(totalElements);
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">编号</th>'
+							+'<th style="min-width:30px;">姓名</th>'
+							+'<th style="min-width:30px;">头像</th>'
+							+'<th style="min-width:30px;">电话</th>'
+							+'<th style="min-width:52px;">注册时间</th>'
+							+'<th style="min-width:135px;">对外开放平台权限</th>'
+							+'<th style="min-width:120px;">分配权限人/时间</th>'
+							+'<th style="min-width:60px;">微信绑定</th>'
+							+'<th style="min-width:60px;">操作</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var name = d.name || '';//名称
+						var icons = d.wechatHeadImgUrl || '';//
+						var department = d.department || '';//
+						var openState = d.openState || '';//
+						var opstr = openState == '未分配' ? 'style="color:#F39C12;"' : '';
+						var phone = d.phone || '';//
+						var email = d.email || '';//
+						var joinTime = getDate(d.joinTime || '');//
+						var isBindWechat = d.isBindWechat;//
+						var wbstr = '',csty = ''; 
+						switch(isBindWechat){
+							case 1 : wbstr = '已绑定';break;
+							case 0 : wbstr = '未绑定';csty='style="color:#E74C3C;"';break;
+							default:break;
+						}
+						var state = d.state || '';//
+						var isBindWechat = d.isBindWechat || '';//
+						var lastCreator = d.lastCreator || '';//
+						var lastCreateTime = getDate(d.lastCreateTime || '');//
+						var llstr = lastCreator+'/'+lastCreateTime;
+						
+						html+='<tr>'
+							+'<td>'+id+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td><i style="background:url(\''+icons+'\') no-repeat center center;background-size:contain;" class="head_img"></i></td>'
+							+'<td>'+phone+'</td>'
+							+'<td>'+joinTime+'</td>'
+							+'<td '+opstr+'>'+openState+'</td>'
+							+'<td>'+llstr+'</td>'
+							+'<td '+csty+'>'+wbstr+'</td>'
+							+'<td class="last">';
+								if(openState == '已分配'){
+								html+='<a href="javascript:;" onclick="checkit(\''+id+'\')" class="cao_btn cao_btn1">查看权限</a>';
+								}
+							html+='</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					$('#tableList').html('');
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#tableList').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//查看权限
+	window.checkit = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');}
+		Utils.offLineStore.set("uidtoquan",id,false);//传用户id到用户权限页面
+		parent.document.getElementById("iframeObj").src = '用户权限.html?id='+id;
+		
+	}
+	
+	//加载时间控件
+	var start = {
+	  elem: '#regdate1',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#regdate2',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(end);	
+	
+	
+	
+});
+
+</script>
+</html>

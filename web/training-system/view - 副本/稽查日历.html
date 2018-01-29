@@ -1,0 +1,2200 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link href="../public/libs/datetime/common/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css">
+	<link href="../public/libs/datetime/common/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css">
+	<link href="../public/libs/datetime/common/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+
+</head>
+<style>
+	.stip_box .sbox.xiugaizhongxin3,.stip_box .sbox.xiugaizhongxin2{width:677px;}
+	.sbox .sbox_input, .sbox .sbox_select{float:none;}
+	.sbox .sbox_input{width:79.5%;}
+	.sbox .slable{width:16%;}
+	.sbox .common_radio{margin:7px 25px 0 5px;font-size:12px;color:#495060;vertical-align:middle;}
+	.laydate_body .laydate_box{margin-top:0;}
+</style>
+<body class="xiangmuguanli">
+	<div class="rili_body">
+		<!-- 日历 -->
+		<div class="rleft_box">
+			<div class="rlb_title">
+				<a class="rlb_abtn rlb_abtn_left lastmonth"></a>
+				<span class="rlb_title_date selectdate"></span>
+				<a class="rlb_abtn rlb_abtn_right nextmonth"></a>
+			</div>
+			<table class="rili_table data_table">
+				<thead>
+				<tr>
+					<th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><div class="date_i"><span class="span">1</span></div></td>
+					<td><div class="date_i"><span class="span">2</span></div></td>
+					<td><div class="date_i"><span class="span">3</span></div></td>
+					<td><div class="date_i"><span class="span">4</span></div></td>
+					<td><div class="date_i"><span class="span">5</span></div></td>
+					<td><div class="date_i"><span class="span">6</span></div></td>
+					<td><div class="date_i"><span class="span">7</span></div></td>
+				</tr>
+				<tr>
+					<td><div class="date_i"><span class="span">8</span></div></td>
+					<td><div class="date_i"><span class="span">9</span></div></td>
+					<td><div class="date_i"><span class="span">10</span></div></td>
+					<td><div class="date_i"><span class="span">11</span></div></td>
+					<td><div class="date_i"><span class="span">12</span></div></td>
+					<td><div class="date_i"><span class="span">13</span></div></td>
+					<td><div class="date_i"><span class="span">14</span></div></td>
+				</tr>
+				<tr>
+					<td><div class="date_i"><span class="span">15</span></div></td>
+					<td><div class="date_i"><span class="span">16</span></div></td>
+					<td><div class="date_i"><span class="span">17</span></div></td>
+					<td><div class="date_i"><span class="span">18</span></div></td>
+					<td><div class="date_i"><span class="span">19</span></div></td>
+					<td><div class="date_i"><span class="span">20</span></div></td>
+					<td><div class="date_i"><span class="span">21</span></div></td>
+				</tr>
+				<tr>
+					<td><div class="date_i"><span class="span">22</span></div></td>
+					<td><div class="date_i"><span class="span">23</span></div></td>
+					<td><div class="date_i"><span class="span">24</span></div></td>
+					<td><div class="date_i"><span class="span">25</span></div></td>
+					<td><div class="date_i"><span class="span">26</span></div></td>
+					<td><div class="date_i"><span class="span">27</span></div></td>
+					<td><div class="date_i"><span class="span">28</span></div></td>
+				</tr>
+				<tr>
+					<td><div class="date_i"><span class="span">29</span></div></td>
+					<td><div class="date_i"><span class="span">30</span></div></td>
+					<td><div class="date_i"><span class="span">31</span></div></td>
+					<td class="other"><div class="date_i"><span class="span">1</span></div></td>
+					<td class="other"><div class="date_i"><span class="span">2</span></div></td>
+					<td class="other"><div class="date_i"><span class="span">3</span></div></td>
+					<td class="other"><div class="date_i"><span class="span">4</span></div></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="rright_box">
+			<div class="rrb_panel">
+				<a href="javascript:;" class="rb_abtn active pro_view_btn">项目视图</a>
+				<a href="javascript:;" class="rb_abtn pople_view_btn jiChaRiLi_renYuanShiTu">人员视图</a>
+			</div>
+			<div class="rrb_bg_box">
+				<!-- 项目视图 -->
+				<div class="project_view">
+					<div class="rrbb_title"><a class="rrbb_abtn rrbb_abtn0 active">项目</a><a class="rrbb_abtn rrbb_abtn1">人员</a></div>
+					<!-- 项目 -->
+					<div class="rrbt_div rrbt_div0 show">
+						<div class="ser_div">
+							<input class="ser_input proxiangmuname" placeholder="产品名称" type="text" />
+							<span class="ser_tip">搜索结果</span>
+							<a href="javascript:;" class="ser_input_btn serprobtn">搜索</a>
+							<a href="javascript:;" class="ser_input_btn serprobtnall type2">清空</a>
+						</div>
+						<div class="serResult proserserresult">
+							<!-- <div style="display:none;" class="check_box"><i class="i"></i><span class="serprospan">阿莫西林</span></div> -->
+						</div>
+						<div class="comdiv">
+							<select class="com_select pro_select_btn">
+								<option value="">全部状态</option>
+								<option value="计划中">计划中</option>
+								<option value="已完成">已完成</option>
+							</select>
+							<a href="javascript:;" class="addRenbtn jiChaRiLi_tianJiaShiJian">添加事件</a>
+						</div>
+						<div class="checkboxContent" id="checkboxContent">
+						<div class="serResult0">
+							<div class="check_box toAll"><i class="i"></i>全选<span class="size0 pro_info_data"></span></div>
+						</div>
+						<div class="result_content proresult">
+							<!-- <div class="rsone">
+								<div class="btn_d">
+									<div class="check_box"><i class="i"></i>阿莫西林</div>
+									<a class="u_d_btn"></a>
+									<a class="set_btn"></a>
+								</div>
+								<div class="rsd_cc">
+									<div class="onec">华西医院-入组早期</div>
+									<div class="onec">华西医院-入组早期</div>
+								</div>
+							</div>
+							<div class="rsone">
+								<div class="btn_d">
+									<div class="check_box"><i class="i"></i>阿莫西林</div>
+									<a class="u_d_btn"></a>
+									<a class="set_btn"></a>
+								</div>
+								<div class="rsd_cc">
+									<div class="onec">华西医院-入组早期</div>
+									<div class="onec">华西医院-入组早期</div>
+								</div>
+							</div> -->
+						</div>
+						</div>
+					</div>
+					<!-- 人员 -->
+					<div class="rrbt_div rrbt_div1 poper_list prorenyuanlist">
+						<!-- <div class="pop_one">伊利娜<span class="rpp">10 天</span></div>
+						<div class="pop_one">伊利娜<span class="rpp">10 天</span></div>
+						<div class="pop_one">伊利娜<span class="rpp">10 天</span></div> -->
+					</div>
+				</div>
+				<!-- 人员视图 -->
+				<div style="display:none;" class="pople_view">
+					<div class="rrbb_title"><a class="rrbb_abtn rrbb_abtn0 active">人员</a><a class="rrbb_abtn rrbb_abtn1">项目</a></div>
+					<!-- 人员 -->
+					<div class="rrbt_div rrbt_div0 show">
+						<div class="ser_div">
+							<input class="ser_input porenyuan" placeholder="人员名称" type="text" />
+							<span class="ser_tip">搜索结果</span>
+							<a href="javascript:;" class="ser_input_btn serpoplebtn">搜索</a>
+							<a href="javascript:;" class="ser_input_btn serpoplebtnall type2">清空</a>
+						</div>
+						<div class="serResult popserserresult">
+							<!-- <div class="check_box"><i class="i"></i>伊丽娜</div> -->
+						</div>
+						<div class="comdiv">
+							<select class="com_select pop_select_btn">
+								<option value="">全部状态</option>
+								<option value="计划中">计划中</option>
+								<option value="已完成">已完成</option>
+							</select>
+						</div>
+						<div class="checkboxContent" id="checkboxContent2">
+						<div class="serResult0">
+							<div class="check_box toAll"><i class="i"></i>全选</div>
+						</div>
+						<div class="result_content popleresult">
+							<!-- <div class="rsone">
+								<div class="btn_d">
+									<div class="check_box"><i class="i"></i>伊丽娜</div>
+									<div class="btbspan">10天</div>
+								</div>
+							</div>
+							<div class="rsone">
+								<div class="btn_d">
+									<div class="check_box"><i class="i"></i>伊丽娜</div>
+									<div class="btbspan">5天</div>
+								</div>
+							</div> -->
+						</div>
+						</div>
+					</div>
+					<!-- 人对应的项目 -->
+					<div class="rrbt_div rrbt_div1 poper_list propoplelist">
+						<!-- <div class="pro_tit"><div class="pro_rtt">阿莫西林</div>
+							<div class="pro_rpp">华西医院-入组早期</div>
+							<div class="pro_rpp">华西医院-入组早期</div>
+						</div> -->
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	<!-- 选择颜色弹窗 -->
+	<div class="rilicolor_box">
+		<h3 class="tis">选择日历颜色</h3>
+		<div class="cal-colors">
+			<a num="1" class="link-cal-color cal-color-1" href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="2" class="link-cal-color cal-color-2" href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="3" class="link-cal-color cal-color-3" href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="4" class="link-cal-color cal-color-4" href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="5" class="link-cal-color cal-color-5" href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="6" class="link-cal-color cal-color-6" href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="7" class="link-cal-color cal-color-7" href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="8" class="link-cal-color cal-color-8" href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="9" class="link-cal-color cal-color-9"   href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="10" class="link-cal-color cal-color-10"  href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="11" class="link-cal-color cal-color-11"  href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="12" class="link-cal-color cal-color-12"  href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="13" class="link-cal-color cal-color-13"  href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="14" class="link-cal-color cal-color-14"  href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="15" class="link-cal-color cal-color-15"  href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<a num="16" class="link-cal-color cal-color-16"  href="javascript:;"><span><i class="twr twr-check">√</i></span></a>
+			<!-- <a num="17" class="link-cal-color cal-color-17"  href="javascript:;"><span><i class="twr twr-check">√</i></span></a> -->
+			<!-- <a num="18" class="link-cal-color cal-color-18"  href="javascript:;"><span><i class="twr twr-check">√</i></span></a> -->
+		</div>
+	</div>
+</div>	
+		
+		
+		
+	</div>
+
+
+	
+	
+
+	<!-- 申办方 -->
+	<ul class="choiseDanwei choiseDanwei4">
+		
+	</ul>
+	<ul style="width:490px;margin-top:13px;" class="choiseDanwei choiseDanwei5">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei6">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei7">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei8">
+		
+	</ul>
+	<ul style="width:156px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei9">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei71">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei72">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei73">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei74">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei75">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei76">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei77">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei78">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei79">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei710">
+		
+	</ul>
+	<ul style="width:115px;margin-top:13px;max-height:190px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei711">
+		
+	</ul>
+	
+	<!-- <h4 class="page_title">项目管理</h4> -->
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">项目成员</span>
+					<input id="projectperpo" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">产品名称</span>
+					<input id="chanpinName" class="com_input com_input2" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">稽查中心</span>
+					<input id="jichacenter" class="com_input com_input2" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">开始时间</span>
+					<input class="com_input com_input3"  id="start_time" placeholder="起" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">结束时间</span>
+					<input class="com_input com_input4" id="end_time" placeholder="止" type="text" />
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td style="height:31px;">
+					<a id="searchBtn" class="top_btn xiangMu_xiangMuSouSuo">搜索</a>
+					<a id="searchAll" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<div id="tableList" class="table_div">
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div style="display:none;"  class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>	
+
+	
+		<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+		
+			<div class="sbox xiugaizhongxin xiugaizhongxin2">
+				<h4 class="sbox_h4">添加稽查事件</h4>
+				
+				<div class="sbox_c">
+					<span class="slable">开始时间</span><i class="star"></i>
+					<input id="sbStarttime" class="sbox_input type2" type="text"/>
+					<span class="slable">结束时间</span><i class="star"></i>
+					<input id="sbEndtime" class="sbox_input type2" type="text"/>
+				</div>
+				<div class="sbox_c sb_jihuazhuangtai">
+					<span class="slable">状态</span><i class="star"></i>
+					<div name="radioss" val="计划中" class="common_radio active"><i class="i"></i>计划中</div>
+					<div name="radioss" val="已完成" class="common_radio"><i class="i"></i>已完成</div>
+				</div>
+				<div class="sbox_c">
+					<span class="slable">产品名称</span><i class="star"></i>
+					<input id="sbchanpinname" class="sbox_input" type="text"/>
+				</div>
+				<div class="sbox_c"><span class="slable">稽查任务</span><i class="star"></i>
+					<select id="sbjicharenwu" class="sbox_select">
+						
+					</select>
+				</div>
+				<div class="sbox_c">
+					<span class="slable">稽查组长</span><i class="star"></i>
+					<input id="sbjichazuzhang" readonly class="sbox_input type3 type4" type="text"/>
+					<span class="slable type4">开始时间</span><i class="star"></i>
+					<input id="sbStarttime_zu" class="sbox_input type2 type4" type="text"/>
+					<span class="slable type4">结束时间</span><i class="star"></i>
+					<input id="sbEndtime_zu" class="sbox_input type2 type4" type="text"/>
+				</div>
+				<!-- 成员列表 -->
+				<div class="sbchengyuan_list">
+					
+				</div>
+				<div class="sbox_c">
+					<span class="slable">专家①</span><i class="star"></i>
+					<input id="sbzhuanjia" readonly class="sbox_input type3 type4" type="text"/>
+					<span class="slable type4">开始时间</span><i class="star"></i>
+					<input id="sbStarttime_zh" class="sbox_input type2 type4" type="text"/>
+					<span class="slable type4">结束时间</span><i class="star"></i>
+					<input id="sbEndtime_zh" class="sbox_input type2 type4" type="text"/>
+				</div>
+				<div class="sbox_c">
+					<span class="slable">专家②</span><i class="star"></i>
+					<input id="sbzhuanjia2" readonly class="sbox_input type3 type4" type="text"/>
+					<span class="slable type4">开始时间</span><i class="star"></i>
+					<input id="sbStarttime_zh2" class="sbox_input type2 type4" type="text"/>
+					<span class="slable type4">结束时间</span><i class="star"></i>
+					<input id="sbEndtime_zh2" class="sbox_input type2 type4" type="text"/>
+				</div>
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+					<a id="deleteBtn" style="display:none" href="javascript:;" class="sbox_btn btn3">删除</a>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script src="../public/libs/datetime/common/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
+	<script src="../public/libs/datetime/common/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
+	<script src="../public/libs/datetime/common/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
+	<script src="../public/libs/datetime/common/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
+	<script src="../public/libs/datetime/common/mobiscroll.android-ics-2.5.2.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/js/rili.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	
+</body>
+
+<script>
+$(function(){
+	
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 
+	g.loadPage2 = true;//判断页面刚加载一次 
+	g.loadPage3 = true;//判断页面刚加载一次 
+	g.loadPage5 = true;//判断页面刚加载一次
+	g.loadPage6 = true;//判断页面刚加载一次
+	g.ids = [];//存储当前所有项目id及其状态
+	g.ppids = '';//存储当前选中的人员 或 选中的项目
+	g.evenfor = [];//存储所有的事件对应的排序
+	g.quanxuan = 0;
+	g.nowpanel = '';//存储当前选中的是哪个 人员视图 还是 项目视图
+	//-------------------定义时间控件-------------------------------------------
+	var currYear = (new Date()).getFullYear();
+	var opt = {};
+	opt.datetime = {
+		preset: 'datetime'
+	};
+	opt.default = {
+		theme: 'android-ics light', //皮肤样式
+		display: 'modal', //显示方式 ：modal（正中央）  bottom（底部）
+		mode: 'scroller', //日期选择模式
+		lang: 'zh',
+		startYear: currYear , //开始年份currYear-5不起作用的原因是加了minDate: new Date()
+		endYear: currYear + 2, //结束年份
+		//minDate: new Date() //加上这句话会导致startYear:currYear-5失效，去掉就可以激活startYear:currYear-5,
+	};
+	var optDateTime = $.extend(opt['datetime'], opt['default']);
+	
+	
+/* **************************************** lodding ******************************************** */	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).html('稽查日历').addClass('active');
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	
+	//项目视图
+	$('.serprobtn').on('click',function(){proprolist(1)});
+	$('.serprobtnall').on('click',function(){proprolist(2)});
+	$('.pro_select_btn').on('change',function(){
+		proprolist();
+		setTimeout(function(){
+			var sttc = $('.pro_select_btn').val() || '';
+			proforpople();
+			gettilishijianedit(g.nowpanel,'','all',sttc);
+		},200);
+	});
+	
+	//人员视图
+	$('.serpoplebtn').on('click',function(){poppoplist(1)});
+	$('.serpoplebtnall').on('click',function(){poppoplist(2)});
+	$('.pop_select_btn').on('change',function(){
+		poppoplist();
+		setTimeout(function(){
+			var sttc = $('.pop_select_btn').val() || '';
+			popleforpro();
+			gettilishijianedit(g.nowpanel,'','all',sttc);
+		},200);
+	});
+	
+	loadPage();
+	$('.rlb_abtn_left,.rlb_abtn_right').on('click',function(){
+		proprolist();
+		poppoplist();
+		setTimeout(function(){ gettilishijianedit(g.nowpanel,'','all'); },300);
+		setTimeout(function(){popleforpro();},100);
+		setTimeout(function(){proforpople();},100);
+	});//左右切换日历
+	$('#noBtn').on('click',function(){closeSbox();});//关闭弹窗
+	$('#deleteBtn').on('click',deleteThings);//删除事件
+	$('.sbchengyuan_list').on('click','.assd_btn2',deleteoneliFunc);//删除一个稽查成员
+	$('.sbchengyuan_list').on('click','.assd_btn1',function(){addoneliFunc($(this))});//添加一个稽查成员
+	
+
+/* **************************************** setTing ******************************************** */	
+	
+	//加载页面
+	function loadPage(){
+		
+		//给日历底下时间默认赋值
+		var mydate = new Date();
+		var nowday = mydate.getDate();
+		var nowmonth = mydate.getMonth();
+		nowmonth = nowmonth + 1;
+		var nowyear = mydate.getFullYear();
+		var timedate = nowyear+'-'+nowmonth+'-1'+' 00:00:00';//当月第一天
+		var d = new Date(nowyear,nowmonth,0);
+		var lastday = d.getDate();
+		var lasttimeday = nowyear+'-'+nowmonth+'-'+lastday+' 18:00:00';//当月最后一天
+		$('#start_time').val(timedate);
+		$('#end_time').val(lasttimeday);
+		
+		getchanpinlist();//获取弹窗里面 产品名称列表
+		tableListShow(1);//显示列表
+		addoneliFunc();//默认新建一个稽查成员
+		proprolist();//获取右侧项目列表
+		poppoplist();//获取右侧人员列表
+		//定义可以选择上午 下午的时间插件
+		$("#sbStarttime,#sbEndtime,#sbStarttime_zu,#sbEndtime_zu,#sbStarttime_zh,#sbStarttime_zh2,#sbEndtime_zh,#sbEndtime_zh2").mobiscroll(optDateTime).datetime(optDateTime);
+		
+	}
+	
+	setGetSearchInput2('#shenbanfang','.choiseDanwei4');//定义可以搜索下拉的
+	setGetSearchInput('#sbchanpinname','.choiseDanwei5');//定义可以搜索下拉的
+	setGetSearchInput2('#projectperpo','.choiseDanwei9');//定义可以搜索下拉的
+	setSearchBuMen('.choiseDanwei9','稽查部','li');//给项目成员 选框赋值
+	setGetSearchInput2('#sbjichazuzhang','.choiseDanwei6');//定义可以搜索下拉的
+	setSearchBuMen('.choiseDanwei6','稽查部','li');//给项目成员 选框赋值
+	//setGetSearchInput('.jichachegnyuanonev','.choiseDanwei7');//定义可以搜索下拉的
+	setSearchBuMen('.choiseDanwei7','稽查部','li');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei71','稽查部','li');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei72','稽查部','li');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei73','稽查部','li');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei74','稽查部','li');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei75','稽查部','li');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei76','稽查部','li');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei77','稽查部','li');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei78','稽查部','li');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei79','稽查部','li');//给项目成员 选框赋值
+	setSearchBuMen('.choiseDanwei710','稽查部','li');//给项目成员 选框赋值
+	setGetSearchInput2('#sbzhuanjia','.choiseDanwei8');//定义可以搜索下拉的
+	setGetSearchInput2('#sbzhuanjia2','.choiseDanwei711');//定义可以搜索下拉的
+	setSearchRole('.choiseDanwei8','评审老师','li');//给项目成员 选框赋值
+	setSearchRole('.choiseDanwei711','评审老师','li');//给项目成员 选框赋值
+	
+	
+	
+	// 权限控制新建事件
+	is_show('.jiChaRiLi_renYuanShiTu');
+	if(!is_show('.jiChaRiLi_tianJiaShiJian')){//判断权限-------
+	
+		//日历上任务击 弹出修改任务窗口
+		$('.rili_table tr td').on('click','.renOne',function(e){
+			var id = $(this).attr('aid') || '';
+			$('.xiugaizhongxin input').val('');//清空弹窗
+			$('.xiugaizhongxin select').val('');//清空弹窗
+			$('.xiugaizhongxin2 .sbox_h4').html('修改稽查事件');
+			$('#yesBtn').removeAttr('eveid');//清空事件id
+			$('#sbjicharenwu').off('change').on('change',function(){//弹窗里任务变化时 自动带出 稽查人员
+				var aid = $(this).val() || '';
+				if(aid != ''){getjichauseredit(aid);}
+			});
+			getshijianedit(id);//加载弹窗信息
+			$('#deleteBtn').show();//显示删除按钮
+			showSbox('.xiugaizhongxin2');//显示弹窗
+			$('#yesBtn').off().on('click',function(){centerFunc('change')});
+			stopPropagation(e);
+		});
+		//日历双击 弹出新建任务窗口
+		$('.rili_table tr td').dblclick(function(e){
+			$('.xiugaizhongxin input').val('');//清空弹窗
+			$('.xiugaizhongxin select').val('');//清空弹窗
+			setRadioVal('.sb_jihuazhuangtai','radioss','计划中');//默认计划中
+			$('.sbchengyuan_list').html('');
+			addoneliFunc();//默认新建一个稽查成员
+			$('.xiugaizhongxin2 .sbox_h4').html('添加稽查事件');
+			var datetime = $(this).attr('daytime') || '';
+			if(datetime != ''){datetime = datetime.split(' 00:00:00')[0] + ' 上午';}
+			$('#sbStarttime').val(datetime);
+			$('#deleteBtn').hide();//显示删除按钮
+			$('#sbjicharenwu').off('change').on('change',function(){//弹窗里任务变化时 自动带出 稽查人员
+				var aid = $(this).val() || '';
+				if(aid != ''){getjichauseredit(aid);}
+			});
+			showSbox('.xiugaizhongxin2');//显示弹窗
+			$('#yesBtn').off().on('click',function(){centerFunc('new')});
+			stopPropagation(e);
+		});
+	}
+	
+	//改变弹窗 修改时间 底下联动
+	$('#sbStarttime').change(function(){
+		var as = $(this).val()|| '';
+		$('#sbStarttime_zu,.sbStarttime_ji,#sbStarttime_zh,#sbStarttime_zh2').val(as);
+	});
+	$('#sbEndtime').change(function(){
+		var as = $(this).val()|| '';
+		$('#sbEndtime_zu,.sbEndtime_ji,#sbEndtime_zh,#sbEndtime_zh2').val(as);
+	});
+	//控制开始时间、结束时间的时间范围
+	$('.sbox').on('change','#sbStarttime_zu,.sbStarttime_ji,#sbStarttime_zh,#sbStarttime_zh2',function(){
+		var date1 = trim2($('#sbStarttime').val()|| '');
+		var date2 = trim2($('#sbEndtime').val()|| '');
+		var as = trim2($(this).val()|| '');
+		if(date1 == '' || as == ''){return false;}
+		date1 = setgetafternoon(date1);
+		date2 = setgetafternoon(date2);
+		as = setgetafternoon(as);
+		date2 = Date.parse(new Date(date2));//日期时间转成时间戳
+		date1 = Date.parse(new Date(date1));//日期时间转成时间戳
+		as = Date.parse(new Date(as));//日期时间转成时间戳
+		if(as < date1){Utils.alert('开始时间不能小于任务开始时间');return false;}
+		if(as > date2){Utils.alert('开始时间不能大于任务结束时间');return false;}
+	});
+	$('.sbox').on('change','#sbEndtime_zu,.sbEndtime_ji,#sbEndtime_zh',function(){
+		var date1 = trim2($('#sbStarttime').val()|| '');
+		var date2 = trim2($('#sbEndtime').val()|| '');
+		var as = trim2($(this).val()|| '');
+		if(date2 == '' || as == ''){return false;}
+		date1 = setgetafternoon(date1);
+		date2 = setgetafternoon(date2);
+		as = setgetafternoon(as);
+		if(as > date2){Utils.alert('结束时间不能大于任务结束时间');return false;}
+		if(as < date1){Utils.alert('结束时间不能小于任务开始时间');return false;}
+	});
+	
+	
+	//删除事件
+	function deleteThings(){
+		if(!confirm('确认删除此事件吗？')){return false;}
+		var eveid = $('#yesBtn').attr('eveid') || '';
+		var condi = {};
+		condi.scheduleEventId = eveid;
+		var url = Base.serverUrl + "schedule/event/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var tips = '删除成功！';
+					Utils.alert(tips);
+					poppoplist();setTimeout(function(){popleforpro();},100);
+					proprolist();setTimeout(function(){proforpople();},100);
+					setTimeout(function(){ gettilishijianedit(g.nowpanel,'','all'); },100);//获取日历列表的所有事件
+					closeSbox();//关闭弹窗
+					tableListShow(1);//显示列表
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+		
+	}
+	//设置颜色
+	$('.link-cal-color').on('click',function(){
+		var proid = $(this).parents('.rilicolor_box').attr('proid') || '';
+		var color = $(this).attr('num') || '';
+		$(this).addClass('selected').siblings('.link-cal-color').removeClass('selected');
+		var condi = {};
+		condi.scheduleProjectId = proid;
+		condi.color = 'color'+color;
+		var url = Base.serverUrl + "schedule/event/colorSet";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var tips = '修改颜色成功！';
+					Utils.alert(tips);
+					proprolist();//重新加载右侧项目列表 填充颜色
+					setTimeout(function(){ gettilishijianedit(g.nowpanel,'','all'); },100);//获取日历列表的所有事件
+					$('.rilicolor_box').hide();
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+		
+	});
+	
+	
+	//项目的收起及展开
+	$('.result_content').on('click','.u_d_btn',function(e){
+		if($(this).parents('.btn_d').next('.rsd_cc').css('display') == 'none'){
+			$(this).parents('.rsone').removeClass('down');
+		}else{
+			$(this).parents('.rsone').addClass('down');
+		}
+		$(this).parents('.btn_d').next('.rsd_cc').slideToggle();
+	});
+	//点击设置 打开选择颜色窗
+	$('.result_content').on('click','.set_btn',function(e){
+		var _is = $(this);
+		var proid = _is.attr('proid') || '';
+		var colornum = _is.attr('colornum') || '';
+		colornum = colornum != '' ? parseInt(colornum) : '' ;
+		var xx = _is.offset().left || 0;
+		var yy = _is.offset().top || 0;
+		var _top = yy + _is.height() +2;
+		xx = xx - 156;
+		$('.rilicolor_box .link-cal-color').removeClass('selected');
+		if(colornum != '')$('.rilicolor_box .link-cal-color:nth-child('+colornum+')').addClass('selected');
+		$('.rilicolor_box').attr('proid',proid);
+		$('.rilicolor_box').css({"left":xx,"top":_top}).show();
+		stopPropagation(e);
+	});
+	$('.rilicolor_box').click(function(e){stopPropagation(e);});
+	
+	$('.addRenbtn').on('click',function(){
+		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		$('.xiugaizhongxin2 .sbox_h4').html('添加稽查事件');
+		showSbox('.xiugaizhongxin2');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc('new')});
+		stopPropagation(e);
+	});
+	
+	//项目视图点击
+	$('.pro_view_btn').on('click',function(){
+		$(this).addClass('active').siblings('.rb_abtn').removeClass('active');
+		$('.project_view').show();
+		$('.pople_view').hide();
+		g.nowpanel = '';
+		gettilishijianedit(g.nowpanel,'','all');//获取相应事件日历
+	});
+	//人员视图点击
+	$('.pople_view_btn').on('click',function(){
+		$(this).addClass('active').siblings('.rb_abtn').removeClass('active');
+		$('.project_view').hide();
+		$('.pople_view').show();
+		g.nowpanel = 'pople';
+		gettilishijianedit(g.nowpanel,'','all');//获取相应事件日历
+	});
+	//项目视图-项目点击 人员视图-人员点击
+	$('.rrbb_abtn0').on('click',function(){
+		$(this).addClass('active').siblings('.rrbb_abtn').removeClass('active');
+		$(this).parents('.project_view').find('.rrbt_div0').show();
+		$(this).parents('.pople_view').find('.rrbt_div0').show();
+		$(this).parents('.project_view').find('.rrbt_div1').hide();
+		$(this).parents('.pople_view').find('.rrbt_div1').hide();
+	});
+	//项目视图-人员点击 人员视图-项目点击
+	$('.rrbb_abtn1').on('click',function(){
+		$(this).addClass('active').siblings('.rrbb_abtn').removeClass('active');
+		$(this).parents('.project_view').find('.rrbt_div1').show();
+		$(this).parents('.pople_view').find('.rrbt_div1').show();
+		$(this).parents('.project_view').find('.rrbt_div0').hide();
+		$(this).parents('.pople_view').find('.rrbt_div0').hide();
+	});
+	
+	//日历右侧 全选按钮
+	$('.xiangmuguanli').off('click','.toAll').on('click','.toAll',function(){
+		if($(this).hasClass('active')){
+			$(this).parents('.serResult0').next('.result_content').find('.check_box').addClass('active');
+		}else{
+			$(this).parents('.serResult0').next('.result_content').find('.check_box').removeClass('active');
+		}
+	});
+	
+	//弹窗 通过稽查任务带出来 稽查组长和稽查员信息
+	function getjichauseredit(id){
+		var id = id || '';
+		//if(id == ''){return false;}
+		var condi = {};
+		condi.scheduleTaskId = id;
+		var url = Base.serverUrl + "schedule/task/origin/user";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+
+					var html = '';
+					var num = 1;
+					for(var i=0,len=data.length;i<len;i++){
+						var ds = data[i] || {};
+						var role = ds.role || '';
+						var id = ds.id || '';
+						var task_id = ds.task_id || '';
+						var userId = ds.user_id || '';
+						var userName = ds.user_name || '';
+						if(role == '稽查组长'){
+							$('#sbjichazuzhang').val(userName).attr('tipid',userId);
+							continue; 
+						}else if(role == '专家'){
+							$('#sbzhuanjia').val(userName).attr('tipid',userId);
+							continue; 
+						}
+						html+='<div num="'+num+'" class="sbcyuan_one">'
+							+'<div class="sbox_c">'
+								+'<span class="slable">稽查成员<i class="inum">'+num+'</i></span><i class="star"></i>'
+								+'<input tipid="'+userId+'" value="'+userName+'" readonly class="sbox_input jichachegnyuanonev type3 type4" type="text"/>';
+								if(num > 1)html+='<a info="删除" class="assd_btn assd_btn2"></a>';
+								html+='<a info="添加" class="assd_btn assd_btn1"></a>'
+							//+'</div>'
+							//+'<div class="sbox_c">'
+								+'<span class="slable type4">开始时间</span><i class="star"></i>'
+								+'<input value="" class="sbox_input sbStarttime_ji type2 type4" type="text"/>'
+								+'<span class="slable type4">结束时间</span><i class="star"></i>'
+								+'<input value="" class="sbox_input sbEndtime_ji type2 type4" type="text"/>'
+							+'</div>'
+						+'</div>';
+						num++;
+						
+					}
+					$('.sbchengyuan_list').html(html);
+					if($('.sbchengyuan_list').find('.sbcyuan_one').length <= 0)addoneliFunc();//判断稽查成员为空 新增一个稽查空成员
+					$('.jichachegnyuanonev').off();
+					$('.sbchengyuan_list').find('.sbcyuan_one').each(function(i){
+						var k = i + 1;
+						$(this).attr('num',k);
+						$(this).find('.inum').html(k);
+						$(this).find('.sbox_input.jichachegnyuanonev').removeClass().addClass('sbox_input jichachegnyuanonev jichachegnyuanonev'+k+' type3 type4');
+						setGetSearchInput2('.jichachegnyuanonev'+k,'.choiseDanwei7'+k);//定义可以搜索下拉的
+					});
+					$(".sbStarttime_ji,.sbEndtime_ji").mobiscroll(optDateTime).datetime(optDateTime);//定义时间插件
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//日历右侧 搜索结果 点击复选 
+	$('.serResult').off('click','.check_box').on('click','.check_box',function(){
+		var _name = $(this).find('.serprospan').text() || '';
+		var _is = $(this).parents('.serResult').hasClass('popserserresult');//判断是否是人员视图
+		var idsAll = '',idsAll2 = '';
+		if($(this).hasClass('active')){
+			$(this).parents('.serResult').next('.comdiv').next('.checkboxContent').find('.check_box').each(function(){
+				var _text = trim2($(this).text() || '');
+				if(_name == _text && _text != ''){
+					$(this).removeClass('active');
+				}
+				if($(this).hasClass('active')){
+					//遍历找选中项
+					var ids = $(this).attr('ids') || '';
+					var id = $(this).attr('aid') || '';
+					if(ids != '')idsAll = idsAll != '' ? idsAll+','+ids  : ids ;
+					if(id != '')idsAll2 = idsAll2 != '' ? idsAll2+','+id  : id ;
+				}
+			});
+		}else{
+			$(this).parents('.serResult').next('.comdiv').next('.checkboxContent').find('.check_box').each(function(){
+				var _text = trim2($(this).text() || '');
+				if(_name == _text && _text != ''){
+					$(this).addClass('active');
+				}
+				if($(this).hasClass('active')){
+					//遍历找选中项
+					var ids = $(this).attr('ids') || '';
+					var id = $(this).attr('aid') || '';
+					if(ids != '')idsAll = idsAll != '' ? idsAll+','+ids  : ids ;
+					if(id != '')idsAll2 = idsAll2 != '' ? idsAll2+','+id  : id ;
+				}	
+			});
+		}
+		if(_is){
+			popleforpro(idsAll);//人员视图-项目 根据选择的人员搜索项目列表
+			gettilishijianedit('pople',idsAll);//根据当前选中的人员 查询所有事件 显示在日历
+		}else{
+			proforpople(idsAll);//项目视图-人员 根据选择的项目搜索人员列表
+			gettilishijianedit('',idsAll2);//根据当前选中的项目 查询所有事件 显示在日历
+		}
+	});
+	
+
+	//人员视图 点击人员名称的复选框 查询项目列表
+	$('#checkboxContent2').on('click','.check_box',function(){
+		var idsAll = '';
+		setTimeout(function(){
+			$('.popleresult').find('.check_box').each(function(){
+				var ids = $(this).attr('ids') || '';
+				if($(this).hasClass('active') && ids != ''){
+					idsAll = idsAll != '' ? idsAll+','+ids  : ids ;
+				}
+			});
+			popleforpro(idsAll);//人员视图-项目 根据选择的人员搜索项目列表
+			gettilishijianedit('pople',idsAll);//根据当前选中的人员 查询所有事件 显示在日历
+		},100);	
+	});
+	
+	//人员视图-项目  人员-搜-项目
+	function popleforpro(ids){
+		var idsAll = '';
+		var ids = ids || '';
+		var start = $('.rili_table .firsttd').attr('day') || '';
+		//start = getDate(start);
+		var end = $('.rili_table .lasttd').attr('day') || '';
+		//end = getDate(end);
+		$('.popleresult').find('.check_box').each(function(){
+			var idss = $(this).attr('ids') || '';
+			if($(this).hasClass('active') && idss != ''){
+				idsAll = idsAll != '' ? idsAll+','+idss  : idss ;
+			}
+		});
+		if(ids != ''){idsAll = ids;}
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		condi.start = start;
+		condi.end = end;
+		condi.userIds = idsAll;
+		var url = Base.serverUrl + "schedule/event/calendar/member/projects";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '';		
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || '';
+						var id = d.id || '';
+						var medicine = d.medicine || '';//
+						var tasks = d.scheduleTasks || [];
+
+						html+='<div class="pro_tit"><div class="pro_rtt">'+medicine+'</div>';
+						for(var j=0,lenj=tasks.length;j<lenj;j++){	
+							var dj = tasks[j] || {};
+							var name = dj.name || '';
+							
+							html+='<div class="pro_rpp">'+name+'</div>';
+						}	
+						html+='</div>';
+					}	
+
+					$('.propoplelist').html(html);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	
+	//项目视图 点击产品名称的复选框 查询项目人员
+	$('#checkboxContent').on('click','.check_box',function(){
+		var idsAll = '',idsAll2 = '';
+		setTimeout(function(){
+			$('.proresult').find('.check_box').each(function(){
+				var ids = $(this).attr('ids') || '';
+				var id = $(this).attr('aid') || '';
+				if($(this).hasClass('active')){
+					if(ids != '')idsAll = idsAll != '' ? idsAll+','+ids  : ids ;
+					idsAll2 = idsAll2 != '' ? idsAll2+','+id  : id ;
+				}
+			});
+			proforpople(idsAll);//项目视图-人员 根据选择的项目搜索人员列表
+			gettilishijianedit('',idsAll2);//根据当前选中的项目 查询所有事件 显示在日历
+		},100);
+	});
+	
+	//项目视图-人员  项目-搜-人员
+	function proforpople(ids){
+		var idsAll = '';
+		var ids = ids || '';
+		var start = $('.rili_table .firsttd').attr('day') || '';
+		//start = getDate(start);
+		var end = $('.rili_table .lasttd').attr('day') || '';
+		//end = getDate(end);
+		$('.proresult').find('.check_box').each(function(){
+			var idss = $(this).attr('ids') || '';
+			var id = $(this).attr('aid') || '';
+			if($(this).hasClass('active')){
+				if(idss != '')idsAll = idsAll != '' ? idsAll+','+idss  : idss ;
+			}
+		});
+		if(ids != ''){idsAll = ids;}
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		condi.start = start;
+		condi.end = end;
+		condi.scheduleTaskIds = idsAll;
+		var url = Base.serverUrl + "schedule/event/calendar/project/members";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '';		
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || '';
+						var userId = d.userId || '';
+						var userName = d.userName || '';
+						var times = d.times || 0;
+
+						html+='<div class="pop_one">'+userName+'<span class="rpp">'+times+' 天</span></div>';	
+					}	
+					$('.prorenyuanlist').html(html);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//人员视图-人员 全部人员列表
+	function poppoplist(is){
+		var is = is || '';
+		var start = $('.rili_table .firsttd').attr('day') || '';
+		//start = getDate(start);
+		var end = $('.rili_table .lasttd').attr('day') || '';
+		//end = getDate(end);
+		var member = $('.porenyuan').val() || '';
+		var state = $('.pop_select_btn').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		condi.start = start;
+		condi.end = end;
+		if(is != '' && is == 1){if(member == ''){Utils.alert('请输入人员名称！');return false;}condi.member = member;}//搜索产品名称
+		if(is == 2){$('.porenyuan').val('');$('.popserserresult').html('');return false;}//清空搜索条件
+		if(is == ''){condi.state = state;}//切换状态
+		var url = Base.serverUrl + "schedule/event/calendar/member/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			async:false,
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '',html2 = '',idsAll = '';
+					var serarray = [];
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || '';
+						var id = d.id || '';
+						var userName = d.userName || '';
+						var userId = d.userId || '';
+						var times = d.times || 0;
+						idsAll = idsAll == '' ? userId : idsAll+','+userId ;
+						html+=''
+							+'<div class="rsone">'
+							+'<div class="btn_d">';
+							html+='<div ids="'+userId+'" class="check_box"><i class="i"></i>'+userName+'</div>'
+							+'<div class="btbspan">'+times+'天</div>';
+							html+='</div>'
+							+'</div>';	
+						html2 += '<div class="check_box active"><i class="i"></i><span class="serprospan">'+userName+'</span></div>';	
+						serarray.push(userName);
+					}
+
+					if(is == ''){$('.popleresult').html(html);}
+					else{
+						$('.popserserresult').html(html2);
+					}
+					if($('#checkboxContent2 .toAll').hasClass('active')){$('#checkboxContent2 .check_box').addClass('active');}
+					if(g.loadPage2 == true){
+						gettilishijianedit('pople',idsAll);
+						setTimeout(function(){popleforpro();},1000);//人员视图-项目 根据选择的人员搜索项目列表
+						g.loadPage2 = false;
+					}//页面第一次加载时 加载左侧日历事件
+					if(g.loadPage5 == true){$('#checkboxContent2 .check_box').addClass('active');g.loadPage5 = false;}//页面第一次加载时 默认全选
+					/*if(is == 1){
+						//刚搜索出来 把跟结果一样的清点
+						$('#checkboxContent2').find('.check_box').each(function(){
+							var _text = trim2($(this).text() || '');
+							for(var k=0,lenk=serarray.length;k<lenk;k++){
+								var _name = serarray[k] || '';
+								if(_name == _text && _text != ''){
+									$(this).removeClass('active');
+								}
+							}
+						});
+					}*/
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//项目视图-项目 全部项目列表
+	function proprolist(is){
+		var is = is || '';
+		var start = $('.rili_table .firsttd').attr('day') || '';
+		//start = getDate(start);
+		var end = $('.rili_table .lasttd').attr('day') || '';
+		//end = getDate(end);
+		var medicine = $('.proxiangmuname').val() || '';
+		var state = $('.pro_select_btn').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		condi.start = start;
+		condi.end = end;
+		if(is != '' && is == 1){
+			if(medicine == ''){Utils.alert('请输入产品名称！');return false;}
+			condi.medicine = medicine;
+			
+		}//搜索产品名称
+		if(is == 2){$('.proxiangmuname').val('');$('.proserserresult').html('');return false;}//清空搜索条件
+		if(is == ''){condi.state = state;}//切换状态
+		var url = Base.serverUrl + "schedule/event/calendar/project/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			async:false,
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '',html2 = '',idsAll = '',idsAll2 = '',pronum = 0,tasknum = 0;
+					pronum = data.length;
+					var serarray = [];
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var medicine = d.medicine || '';//
+						var color = d.color || '';//
+						color = color.split('color') || [];
+						color = color[1] || '';
+						idsAll = idsAll == '' ? id : idsAll+','+id ;
+						var tasks = d.scheduleTasks || [];
+						var thtml = '';	
+						var ids = '';
+						for(var j=0,lenj=tasks.length;j<lenj;j++){
+							var dd = tasks[j] || '';
+							var id2 = dd.id || '';
+							var name = dd.name || '';
+							thtml+='<div class="onec">'+name+'</div>';
+							ids = ids == '' ? id2 : ids+','+id2 ;
+							idsAll2 = idsAll2 == '' ? id2 : idsAll2+','+id2 ;
+							tasknum++;
+						}	
+						
+						html+=''
+							+'<div class="rsone">'
+								+'<div class="btn_d">'
+									+'<div ids="'+ids+'" aid="'+id+'" class="check_box"><i class="i"></i>'+medicine+'</div>';
+									if(tasks.length > 0)html+='<a href="javascript:;" class="u_d_btn"></a>';
+									html+='<a href="javascript:;" colornum="'+color+'" proid="'+id+'" class="set_btn"></a>'
+								+'</div>'
+								+'<div class="rsd_cc">';
+								html+=thtml;
+								html+='</div>'
+							+'</div>';
+						html2 += '<div class="check_box active"><i class="i"></i><span class="serprospan">'+medicine+'</span></div>';	
+						serarray.push(medicine);	
+					}
+
+					if(is == ''){$('.proresult').html(html);}
+					else{//搜索结果赋值
+						$('.proserserresult').html(html2);
+					}
+					var tips = '（'+pronum+'个项目，'+tasknum+'个任务）';
+					$('.pro_info_data').html(tips);
+					if($('#checkboxContent .toAll').hasClass('active')){$('#checkboxContent .check_box').addClass('active');}
+					if(g.loadPage3 == true){$('#checkboxContent .check_box').addClass('active');g.loadPage3 = false;}//页面第一次加载时 默认全选
+					if(g.loadPage6 == true){
+						gettilishijianedit('',idsAll);
+						setTimeout(function(){proforpople();},1000);//项目视图-人员 根据选择的项目搜索人员列表
+						g.loadPage6 = false;
+					}//页面第一次加载时 加载左侧日历事件
+					/*if(is == 1){
+						//刚搜索出来 把跟结果一样的清点
+						$('#checkboxContent').find('.check_box').each(function(){
+							var _tt = $(this) || {};
+							var _text = trim2($(this).text() || '');
+							for(var k=0,lenk=serarray.length;k<lenk;k++){
+								var _name = serarray[k] || '';
+								if(_name == _text && _text != ''){
+									_tt.removeClass('active');
+								}
+							}
+						});
+					}*/
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//获取日历列表的所有事件
+	function gettilishijianedit(is,ppids,all,sttc){
+		var is = is || '';
+		var sttc = sttc || '';//查询项目状态
+		var all = all || '';//判断是否是 获取选中值
+		var ppids = ppids || '';
+		var start = $('.rili_table .firsttd').attr('day') || '';
+		//start = getDate(start);
+		var end = $('.rili_table .lasttd').attr('day') || '';
+		//end = getDate(end);
+		if(all == 'all' && g.nowpanel == ''){//遍历项目视图 获取相应选中的值
+			ppids = '';
+			$('#checkboxContent').find('.check_box').each(function(){
+				if($(this).hasClass('active')){
+					var itid = $(this).attr('aid') || '';
+					ppids = ppids == '' ? itid : ppids+','+itid ;
+				}
+			});
+		}
+		if(all == 'all' && g.nowpanel == 'pople'){//遍历人员视图 获取相应选中的值
+			ppids = '';
+			$('#checkboxContent2').find('.check_box').each(function(){
+				if($(this).hasClass('active')){
+					var itid = $(this).attr('ids') || '';
+					ppids = ppids == '' ? itid : ppids+','+itid ;
+				}
+			});
+		}
+		//console.log(ppids);
+		//console.log(start);
+		var condi = {};
+		condi.start = start;
+		condi.state = sttc;
+		condi.end = end;
+		condi.userIds = ppids;//人员视图 传选中的人员id
+		condi.scheduleProjectIds = ppids;//项目视图 传选中的项目id
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "schedule/event/calendar/projectView";
+		if(is == 'pople'){url = Base.serverUrl + "schedule/event/calendar/memberView";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.evenfor = [];
+					$('.rili_table').find('td').each(function(i){//循环td列表
+						var html = '';
+						var _this = $(this);
+						var num = i +1;
+						var things = data[i] || [];
+						var numhtml = _this.find('.date_i').html() || '';
+						html+='<div class="date_i">'+numhtml+'</div>';
+						var nownum = 0;
+						//判断前面的项目已经全部到头 将罗列顺序归零
+						if(things.length <= 0 || (things.length == 1 && (things[0].flag == '开始' || things[0].flag == '完整'))){
+							g.evenfor = [];
+						}
+						for(var j=0,len2=things.length;j<len2;j++){
+							var dd = things[j] || {};
+							var eventId = dd.eventId || '';
+							var color = dd.color || '';
+							var auditDayStr = dd.auditDayStr || '';//开始时间 含有AM PM
+							var flag = dd.flag || '';//当天的事件标记 开始、持续、结束、完整
+							var classStyle = '';
+							switch(flag){
+								case '开始' : classStyle = auditDayStr.indexOf('PM') > -1 ? 'halfstartType' : 'startType' ;break;
+								case '持续' : classStyle = '' ;break;
+								case '结束' : classStyle = auditDayStr.indexOf('AM') > -1 ? 'halfendType' : 'endType' ;break;
+								case '完整' : classStyle = 'startAndEnd' ;break;
+								default:break;
+							}
+							//判断是半天的任务情况
+							//上午半天
+							if(flag == '完整' && auditDayStr.indexOf('AM') > -1){classStyle = 'upstartAndEnd' ;}
+							//下午半天
+							if(flag == '完整' && auditDayStr.indexOf('PM') > -1){classStyle = 'downstartAndEnd' ;}
+							var scheduleTaskName = dd.scheduleTaskName || '';
+							//存储事件排序
+							if(flag == '开始' || flag == '完整'){
+								g.evenfor.push(eventId);
+							}
+							if(flag == '持续' || flag == '结束'){scheduleTaskName = '';}
+							var _title = '';
+							if(scheduleTaskName != ''){_title = 'title="'+scheduleTaskName+'"';}
+							var state = dd.state || '';//计划中 已完成
+							var xucolor = state == '已完成' ? '' : 'xucolor' ;
+							var number = getArrayNum(g.evenfor,eventId);
+							//if(number == ''){}
+							if(nownum < number){
+								var chanum = number - nownum;
+								for(var k=0,lenk=chanum;k<lenk;k++){
+									nownum++;
+									html+='<div style="background:none;" number="'+number+'" class="renOne"></div>';
+								}
+							}
+							html+='<div aid="'+eventId+'" '+_title+' number="'+number+'" class="renOne '+xucolor+' '+color+' '+classStyle+'">'+scheduleTaskName+'</div>';
+							nownum++;
+						}
+						_this.html(html);
+						
+					});
+					//拓宽标题的显示宽度
+					$('.rili_table .renOne').each(function(){
+						var aid = $(this).attr('aid') || '';
+						if(aid == ''){return true;}
+						var width1 = $(this).outerWidth() || 0;
+						var width2,obj;
+						if($(this).hasClass('startType') || $(this).hasClass('halfstartType')){//判断是否是 开始的类型
+							if($(this).parents('td').next('td').find('.renOne').length > 0){//判断此项的下一项 不为空
+								obj = $(this).parents('td').next('td').find('.renOne');
+								obj.each(function(){
+									var aid2 = $(this).attr('aid') || '';
+									if(aid == aid2){
+										width2 = $(this).outerWidth() || 0;
+										$(this).css('background','none');
+									}
+								});
+							}
+							if($(this).parents('td').next('td').next('td').find('.renOne').length > 0){//判断此项的下下一项 不为空
+								var next2 = 0;
+								obj = $(this).parents('td').next('td').next('td').find('.renOne');
+								next2 = $(this).parents('td').next('td').outerWidth();//存中间一个宽度
+								obj.each(function(){
+									var aid2 = $(this).attr('aid') || '';
+									if(aid == aid2){
+										width2 = $(this).outerWidth() || 0;
+										width2 = width2 + next2;
+										$(this).css('background','none');
+									}
+								});
+							}
+							var newwidth = width1 + width2 - 8;
+							$(this).width(newwidth);	
+						}
+					});
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	
+	
+	//弹窗 获取一个稽查事件的edit
+	function getshijianedit(id){
+		var id = id || '';
+		//if(id == ''){return false;}
+		var condi = {};
+		condi.scheduleEventId = id;
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "schedule/event/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					var eventid = d.id || '';
+					$('#yesBtn').attr('eveid',eventid);
+					var time1 = getDate(d.startTime || '');
+					var time2 = getDate(d.endTime || '');
+					time1 = setgetafternoon(time1,'af');//时间 转成 上午 下午
+					time2 = setgetafternoon(time2,'af');//时间 转成 上午 下午
+					$('#sbStarttime').val(time1);
+					$('#sbEndtime').val(time2);
+					setRadioVal('.sb_jihuazhuangtai','radioss',(d.state || ''));
+					$('#sbchanpinname').val(d.medicine || '');
+					//$('#sbjicharenwu').val(d.scheduleTaskName || '');
+					jichalist((d.scheduleProjectId || ''),(d.scheduleTaskName || ''));
+
+					var tasks = d.scheduleEventUsers || [];
+					var html = '';
+					var num = 1,zhnumber=0;
+					for(var i=0,len=tasks.length;i<len;i++){
+						var ds = tasks[i] || {};
+						var role = ds.role || '';
+						var id = ds.id || '';
+						var startTime = getDate(ds.startTime || '');
+						var endTime = getDate(ds.endTime || '');
+						startTime = setgetafternoon(startTime,'af');//时间 转成 上午 下午
+						endTime = setgetafternoon(endTime,'af');//时间 转成 上午 下午
+						var userId = ds.userId || '';
+						var userName = ds.userName || '';
+						
+						if(role == '稽查组长'){
+							$('#sbjichazuzhang').val(userName).attr('tipid',userId);
+							$('#sbStarttime_zu').val(startTime);
+							$('#sbEndtime_zu').val(endTime);
+							continue; 
+						}else if(role == '专家'){
+							if(zhnumber == 0){
+								$('#sbzhuanjia').val(userName).attr('tipid',userId);
+								$('#sbStarttime_zh').val(startTime);
+								$('#sbEndtime_zh').val(endTime);
+							}else if(zhnumber == 1){
+								$('#sbzhuanjia2').val(userName).attr('tipid',userId);
+								$('#sbStarttime_zh2').val(startTime);
+								$('#sbEndtime_zh2').val(endTime);
+							}
+							zhnumber++;
+							continue; 
+						}
+						html+='<div num="'+num+'" class="sbcyuan_one">'
+							+'<div class="sbox_c">'
+								+'<span class="slable">稽查成员<i class="inum">'+num+'</i></span><i class="star"></i>'
+								+'<input tipid="'+userId+'" value="'+userName+'" readonly class="sbox_input jichachegnyuanonev type3 type4" type="text"/>';
+								if(num > 1)html+='<a info="删除" class="assd_btn assd_btn2"></a>';
+								html+='<a info="添加" class="assd_btn assd_btn1"></a>'
+							//+'</div>'
+							//+'<div class="sbox_c">'
+								+'<span class="slable type4">开始时间</span><i class="star"></i>'
+								+'<input onclick="laydate(date11)" value="'+startTime+'" class="sbox_input sbStarttime_ji type2 type4" type="text"/>'
+								+'<span class="slable type4">结束时间</span><i class="star"></i>'
+								+'<input onclick="laydate(date11)" value="'+endTime+'" class="sbox_input sbEndtime_ji type2 type4" type="text"/>'
+							+'</div>'
+						+'</div>';
+						num++;
+						
+					}
+					$('.sbchengyuan_list').html(html);
+					if($('.sbchengyuan_list').find('.sbcyuan_one').length <= 0)addoneliFunc();//判断稽查成员为空 新增一个稽查空成员
+					$('.jichachegnyuanonev').off();
+					$('.sbchengyuan_list').find('.sbcyuan_one').each(function(i){
+						var k = i + 1;
+						$(this).attr('num',k);
+						$(this).find('.inum').html(k);
+						$(this).find('.sbox_input.jichachegnyuanonev').removeClass().addClass('sbox_input jichachegnyuanonev jichachegnyuanonev'+k+' type3 type4');
+						setGetSearchInput2('.jichachegnyuanonev'+k,'.choiseDanwei7'+k);//定义可以搜索下拉的
+					});
+					$(".sbStarttime_ji,.sbEndtime_ji").mobiscroll(optDateTime).datetime(optDateTime);//定义时间插件
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	//弹窗里 删除一个稽查成员
+	function deleteoneliFunc(){
+		$(this).parents('.sbcyuan_one').remove();
+		$('.sbchengyuan_list').find('.sbcyuan_one').each(function(n){
+			var m = n + 1;
+			$(this).attr('num',m).find('.inum').html(m);
+		});
+	}
+	//弹窗里 新增一个稽查成员
+	function addoneliFunc(is){
+		var is = is || '';
+		var num = 0;
+		num = $('.sbchengyuan_list').find('.sbcyuan_one').length || 0;
+		num++;
+		var html = ''
+			+'<div num="'+num+'" class="sbcyuan_one">'
+				+'<div class="sbox_c">'
+					+'<span class="slable">稽查成员<i class="inum">'+num+'</i></span><i class="star"></i>'
+					+'<input class="sbox_input jichachegnyuanonev type3 type4" readonly type="text"/>';
+					if(num > 1)html+='<a info="删除" class="assd_btn assd_btn2"></a>';
+					html+='<a info="添加" class="assd_btn assd_btn1"></a>'
+				//+'</div>'
+				//+'<div class="sbox_c">'
+					+'<span class="slable type4">开始时间</span><i class="star"></i>'
+					+'<input onclick="laydate(date11)" class="sbox_input sbStarttime_ji type2 type4" type="text"/>'
+					+'<span class="slable type4">结束时间</span><i class="star"></i>'
+					+'<input onclick="laydate(date11)" class="sbox_input sbEndtime_ji type2 type4" type="text"/>'
+				+'</div>'
+			+'</div>';
+		if(is){
+			is.parents('.sbcyuan_one').after(html);
+		}else{
+			$('.sbchengyuan_list').append(html);
+		}
+		$('.jichachegnyuanonev').off();
+		$('.sbchengyuan_list').find('.sbcyuan_one').each(function(i){
+			var k = i + 1;
+			$(this).attr('num',k);
+			$(this).find('.inum').html(k);
+			$(this).find('.sbox_input.jichachegnyuanonev').removeClass().addClass('sbox_input jichachegnyuanonev jichachegnyuanonev'+k+' type3 type4');
+			setGetSearchInput2('.jichachegnyuanonev'+k,'.choiseDanwei7'+k);//定义可以搜索下拉的
+		});
+		
+		
+		$(".sbStarttime_ji,.sbEndtime_ji").mobiscroll(optDateTime).datetime(optDateTime);//定义时间插件
+	}
+	
+
+	//新建或修改
+	window.centerFunc = function(is){
+		var is = is || '';
+		var sbStarttime = $('#sbStarttime').val() || '';
+		var sbEndtime = $('#sbEndtime').val() || '';
+		var sb_jihuazhuangtai = getRadioVal('.sb_jihuazhuangtai','radioss');
+		var sbchanpinname = $('#sbchanpinname').val() || '';
+		var sbjicharenwu = $('#sbjicharenwu').val() || '';
+		var sbjichazuzhang = $('#sbjichazuzhang').val() || '';
+		var sbjichazuzhang_id = $('#sbjichazuzhang').attr('tipid') || '';
+		var sbStarttime_zu = $('#sbStarttime_zu').val() || '';
+		var sbEndtime_zu = $('#sbEndtime_zu').val() || '';
+		if(sbStarttime == ''){Utils.alert('开始时间不能为空！');return false;}
+		if(sbEndtime == ''){Utils.alert('结束时间不能为空！');return false;}
+		if(sb_jihuazhuangtai == ''){Utils.alert('状态不能为空！');return false;}
+		if(sbchanpinname == ''){Utils.alert('产品名称不能为空！');return false;}
+		if(sbjicharenwu == ''){Utils.alert('稽查任务不能为空！');return false;}
+		var allpeople = [];
+		if(sbjichazuzhang == ''){Utils.alert('稽查组长不能为空！');return false;}
+		if(sbStarttime_zu == ''){Utils.alert('稽查组长开始时间不能为空！');return false;}
+		if(sbEndtime_zu == ''){Utils.alert('稽查组长结束时间不能为空！');return false;}
+		//存储稽查组长到json串
+		sbStarttime_zu = setgetafternoon(sbStarttime_zu);//上午 下午转成 时间
+		sbEndtime_zu = setgetafternoon(sbEndtime_zu);//上午 下午转成 时间
+		//sbStarttime_zu = Date.parse(new Date(sbStarttime_zu));//日期时间转成时间戳
+		//sbEndtime_zu = Date.parse(new Date(sbEndtime_zu));//日期时间转成时间戳
+		var as = {};
+		as['startTime'] = sbStarttime_zu;
+		as['endTime'] = sbEndtime_zu;
+		as['userId'] = sbjichazuzhang_id;
+		as['userName'] = sbjichazuzhang;
+		as['role'] = '稽查组长';
+		allpeople.push(as);
+		var panduan = '';//判断是否为空
+		if($('.sbchengyuan_list').find('.sbcyuan_one').length <= 0){panduan = '稽查中心不能为空！';}
+		$('.sbchengyuan_list').find('.sbcyuan_one').each(function(){
+			var _num = $(this).attr('num') || '';
+			var jichachegnyuanonev = $(this).find('.jichachegnyuanonev').val() || '';
+			var userid = $(this).find('.jichachegnyuanonev').attr('tipid') || '';
+			var sbStarttime_ji = $(this).find('.sbStarttime_ji').val() || '';
+			var sbEndtime_ji = $(this).find('.sbEndtime_ji').val() || '';
+			//if(jichachegnyuanonev == ''){panduan = '稽查成员'+_num+' 人员名称不能为空！';return false;}
+			//if(sbStarttime_ji == ''){panduan = '稽查成员'+_num+' 开始时间不能为空！';return false;}
+			//if(sbEndtime_ji == ''){panduan = '稽查成员'+_num+' 结束时间不能为空！';return false;}
+			sbStarttime_ji = setgetafternoon(sbStarttime_ji);//上午 下午转成 时间
+			sbEndtime_ji = setgetafternoon(sbEndtime_ji);//上午 下午转成 时间
+			//sbStarttime_ji = Date.parse(new Date(sbStarttime_ji));//日期时间转成时间戳
+			//sbEndtime_ji = Date.parse(new Date(sbEndtime_ji));//日期时间转成时间戳
+			if(jichachegnyuanonev != ''){
+				var as = {};
+				as['startTime'] = sbStarttime_ji;
+				as['endTime'] = sbEndtime_ji;
+				as['userId'] = userid;
+				as['userName'] = jichachegnyuanonev;
+				as['role'] = '稽查员';
+				allpeople.push(as);
+			}
+		});
+		if(panduan != ''){Utils.alert(panduan);return false;}
+		//专家①
+		var sbzhuanjia = $('#sbzhuanjia').val() || '';
+		var sbzhuanjia_id = $('#sbzhuanjia').attr('tipid') || '';
+		var sbStarttime_zh = $('#sbStarttime_zh').val() || '';
+		var sbEndtime_zh = $('#sbEndtime_zh').val() || '';
+		//存储专家到json串
+		sbStarttime_zh = setgetafternoon(sbStarttime_zh);//上午 下午转成 时间
+		sbEndtime_zh = setgetafternoon(sbEndtime_zh);//上午 下午转成 时间
+		if(sbzhuanjia != ''){
+			var as = {};
+			as['startTime'] = sbStarttime_zh;
+			as['endTime'] = sbEndtime_zh;
+			as['userId'] = sbzhuanjia_id;
+			as['userName'] = sbzhuanjia;
+			as['role'] = '专家';
+			allpeople.push(as);
+		}
+		//专家②
+		var sbzhuanjia2 = $('#sbzhuanjia2').val() || '';
+		var sbzhuanjia_id2 = $('#sbzhuanjia2').attr('tipid') || '';
+		var sbStarttime_zh2 = $('#sbStarttime_zh2').val() || '';
+		var sbEndtime_zh2 = $('#sbEndtime_zh2').val() || '';
+		//存储专家到json串
+		sbStarttime_zh2 = setgetafternoon(sbStarttime_zh2);//上午 下午转成 时间
+		sbEndtime_zh2 = setgetafternoon(sbEndtime_zh2);//上午 下午转成 时间
+		if(sbzhuanjia2 != ''){
+			var as = {};
+			as['startTime'] = sbStarttime_zh2;
+			as['endTime'] = sbEndtime_zh2;
+			as['userId'] = sbzhuanjia_id2;
+			as['userName'] = sbzhuanjia2;
+			as['role'] = '专家';
+			allpeople.push(as);
+		}
+		
+		allpeople = JSON.stringify(allpeople);
+		$('#yesBtn').off();
+		var eveid = $('#yesBtn').attr('eveid') || '';
+		var condi = {};
+		sbStarttime = setgetafternoon(sbStarttime);//上午 下午转成 时间
+		sbEndtime = setgetafternoon(sbEndtime);//上午 下午转成 时间
+		condi.scheduleEventId  = eveid;
+		condi.start  = sbStarttime;
+		condi.end  = sbEndtime;
+		condi.state  = sb_jihuazhuangtai;
+		//condi.sbchanpinname  = sbchanpinname;
+		condi.scheduleTaskId  = sbjicharenwu;
+		condi.scheduleEventUsers  = allpeople;
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		var url = Base.serverUrl + "schedule/event/add";
+		if(is == 'change'){url = Base.serverUrl + "schedule/event/update";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					if(is == 'change'){tips = '修改成功！';}
+					Utils.alert(tips);
+					poppoplist();setTimeout(function(){popleforpro();},100);
+					proprolist();setTimeout(function(){proforpople();},100);
+					setTimeout(function(){ gettilishijianedit(g.nowpanel,'','all'); },100);//获取日历列表的所有事件
+					closeSbox();//关闭弹窗
+					tableListShow(1);//显示列表
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					Utils.alert(msg);
+					$('#yesBtn').off().on('click',function(){centerFunc(is)});
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#yesBtn').off().on('click',function(){centerFunc(is)});
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+		
+	//弹窗 获取稽查任务列表
+	window.jichalist = function(id,val){
+		var id = id || '';//项目id
+		var val = val || '';
+		if(id == ''){return false;}
+		var condi = {};
+		condi.id = id;
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "schedule/project/projectDetail";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '<option value="">请选择</option>';
+					var tasks = data.scheduleTaskDetails || [];
+					for(var i=0,len=tasks.length;i<len;i++){
+						var d = tasks[i] || '';
+						var id = d.id || '';
+						var name = d.name || '';
+						var state = d.state || '';
+						var times = d.times || '';
+						var selected = name == val ? 'selected="selected"' : '' ;
+						html += '<option '+selected+' value="'+id+'">'+name+'</option>';
+					}	
+					$('#sbjicharenwu').html(html);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//获取产品列表
+	function getchanpinlist(){
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "schedule/project/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var medicine = d.medicine || '';
+						var state = d.state || '';
+						if(state == '稽查完成'){continue;}
+						html += '<li onclick="jichalist(\''+id+'\')" tip="'+id+'">'+medicine+'</li>';
+					}	
+					$('.choiseDanwei5').html(html);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow('pa');//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow('pa');//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+		$('.searchPage').show();
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		g.projectperpo = $('#projectperpo').val() || '';
+		g.chanpinName = $('#chanpinName').val() || '';
+		g.jichacenter = $('#jichacenter').val() || '';
+		g.start_time = $('#start_time').val() || '';
+		g.end_time = $('#end_time').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		if(is == 1 || is == 'pa'){//搜索条件
+			condi.member = g.projectperpo;//
+			condi.medicine = g.chanpinName;//
+			condi.center = g.jichacenter;//
+			condi.start = g.start_time;//
+			condi.end = g.end_time;//
+			if(is != 'pa')g.loadPage = true;//开启分页
+		}else if(is == 2){//搜索全部
+			$('#projectperpo').val('');
+			$('#chanpinName').val('');
+			$('#jichacenter').val('');
+			$('#start_time').val('');
+			$('#end_time').val('');
+			//全部的时候 清空搜索项
+			g.loadPage = true;//开启分页
+		}
+		var url = Base.serverUrl + "schedule/event/searchEvents";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					//$('#totalElements').html(totalElements);
+					var html = '';
+					var sstr = '';
+					if(g.quanxuan == 1){sstr = 'active';}
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">序号</th>'
+							+'<th style="min-width:58px;">产品名称</th>'
+							+'<th style="min-width:58px;">稽查中心</th>'
+							+'<th style="min-width:60px;">稽查时间</th>'
+							+'<th style="min-width:60px;">稽查天数</th>'
+							+'<th style="min-width:60px;">稽查组长</th>'
+							+'<th style="min-width:45px;">稽查员</th>'
+							+'<th style="min-width:30px;">专家</th>'
+							+'<th style="min-width:60px;">人员安排</th>'
+							+'<th style="min-width:30px;">状态</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var xu = totalElements - g.nowPage*g.showPages - i;
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var medicine = d.medicine || '';
+						var scheduleTaskName = d.scheduleTaskName || '';
+						var center_number = d.center_number || '';
+						var project_manager_name = d.project_manager_name || '';
+						var total_task_number = d.total_task_number || 0;//总任务数
+						var complete_task_number = d.complete_task_number || 0;//已完成任务数
+						var startTime = getDate((d.startTime || ''),2);
+						var endTime = getDate((d.endTime || ''),2);
+						var jichatime = startTime+' - '+endTime;
+						var users = d.scheduleEventUsers || [];
+						var auditDay = d.auditDay || 0;
+						var zuzhang = '',jichayuan = '',zhuanjia = '';
+						for(var j=0,lenj=users.length;j<lenj;j++){
+							var df = users[j] || {};
+							var role = df.role || '';//组长
+							var userName = df.userName || '';//稽查员
+							if(role == '稽查组长'){zuzhang = zuzhang == '' ? userName : zuzhang +','+ userName;}
+							if(role == '稽查员'){jichayuan = jichayuan == '' ? userName : jichayuan +','+ userName;}
+							if(role == '专家'){zhuanjia = zhuanjia == '' ? userName : zhuanjia +','+ userName;}
+						}
+						var remark = d.remark || '';
+						var state = d.state || '';
+						var stra = '';
+						var color = '';
+						if(state == '计划中'){color = 'style="color:green;"';}
+						html+='<tr>'
+							+'<td>'+xu+'</td>'
+							+'<td>'+medicine+'</td>'
+							+'<td>'+scheduleTaskName+'</td>'
+							+'<td>'+jichatime+'</td>'
+							+'<td>'+auditDay+'天</td>'
+							+'<td>'+zuzhang+'</td>'
+							+'<td>'+jichayuan+'</td>'
+							+'<td>'+zhuanjia+'</td>'
+							+'<td><textarea style="background:none;color:#495060;width:200px;border:none;" class="ketd" aid="'+id+'">'+remark+'</textarea></td>'
+							+'<td '+color+'>'+state+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//添加备注
+	$('#tableList').on('blur','.ketd',function(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('获取对象失败！');return false;}
+		var aid = _this.attr('aid') || '';
+		var _val = _this.val() || '';
+		_val = trim2(_val);
+		var condi = {};
+		condi.scheduleEventId = aid;
+		condi.remark = _val;
+		var url = Base.serverUrl + "schedule/event/updateRemark";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					//Utils.alert('修改成功！');
+					tableListShow(1);//列表
+				}
+				else{
+					var msg = data.message || "修改失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	});
+	$('.sbox').on('click','.common_radio',function(){
+		var _this = $(this) || {};
+		var name = _this.attr('name') || '';
+		_this.siblings('.common_radio').each(function(){
+			var name2 = $(this).attr('name') || '';
+			if(name == name2 && name != ''){$(this).removeClass('active');}
+		});
+		_this.addClass('active');
+	});
+	
+	
+	
+	
+	
+	
+	//加载时间控件
+	var start = {
+	  elem: '#start_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(end);
+	window.date11 = {
+		  format: 'YYYY-MM-DD hh:mm:ss',
+		  max: '2099-06-16',
+		  istime: true,
+		  istoday: false,
+		  choose: function(datas){
+		  }
+	 } 
+
+});
+
+</script>
+</html>

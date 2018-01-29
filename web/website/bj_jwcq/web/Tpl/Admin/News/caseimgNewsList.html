@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__SYSWEB__/images/mainFrom.css" rel="stylesheet" type="text/css"/>
+<link href="__SYSWEB__/images/skinv2.0.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.STYLE1 {color: #FFFFFF}
+-->
+</style>
+<script language="javascript" src="__SYSWEB__/images/35Public.js"></script>
+</head>
+
+<body>
+<div class="con-ico">
+  <div class="con-fl" style="height:30px;">当前位置：我的站点 &gt;  <a href="__APP__/Admin/News/caselist?ffaID={$ffaID}&faID={$ffaID}&Language={$language}">{$datas.Main_Name}</a> > <a href="__APP__/Admin/News/caselist?ffaID={$ffaID}&faID={$main_father}&Language={$language}">{$main_names}</a> <a href="__APP__/Admin/News/caseimgNewsList?ffaID={$ffaID}&faID={$faID}&Language={$language}">{$datas1.Main_Name}</a></div>
+  
+  <form  method="post" onsubmit="return check_search(this)" action="__APP__/Admin/News/caseimgNewsList?ffaID={$ffaID}&faID={$faID}&Language={$language}">
+    <input type="text" name="Col_Title" id="Col_Title"  value="{$Col_Title}" />
+    <input type="submit" value="搜索" name="sear" class="Botton">
+  </form>
+</div>
+<form action="__APP__/Admin/News/newscol_delete?faID={$faID}&ffaID={$ffaID}" method="Post" name="Gforms">
+  <table width="781" border="0" cellpadding="0" cellspacing="1" bgcolor="#CDCDCD">
+  <tr>
+    <td width="42" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>选中</strong></td>
+    <td width="407" height="22" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>信息标题 </strong></td>
+    <td width="75" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>栏目</strong></td>
+    <td width="61" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>状态</strong></td>
+   
+    <td width="84" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>排序</strong></td>
+    <td width="105" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>操作</strong></td>
+  </tr>
+  <volist name="info_detail" id="vo">
+  <tr bgcolor="#F4F4F4" onMouseOver="this.style.backgroundColor=&quot;#FFFFFF&quot;" onMouseOut="this.style.backgroundColor=&quot;&quot;">
+    <td align="center"><input name="nCID[]" type="checkbox" id="nCID" value="{$vo.Col_ID}"></td>
+    <td align="left"><a href="" target="_blank">{$vo.Col_Title}</a></td>
+    <td align="center">{$datas1.Main_Name}</td>
+    <td align="center"><if condition="$vo.Col_State eq '1' "> <img src='__SYSWEB__/images/yes.gif'> <else/> <img src='__SYSWEB__/images/no.gif'> </if></td>
+ 
+    <td align="center" id="Order_">{$vo.Col_Order }</td>
+    <td align="center"><a href="__APP__/Admin/News/caseimgColCreate?Save=Edit&ffaID={$ffaID}&faID={$faID}&id={$vo.Col_ID}&Language={$language}">编辑</a><!--&nbsp;&nbsp;<a href="<%'=prodRs("col_pic")%>" target="_blank">查看图片</a>--></td>
+  </tr>
+  </volist>
+  
+  <tr bgcolor="#F4F4F4" onMouseOver="this.style.backgroundColor=&quot;#FFFFFF&quot;" onMouseOut="this.style.backgroundColor=&quot;&quot;">
+    <td colspan="7" align="left" bgcolor="#E2EEE1" id="CName_<%=proI%>"><label></label>
+      <table width="603" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4%"><input type="checkbox" name="chkall" value="on" onclick="CheckAll(this.form)" /></td>
+          <td width="19%"> 全部选中(清空)
+            <label></label></td>
+          <td width="14%"><input name="Submit" type="submit" class="Botton" value="批量删除" onclick="return confirm('您确定要批量删除吗？');" /></td>
+          <td width="15%"><select name="State" id="State">
+            <option value="1">True</option>
+            <option value="0">False</option>
+          </select></td>
+          <td width="14%"><input name="Submit" type="submit" class="Botton" id="Submit" onclick="return confirm('您确定要批量更新状态吗？');" value="状态更新" /></td>
+           <td width="15%" style="display:none"><select name="hot" id="hot">
+            <option value="1">True</option>
+            <option value="0">False</option>
+          </select></td>
+          <td width="14%" style="display:none"><input name="Submit" type="submit" class="Botton" id="Submit" onclick="return confirm('您确定要批量更新状态吗？');" value="推荐更新" /></td>
+          <td width="14%"><input name="Submit32" type="button" class="Botton" value="新建信息" onclick="window.location.href='__APP__/Admin/News/caseimgColCreate?Save=Add&ffaID={$ffaID}&faID={$faID}&Language={$language}'" />
+		  
+		
+		  </td>
+          <td width="20%" align="center"><label>
+            <input name="button" type="button" class="Botton" id="button" value="返回" onclick="window.location.href='__APP__/Admin/News/caselist?ffaID={$ffaID}&faID={$ffaID}&Language={$language}'"/>
+          </label></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr bgcolor="#F4F4F4">
+    <td height="30" colspan="7" align="center" bgcolor="#E2EEE1">{$page}</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<bean id="H001" class="com.zhb.bean.Center">
+		<property name="name" value="广州医科大学附属第一医院"></property>
+		<property name="address" value="广州市沿江路151号(原市总工对面)"></property>
+		<!--<property name="pinyin" value="guangzhouyikedaxuefushudiyiyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+
+	<bean id="H002" class="com.zhb.bean.Center">
+		<property name="name" value="海口市人民医院"></property>
+		<property name="address" value="海南省海口市人民大道43号"></property>
+		<!--<property name="pinyin" value="haikoushirenminyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+	
+	<bean id="H003" class="com.zhb.bean.Center">
+		<property name="name" value="中国人民解放军兰州军区兰州总医院"></property>
+		<property name="address" value="兰州市七里河区小西湖西街98号"></property>
+		<!--<property name="pinyin" value="zhongguorenminjiefangjunlanzhoujunqulanzhouzongyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+	
+	<bean id="H004" class="com.zhb.bean.Center">
+		<property name="name" value="中国人民解放军第二五一医院"></property>
+		<property name="address" value="河北省张家口市建国路13号"></property>
+		<!--<property name="pinyin" value="zhongguorenminjiefangjundidongwuyiyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+	
+	<bean id="H005" class="com.zhb.bean.Center">
+		<property name="name" value="天津医科大学眼科医院"></property>
+		<property name="address" value=""></property>
+		<!--<property name="pinyin" value="tianjinyikedaxueyankeyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+
+	<bean id="H006" class="com.zhb.bean.Center">
+		<property name="name" value="中国人民解放军第四军医大学唐都医院"></property>
+		<property name="address" value="西安市长乐西路169号"></property>
+		<!--<property name="pinyin" value="zhongguorenminjiefangjundisijunyidaxuetangdongyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+	
+	<bean id="H007" class="com.zhb.bean.Center">
+		<property name="name" value="宜宾市第二人民医院"></property>
+		<property name="address" value="四川省宜宾市北大街96号"></property>
+		<!--<property name="pinyin" value="yibinshididongrenminyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+	
+	<bean id="H008" class="com.zhb.bean.Center">
+		<property name="name" value="中国人民解放军第四军医大学第一附属医院(西京医院）"></property>
+		<property name="address" value="陕西省西安市长乐西路15号"></property>
+		<!--<property name="pinyin" value="zhongguorenminjiefangjundisijunyidaxuediyifushuyiyuan(xijingyiyuan）"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+
+	<bean id="H009" class="com.zhb.bean.Center">
+		<property name="name" value="中国人民解放军南京军区南京总医院"></property>
+		<property name="address" value="江苏省南京市中山东路305号"></property>
+		<!--<property name="pinyin" value="zhongguorenminjiefangjunnanjingjunqunanjingzongyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>	
+	
+	<bean id="H010" class="com.zhb.bean.Center">
+		<property name="name" value="西安交通大学医学院第一附属医院"></property>
+		<property name="address" value="陕西省西安市雁塔西路277号（原健康路1号）"></property>
+		<!--<property name="pinyin" value="xianjiaotongdaxueyixueyuandiyifushuyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+
+	<bean id="H011" class="com.zhb.bean.Center">
+		<property name="name" value="深圳市第三人民医院"></property>
+		<property name="address" value="深圳市龙岗区布吉布澜路29号"></property>
+		<!--<property name="pinyin" value="shenzhenshidisanrenminyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+
+	<bean id="H012" class="com.zhb.bean.Center">
+		<property name="name" value="南方医科大学珠江医院"></property>
+		<property name="address" value="广东省广州市工业大道中253号"></property>
+		<!--<property name="pinyin" value="nanfangyikedaxuezhujiangyiyuan"></property>-->
+		<property name="type" value="医院"></property>
+	</bean>
+</beans>

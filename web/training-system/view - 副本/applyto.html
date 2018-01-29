@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/select2/css/select2.min.css" />
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+	<style>
+		.choiseDanwei{margin-top:13px;}
+		.erweimaDiv{display:none;position:absolute;left:270px;top:160px;}
+		.radio_div{display:inline-block;float:left;vertical-align:top;margin-top:7px;}
+		.common_body{padding-bottom:60px;}
+		@media only screen and (max-width:960px){
+			.stip_box .sbox{width:90%;}
+			.renwuwarxiangqing .rinfoimg{right:5px;}
+			.renwuwarxiangqing .prom_bbtn .promabtn{position:fixed;bottom:0;left:0;right:0;width:auto;margin:0;}
+		}
+	</style>
+</head>
+<body class="common_body xiangmuguanli renwuwarxiangqing">
+	<!--  -->
+	<ul style="width:230px;" class="choiseDanwei choiseDanwei1">
+		<li>加载失败</li>
+	</ul>
+	<ul style="width:230px;" class="choiseDanwei choiseDanwei2">
+		<li>加载失败</li>
+	</ul>
+	<div id="tablelisthtml">
+		<!-- <div class="ewxq_title">
+			<div class="to_title">依托考昔片</div>
+			<div class="to_text">稽查地点：<span>中国中医研究院西苑医院</span><span>入组早期</span></div>
+			<div class="to_text">稽查时间：<span>2017.11.18～2017.11.19</span></div>
+			<div class="to_text type2">
+				招募职位：<span>稽查组长、稽查员</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已报名：
+				<span>稽查组长3人、稽查员3人</span>
+				<a href="javascript:;" class="weixinhover"></a>
+			</div>
+			<span class="rinfoimg"></span>
+		</div>
+		<div class="pro_minfo">
+			<h4 class="prom_title">项目情况</h4>
+			<div class="to_lable">实验类型：<span>11</span></div>
+			<div class="to_lable">适应症：<span>11</span></div>
+			<div class="to_lable">注册分类：<span>11</span></div>
+			<div class="to_lable">项目类型：<span>11</span></div>
+			<div class="to_lable">项目分期：<span>11</span></div>
+			<div class="to_lable">发布说明：<span>11</span></div>
+			<h4 class="prom_title type2">报名情况</h4>
+			<div class="to_lable">稽查组长：<span>11</span></div>
+			<div class="to_lable">稽查员：<span>11</span></div>
+			<h4 class="prom_title type3">报名结果</h4>
+			<div class="to_lable">稽查组长：<input class="prom_input" type="text" /></div>
+			<div class="to_lable">稽查员：<input class="prom_input prom_input2" type="text" /></div>
+		</div>
+		<div class="prom_bbtn">
+			<a href="javascript:;" class="promabtn" >立即报名</a>
+			<a href="javascript:;" class="promabtn type2" >取消报名</a>
+		</div>
+		<div class="prom_bbtn">
+			<a href="javascript:;" class="promabtn type3" >取消</a>
+			<a href="javascript:;" class="promabtn type4" >保存</a>
+			<a href="javascript:;" class="promabtn type5" >结束</a>
+		</div> -->
+	</div>
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+		
+			<div class="sbox prosbox1">
+				<h4 class="sbox_h4">报名信息</h4>
+				<div class="sbox_c"><span class="slable">报名职位</span><i class="star"></i>
+					<div class="radio_div" id="baomingzhiwei">
+					<div class="common_radio active" name="jichara" ><i class="i"></i>稽查组长</div>
+					<div class="common_radio" name="jichara" ><i class="i"></i>稽查员</div>
+					</div>
+					<div class="radio_div" id="baomingzhiwei2">
+					<div class="common_radio active" name="jichara2" ><i class="i"></i>项目经理</div>
+					</div>
+				</div>
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+			
+		</div>
+	</div>	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/select2/js/select2.full.min.js"></script>
+	<script type="text/javascript" src="../public/select2/js/i18n/zh-CN.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.qrcode.min.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.id = Utils.getQueryString("aid") || Utils.offLineStore.get("waraid",false);//从任务墙传来 传项目或任务的发布id
+	g.do = Utils.getQueryString("do") || Utils.offLineStore.get("wardo",false);//从任务墙传来 识别是check 或 set apply
+	g.type = Utils.getQueryString("type") || Utils.offLineStore.get("wartype",false);//从任务墙传来 识别是project 或 task
+	g.pa = Utils.getQueryString("pa") || '';//用户扫码访问
+	g.online = Utils.getQueryString("online") || '';//判断用户是否已经登录 1 已经登录
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.weixinHref = '';//存储微信跳转的登录地址
+	
+/* **************************************** lodding ******************************************** */		
+	//判断权限
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('任务墙').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '任务墙.html';
+	});
+	var page_tt = ['项目详情','任务详情','项目设置','任务设置'];
+	var menut = page_tt[0];
+	if(g.type == 'task'){menut = page_tt[1];}
+	if(g.type == 'task' && g.do == 'set'){menut = page_tt[3];}
+	if(g.type == 'project' && g.do == 'set'){menut = page_tt[2];}
+	$('#menu_show_t .s1',parent.document).html(' > '+menut).addClass('active');
+	$('#noBtn').on('click',closeSbox);
+	loadPage();
+	
+	
+/* **************************************** setTing ******************************************** */	
+	
+	
+	//加载页面
+	function loadPage(){
+		getHref();//带参数 获取微信登录地址 
+		getwarEidt();//获取信息
+	}
+	
+	
+	//关闭弹窗
+	$(document).on('click',function(e){
+		$('.choiseDanwei').hide();
+		stopPropagation(e);
+	});
+	//公共单选框
+	$('.common_body').on('click','.common_radio',function(e){
+		var _this = $(this) || {};
+		var name = _this.attr('name') || '';
+		_this.siblings('.common_radio').each(function(){
+			var name2 = $(this).attr('name') || '';
+			if(name == name2 && name != ''){$(this).removeClass('active');}
+		});
+		_this.addClass('active');
+		stopPropagation(e);
+	});
+	
+	
+	//带参数 获取微信登录地址 
+	function getHref(){
+		
+		var condi = {};
+		condi.aid = g.id;
+		condi.pa = g.pa;
+		var url = Base.serverUrl + "publish/task/getQRCodeUrl";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.weixinHref = data;
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	
+	//获取信息
+	function getwarEidt(){
+		var condi = {};
+		condi.publishTaskId = g.id;
+		var url = Base.serverUrl + "publish/task/edit";
+		if(g.pa == 1 && g.online != 1){url = Base.serverUrl + "publish/task/editAllowAll";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					var id = d.id || '';
+					var medicine = d.medicine || '';
+					var centerName = d.centerName || '';
+					var startTime = getDate(d.startTime || '',2);
+					var endTime = getDate(d.endTime || '',2);
+					var stage = d.stage || '';
+					var experimentalType = d.experimentalType || '';
+					var indication = d.indication || '';
+					var classification = d.classification || '';
+					var auditType = d.auditType || '';
+					var projectStaging = d.projectStaging || '';
+					var description = d.description || '';
+					var detailStr = d.detailStr || '';
+					var recruitmentStr = d.recruitmentStr || '';
+					var enrollStr = d.enrollStr || '';
+					var type = d.type || '';//项目发布 任务发布
+					var istask = type == '任务发布' ? 1 : 0 ;
+					var status = d.status || '';//立即报名、报名中、报名结束、报名失败、已结束
+					var imgtype = '';
+					switch(status){
+						case '已报名' : if(g.do != 'set')imgtype = 'type1';break;
+						case '报名中' : imgtype = 'type2';break;
+						case '报名成功' : if(g.do != 'set')imgtype = 'type3';break;
+						case '报名失败' : if(g.do != 'set')imgtype = 'type4';break;
+						default:break;
+					}
+					
+					//报名情况 人员列表
+					var applicants = d.applicants || [];
+					var user0 = '',jichaz = '',jichay = '',xiangmujl = '';
+					for(var i=0,len=applicants.length;i<len;i++){
+						var as = applicants[i] || {};
+						var userId = as.userId || '';
+						var userName = as.userName || '';
+						var role = as.role || '';
+						if(role == '稽查组长'){jichaz = jichaz == '' ? userName : jichaz+','+userName ;}
+						if(role == '稽查员'){jichay = jichay == '' ? userName : jichay+','+userName ;}
+						if(role == '项目经理'){xiangmujl = xiangmujl == '' ? userName : xiangmujl+','+userName ;}
+					}
+					jichaz = jichaz == '' ? '暂无' : jichaz ;
+					jichay = jichay == '' ? '暂无' : jichay ;
+					xiangmujl = xiangmujl == '' ? '暂无' : xiangmujl ;
+					if(istask)user0 +='<div class="to_lable">稽查组长：<span style="color:#000000;">'+jichaz+'</span></div>';
+					if(istask)user0 +='<div class="to_lable"><span style="margin-right:13px;color:#666666;">稽查员：</span><span style="color:#000000;">'+jichay+'</span></div>';
+					if(!istask)user0 +='<div class="to_lable">项目经理：<span style="color:#000000;">'+xiangmujl+'</span></div>';
+					//报名结果 人员列表
+					var applicantResults = d.applicantResults || [];
+					var users = '',user1 = '',user2 = '',user3 = '';
+					var xname = '',xnameall = '';
+					for(var i=0,len=applicantResults.length;i<len;i++){
+						var as = applicantResults[i] || {};
+						var userId = as.userId || '';
+						var userName = as.userName || '';
+						var role = as.resultRole || '';
+						var _n;
+						if(role == '稽查组长'){_n = 0;user1 = '11';}
+						if(role == '项目经理'){_n = 2;user3 = '11';}
+						if(role == '稽查员'){//稽查员最后赋值
+							_n = 1;
+							//xname.push(userId);
+							xname = xname == '' ? userId+'' : xname+','+userId ;
+							xnameall = xnameall == '' ? userName+'' : xnameall+','+userName ;
+							continue;
+						}
+						if(g.do != 'set')users +='<div class="to_lable">'+role+'：<span style="color:#000000;">'+userName+'</span></div>';
+						if(g.do == 'set')users +='<div class="to_lable">'+role+'：<input tipid="'+userId+'" value="'+userName+'" class="prom_input promeminput'+_n+'" type="text" /></div>';
+					}
+					//没值的时候 显示
+					if(user1 == '' && istask){
+						var ithtml1 = g.do != 'set' ? '暂无' : '<input  class="prom_input promeminput0" type="text" />';
+						users +='<div class="to_lable">稽查组长：'+ithtml1+'</div>';
+					}
+					if(user2 == '' && istask){//稽查员 后面赋值
+						users +='<div class="to_lable"><span style="margin-right:13px;color:#666666;">稽查员：</span><select multiple class="prom_input promeminput1" ></select></div>';
+					}
+					if(user3 == '' && !istask){
+						var ithtml3 = g.do != 'set' ? '暂无' : '<input  class="prom_input promeminput2" type="text" />';
+						users +='<div class="to_lable">项目经理：'+ithtml3+'</div>';
+					}
+					var detailType = istask ? 'type2' : 'type4';
+					var html = '';
+							html+='<div class="ewxq_title">'
+								+'<div class="to_title">'+medicine+'</div>';
+								if(istask)html+='<div class="to_text">稽查地点：<span>'+centerName+'</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>'+stage+'</span></div>';
+								if(istask)html+='<div class="to_text">稽查时间：<span>'+startTime+'～'+endTime+'</span></div>';
+								html+='<div class="to_text '+detailType+'">'
+									+'招募职位：<span>'+recruitmentStr+'</span>'
+									+'<br/><br/>已报名：<span>'+enrollStr+'</span>'
+									+'<a href="javascript:;" class="weixinhover"></a>'
+									+'<div class="erweimaDiv"></div>'
+								+'</div>';
+								if(imgtype != '')html+='<span class="rinfoimg '+imgtype+'"></span>';
+							html+='</div>'
+							+'<div class="pro_minfo">'
+								+'<h4 class="prom_title">项目情况</h4>'
+								+'<div class="to_lable">实验类型：<span>'+experimentalType+'</span></div>'
+								+'<div class="to_lable">适应症：<span>'+indication+'</span></div>'
+								+'<div class="to_lable">注册分类：<span>'+classification+'</span></div>'
+								+'<div class="to_lable">项目类型：<span>'+auditType+'</span></div>'
+								+'<div class="to_lable">项目分期：<span>'+projectStaging+'</span></div>'
+								+'<div class="to_lable">发布说明：<span>'+description+'</span></div>'
+								+'<h4 class="prom_title type2">报名情况</h4>'
+								+user0
+								html+='<h4 class="prom_title type3">报名结果</h4>'
+								+users;
+							html+='</div>';
+							html+='<div class="prom_bbtn">';
+								if(status == '报名中' && g.do != 'set')html+='<a href="javascript:;" onclick="baomingbtn(\''+id+'\','+istask+')" class="promabtn" >立即报名</a>';
+								if(status == '已报名' && g.do != 'set')html+='<a href="javascript:;" onclick="cancleApply(\''+id+'\')" class="promabtn type2" >取消报名</a>';
+							html+='</div>';
+							if((status == '报名中' || status == '已报名' || status == '报名失败') && g.do == 'set')html+='<div class="prom_bbtn">'
+								+'<a href="javascript:;" onclick="cancleback()" class="promabtn type3" >取消</a>'
+								+'<a href="javascript:;" onclick="changeit(\''+id+'\','+istask+')" class="promabtn type4" >保存</a>'
+								+'<a href="javascript:;" onclick="overit(\''+id+'\','+istask+')" class="promabtn type5" >结束</a>'
+							+'</div>';
+						$('#tablelisthtml').html(html);
+							//稽查员赋值
+							if(g.do == 'set'){//稽查员不为空
+								setSearchBuMen('.promeminput1','稽查部','option','id');//给项目成员 选框赋值
+								$(".promeminput1").select2({tags: true});
+								var xval = xname.indexOf(',') > -1 ? xname.split(',') : xname;
+								setTimeout(function(){$('.promeminput1').val(xval).select2()},600);
+							}else if(xname != '' && g.do != 'set'){//不是设置 不为空
+								$('.promeminput1').after(xnameall);
+								$('.promeminput1').remove();
+							}else if(xname == '' && g.do != 'set'){//不是设置且不为空
+								$('.promeminput1').after('暂无');
+								$('.promeminput1').remove();
+							}
+							
+							if(g.do == 'set'){
+								setGetSearchInput('.promeminput0','.choiseDanwei1');//定义可以搜索下拉的
+								setGetSearchInput('.promeminput2','.choiseDanwei2');//定义可以搜索下拉的
+								setSearchBuMen('.choiseDanwei1','稽查部','li');//给项目成员 选框赋值
+								setSearchBuMen('.choiseDanwei2','稽查部','li');//给项目成员 选框赋值
+							}	
+							if(g.do != 'set'){
+								$('.promeminput0,.promeminput2').addClass('readonly').attr('readonly',true);
+								$('.promeminput1').addClass('readonly').attr('disabled','disabled');
+							}
+							
+						if(g.pa != 1){//不是手机页面
+							
+							//给二维码定位
+							if($('.erweimaDiv')){
+								var _top = istask ? '176px' : '106px';
+								$('.erweimaDiv').css('top',_top);
+							}
+							//生成二维码
+							var erSrc = Base.http2 + "view/applyto.html?aid="+id+'&pa=1';
+							$('.erweimaDiv').qrcode({width:200,height:200,correctLevel:0,text:erSrc});
+							//微信图标鼠标经过
+							$('.weixinhover').hover(function(){
+								$('.erweimaDiv').fadeIn(0);
+							},function(){
+								$('.erweimaDiv').fadeOut(300);
+							}).click(function(){window.open(erSrc)});
+						}else{//手机页面
+							$('.weixinhover').remove();
+						}
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//取消按钮
+	window.cancleback = function(){
+		parent.document.getElementById("iframeObj").src = '任务墙.html';
+	}
+	
+	//设置稽查组长 稽查员 或 项目经理 保存
+	window.changeit = function(id,istask){
+		var id = id || '';
+		var istask = istask || '';//判断是不是任务报名 否则是项目报名
+		var promeminput0 = $('.promeminput0').attr('tipid') || '';//稽查组长
+		var promeminput00 = $('.promeminput0').val() || '';//稽查组长
+		var promeminput1 = $('.promeminput1').val() || '';//稽查员
+		var promeminput2 = $('.promeminput2').attr('tipid') || '';//项目经理
+		var promeminput22 = $('.promeminput2').val() || '';//项目经理
+		//if(baomingzhiwei == ''){Utils.alert('报名职位不能为空！');return false;}
+		if(promeminput00 == '')promeminput0 =  '';//清空id
+		if(promeminput22 == '')promeminput2 =  '';//清空id
+		
+		//if(istask == 1 && promeminput0 == ''){Utils.alert('稽查组长不能为空！');return false;}
+		//if(istask == 1 && promeminput1 == ''){Utils.alert('稽查员不能为空！');return false;}
+		//if(istask == 0 && promeminput2 == ''){Utils.alert('项目经理不能为空！');return false;}
+		if(promeminput1 != '')promeminput1 = promeminput1.join(',');
+		var condi = {};
+		condi.publishTaskId = id;
+		condi.projectManager = promeminput2;
+		condi.auditLeader = promeminput0;
+		condi.auditMembers = promeminput1;
+		var url = Base.serverUrl + "publish/task/setResult";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('保存成功！');
+					getwarEidt();//获取信息
+				}
+				else{
+					var msg = data.message || "发布失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	//结束发布的项目 或 发布的任务
+	window.overit = function(id,istask){
+		var id = id || '';
+		var istask = istask || '';//判断是不是任务报名 否则是项目报名
+		var promeminput0 = $('.promeminput0').attr('tipid') || '';//稽查组长
+		var promeminput00 = $('.promeminput0').val() || '';//稽查组长
+		var promeminput1 = $('.promeminput1').val() || '';//稽查员
+		var promeminput2 = $('.promeminput2').attr('tipid') || '';//项目经理
+		var promeminput22 = $('.promeminput2').val() || '';//项目经理
+		if(promeminput00 == '')promeminput0 =  '';//清空id
+		if(promeminput22 == '')promeminput2 =  '';//清空id
+		//if(baomingzhiwei == ''){Utils.alert('报名职位不能为空！');return false;}
+		//if(istask == 1 && promeminput0 == ''){Utils.alert('稽查组长不能为空！');return false;}
+		//if(istask == 1 && promeminput1 == ''){Utils.alert('稽查员不能为空！');return false;}
+		//if(istask == 0 && promeminput2 == ''){Utils.alert('项目经理不能为空！');return false;}
+		if(!confirm('确定要结束吗？')){return false;}
+		if(promeminput1 != '')promeminput1 = promeminput1.join(',');
+		var condi = {};
+		condi.publishTaskId = id;
+		condi.projectManager = promeminput2;
+		condi.auditLeader = promeminput0;
+		condi.auditMembers = promeminput1;
+		var url = Base.serverUrl + "publish/task/endResult";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('结束成功！');
+					getwarEidt();//获取信息
+				}
+				else{
+					var msg = data.message || "发布失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	
+	//立即报名
+	window.baomingbtn = function(id,istask){
+		var id = id || '';
+		var istask = istask || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(g.pa == 1 && g.online != 1){
+			var _href = g.weixinHref;
+			location.href = _href;
+			return false;
+		}
+		$('.prosbox1 input').val('');//清空弹窗
+		//$('.prosbox1 select').val('');//清空弹窗
+		if(istask == 0){$('#baomingzhiwei2').show();$('#baomingzhiwei').hide();}
+		else{$('#baomingzhiwei').show();$('#baomingzhiwei2').hide();}
+		showSbox('.prosbox1');//显示弹窗
+		$('#yesBtn').off().on('click',function(){applyitFunc(id,istask);});
+	}
+	
+	//取消报名
+	window.cancleApply = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认要取消报名吗？')){return false;}
+		var condi = {};
+		condi.publishTaskId = id;
+		var url = Base.serverUrl + "publish/task/apply/cancel";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('取消报名成功！');
+					getwarEidt();//获取信息
+				}
+				else{
+					var msg = data.message || "发布失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	
+	//立即报名
+	function applyitFunc(id,istask){
+		var id = id || '';
+		var istask = istask || '';//判断是不是任务报名 否则是项目报名
+		var baomingzhiwei = getRadioVal('#baomingzhiwei','jichara');
+		var baomingzhiwei2 = getRadioVal('#baomingzhiwei2','jichara');
+		//if(baomingzhiwei == ''){Utils.alert('报名职位不能为空！');return false;}
+		if(istask == 0){baomingzhiwei = baomingzhiwei2;}//传项目经理
+		var condi = {};
+		condi.publishTaskId = id;
+		condi.role = baomingzhiwei;
+		var url = Base.serverUrl + "publish/task/apply";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('报名成功！');
+					getwarEidt();//获取信息
+					closeSbox();
+				}
+				else{
+					var msg = data.message || "发布失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+
+
+	//通过部门 填充查询下拉框
+	function setSearchBuMen(id1,role,type1,huoqu){
+		var id1 = id1 || '';
+		var role = role || '';
+		var type1 = type1 || '';
+		var huoqu = huoqu || '';
+		var condi = {};
+		condi.number = 1000;//每页显示行数
+		condi.department = role;
+		var url = Base.serverUrl + "user/getUsersByDepartment";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var data = data || [];
+					var html = '',
+					html2 = '';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || [];
+						var id = d.id || '';
+						var name = d.name || '';
+						var code = d.code || '';
+						var email = d.email || '';
+						if(huoqu == 'name'){id = name;}//获取value也是name
+						if(huoqu == 'id'){if(email == ''){continue;}html += '<li tip="'+name+'">'+email+'</li>';}else{
+							html += '<li tip="'+id+'">'+name+'</li>';
+						}
+						html2 += '<option value="'+id+'">'+name+'</option>';
+					}
+					if(type1 == 'li'){
+						$(id1).find('li').remove();
+						$(id1).append(html);
+					}
+					else{$(id1).html(html2);}
+					if(!$(id1).hasClass('input_select')){$(id).addClass('input_select')}
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	//通用打开弹窗
+	function showSbox(cls){
+		var cls = cls || '';
+		if(cls == ''){return false;}
+		$('.stip_bg').fadeIn(300);
+		$('.stip_box').css('display','table');
+		$(cls).css('display','inline-block');
+	}
+	//关闭弹窗
+	$('html').on('click','.stip_box .stip_content',function(e){
+		$('.stip_bg,.stip_box,.sbox,.choiseDanwei').fadeOut(300);
+		stopPropagation(e);
+	});
+	//通用关闭弹窗
+	function closeSbox(){
+		$('.stip_bg,.stip_box,.sbox,.choiseDanwei').fadeOut(300);
+	}
+	
+	
+	
+	//获取单选框 选中项的值
+	function getRadioVal(id,name,restype){
+		var id = id || '';//父元素的id或者class
+		var name = name || '';//radio 的name
+		var restype = restype || '';//返回类型 val
+		var res = '';
+		if(id != ''){
+			$(id).find('.common_radio').each(function(){//遍历查找 name相同的
+				var _name = $(this).attr('name') || '';
+				if($(this).hasClass('active') && _name == name && name != ''){
+					var _val = $(this).attr('val') || '';
+					var _html = $(this).html() || '';
+					var _text = _html.split('</i>')[1] || '';
+					res = restype == 'val' ? _val : _text;
+					
+				}
+			});
+			
+		}else{
+			$('.common_radio').each(function(){//遍历查找 name相同的
+				var _name = $(this).attr('name') || '';
+				if($(this).hasClass('active') && _name == name && name != ''){
+					var _html = $(this).html() || '';
+					var _val = $(this).attr('val') || '';
+					var _text = _html.split('</i>')[1] || '';
+					res = restype == 'val' ? _val : _text;
+				}
+			})
+		}
+		return res;
+	}
+	
+	
+	//定义既可以下来 又可以搜索的下拉的选框
+	function setGetSearchInput(id,boxid){
+		var id = id || '';//'.class' or '#id' 
+		var boxid = boxid || '';'';//'.class' or '#id' 
+		if(id == '' || boxid == ''){return false;}
+		//定义搜索
+		if(!$(id).hasClass('input_select')){$(id).addClass('input_select')}
+		$(id).keyup(function(){
+			var _vth = $(this);
+			var _li = $(boxid+' li');
+			var _val = _vth.val() || '';
+			if(_val == '' || _li.length <= 0){return false;}
+			_li.show();
+			_li.each(function(){//循环搜索
+				var _tt = $(this);
+				var _val2 = _tt.html() || '';
+				var _if = _val2.indexOf(_val);
+				if(_if <= -1){//不符合
+					_tt.hide();
+				}else{_tt.show();}
+			});
+		});
+		//下拉选择
+		$(id).click(function(e){
+			var _is = $(this);
+			var xx = _is.offset().left || 0;
+			var yy = _is.offset().top || 0;
+			var _top = yy + _is.height() -9;
+			$(boxid+' li').show();
+			$('.choiseDanwei').hide();
+			$(boxid).css({"left":xx,"top":_top}).slideToggle();
+			$(boxid+' li').on('click',function(e){
+				var _tis = $(this);
+				var _vdan= _tis.html() || '';
+				var _vtip= _tis.attr('tip') || '';
+				_is.val(_vdan).parents('td').attr('title',_vtip);
+				_is.attr('tipid',_vtip);
+				_tis.parents('.choiseDanwei').hide();
+				stopPropagation(e);
+			});
+			stopPropagation(e);
+		});
+		
+	}	
+	//转日期格式
+	function getDate(date,type){
+		var date = date || '';
+		var type = type || '';
+		if(date == ''){return '';}
+		var newDate = new Date();
+		newDate.setTime(date);
+		var res = newDate.format('yyyy-MM-dd hh:mm:ss') || '';
+		if(type == '2'){res = newDate.format('yyyy-MM-dd') || '';}
+		if(type == '3'){res = newDate.format('hh:mm:ss') || '';}
+		return res;
+	}
+	
+	
+	/* 防止冒泡 */
+	function stopPropagation(e) {  
+		e = e || window.event;  
+		if(e.stopPropagation) { //W3C阻止冒泡方法  
+			e.stopPropagation();  
+		} else {  
+			e.cancelBubble = true; //IE阻止冒泡方法  
+		}  
+	}
+	
+		
+	//加载时间控件
+	var start = {
+	  elem: '#start_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(end);
+	
+
+});
+
+</script>
+</html>

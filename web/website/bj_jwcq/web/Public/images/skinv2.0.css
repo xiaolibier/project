@@ -1,0 +1,163 @@
+﻿BODY {
+	SCROLLBAR-FACE-COLOR: #eaedef; 
+	FONT-SIZE: 9pt; MARGIN: 0px; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #fbf8f1; 
+	SCROLLBAR-TRACK-COLOR: #fafafa; 
+	SCROLLBAR-DARKSHADOW-COLOR: #ffffff; 
+	SCROLLBAR-BASE-COLOR: #ffffff;
+}
+
+.input_1{background-image: url(i5.jpg);border: 0px; width:124px; font-size:11px;font-family: Arial; padding: 3px 5px 3px 5px; color:#6b92a0;}
+.input_2{background: url(i6.jpg) left;border: 0px; width:40px; font-size:11px;font-family: Arial; padding: 3px 5px 3px 5px; color:#6b92a0;}
+.input_3{font-size:11px;font-family: Arial; padding-left: 3px; color:#287215; height:18px; border: 1px solid #287215; }
+
+.Botton {
+	background:url(out-bg.gif);
+	background-repeat: no-repeat;
+	height: 20px;
+	width: 60px;
+	border: none;
+	font-size: 9pt;
+	line-height: 18px;
+	cursor: hand;
+	vertical-align: middle;
+	color:#FFFFFF;
+	padding-top:2px;
+}
+.Bottonback {
+	background: url(pop_button.gif);
+	background-repeat: no-repeat;
+	height: 21px;
+	width: 60px;
+	border: none;
+	font-size: 9pt;
+	line-height: 18px;
+	cursor: hand;
+	vertical-align: middle;
+	padding-top:3px;
+}
+.TopBack {
+	background-image: url(i1.jpg);
+	height: 60px;
+}
+.TopLeft {
+	background-image: url(i1.jpg);
+	height: 60px;
+	width: 534px;
+	clear: none;
+	float: none;
+}
+
+.Bottom {
+	background-image: url(i8.jpg);
+	vertical-align: middle;
+}
+.BottomCopy {
+	width: 131px;
+	background-image: url(BottomCopy.gif);
+}
+.FontFFFFFF {
+	font-size: 9pt;
+	line-height: 22px;
+	color: #FFFFFF;
+}
+A:link {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 160%; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 160%; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-SIZE: 9pt; COLOR: #0000ff; LINE-HEIGHT: 160%; TEXT-DECORATION: underline
+}
+.pageNote{
+	FONT-SIZE: 9pt;
+	COLOR: #FF0000;
+	font-weight: bold;
+}
+.pageFont_1{
+	FONT-SIZE: 9pt; COLOR: #CCCCCC; LINE-HEIGHT: 160%; TEXT-DECORATION: none
+}
+
+A.pageFont:link {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 160%; TEXT-DECORATION: none
+}
+A.pageFont:visited {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 160%; TEXT-DECORATION: none
+}
+A.pageFont:hover {
+	FONT-SIZE: 9pt; COLOR: #0000ff; LINE-HEIGHT: 160%; TEXT-DECORATION: underline
+}
+.content-table{ padding-bottom:120px }
+
+BODY,TD{
+	FONT-SIZE: 9pt; padding:3px
+}
+.overTD {
+	BORDER-RIGHT: #104CBE 1px solid; BORDER-TOP: #104CBE 1px solid; BORDER-LEFT: #104CBE 1px solid; CURSOR: hand; BORDER-BOTTOM: #104CBE 1px solid; HEIGHT: 24px; BACKGROUND-COLOR: #CCCCCC
+}
+.outTD {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: medium none; HEIGHT: 24px; BACKGROUND-COLOR: #f1f1f1
+}
+.overSubTD {
+	BORDER-RIGHT: #4980E9 1px solid; BORDER-TOP: #4980E9 1px solid; BORDER-LEFT: #4980E9 1px solid; CURSOR: hand; BORDER-BOTTOM: #4980E9 1px solid; HEIGHT: 21px; BACKGROUND-COLOR: #f1f1f1
+}
+.SelectedSubTD {
+	BORDER-RIGHT: #4980E9 1px solid; BORDER-TOP: #4980E9 1px solid; BORDER-LEFT: #4980E9 1px solid; CURSOR: hand; BORDER-BOTTOM: #4980E9 1px solid; HEIGHT: 21px; BACKGROUND-COLOR: #F6F6F6
+}
+.outSubTD {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; CURSOR: hand; COLOR: #000000; BORDER-BOTTOM: medium none; HEIGHT: 21px; BACKGROUND-COLOR: #fcfcfc
+}
+.input000000 {
+	border: 1px solid #cccccc;
+	font-size: 9pt;
+	height: 14pt;
+	line-height: 12pt;
+	text-align:center;
+}
+.input000000_1 {
+	border: 1px solid #cccccc;
+	font-size: 9pt;
+	height: 12pt;
+	line-height: 12pt;
+}
+.textarea000000 {
+	border: 1px solid #cccccc;
+	font-size: 9pt;
+}.table_Left {
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-top-color: #000000;
+	border-left-color: #000000;
+}
+.table_Right {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+}
+.tabel_RightLine {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #000000;
+}
+.tabel_bottomLine {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #000000;
+}
+.inputFFFFFF {
+	height: 18px;
+	border: 1px solid #FFFFFF;
+	background-color: #FFFFFF;
+	cursor: hand;
+}
+.lognBG {
+	background-image: url(logon.gif);
+	background-repeat: no-repeat;
+	background-position: right 350px;
+}

@@ -1,0 +1,122 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<bean id="90" class="com.zhb.bean.Module">
+		<property name="name" value="项目简介"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="项目简介"></property>
+	</bean>
+
+	<bean id="91" class="com.zhb.bean.Module">
+		<property name="name" value="保密性"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="-"></property>
+	</bean>
+
+	<bean id="92" class="com.zhb.bean.Module">
+		<property name="name" value="人员"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="-"></property>
+	</bean>
+
+	<bean id="93" class="com.zhb.bean.Module">
+		<property name="name" value="人员访谈"></property>
+		<property name="multipleRecord" value="1"></property>
+    <property name="tableId" value="人员访谈"></property>
+	</bean>
+
+	<bean id="94" class="com.zhb.bean.Module">
+		<property name="name" value="伦理"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="-"></property>
+	</bean>
+
+	<bean id="95" class="com.zhb.bean.Module">
+		<property name="name" value="基本文件"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="基本文件"></property>
+	</bean>
+
+	<bean id="96" class="com.zhb.bean.Module">
+		<property name="name" value="设施/设备"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="-"></property>
+	</bean>
+
+	<bean id="97" class="com.zhb.bean.Module">
+		<property name="name" value="试验用药品/器械"></property>
+		<property name="multipleRecord" value="1"></property>
+		<property name="tableId" value="研究用药物/器械"></property>
+	</bean>
+
+	<bean id="98" class="com.zhb.bean.Module">
+		<property name="name" value="生物样本/实验室"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="生物样本/器械"></property>
+	</bean>
+
+	<bean id="99" class="com.zhb.bean.Module">
+		<property name="name" value="质量管理"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="-"></property>
+	</bean>
+
+	<bean id="9A" class="com.zhb.bean.Module">
+		<property name="name" value="研究者职责"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="研究者职责"></property>
+	</bean>
+
+	<bean id="9B" class="com.zhb.bean.Module">
+		<property name="name" value="申办方/CRO职责"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="-"></property>
+	</bean>
+
+	<bean id="9C" class="com.zhb.bean.Module">
+		<property name="name" value="药物安全/警戒"></property>
+		<property name="multipleRecord" value="1"></property>
+    <property name="tableId" value="药物安全/警戒"></property>
+	</bean>
+
+	<bean id="9D" class="com.zhb.bean.Module">
+		<property name="name" value="数据管理与生物统计"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="-"></property>
+	</bean>
+
+	<bean id="9E" class="com.zhb.bean.Module">
+		<property name="name" value="电子系统"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="-"></property>
+	</bean>
+
+	<bean id="9F" class="com.zhb.bean.Module">
+		<property name="name" value="其它"></property>
+		<property name="multipleRecord" value="0"></property>
+    <property name="tableId" value="-"></property>
+	</bean>
+
+	<bean id="9G" class="com.zhb.bean.Module">
+		<property name="name" value="稽查总结会议"></property>
+		<property name="multipleRecord" value="1"></property>
+    <property name="tableId" value="稽查总结会议"></property>
+	</bean>
+
+</beans>

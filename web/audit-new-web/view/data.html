@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+	<style>
+		.data_title{margin-bottom:12px;padding-left:10px;border-left:3px solid #2D8CF0;text-align:left;font-size:14px;line-height:14px;color:#353535;}
+		.html,body{background-color:#f5f5f5;}
+		.chartBox{margin:10px 20px;background-color:#ffffff;padding:12px 20px;}
+		.top_data_div{margin:20px;}
+		.one_data{display:inline-block;background-color:#fff;border-radius: 6px;margin-right:30px;}
+		.one_data .left_ico{display:inline-block;width:30px;height:30px;margin:27px 34px 0 20px;background:url('../public/img/ic1.png') no-repeat center center;background-size:contain;}
+		.one_data.type2 .left_ico{background:url('../public/img/ic2.png') no-repeat center center;background-size:contain;}
+		.one_data .right_d{text-align:center;display:inline-block;margin:20px;font-size: 12px;color: #71767B;line-height: 13px;}
+		.one_data .span1{display:inline-block;padding-bottom:9px;font-size: 26px;color: #2D8CF0;line-height: 22px;}
+		.one_data.type2 .span1{color: #19BE6B;}
+	</style>
+</head>
+<body class="shujutongji">
+	<div class="dataContent">
+		<div class="top_data_div">
+			<div class="one_data">
+				<span class="left_ico"></span>
+				<div class="right_d"><span class="span1">330</span><br>稽查总项目数</div>
+			</div>
+			<div class="one_data type2">
+				<span class="left_ico"></span>
+				<div class="right_d"><span class="span1">671</span><br>稽查总院次</div>
+			</div>
+		</div>
+		<div class="chartBox">
+			<h4 class="data_title">2017系统项目情况</h4>
+			<div id="main1" style="width:100%;height:240px;"></div>
+		</div>
+		<div class="chartBox">
+			<h4 class="data_title">方案违背情况</h4>
+			<div id="main2" style="width:100%;height:400px;"></div>
+		</div>
+		<div class="chartBox">
+			<h4 class="data_title">不良事件</h4>
+			<div id="main3" style="width:100%;height:240px;"></div>
+		</div>
+		<div style="overflow:hidden;">
+			<div class="chartBox" style="display:inline-block;float:left;width:44%;margin-right:10px;">
+				<h4 class="data_title">入组进度</h4>
+				<div id="main4" style="width:100%;height:240px;"></div>
+			</div>
+			<div class="chartBox" style="display:inline-block;float:left;width:44%;margin-left:10px;">
+				<h4 class="data_title">入组数/筛选失败数</h4>
+				<div id="main5" style="width:100%;height:240px;"></div>
+			</div>
+		</div>
+		<div class="chartBox">
+			<h4 class="data_title">数据录入</h4>
+			<div id="main6" style="width:100%;height:240px;"></div>
+		</div>		
+	</div>
+	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/libs/echarts.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/index.js"></script> -->
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.task = Utils.getQueryString("task");//
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+	
+/* **************************************** lodding ******************************************** */	
+
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).html('数据统计').addClass('active');
+	
+
+/* **************************************** setTing ******************************************** */	
+
+var app = {};
+
+
+/* ------------------------------ 系统项目情况 ------------------------------------------ */	
+
+var option1 = {
+    title: {
+        text: ''
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['项目数','院次']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'项目数',
+            type:'line',
+            stack: '总量',
+            data:[9, 3, 10, 6, 12, 12, 13, 18, 23]
+        },
+        {
+            name:'院次',
+            type:'line',
+            stack: '总量',
+            data:[18, 4, 33, 10, 16, 23, 20, 37, 27]
+        }
+    ]
+};
+
+	var myChart1 = echarts.init(document.getElementById('main1'));
+// 使用刚指定的配置项和数据显示图表。
+   myChart1.setOption(option1);
+   
+/* ------------------------------ 方案违背情况 ------------------------------------------ */
+
+
+var option2 = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['严重', '主要','一般']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['标准差   ','行政管理   ','随机化   ','严重不良事件   ','源文件   ','合并用药标准   ','其他   ','知情同意   ','访问日程表   ','资格与入职   ','试验过程   ','药物依从性   ','实验室评估   ']
+    },
+    series: [
+        {
+            name: '严重',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0]
+        },
+        {
+            name: '主要',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0]
+        },
+        {
+            name: '一般',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [1, 2, 0, 0, 0, 1, 3, 3, 1, 0, 3, 4, 0]
+        }
+    ]
+};
+	var myChart2 = echarts.init(document.getElementById('main2'));
+// 使用刚指定的配置项和数据显示图表。
+   myChart2.setOption(option2);
+	
+/* ------------------------------ 不良事件 ------------------------------------------ */	
+
+var posList1 = [
+    'left', 'right', 'top', 'bottom',
+    'inside',
+    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+];
+
+app.configParameters = {
+    rotate: {
+        min: -90,
+        max: 90
+    },
+    align: {
+        options: {
+            left: 'left',
+            center: 'center',
+            right: 'right'
+        }
+    },
+    verticalAlign: {
+        options: {
+            top: 'top',
+            middle: 'middle',
+            bottom: 'bottom'
+        }
+    },
+    position: {
+        options: echarts.util.reduce(posList1, function (map, pos) {
+            map[pos] = pos;
+            return map;
+        }, {})
+    },
+    distance: {
+        min: 0,
+        max: 100
+    }
+};
+
+app.config = {
+    rotate: 90,
+    align: 'left',
+    verticalAlign: 'middle',
+    position: 'insideBottom',
+    distance: 15,
+    onChange: function () {
+        var labelOption = {
+            normal: {
+                rotate: app.config.rotate,
+                align: app.config.align,
+                verticalAlign: app.config.verticalAlign,
+                position: app.config.position,
+                distance: app.config.distance
+            }
+        };
+        myChart.setOption({
+            series: [{
+                label: labelOption
+            }, {
+                label: labelOption
+            }, {
+                label: labelOption
+            }, {
+                label: labelOption
+            }]
+        });
+    }
+};
+
+
+var labelOption1 = {
+    normal: {
+        show: true,
+        position: app.config.position,
+        distance: app.config.distance,
+        align: app.config.align,
+        verticalAlign: app.config.verticalAlign,
+        rotate: app.config.rotate,
+        formatter: '{c}  {name|{a}}',
+        fontSize: 16,
+        rich: {
+            name: {
+                textBorderColor: '#fff'
+            }
+        }
+    }
+};
+var option3 = {
+    color: ['#FFE9A7', '#FCB4A7'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['AE', 'SAE']
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    calculable: true,
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {show: false},
+            data: ['中科院药物研究所', '聊城市人民医院', '南京科大附属医院', '首都科学宣武医院', '上海东方医院']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'AE',
+            type: 'bar',
+            barGap: 0,
+            //label: labelOption1,
+            data: [24, 24, 13, 15, 28]
+        },
+        {
+            name: 'SAE',
+            type: 'bar',
+            //label: labelOption1,
+            data: [3, 1, 2, 4, 5]
+        }
+    ]
+};
+	var myChart3 = echarts.init(document.getElementById('main3'));
+// 使用刚指定的配置项和数据显示图表。
+   myChart3.setOption(option3);
+
+/* ------------------------------ 入组速率 ------------------------------------------ */	
+
+app.title = '折柱混合';
+
+var option4 = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            crossStyle: {
+                color: '#999'
+            }
+        }
+    },
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+        data:['计划入组','实际入组','计划入组','实际入组']
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月'],
+            axisPointer: {
+                type: 'shadow'
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            name: '例数',
+            min: 0,
+            max: 250,
+            interval: 50,
+            axisLabel: {
+                formatter: '{value}'
+            }
+        }
+    ],
+    series: [
+        /*{
+            name:'计划入组',
+            type:'bar',
+            data:[0, 6, 13, 24, 36, 56, 76, 103,131, 219, 220,250,300]
+        },
+        {
+            name:'实际入组',
+            type:'bar',
+            data:[0, 5, 10, 23, 32, 50, 74, 90,120, 210, 200,220,280]
+        },*/
+        {
+            name:'计划入组',
+            type:'line',
+            data:[0, 0, 15, 33, 53, 75, 100, 110,120]
+        },
+        {
+            name:'实际入组',
+            type:'line',
+            data:[0, 0, 10, 23, 32, 50, 74, 90,100]
+        }
+    ]
+};
+	var myChart4 = echarts.init(document.getElementById('main4'));
+// 使用刚指定的配置项和数据显示图表。
+   myChart4.setOption(option4);
+	
+/* ------------------------------ 入组/排除率 ------------------------------------------ */	
+
+var posList2 = [
+    'left', 'right', 'top', 'bottom',
+    'inside',
+    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+];
+
+app.configParameters = {
+    rotate: {
+        min: -90,
+        max: 90
+    },
+    align: {
+        options: {
+            left: 'left',
+            center: 'center',
+            right: 'right'
+        }
+    },
+    verticalAlign: {
+        options: {
+            top: 'top',
+            middle: 'middle',
+            bottom: 'bottom'
+        }
+    },
+    position: {
+        options: echarts.util.reduce(posList2, function (map, pos) {
+            map[pos] = pos;
+            return map;
+        }, {})
+    },
+    distance: {
+        min: 0,
+        max: 100
+    }
+};
+
+app.config = {
+    rotate: 90,
+    align: 'left',
+    verticalAlign: 'middle',
+    position: 'insideBottom',
+    distance: 15,
+    onChange: function () {
+        var labelOption = {
+            normal: {
+                rotate: app.config.rotate,
+                align: app.config.align,
+                verticalAlign: app.config.verticalAlign,
+                position: app.config.position,
+                distance: app.config.distance
+            }
+        };
+        myChart.setOption({
+            series: [{
+                label: labelOption
+            }, {
+                label: labelOption
+            }, {
+                label: labelOption
+            }, {
+                label: labelOption
+            }]
+        });
+    }
+};
+
+
+var labelOption2 = {
+    normal: {
+        show: true,
+        position: app.config.position,
+        distance: app.config.distance,
+        align: app.config.align,
+        verticalAlign: app.config.verticalAlign,
+        rotate: app.config.rotate,
+        formatter: '{c}  {name|{a}}',
+        fontSize: 16,
+        rich: {
+            name: {
+                textBorderColor: '#fff'
+            }
+        }
+    }
+};
+
+var option5 = {
+    color: ['#92CA7E', '#FCB3A7'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['入组数', '筛选失败']
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    calculable: true,
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {show: false},
+            data: ['3月', '4月', '5月', '6月', '7月', '8月', '9月']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: '入组数',
+            type: 'bar',
+            barGap: 0,
+            //label: labelOption2,
+            data: [15, 18, 20, 22, 25, 10, 10]
+        },
+        {
+            name: '筛选失败',
+            type: 'bar',
+            //label: labelOption2,
+            data: [10, 15, 5, 3, 7, 1, 3]
+        }
+    ]
+};
+	var myChart5 = echarts.init(document.getElementById('main5'));
+// 使用刚指定的配置项和数据显示图表。
+   myChart5.setOption(option5);
+	
+
+	
+/* ------------------------------ 数据录入 ------------------------------------------ */	
+
+var posList3 = [
+    'left', 'right', 'top', 'bottom',
+    'inside',
+    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+];
+
+app.configParameters = {
+    rotate: {
+        min: -90,
+        max: 90
+    },
+    align: {
+        options: {
+            left: 'left',
+            center: 'center',
+            right: 'right'
+        }
+    },
+    verticalAlign: {
+        options: {
+            top: 'top',
+            middle: 'middle',
+            bottom: 'bottom'
+        }
+    },
+    position: {
+        options: echarts.util.reduce(posList3, function (map, pos) {
+            map[pos] = pos;
+            return map;
+        }, {})
+    },
+    distance: {
+        min: 0,
+        max: 100
+    }
+};
+
+app.config = {
+    rotate: 90,
+    align: 'left',
+    verticalAlign: 'middle',
+    position: 'insideBottom',
+    distance: 15,
+    onChange: function () {
+        var labelOption = {
+            normal: {
+                rotate: app.config.rotate,
+                align: app.config.align,
+                verticalAlign: app.config.verticalAlign,
+                position: app.config.position,
+                distance: app.config.distance
+            }
+        };
+        myChart.setOption({
+            series: [{
+                label: labelOption
+            }, {
+                label: labelOption
+            }, {
+                label: labelOption
+            }, {
+                label: labelOption
+            }]
+        });
+    }
+};
+
+
+var labelOption3 = {
+    normal: {
+        show: true,
+        position: app.config.position,
+        distance: app.config.distance,
+        align: app.config.align,
+        verticalAlign: app.config.verticalAlign,
+        rotate: app.config.rotate,
+        formatter: '{c}  {name|{a}}',
+        fontSize: 16,
+        rich: {
+            name: {
+                textBorderColor: '#fff'
+            }
+        }
+    }
+};
+
+var option6 = {
+    color: ['#5ABCEA', '#FFE9A7', '#80C99D', '#FCB3A7'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['已录入', '有疑问', '已审核', '已冻结']
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    calculable: true,
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {show: false},
+            data: ['中科院药物研究所', '聊城市人民医院', '南京科大附属医院', '首都科学宣武医院', '上海东方医院']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: '已录入',
+            type: 'bar',
+            barGap: 0,
+            //label: labelOption3,
+            data: [320, 332, 301, 334, 390]
+        },
+        {
+            name: '有疑问',
+            type: 'bar',
+            //label: labelOption3,
+            data: [34, 23, 43, 23, 13]
+        },
+        {
+            name: '已审核',
+            type: 'bar',
+            //label: labelOption3,
+            data: [300, 350, 280, 300, 400]
+        },
+        {
+            name: '已冻结',
+            type: 'bar',
+            //label: labelOption3,
+            data: [98, 77, 101, 99, 40]
+        }
+    ]
+};
+	var myChart6 = echarts.init(document.getElementById('main6'));
+// 使用刚指定的配置项和数据显示图表。
+   myChart6.setOption(option6);
+	
+
+
+
+
+});
+
+</script>
+</html>

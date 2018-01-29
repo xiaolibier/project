@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>项目成员</title>
+	<style>
+		.member_bg .mem_list{border-bottom:1px solid #D8D8D8;}
+		.laydate_body .laydate_box{margin-top:0px;}
+	</style>
+</head>
+<body class="projectLs">
+	<!-- 公共头部 -->
+	<div class="com_header"></div>
+	
+	<!-- 项目列表 -->
+	<div class="project_tt">
+		<h4 id="pro_name_span" class="pro_bk_text"></h4>
+		<div class="member_bg">
+			<!-- 项目成员 -->
+			<div>
+				<div class="tbtn_div">
+					<span class="td_tt1">项目成员</span>
+					<span class="td_tt2"> ( 可查看项目下所有任务 )</span>
+					<a href="javascript:;" id="addpromembtn" class="btn">新增成员</a>
+				</div>
+				<ul id="xmemberlist" class="mem_list">
+					<!--  -->
+					<!-- <li class="li">
+						<a class="memli_close"></a>
+						<div class="mem_ico"><img class="mem_img" src="../public/img/head_big.png"/></div>
+						<div class="inline_div">
+							<span class="mem_name type2">雷凯文</span><br/>
+							<span class="mem_tt">项目经理</span>
+						</div>	
+					</li> -->
+				</ul>
+			</div>
+			<!-- 任务成员 -->
+			<div >
+				<div class="tbtn_div">
+					<span class="td_tt1">任务成员</span>
+					<span class="td_tt2"> ( 查看分配的任务 )</span>
+				</div>
+				<!--  -->
+				<div id="rmemberlist">
+					<!-- <div class="one_ren">
+						<div class="tbtn_div">
+							<span class="td_tt3">01</span>
+							<span class="td_tt4">中国武警总医院</span>
+							<a class="btn">新增成员</a>
+						</div>
+						<ul class="mem_list">
+
+							<li class="li">
+								<a class="memli_close"></a>
+								<div class="mem_ico"><img class="mem_img" src="../public/img/head_big.png"/></div>
+								<div class="inline_div">
+									<span class="mem_name type2">雷凯文</span><br/>
+									<span class="mem_tt">项目经理</span>
+								</div>	
+							</li>
+						</ul>
+					</div> -->
+				
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+
+			<div style="width:300px;height:470px;" class="sbox xiugaizhongxin">
+				<h4 class="sbox_h4"><span class="tspan">添加新成员</span><a href="javascript:;" onclick="closeSbox()" class="close_x"></a></h4>
+				<div class="sb_div">
+					<div class="lable_ll">手机号添加：</div>
+					<div class="sinput_div">
+						<input id="sboxserBtn_input" class="sbox_input" type="text" />
+						<a href="javascript:;" id="sboxserBtn" class="ser_right_btn"></a>
+					</div>
+					<div style="display:none;" id="tips_mm" class="tips_div">
+						<!-- <span class="sb_usr_ico"><img class="sb_usr_img" src="../public/img/head_big.png"/></span>
+						<span class="sb_usr_name">雷凯文</span> -->
+					</div>
+					<div style="display:none;" id="null_tips" class="tips_div tips2">
+						该用户不存在，<br/>请确认手机号是否注册！
+					</div>
+					<div style="text-align:center;overflow:hidden;margin-top:20px;"><input placeholder="编辑她/他的职位" style="display:none;" id="titleinput" class="sb_add_btn"/></div>
+					<div style="display:none;" class="setyouxiaoqi">
+						<div class="ttips_title">账号有效期 总计<span id="comdate">0</span>天</div>
+						<input placeholder="开始时间" onclick="laydate(datemodule1)" id="startdate" class="ttinput"/>
+						<input placeholder="结束时间" onclick="laydate(datemodule1)" id="enddate" class="ttinput"/>
+						<!-- <div class="ttips">总计30天</div> -->
+					</div>
+					<div style="text-align:center;overflow:hidden;margin-top:30px;"><a href="javascript:;" style="display:none;" id="yesBtn" class="sb_add_btn active">确认添加</a></div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>	
+	
+	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.xid = Utils.getQueryString("xid") || "";//从稽查发现或稽查任务页面传来 传项目id
+	g.xname = Utils.getQueryString("xname") || "";//从稽查发现或稽查任务页面传来 传项目名称
+	if(g.xname != ''){g.xname = decodeURI(g.xname)}//解码
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	$('#addpromembtn').on('click',function(){shownewCenterSbox('pro')});//新增成员
+	loadPage();//加载页面
+	$('#sboxserBtn').on('click',sboxserBtnFunc);//弹窗添加新成员时搜索
+	$('.member_bg .mem_list').on('click','.mem_name',function(){
+		if($(this).hasClass('type2')){return false;}
+		var aid  = $(this).attr('aid') || '';console.log(aid);
+		shownewCenterSbox2(aid);
+	});//弹窗添加新成员时搜索
+	//切换申办方时自动搜索
+	$('.projectLs').on('mouseup','.choiseDanwei01 li',function(){
+		setTimeout(function(){
+			tableListShow();
+			var spaid = $('#headInput').attr('tipid') || '';//获取申办方id
+			Utils.offLineStore.set("sid",spaid,false);//存储申办方id
+		},600);
+	});
+	//返回到项目列表
+	$('#pro_name_span').on('click',function(){
+		var name = encodeURI(encodeURI(g.xname));//加密
+		location.href="renwu.html?xid="+g.xid+"&xname="+name;
+	});
+	
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		 $('#pro_name_span').html(g.xname);//给标题 项目名称赋值
+		tableListShow();//获取列表
+		
+	}
+
+	//改变时间 计算总天数
+	$('#startdate,#enddate').blur(function(){
+		computit();//计算总天数
+		
+	});
+	//定义时间插件公共方法
+	window.datemodule1 = {
+		  //format: 'YYYY-MM-DD hh:mm:ss',
+		  format: 'YYYY-MM-DD',
+		  max: '2099-06-16',
+		  istime: true,
+		  istoday: false,
+		  choose: function(datas){
+			computit();//计算总天数
+		  }
+	 }
+	//计算总天数
+	function computit(){
+		var res = 0;
+		var startdate = $('#startdate').val() || '';
+		var enddate = $('#enddate').val() || '';
+		var a = Date.parse(new Date(startdate));//日期时间转成时间戳
+		var b = Date.parse(new Date(enddate));//日期时间转成时间戳
+		if(startdate != '' && enddate != '' && a > b){Utils.alert('开始时间不能小于结束时间');return false;}
+        //计算出相差天数
+		var date3 = new Date(enddate.replace(/-/g, "/")).getTime() - new Date(startdate.replace(/-/g, "/")).getTime();   //时间差的毫秒数
+        var days = Math.floor(date3/(24*3600*1000));
+		if(startdate != '' && enddate != ''){res = days+1;}
+		$('#comdate').html(res);
+	}
+	//显示修改窗口
+	function shownewCenterSbox2(aid){
+		//reloadSbox();//初始化弹窗
+		$('.xiugaizhongxin .sbox_h4 .tspan').html('修改成员');
+		editmember(aid);
+		$('#yesBtn').attr('aid',aid);
+		showSbox('.xiugaizhongxin');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc('change',$(this))});
+	}
+	//获取需要修改的edit信息
+	function editmember(aid){
+		var aid = aid || '';
+		var condi = {};
+		condi.id  = aid;
+		var url = Base.serverUrl + "open/platform/members/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || {};
+					var d = data || {};
+					var name = d.name || '';
+					var title = d.title || '';
+					var start_time = getDate(d.start_time || '',2);
+					var end_time = getDate(d.end_time || '',2);
+					var head = d.icons || '../public/img/head_big.png';
+					var html = '<span class="sb_usr_ico"><img class="sb_usr_img" src="'+head+'"/></span>'
+							+'<span class="sb_usr_name">'+name+'</span>';
+					$('#tips_mm').html(html).show();
+					$('#titleinput').val(title);
+					$('#startdate').val(start_time);
+					$('#enddate').val(end_time);
+					$('#yesBtn,#titleinput,.setyouxiaoqi').show();
+					$('.lable_ll,.sinput_div').hide();
+					computit();//计算总天数
+				}
+				else{
+					var msg = data.message || "修改失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//blur 修改用户title
+	function memberBlurFunc(){
+		var aid = $(this).attr('aid') || '';
+		var title = $(this).val() || '';
+		var condi = {};
+		condi.id  = aid;
+		condi.title  = title;
+		var url = Base.serverUrl + "open/platform/members/update";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					
+				}
+				else{
+					var msg = data.message || "修改失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//弹窗添加新成员时搜索
+	function sboxserBtnFunc(){
+		var sboxserBtn_input = $('#sboxserBtn_input').val() || '';
+		sboxserBtn_input = trim2(sboxserBtn_input);
+		if(sboxserBtn_input == ''){Utils.alert('请输入手机号再搜索！');return false;}
+		var condi = {};
+		condi.phone  = sboxserBtn_input;
+		var url = Base.serverUrl + "open/user/searchUser";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || '';
+					var html = '';
+					var userLength = data.length || 0;
+					var uid = '';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || {};
+						var id = d.id || '';
+						var name = d.name || '';
+						var title = d.title || '';
+						uid = id;
+						var head = d.icons || '../public/img/head_big.png';
+						html += '<span class="sb_usr_ico"><img class="sb_usr_img" src="'+head+'"/></span>'
+								+'<span class="sb_usr_name">'+name+'</span>';
+						
+					}
+					//判断搜索结果
+					if(userLength <= 0){//搜索失败
+						$('#null_tips').show();
+						$('#tips_mm,#yesBtn,#titleinput,.setyouxiaoqi').hide();
+						setTimeout(function(){$('#null_tips').fadeOut(200);},1000);//逐渐消失提示
+					}else{//搜索成功
+						$('#tips_mm').html(html).fadeIn(200);
+						$('#null_tips').hide();
+						$('#yesBtn,#titleinput,.setyouxiaoqi').fadeIn(200).attr('aid',uid);
+					}
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					Utils.alert(msg);
+					$('#tips_mm').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#tips_mm').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+	
+
+	//初始化弹窗
+	function reloadSbox(){
+		$('#yesBtn').removeAttr('aid');
+		$('#null_tips').hide();
+		$('.lable_ll,.sinput_div').show();
+		$('#tips_mm,#yesBtn,#titleinput,.setyouxiaoqi').hide();
+		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		//$('#yesBtn').off().show();
+		$('.xiugaizhongxin input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.xiugaizhongxin select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	//显示新建窗口
+	function shownewCenterSbox(is,rid){
+		var rid = rid || '';//添加任务成员按钮传来 传任务id
+		reloadSbox();//初始化弹窗
+		$('.xiugaizhongxin .sbox_h4 .tspan').html('添加成员');
+		showSbox('.xiugaizhongxin');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc(is,$(this),rid)});
+	}
+	//新建或修改
+	window.centerFunc = function(is,obj,rid){
+		var obj = obj || {};
+		var is = is || '';
+		var rid = rid || '';//添加任务成员按钮传来 传任务id
+		var aid = obj.attr('aid') || '';
+		var startdate = $('#startdate').val() || '';
+		var enddate = $('#enddate').val() || '';
+		var titleinput = $('#titleinput').val() || '';
+		var spaid = $('#headInput').attr('tipid') || '';//获取申办方id
+		//if(spaid == ''){Utils.alert('申办方不能为空！');return false;}
+		if(aid == ''){Utils.alert('用户id不能为空！');return false;}
+		if(is == 'ren' && rid == ''){Utils.alert('任务id不能为空！');return false;}
+		$('#yesBtn').off();
+		var condi = {};
+		condi.sponsor_id  = spaid;
+		condi.project_id  = g.xid;
+		condi.user_id  = aid;
+		condi.id  = aid;
+		condi.task_id  = rid;
+		condi.start_time  = startdate;
+		condi.end_time  = enddate;
+		condi.title  = titleinput;
+		condi.role  = is == 'pro' ? '项目成员' :'任务成员';
+		var url = Base.serverUrl + "open/platform/members/add";
+		if(is == 'change'){url = Base.serverUrl + "open/platform/members/update";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					Utils.alert(tips);
+					tableListShow();//列表
+					closeSbox();//关闭弹窗
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					Utils.alert(msg);
+					$('#yesBtn').off().on('click',function(){centerFunc('new')});
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#yesBtn').off().on('click',function(){centerFunc('new')});
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//获取列表
+	function tableListShow(){
+		var spaid = $('#headInput').attr('tipid') || '';//获取申办方id
+		var condi = {};
+		condi.sponsor_id = spaid;
+		condi.project_id = g.xid;
+		//condi.page = g.nowPage;//当前页
+		//condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "open/platform/members/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				g.totalPage = data.totalPages || 0;//总页数
+				g.totalElements = data.totalElements || 0;//总数
+				
+				if(status){
+					var data = data.result || {};
+					var data1 = data.projectMember || [];
+					var html = '',html2 = '';
+					//遍历项目成员
+					for(var i=0,len=data1.length;i<len;i++){
+						var d = data1[i] || {};
+						var id = d.id || '';
+						var name = d.name || '';
+						var title = d.title || '';
+						var role = d.role || '';
+						var deleteable = d.deleteable || false;
+						var expire = d.expire || '';//有效期
+						//判断有效期
+						var expirestr = '',color = '';;
+						if(expire == 0){expirestr = '已过期';color="red";}
+						else if(expire > 0){expirestr = '剩余'+expire+'天';color="";}
+						var head = d.icons || '../public/img/head_big.png';
+						var _class = '',_class2 = '',_read = '',_sstr = '';
+						if(deleteable){_sstr = 'can';}
+						html += '<li class="li '+_sstr+'">';
+							if(deleteable){
+								html +='<a onclick="deleteit(\''+id+'\')" href="javascript:;" class="memli_close"></a>';
+								_class = 'memberBlur';//可以修改
+							}else{expirestr = '';_class2 = 'type2';_read = 'readonly  disabled="disabled"';}//标识不能编辑
+							html += '<div class="mem_ico"><img class="mem_img" src="'+head+'"/></div>'
+							+'<div class="inline_div">'
+								+'<span aid="'+id+'" class="mem_name '+_class2+'">'+name+'</span>&nbsp;&nbsp;<span style="color:'+color+'">'+expirestr+'</span><br/>'
+								+'<input style="width:91px;" '+_read+' aid="'+id+'" readonly value="'+title+'" class="mem_tt '+_class+'" />'
+							+'</div>'
+						+'</li>';
+					}
+					$('#xmemberlist').html(html);
+					//遍历任务及任务成员
+					var data2 = data.taskInfo || [];
+					for(var i=0,len=data2.length;i<len;i++){
+						var xu = len - i;
+						var data21 = data2[i] || {};
+						var taskUsers = data21.taskUsers || [];
+						var center_name = data21.center_name || '';
+						var task_code = data21.task_code || '';
+						var task_id = data21.task_id || '';
+						html2+='<div class="one_ren">'
+								+'<div class="tbtn_div">'
+									//+'<span class="td_tt3">'+xu+'</span>'
+									+'<span class="td_tt4">'+task_code+'</span>'
+									+'<a href="javascript:;" onclick="addtaskmem(\''+task_id+'\')" class="btn">新增成员</a>'
+								+'</div>'
+								+'<ul class="mem_list">';
+
+						for(var j=0,lenj=taskUsers.length;j<lenj;j++){
+							var dj = taskUsers[j] || {};
+							var id = dj.id || '';
+							var name = dj.name || '';
+							var title = dj.title || '';
+							var role = dj.role || '';
+							var deleteable = dj.deleteable || false;
+							var expire = dj.expire || '';//有效期
+							//判断有效期
+							var expirestr = '',color = '';;
+							if(expire == 0){expirestr = '已过期';color="red";}
+							else if(expire > 0){expirestr = '剩余'+expire+'天';color="";}
+							var head = dj.icons || '../public/img/head_big.png';
+							var _class = '',_class2 = '',_read = '',_sstr = '';
+							if(deleteable){_sstr = 'can';}
+							html2 += '<li class="li '+_sstr+'">';
+								if(deleteable){
+									html2 +='<a onclick="deleteit(\''+id+'\')" href="javascript:;" class="memli_close"></a>';
+									_class = 'memberBlur';//可以修改
+								}else{expirestr = '';_class2 = 'type2';_read = 'readonly  disabled="disabled"';}//标识不能编辑
+								html2 += '<div class="mem_ico"><img class="mem_img" src="'+head+'"/></div>'
+								+'<div class="inline_div">'
+									+'<span aid="'+id+'" class="mem_name '+_class2+'">'+name+'</span>&nbsp;&nbsp;<span style="color:'+color+'">'+expirestr+'</span><br/>'
+									+'<input style="width:91px;" '+_read+' aid="'+id+'" readonly value="'+title+'" class="mem_tt '+_class+'" />'
+								+'</div>'
+							+'</li>';
+						}
+						html2+='</ul></div>';
+					}	
+					$('#rmemberlist').html(html2);
+					
+					
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+					$('#tablecontent').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#tablecontent').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//添加任务成员
+	window.addtaskmem = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('任务id不能为空！');return false;}
+		shownewCenterSbox('ren',id);//弹出添加成员窗口
+	}
+	
+	//删除
+	window.deleteit = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "open/platform/members/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	} 
+	
+});
+</script>
+</html>

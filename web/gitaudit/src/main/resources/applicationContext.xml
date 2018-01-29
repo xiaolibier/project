@@ -1,0 +1,232 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射-->
+	<mvc:annotation-driven/>
+
+	<!--servlet在找页面时，走的是dispatcherServlet路线。找不到的时候会报404,加上这个默认的servlet时候，servlet在找不到的时候会去找静态的内容-->
+	<mvc:default-servlet-handler/>
+
+	<!-- 这样根目录下面的resource的文件(.css,.js等)就不会被spring的DispatchServlet进行过滤,可以简化为 <mvc:default-servlet-handler />
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>-->
+
+	<!-- use annotation -->
+	<context:annotation-config/>
+
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀  -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!--<property name="prefix" value="/html/"/>-->
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+	<!-- 使用我们的代码，不能加下面的内容 -->
+	<!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+		<!--&lt;!&ndash; 默认编码 (UTF-8) &ndash;&gt;-->
+		<!--<property name="defaultEncoding" value="utf-8" />-->
+		<!--&lt;!&ndash;&lt;!&ndash; 设置上传文件的最大尺寸为2G,单位K 注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 &ndash;&gt;&ndash;&gt;-->
+		<!--&lt;!&ndash;<property name="maxUploadSize" value="2147483648"/>&ndash;&gt;-->
+	<!--</bean>-->
+
+	<!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+	<!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的，而且此时还没有进入到Controller方法中 -->
+	<!--<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+		<!--<property name="exceptionMappings">-->
+			<!--<props>-->
+				<!--&lt;!&ndash; 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 &ndash;&gt;-->
+				<!--<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">common/error_fileupload</prop>-->
+			<!--</props>-->
+		<!--</property>-->
+	<!--</bean>-->
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:DB.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!--<bean id="jndicms" class="java.lang.String">-->
+		<!--<constructor-arg>-->
+			<!--<value>java:comp/env/com.3audit.datasource.audit</value>-->
+		<!--</constructor-arg>-->
+	<!--</bean>-->
+
+	<!--<bean id="dataSource"  class="org.springframework.jndi.JndiObjectFactoryBean" >-->
+		<!--<property name="jndiName" value="java:comp/env/com.3audit.datasource.audit"></property>-->
+	<!--</bean>-->
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName">
+			<value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:sqlserver://118.190.132.68:1433;DatabaseName=audit;SelectMethod=cursor</value>
+		</property>
+		<property name="username">
+			<value>sa</value>
+		</property>
+		<property name="password">
+			<value>1234563audit</value>
+		</property>
+		<property name="maxActive">
+			<value>255</value>
+		</property>
+		<property name="maxIdle">
+			<value>2</value>
+		</property>
+		<property name="maxWait">
+			<value>120000</value>
+		</property>
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+			</props>
+		</property>
+		<property name="mappingLocations">
+			<value>classpath:*.hbm.xml </value>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 配置事务通知属性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- 定义事务传播属性 -->
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="edit*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="new*" propagation="REQUIRED" />
+			<tx:method name="set*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="restore*" propagation="REQUIRED" />
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="load*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="serviceOperation" expression="execution(* com.zhb..*Service*.*(..))" />
+		<!--<aop:pointcut id="managerOperation" expression="execution(* com.zhb..*Manager*.*(..))" />-->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
+		<!--<aop:advisor advice-ref="txAdvice" pointcut-ref="managerOperation" />-->
+
+		<!--&lt;!&ndash; 在调用每个manager方法时，校验是否需要同步memcached数据 &ndash;&gt;-->
+		<!--&lt;!&ndash;<aop:aspect id="managerMcUpdateCheckAspect" ref="managerMcUpdateChecker">&ndash;&gt;-->
+			<!--&lt;!&ndash;<aop:pointcut id="managerMcUpdateCheckPointCut" expression="execution(* com.dayangit..*Manager.*(..))"/>&ndash;&gt;-->
+			<!--&lt;!&ndash;<aop:before method="check"  pointcut-ref="managerMcUpdateCheckPointCut"/>&ndash;&gt;-->
+		<!--&lt;!&ndash;</aop:aspect>&ndash;&gt;-->
+
+		<!--&lt;!&ndash; 在调用每个controller方法时，重置校验ManagerMcUpdateChecker中当前线程的已校验的manager名称,避免线程池复用线程影响校验 &ndash;&gt;-->
+		<!--&lt;!&ndash;<aop:aspect id="resetManagerMcUpdateCheckAspect" ref="managerMcUpdateChecker">&ndash;&gt;-->
+			<!--&lt;!&ndash;<aop:pointcut id="resetManagerMcUpdateCheckPointCut" expression="execution(public * com.dayangit..*Controller.*(..))"/>&ndash;&gt;-->
+			<!--&lt;!&ndash;<aop:before method="reset"  pointcut-ref="resetManagerMcUpdateCheckPointCut"/>&ndash;&gt;-->
+		<!--&lt;!&ndash;</aop:aspect>&ndash;&gt;-->
+	</aop:config>
+
+	<!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射-->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<!-- 处理responseBody 里面日期类型 -->
+			<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper">
+					<bean class="com.fasterxml.jackson.databind.ObjectMapper">
+						<property name="dateFormat">
+							<bean class="java.text.SimpleDateFormat">
+								<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
+							</bean>
+						</property>
+					</bean>
+				</property>
+			</bean>
+			<!-- StringHttpMessageConverter中的编码问题 -->
+			<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+						<value>text/plain;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/css/**"/>
+			<mvc:exclude-mapping path="/js/**"/>
+			<mvc:exclude-mapping path="/img/**"/>
+			<mvc:exclude-mapping path="/fonts/**"/>
+			<mvc:exclude-mapping path="/thirdparty/**"/>
+			<bean id="loginInterceptor" class="com.zhb.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/css/**"/>
+			<mvc:exclude-mapping path="/js/**"/>
+			<mvc:exclude-mapping path="/img/**"/>
+			<mvc:exclude-mapping path="/fonts/**"/>
+			<mvc:exclude-mapping path="/thirdparty/**"/>
+			<bean id="logInterceptor" class="com.zhb.interceptor.LogInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+
+	<!-- 这样根目录下面的resource的文件(.css,.js等)就不会被spring的DispatchServlet进行过滤 -->
+	<!--单独部署cre时打开注释-->
+	<!--<mvc:resources location="/resources/" mapping="/resources/**"/>-->
+	<!--<mvc:resources mapping="/servlet/**" location="/servlet/" />
+    <mvc:resources mapping="/services/**" location="/services/" />
+    <mvc:resources mapping="/axis2-admin/**" location="/axis2-admin/" />
+    <mvc:resources mapping="/axis2-web/**" location="/axis2-web/" />-->
+
+	<!-- 对 web 包中的所有类进行扫描，以完成 Bean 创建和自动依赖注入的功能 -->
+	<context:component-scan base-package="com.zhb"/>
+
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀  -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/jsp/"/>
+    </bean>
+
+	<import resource="data/module.xml"></import>
+	<import resource="data/stage.xml"></import>
+	<import resource="data/table.xml"></import>
+	<import resource="data/limitedWord.xml"></import>
+	<import resource="data/scoreItem.xml"></import>
+	<import resource="data/privilege.xml"></import>
+	<import resource="data/mainCategory.xml"></import>
+</beans>

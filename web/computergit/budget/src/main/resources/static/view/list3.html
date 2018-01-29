@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title>经纬传奇稽查报价系统</title>
+	
+</head>
+<body class="xiangmuguanli">
+	<ul class="choiseDanwei choiseDanwei4">
+		<li>加载失败</li>
+	</ul>
+	<!-- <h4 class="page_title"></h4> -->
+	<div class="btn_div">
+		<!-- <input id="serial" style="width:180px;" class="com_input com_input1 com_input0" placeholder="保密协议编号" type="text" />
+		<input id="sponsor" style="width:180px;" class="com_input com_input1" placeholder="申办方" type="text" />
+		<input id="name" style="width:180px;" class="com_input com_input2" style="width:228px;" placeholder="项目名称" type="text" />
+		<input id="maker" style="width:180px;" class="com_input com_input1" placeholder="创建人" type="text" />
+		<div style="margin-top:10px;">&nbsp;&nbsp;<span class="m_lable">创建时间</span>
+			<input class="com_input com_input3" style="width:180px;" id="start_time" placeholder="起" type="text" />
+			<input class="com_input com_input4" style="width:180px;" id="end_time" placeholder="止" type="text" />
+			<a id="srBtn" class="top_btn">搜索</a>
+			<a id="srAllBtn" mark="all" class="top_btn">全部</a>
+		</div> -->
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">预算项目编号</span>
+					<input id="serial" class="com_input com_input1 com_input0" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">项目名称</span>
+					<input id="name" class="com_input com_input2" style="width:228px;" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">申办方-编号</span>
+					<input id="sponsor" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">创建人</span>
+					<input id="maker" class="com_input com_input1" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">创建时间</span>
+					<input class="com_input com_input3" id="start_time" placeholder="起" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">创建时间</span>
+					<input class="com_input com_input4" id="end_time" placeholder="止" type="text" />
+				</td>
+				<td>
+					<!-- <span class="sear_lable">状态</span>
+					<input id="static" class="com_input com_input1 seldown" type="text" /> -->
+				</td>
+				<td class="searBtnTd">
+					<a id="srBtn" class="top_btn">搜索</a>
+					<a id="srAllBtn" mark="all" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		<!-- <a class="creat_forse button button--moema button--text-thick button--text-upper button--size-s" id="" >导出</a> -->
+		<a id="new_project" style="margin-right:35px;" class="creat_forse type2">新增协议</a>
+	</div>
+	<div id="listTable" class="table_div">
+		<table class="table1">
+			
+		</table>
+	</div>
+	
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+        </div>
+    </div>
+		<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+		
+			<div class="sbox xiugaizhongxin">
+				<h4 class="sbox_h4">编辑保密协议</h4>
+				<div class="sbox_c"><span class="slable">申办方</span><i class="star">*</i><input id="shenbanfangsbox" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">项目名称</span><i class="star">*</i><input id="xianmgunamesbox" class="sbox_input" type="text"/></div>			
+				<div style="display:none;" class="sbox_c showhide"><span class="slable">协议编号</span><i class="star"></i><input id="xieyinumsbox" class="sbox_input" type="text"/></div>			
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+			
+		</div>
+	</div>	
+	
+	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/js/list3.js"></script>
+	<script type="text/javascript">
+			$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+			$('#menu_show_t .s0',parent.document).html('保密编号管理').addClass('active');
+	</script>
+</body>
+</html>

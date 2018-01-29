@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>北京经纬传奇医药科技有限公司--专业团队</title>
+<link href="__PUBLIC__/css/style.css" type="text/css" rel="stylesheet">
+<link href="__PUBLIC__/css/top_bottom_Public.css" rel="stylesheet" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body class="bj">
+<!--header开始-->
+ <include file="Index:top" />
+<!--header结束-->
+
+<!--医学经理开始-->
+<section class="jianjie_center clear">
+ <include file="Index:leftteam" />
+  <div class="jianjie_center_right fr">
+    <div class="rt_top"><a>当前位置：</a><a href="{:U('index')}">首页</a> > <a href="{:U('team')}">专业团队</a> > {$datas["Main_Name"]}</div>
+    <span><img src="__PUBLIC__/img/dui.png"></span>
+
+     <div class="dui_cr_top">
+	 
+	 <volist name="colnews" id="vo">
+	 		 <span>
+       <img src="__SYSWEB__/Uploads/{$vo.Col_Pic}">
+       <i>专家名称：{$vo.Col_Title}<h4>{$vo.Col_Editor}</h4></i>
+	  <br><font> {$vo.Col_Content|htmlspecialchars_decode|cutstr_html=80}</font>
+       </span>
+	 </volist>
+      
+	   
+	 
+     </div>
+
+</div>
+</section>
+
+<!--footer开始-->
+ <include file="Index:footer" />
+</div>
+<!--footeR结束-->
+</body>
+</html>
+<script type="text/javascript">$("#{$datas["Main_ID"]}").addClass('hover');$("#team").addClass('current');</script>

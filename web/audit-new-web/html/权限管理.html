@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli quanxianguanli">
+	<!-- <h4 class="page_title">权限管理</h4> -->
+	<div class="m_info">
+		<a class="creat_forse" id="newCenter" >添加权限</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<!-- <table class="table1">
+			<tr>
+				<th>权限名称</th>
+				<th>类型</th>
+				<th>权限值</th>
+				<th>路径</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>└─项目管理</td>
+				<td>目录</td>
+				<td>asdfg</td>
+				<td></td>
+				<td>正常</td>
+				<td class="last">
+					<a class="cao_btn cao_btn2">修改</a>
+					<a class="cao_btn cao_btn3">删除</a>
+					<a class="cao_btn cao_btn1">新增子项</a>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;├─新建项目</td>
+				<td>按钮</td>
+				<td>afasdf</td>
+				<td></td>
+				<td>正常</td>
+				<td class="last">
+					<a class="cao_btn cao_btn2">修改</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;├─项目管理</td>
+				<td>菜单</td>
+				<td>asdfg</td>
+				<td>xiangmuguanli.html</td>
+				<td>正常</td>
+				<td class="last">
+					<a class="cao_btn cao_btn2">修改</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr>
+		</table> -->
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+			<div class="sbox xiugaizhongxin">
+				<h4 class="sbox_h4">权限管理</h4>
+				<div class="sbox_c"><span class="slable">权限名称</span><i class="star">*</i><input id="quanxianName" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">类型</span><i class="star">*</i>
+					<select id="leixing" class="sbox_select">
+						<option value="目录">目录</option>
+						<option value="菜单">菜单</option>
+						<option value="按钮">按钮</option>
+					</select>
+				</div>
+				<div style="display:none;" class="sbox_c shangjidiv"><span class="slable">所属上级</span><i class="star">*</i>
+					<select id="suoshushangji" class="sbox_select">
+						<option value="目录">所属上级</option>
+					</select>
+				</div>
+				<div class="sbox_c"><span class="slable">权限值</span><i class="star"></i><input id="quanxianzhi" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">路径</span><i class="star"></i>
+					<select id="lujing" class="sbox_select">
+						<option value="">路径</option>
+					</select>
+				</div>
+				<!-- <div class="sbox_c"><span class="slable">状态</span><i class="star">*</i>
+					<select id="zhuangtai" class="sbox_select">
+						<option value="1">正常</option>
+						<option value="0">停用</option>
+					</select>
+				</div> -->
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	//$('#menu_show_t .s0',parent.document).html('系统管理');
+	$('#menu_show_t .s0',parent.document).html('权限管理').addClass('active');
+	$('#newCenter').on('click',function(){shownewCenterSbox('new')});
+	getUrl();//填充弹窗URL
+	reloadSbox();
+	tableListShow();//显示列表
+	setsuoshusahngji();//填充弹窗的所属上级项
+	
+/* **************************************** setTing ******************************************** */	
+	
+	//判断选中的是不是目录 隐藏 显示所属上级选项
+	$('#leixing').change(function(){
+		var _v = $(this).val() || '';
+		if(_v == '目录'){
+			$('#suoshushangji').val('');
+			$('.shangjidiv').slideUp();
+		}else{
+			$('.shangjidiv').slideDown();
+		}
+	});
+	//填充所属上级
+	function setsuoshusahngji(){
+		var condi = {};
+		condi.number = 1000;
+		var url = Base.serverUrl + "privilege/getAll1";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.content;
+					var html = '<option value="">所属上级</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var level = d.level || '';
+						var name = d.name || '';//名称
+						if(level == '3'){continue;}//所属上级排除按钮
+						if(level == '2'){name = '&nbsp;&nbsp;&nbsp;&nbsp;' + name;}
+						html+='<option  value="'+id+'">'+name+'</option>';
+					}	
+					$('#suoshushangji').html(html);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//给Url填充值
+	function getUrl(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		var url = Base.serverUrl + "privilege/getUrls";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data;
+					var html = '<option value="">选择URL</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var name = con[i] || '';
+						
+						html+='<option value="'+name+'">'+name+'</option>';
+					}	
+					$('#lujing').html(html);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+
+	//初始化弹窗
+	function reloadSbox(){
+		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		$('#noBtn').html('取消');
+		$('#yesBtn').off().show();
+		$('.xiugaizhongxin input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.xiugaizhongxin select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	//显示新建窗口
+	window.shownewCenterSbox = function(ne,id){
+		var ne = ne || 'new';
+		var id = id || '';
+		reloadSbox();//初始化弹窗
+		$('.xiugaizhongxin .sbox_h4').html('添加权限');
+		$('#suoshushangji').val(id);
+		showSbox('.xiugaizhongxin');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc(ne,id)});
+	}
+	//新建
+	window.centerFunc = function(is,id){
+		var is = is || '';
+		var id = id || '';
+		var quanxianName = $('#quanxianName').val() || '';
+		var leixing = $('#leixing').val() || '';
+		var pid = $('#suoshushangji').val() || '';
+		var quanxianzhi = $('#quanxianzhi').val() || '';
+		var lujing = $('#lujing').val() || '';
+		var zhuangtai = $('#zhuangtai').val() || '';
+		if(quanxianName == ''){Utils.alert('权限名称不能为空！');return false;}
+		if(leixing == ''){Utils.alert('类型不能为空！');return false;}
+		if(leixing != '目录' && pid == ''){Utils.alert('所属上级不能为空！');return false;}
+		//if(quanxianzhi == ''){Utils.alert('权限值不能为空！');return false;}
+		//if(lujing == ''){Utils.alert('路径不能为空！');return false;}
+		//if(zhuangtai == ''){Utils.alert('状态不能为空！');return false;}
+		//$('#yesBtn').off();
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		condi.name  = quanxianName;
+		condi.type  = leixing;
+		condi.value  = quanxianzhi;
+		condi.url  = lujing;
+		//condi.state = zhuangtai;
+		condi.platform = '稽查系统';
+		if(leixing == '目录'){pid = 0;}
+		condi.pid = pid;
+		//if(is == 'new'){condi.pid = '0';}
+		//if(is == 'new2'){condi.pid = id;}
+		var url = Base.serverUrl + "privilege/add";
+		if(is == 'change'){condi.id = id;url = Base.serverUrl + "privilege/update";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					if(is == 'change'){tips = '修改成功！';}
+					Utils.alert(tips);
+					tableListShow(2);//列表
+					closeSbox();//关闭弹窗
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow();//列表
+	 }
+	 
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "privilege/getAll";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共模块数
+					$('#totalElements').html(totalElements);
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:58px;">权限名称</th>'
+							+'<th style="min-width:58px;">类型</th>'
+							+'<th style="min-width:58px;">权限值</th>'
+							+'<th style="min-width:58px;">路径</th>'
+							//+'<th style="min-width:58px;">状态</th>'
+							+'<th style="min-width:156px;">操作</th>'
+						+'</tr>';
+					var con = data || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var pid = d.pid || '';
+						var name = d.name || '';//名称
+						var type = d.type || '';//
+						var value = d.value || '';//
+						var url = d.url || '';//
+						var state = d.state || '';//
+						var state_str = d.state_str || '';//
+						var level = d.level || '';
+						var lstr = '';
+						switch(level){
+							case 1:lstr = '└─ ';break;
+							case 2:lstr = '&nbsp;&nbsp;&nbsp;&nbsp;├─ ';break;
+							case 3:lstr = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── ';break;
+							default:break;
+						}
+						var string = '';
+						if(level != '1'){string = 'style="display:none;"';}
+						html+='<tr '+string+' class="slide'+id+' level'+level+' show">'
+							+'<td>'+lstr+name+'</td>'
+							+'<td>'+type+'</td>'
+							+'<td>'+value+'</td>'
+							+'<td>'+url+'</td>'
+							//+'<td>'+state_str+'</td>'
+							+'<td class="last">'
+								+ '<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn1">修改</a>'
+								+'<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>';
+							if(level != '3'){
+								html+='<a href="javascript:;" onclick="shownewCenterSbox(\'new2\',\''+id+'\')" class="cao_btn cao_btn2">新增子项</a>'
+								+'<a href="javascript:;" onclick="slideUp(\'slide'+id+'\')" class="cao_btn cao_btn4 shouqi">展开</a>';
+							}
+							html+='</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//收起 展开
+	window.slideUp = function(cla){
+		var cla = cla || '';
+		if(cla == ''){return false;}
+		$('.'+cla).toggleClass('show').nextUntil('.level1').fadeToggle(300);
+		if($('.'+cla).hasClass('show')){
+			$('.'+cla).find('.shouqi').html('展开');
+		}else{
+			$('.'+cla).find('.shouqi').html('收起');
+		}
+	}
+	//删除一项
+	window.deleteIt = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('分类id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "privilege/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//修改
+	window.change = function(id){
+		showOrChange(id,'change');
+	}
+
+	//查看或者修改的 公共方法
+	window.showOrChange = function(id,is){
+		var id = id || '';
+		var is = is || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "privilege/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					
+					reloadSbox();//初始化弹窗
+					//赋值
+					$('#quanxianName').val(d.name || '');
+					$('#leixing').val(d.type || '');
+					if(d.type != '目录'){
+						$('.shangjidiv').show();
+						$('#suoshushangji').val(d.pid || '');
+					}
+					$('#quanxianzhi').val(d.value || '');
+					$('#lujing').val(d.url || '');
+					$('#zhuangtai').val(d.state || '');
+					//弹窗
+					var tips = '';//判断弹窗标题
+					
+					if(is == 'review'){//弹窗是查看
+						tips = '权限详情';
+						$('#yesBtn').off().hide();
+						$('#noBtn').html('关闭');
+						$('.xiugaizhongxin input').attr('readonly',true).addClass('readonly');//清空
+						$('.xiugaizhongxin select').attr('disabled',true).addClass('readonly');//清空
+					}else{//弹窗是修改
+						tips = '修改权限';
+						$('#yesBtn').off().on('click',function(){centerFunc('change',id)});
+					}
+					$('.xiugaizhongxin .sbox_h4').html(tips);
+					showSbox('.xiugaizhongxin');//显示弹窗
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+});
+
+</script>
+</html>

@@ -1,0 +1,134 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<bean id="1" class="com.zhb.bean.ScoreItem">
+		<property name="name" value="1、临床试验质量的评估"></property>
+		<property name="questions">
+			<list>
+				<value>是否发生过重大的真实性问题（既往不良记录)？</value>
+				<value>是否发生重大方案违背？</value>
+				<value>受试者权益和安全是否能得到保障？</value>
+				<value>数据完整性是否能得到保障？</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="2" class="com.zhb.bean.ScoreItem">
+		<property name="name" value="2、PI对临床试验的重视程度评估"></property>
+		<property name="questions">
+			<list>
+				<value>PI是否清楚研究团队各人员的职责分工？</value>
+				<value>PI是否清楚项目进展、方案违背、SAE及其他重大事件？</value>
+				<value>PI是否有浓厚的兴趣和充足的时间参与临床试验的决策？</value>
+				<value>PI是否足够重视临床试验的质量和受试者的权益和安全？</value>
+				<value>PI是否能够调动医院的资源支持临床试验？</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="3" class="com.zhb.bean.ScoreItem">
+		<property name="name" value="3、研究团队人员的专业性和GCP意识评估"></property>
+		<property name="questions">
+			<list>
+				<value>研究团队人员的资质是否符合要求？</value>
+				<value>研究者是否能保障受试者的安全和权益，发生SAE/AE时能及时妥善处理？</value>
+				<value>研究团队人员是否有积极、认真和负责任的态度，对受试者是否有认真、耐心和关心的态度，确保受试者依从性？</value>
+				<value>研究团队人员是否掌握GCP的基本要求？</value>
+				<value>临床试验机构是否掌握临床试验全过程的管理？</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="4" class="com.zhb.bean.ScoreItem">
+		<property name="name" value="4、研究人员是否有充足的时间参与临床试验的评估"></property>
+		<property name="questions">
+			<list>
+				<value>试验相关记录是否填写及时？</value>
+				<value>对于监查发现的问题是否处理及时？</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="5" class="com.zhb.bean.ScoreItem">
+		<property name="name" value="5、研究团队的培训效果评估"></property>
+		<property name="questions">
+			<list>
+				<value>研究中心是否有自发的GCP相关培训？</value>
+				<value>试验相关操作或人员变更时、发生方案违背等是否进行针对性的培训？</value>
+				<value>试验进行中是否进行必要的再培训？</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="6" class="com.zhb.bean.ScoreItem">
+		<property name="name" value="6、试验用药品/器械/文件的管理评估"></property>
+		<property name="questions">
+			<list>
+				<value>机构对试验用药品/器械/文件的管理是否到位？</value>
+				<value>研究中心是否有符合试验用药品/器械/文件储存条件的设施和场所？</value>
+				<value>试验用药品/器械/文件的管理相关SOP及制度是否完善？</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="7" class="com.zhb.bean.ScoreItem">
+		<property name="name" value="7、研究中心临床试验硬件设施评估"></property>
+		<property name="questions">
+			<list>
+				<value>是否有符合要求（使用记录、校准记录、合格证书等文件记录完整）的试验相关特殊仪器设备（如离心机、冰箱、恒温箱等）？</value>
+				<value>试验相关检查结果（包含HIS/LIS系统）是否均可溯源？</value>
+				<value>研究中心是否有受试者接待室，有试验资料存放室和供监查的场所？</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="8" class="com.zhb.bean.ScoreItem">
+		<property name="name" value="8、研究中心体系建设评估"></property>
+		<property name="questions">
+			<list>
+				<value>是否存在完善合理的质量控制和质量管理体系？</value>
+				<value>是否存在SAE、突发事件的紧急处理预案？</value>
+				<value>试验机构是否有质控SOP和药物管理SOP，并按照规定执行？</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="9" class="com.zhb.bean.ScoreItem">
+		<property name="name" value="9、伦理委员会的工作流程和职责的评估"></property>
+		<property name="questions">
+			<list>
+				<value>伦理委员会成员组成和资质是否符合要求？</value>
+				<value>伦理委员会是否有独立的工作场所？</value>
+				<value>伦理委员会是否建立健全的工作流程体系，并按要求执行？</value>
+				<value>伦理委员会是否按照规定保存相关文件？</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="10" class="com.zhb.bean.ScoreItem">
+		<property name="name" value="10、	监查效果的评估"></property>
+		<property name="questions">
+			<list>
+				<value>研究团队是否积极配合监查？</value>
+				<value>监查发现的问题，是否能够及时、合理的处理？</value>
+				<value>监查发现的问题，经过处理（和培训）后，是否重复出现？</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

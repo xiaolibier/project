@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/select2/css/select2.min.css" />
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	<style>
+		.select2-container{float:right;margin-bottom:5px;}
+		.download_cho{border-radius:4px;overflow:hidden;border:1px solid #80c99d;background-color:#f8fffa;border-bottom:none;top:29px;left:0;position:absolute;display:inline-block;display:none;}
+		.download_cho li{cursor:pointer;border-bottom:1px solid #80c99d;float:left;clear:both;min-width:101px;display:inline-block;padding:2px 10px;color:#6b7875;}
+		.download_cho li:hover{color:#ffffff;background-color:#59ba73;}
+	</style>
+</head>
+<body class="xiangmuguanli">
+	<h4 style="background-color:#fffaeb;border-bottom:1px solid #ffe9a7;margin:1px 0 0;padding:6px 0 6px 20px;" class="page_title">
+		<span style="color:#ffa216;font-size:12px;" class="inf">（开启任务前必须上传文件类别为稽查计划和稽查方案的文件） </span>
+		<a class="creat_forse cao_btn4" id="downloadplaymodel" style="float:none;font-size:13px;position:relative;z-index:22;" href="javascript:;">
+			稽查计划模板下载
+			<ul class="download_cho">
+			</ul>
+		</a>
+	</h4>
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">文件类别</span>
+					<select id="filetype" class="com_select com_select3">
+						<option value="">全部类别</option>
+						<option value="稽查计划">稽查计划</option>
+						<option value="临床试验方案">临床试验方案</option>
+						<option value="稽查工具">稽查工具</option>
+						<option value="其它">其它</option>
+						<option value="变更需求确认表">变更需求确认表</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">文件名称</span>
+					<input id="filemingcheng" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					
+				</td>
+				<td class="searBtnTd">
+					<a id="searchBtn" class="top_btn">搜索</a>
+					<a id="searchAll" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		<a class="creat_forse" id="newCenter" >上传项目文件</a>
+	</div>
+	<div id="tableList" class="table_div">
+		
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	
+	
+	
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+		
+			<!--  -->
+			<div class="sbox uploadfilebox">
+				<h4 class="sbox_h4">上传项目文件<a href="javascript:;" onclick="closeSbox()" class="close_x"></a></h4>
+				<div class="sbox_c">
+					<span class="slable">上传文件</span><i class="star">*</i>
+					<div style="position:relative;">
+						<span style="position:relative;overflow:hidden;display:inline-block;">
+						<a id="uploadAbnt" style="margin-left:25px;font-size:13px;background-color:#59BA73;border:1px solid #59BA73;" href="javascript:;" class="sbox_btn btn2">选择文件</a>
+						<form enctype="multipart/form-data" method="post" id="fileForm" name="fileForm">
+							<input id="orderMaterialFile" name="file" style="width:90px;height:30px;" class="headUpload" type="file" />
+							<input id="filenameto" name="name" type="hidden" />
+						</form>	
+						</span>
+						<span id="firenamestr"></span>
+					</div>
+				</div>
+				<div class="sbox_c"><span class="slable">类型</span><i class="star"></i><input id="sleixing" class="sbox_input" style="border:none;" type="text"/></div>
+				<div class="sbox_c"><span class="slable">文件名称</span><i class="star">*</i><input id="swenjianmingchegn" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">文件类别</span><i class="star">*</i>
+					<select id="swenjianleibie" class="sbox_select" >
+						<option value="">全部类别</option>
+						<option value="稽查计划">稽查计划</option>
+						<option value="临床试验方案">临床试验方案</option>
+						<option value="稽查工具">稽查工具</option>
+						<option value="其它">其它</option>
+						<option value="变更需求确认表">变更需求确认表</option>
+					</select>
+				</div>
+				<div class="sbox_c"><span class="slable">版本号</span><i class="star"></i><input id="sbanbenhao" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">备注</span><i class="star"></i><textarea id="sbeizhu" class="sbox_input" style="height:60px;width:80%;" ></textarea></div>
+				<div class="sbox_btn_div">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+			<!--  -->
+			
+		</div>
+	</div>	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/libs/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="../public/js/jquery.form.js"></script>
+	<script type="text/javascript" src="../public/libs/download.js"></script>
+	<script type="text/javascript" src="../public/libs/qiniu.min.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.id = Utils.getQueryString("id") || "";//从项目管理 传来 传项目id
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.usrid = '';//存储用户id
+	
+/* **************************************** lodding ******************************************** */		
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('项目管理').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '项目管理.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 项目文件').addClass('active');
+	$('#newCenter').on('click',function(){shownewCenterSbox('new')});
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	$('#downloadplaymodel').on('click',function(e){
+		$('.download_cho').slideToggle();
+		stopPropagation(e);
+	});//显示下载模板列表
+	//关闭弹窗
+	$(document).click(function(e){
+		$('.download_cho').hide();
+		stopPropagation(e);
+	});
+	
+	tableListShow();//显示列表
+	getdownloadmodule();//获取下载 稽查计划模板
+	
+	//uploadToQiniu('uploadAbnt',1);//定义七牛云上传
+	/*uploader.bind('FileUploaded', function(up, file, info) {
+		var ty = file.type;
+		if(ty.indexOf('video') > -1){ty = '视频';}
+		else if(ty.indexOf('image') > -1){ty = '图片';}
+		else if(ty.indexOf('audio') > -1){ty = '音频';}
+		else if(ty.indexOf('text/plain') > -1){ty = '文本';}
+		else if(ty.indexOf('spreadsheetml') > -1){ty = 'excel';}
+		else if(ty.indexOf('wordprocessingml') > -1){ty = 'word';}
+		else if(ty.indexOf('word') > -1){ty = 'word';}
+		else if(ty.indexOf('pdf') > -1){ty = 'pdf';}
+		else if(ty.indexOf('presentationml') > -1){ty = 'ppt';}
+		$('#sleixing').val(ty);
+		$('#firenamestr').html(file.name);
+		$('#swenjianmingchegn').val(file.name);
+	});*/
+/* **************************************** setTing ******************************************** */	
+	
+	//上传文件到七牛云
+	/* 上传头像 */
+	$("#orderMaterialFile").change(function(){
+		var orderMaterialFile = $("#orderMaterialFile").val() || "";
+		if(orderMaterialFile != ""){
+			//uploadBtnUp();
+			uploadImage();
+		}
+	});
+	//上传头像 form 提交
+	function uploadImage(){
+		 var f = document.getElementById("orderMaterialFile").files;
+		 $('#filenameto').val(f[0].name);
+		 var form = $("#fileForm"); 
+		g.httpTip.show();
+		var options = { 
+			url: Base.serverUrl + "project/uploadFile",
+			xhrFields: { withCredentials: true }, 
+			crossDomain: true, 
+			dataType: 'json', 
+			success: function(data) { 
+				//alert("success： " + JSON.stringify(data));
+				var data = data.result || '';
+				var url = data.url || '';
+				var ty = f[0].type;
+				if(ty.indexOf('video') > -1){ty = '视频';}
+				else if(ty.indexOf('image') > -1){ty = '图片';}
+				else if(ty.indexOf('audio') > -1){ty = '音频';}
+				else if(ty.indexOf('text/plain') > -1){ty = '文本';}
+				else if(ty.indexOf('spreadsheetml') > -1){ty = 'excel';}
+				else if(ty.indexOf('wordprocessingml') > -1){ty = 'word';}
+				else if(ty.indexOf('word') > -1){ty = 'word';}
+				else if(ty.indexOf('pdf') > -1){ty = 'pdf';}
+				else if(ty.indexOf('presentationml') > -1){ty = 'ppt';}
+				$('#sleixing').val(ty);
+				$('#firenamestr').html(f[0].name);
+				$('#swenjianmingchegn').val(f[0].name);
+				$('#uploadAbnt').attr('src',url);
+				g.httpTip.hide();
+			}, 
+			error: function(err) {
+				Utils.alert("图片上传失败");
+				g.httpTip.hide();
+			} 
+		 }; 
+		 form.ajaxSubmit(options); 
+	 } 
+
+	//获取下载 稽查计划模板
+	function getdownloadmodule(){
+		var condi = {};
+		//condi.projectId = g.id;
+		var url = Base.serverUrl + "project/file/template";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					var html = '';
+					for(var i=0,len=d.length;i<len;i++){
+						var dd = d[i] || {};
+						var url = dd.url || '';
+						var name = dd.name || '';
+						if(url == ''){continue;}
+						html+='<li onclick="download(\''+url+'\',\''+name+'\')">'+name+'</li>';
+					}
+					$('.download_cho').html(html);
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+
+	//初始化弹窗
+	function reloadSbox(){
+		$('#uploadAbnt').attr('src','');
+		$('#firenamestr').html('');
+		$('.uploadfilebox input,.uploadfilebox textarea').val('');//清空弹窗
+		$('.uploadfilebox select').val('');//清空弹窗
+		$('#noBtn').html('取消');
+		$('#yesBtn').off().show();
+		$('.uploadfilebox input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.uploadfilebox select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	//显示新建窗口
+	function shownewCenterSbox(){
+		reloadSbox();//初始化弹窗
+		showSbox('.uploadfilebox');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc('new')});
+	}
+	//新建
+	window.centerFunc = function(is,id){
+		var is = is || '';
+		var id = id || '';
+		var sleixing = $('#sleixing').val() || '';
+		var swenjianmingchegn = $('#swenjianmingchegn').val() || '';
+		var swenjianleibie = $('#swenjianleibie').val() || '';
+		var sbanbenhao = $('#sbanbenhao').val() || '';
+		var sbeizhu = $('#sbeizhu').val() || '';
+		var firenamestr = $('#firenamestr').html() || '';
+		var src = $('#uploadAbnt').attr('src') || '';
+		if(src == ''){Utils.alert('文件不能为空！');return false;}
+		if(swenjianmingchegn == ''){Utils.alert('文件名称不能为空！');return false;}
+		if(swenjianleibie == ''){Utils.alert('文件类别不能为空！');return false;}
+		$('#yesBtn').off();
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.id  = id;
+		condi.projectId  = g.id;
+		//condi.name  = firenamestr;
+		condi.url   = src;
+		condi.type  = sleixing;
+		condi.name  = swenjianmingchegn;
+		condi.category  = swenjianleibie;
+		condi.version  = sbanbenhao;
+		condi.remark  = sbeizhu;
+		var url = Base.serverUrl + "project/file/info/upload";
+		if(is == 'change'){condi.id = id;url = Base.serverUrl + "project/file/info/update";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					if(is == 'change'){tips = '修改成功！';}
+					Utils.alert(tips);
+					tableListShow(2);//列表
+					closeSbox();//关闭弹窗
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					Utils.alert(msg);
+					$('#yesBtn').off().on('click',function(){centerFunc('new')});
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#yesBtn').off().on('click',function(){centerFunc('new')});
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		var filetype = $('#filetype').val() || '';
+		var filemingcheng = $('#filemingcheng').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.projectId = g.id;
+		if(is == 1 || is == 'pa'){//搜索
+			condi.category = filetype;
+			condi.name = filemingcheng;
+			g.loadPage = true;//开启分页
+		}else if(is == 2){//搜索全部
+			$('#filetype,#filemingcheng').val('');
+			g.loadPage = true;//开启分页
+		}
+		var url = Base.serverUrl + "project/file/search/user";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共模块数
+					$('#totalElements').html(totalElements);
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">编号</th>'
+							+'<th style="min-width:60px;">文件名称</th>'
+							+'<th style="min-width:60px;">文件类型</th>'
+							+'<th style="min-width:60px;">文件类别</th>'
+							+'<th style="min-width:45px;">版本号</th>'
+							+'<th style="min-width:45px;">上传人</th>'
+							+'<th style="min-width:45px;">上传时间</th>'
+							+'<th style="min-width:30px;">备注</th>'
+							+'<th style="min-width:150px;">操作</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var xu = totalElements - g.nowPage*g.showPages - i;
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var name = d.name || '';//名称
+						var type = d.type || '';//
+						var category = d.category || '';//
+						var version = d.version || '';//
+						var creator = d.creator || '';//
+						var createTime = getDate(d.createTime || '');//
+						var remark = d.remark || '';//
+						var url = d.url || '';//
+						html+='<tr>'
+							+'<td>'+xu+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td>'+type+'</td>'
+							+'<td>'+category+'</td>'
+							+'<td>'+version+'</td>'
+							+'<td>'+creator+'</td>'
+							+'<td>'+createTime+'</td>'
+							+'<td>'+remark+'</td>'
+							+'<td class="last">'
+								+ '<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn1">编辑</a>'
+								+'<a href="javascript:;" onclick="xiazaiFunc(\''+url+'\',\''+name+'\')" class="cao_btn cao_btn4">下载</a>'
+								+'<a href="javascript:;" onclick="deleteFunc(\''+id+'\')" class="cao_btn cao_btn3">删除</a>'
+							+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					//Utils.alert(msg);
+					$('#tableList').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+				$('#tableList').html('');
+			}
+		});
+	}
+
+	//修改
+	window.change = function(id){
+		showOrChange(id,'change');
+	}
+	//查看或者修改的 公共方法
+	window.showOrChange = function(id,is){
+		var id = id || '';
+		var is = is || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "project/file/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					
+					reloadSbox();//初始化弹窗
+					//赋值
+					$('#sleixing').val(d.type || '');
+					$('#swenjianmingchegn').val(d.name || '');
+					$('#swenjianleibie').val(d.category || '');
+					$('#sbanbenhao').val(d.version || '');
+					$('#sbeizhu').val(d.remark || '');
+					$('#uploadAbnt').attr('src',d.url || '');
+					
+					//弹窗
+					$('#yesBtn').off().on('click',function(){centerFunc('change',id)});
+					showSbox('.uploadfilebox');//显示弹窗
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	
+	//下载
+	window.xiazaiFunc = function(url,name){
+		if(!confirm('确认下载吗？')){return false;}
+		var url = url || '';
+		var name = name || '';
+		if(url == ''){Utils.alert('url不能为空！');return false;}
+		//download(url);//下载文件到本地
+		window.open(url);//下载文件到本地
+	}
+
+	//删除一项
+	window.deleteFunc = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "project/file/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	
+	
+		
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+	 
+	
+	
+});
+
+</script>
+</html>

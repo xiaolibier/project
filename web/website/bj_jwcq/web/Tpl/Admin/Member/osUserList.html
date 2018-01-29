@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="__SYSWEB__/images/skinv2.0.css" rel="stylesheet" type="text/css">
+<link href="__SYSWEB__/images/mainFrom.css" rel="stylesheet" type="text/css"/>
+<script language="javascript" src="__SYSWEB__/images/35Public.js"></script>
+<style type="text/css">
+<!--
+.STYLE2 {
+	color: #000000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+
+<body>
+<table border="0" cellpadding="0" cellspacing="0" style="WIDTH: 840px; HEIGHT: 380px">
+  <tr>
+    <td style="HEIGHT: 381px" valign="top" align="left" colspan="2"><div class="con-ico">
+      <div class="con-fl" style="height:30px;">当前位置：系统管理 &gt; 会员管理</div>
+    </div>
+    <form action="__APP__/Admin/Member/user_delete" method="post" name="form1" id="form1">
+      <table width="659" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      <table width="748" border="0" cellpadding="0" cellspacing="1" bgcolor="#cdcdcd">
+        <tr>
+          <td width="33" align="center" bgcolor="#f4f4f4" class="tdblodthnone"><span class="STYLE2">选择</span></td>
+          <td width="32" height="22" align="center" bgcolor="#f4f4f4" class="tdblodthnone"><span class="STYLE2">ID</span></td>
+          <td width="112" align="center" bgcolor="#f4f4f4" class="tdblodthnone"><span class="STYLE2">用户名</span></td>
+          <td width="159" align="center" bgcolor="#f4f4f4" class="tdblodthnone"><span class="STYLE2">用户邮箱</span></td>
+          <td width="104" align="center" bgcolor="#f4f4f4" class="tdblodthnone"><span class="STYLE2">用户电话</span></td>
+          <td width="63" align="center" bgcolor="#f4f4f4" class="tdblodthnone"><span class="STYLE2">状态</span></td>
+          <td width="85" align="center" bgcolor="#f4f4f4" class="tdblodthnone"><span class="STYLE2">新建时间</span></td>
+          <td width="151" align="center" bgcolor="#f4f4f4" class="tdblodthnone"><span class="STYLE2">操作</span></td>
+        </tr>
+        <volist name="info_detail" id="vo">
+        <tr bgcolor="#F4F4F4" onmouseover="this.style.backgroundColor=&quot;#FFFFFF&quot;" onmouseout="this.style.backgroundColor=&quot;&quot;">
+          <td height="21" align="center"><label>
+            <input name="nCID[]" type="checkbox" id="nCID" value="{$vo.SysU_ID}" />
+          </label></td>
+          <td height="21" align="center">&nbsp;{$vo.SysU_ID}</td>
+          <td align="center" id="CName_">&nbsp;{$vo.SysU_Username}</td>
+          <td align="center" id="EName_">&nbsp;{$vo.SysU_Email}</td>
+          <td align="center" id="EName_">&nbsp;{$vo.SysU_tel}</td>
+          <td align="center"><if condition="$vo.SysU_State  eq '1' "> <img src='__SYSWEB__/images/yes.gif'> <else/> <img src='__SYSWEB__/images/no.gif'> </if></td>
+          <td align="center">{$vo.SysU_CearTime}</td>
+          <td align="center" id="Submit_"><a href="__APP__/Admin/Member/osUserCreate?Save=Edit&id={$vo.SysU_ID}">编辑</a></td>
+        </tr>
+       </volist>
+        <tr>
+          <td height="28" colspan="11" bgcolor="#E2EEE1"><table width="75%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="7%" align="center"><input type="checkbox" name="chkall" value="on" onclick="CheckAll(this.form)" /></td>
+                <td width="23%"><b>全部选中(清空)</b></td>
+                <td width="17%"><input name="Submit" type="submit" class="Botton" id="Submit2" value="批量删除" onclick="return confirm('您确定要批量删除吗？');"/></td>
+                <td width="19%"><select name="NweState" id="NweState">
+                  <option value="1" selected="selected">True</option>
+                  <option value="0">False</option>
+                </select></td>
+                <td width="17%"><input name="Submit" type="submit" class="Botton" id="Submit" value="状态更改" onclick="return confirm('您确定要批更改状态吗？');"/></td>
+                <td width="17%"><input name="Submit" type="button" class="Botton" value="新建信息" onclick="window.location.href='__APP__/Admin/Member/osUserCreate?Save=Add';" /></td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr>
+          <td height="28" colspan="11" align="center" bgcolor="#E2EEE1">{$page} &nbsp;</td>
+        </tr>
+      </table>
+    </form></td>
+  </tr>
+</table>
+</body>
+</html>

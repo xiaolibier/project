@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli yijupingshen">
+	<h4 class="page_title">依据评审</h4>
+	<div class="btn_div">
+		<input class="com_input com_input1" placeholder="项目编号/任务编号" type="text" />
+		<select class="com_select com_select1"><option disabled selected>发起人</option></select>
+		<select class="com_select com_select2"><option disabled selected>稽查模块</option></select>
+		<select class="com_select com_select3"><option disabled selected>分类</option></select>
+		<input class="com_input com_input1" placeholder="问题归类" type="text" />
+		<select class="com_select com_select4"><option disabled selected>操作结果</option></select>
+		<a class="top_btn">搜索</a>
+		<a class="top_btn">全部</a>
+	</div>
+	<div class="m_info">
+		<a class="creat_forse active" id="" >待评审(23)</a>
+		<a class="creat_forse" id="" >已评审</a>
+	</div>
+	<div class="table_div">
+		<table class="table1">
+			<tr>
+				<th>任务编号</th>
+				<th>稽查模块</th>
+				<th>分类</th>
+				<th>问题归类</th>
+				<th>依据</th>
+				<th>发起人/发起时间</th>
+				<th>状态</th>
+				<th>操作人/操作时间</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>3AUDIT-0033-17031-1</td>
+				<td>保密性</td>
+				<td>数据保护(Confidentiality)</td>
+				<td>与研究无关或未授权人员查阅研究数据</td>
+				<td>SOP</td>
+				<td class="line_h"><span class="mess1">杨坤 / </span><br><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td>待评审</td>
+				<td class="line_h"><span class="mess1">杨坤 / </span><br><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">录入</a>
+					<a class="cao_btn cao_btn2">作废</a>
+				</td>
+			</tr>
+			<tr>
+				<td>3AUDIT-0033-17031-1</td>
+				<td>保密性</td>
+				<td>数据保护(Confidentiality)</td>
+				<td>与研究无关或未授权人员查阅研究数据</td>
+				<td>SOP</td>
+				<td class="line_h"><span class="mess1">杨坤 / </span><br><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td>已评审</td>
+				<td class="line_h"><span class="mess1">杨坤 / </span><br><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td class="last">已录入</td>
+			</tr>
+			<tr>
+				<td>3AUDIT-0033-17031-1</td>
+				<td>保密性</td>
+				<td>数据保护(Confidentiality)</td>
+				<td>与研究无关或未授权人员查阅研究数据</td>
+				<td>《试验方案》</td>
+				<td class="line_h"><span class="mess1">杨坤 / </span><br><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td>已评审</td>
+				<td class="line_h"><span class="mess1">杨坤 / </span><br><span class="mess1_date">2017-04-23 17:43:11</span></td>
+				<td class="last">作废</td>
+			</tr>
+			
+		</table>
+	</div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/index.js"></script> -->
+	
+</body>
+<script>
+$(function(){
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active');
+	$('#menu_show_t .s0',parent.document).html('评审任务');
+	$('#menu_show_t .s1',parent.document).html(' > 依据评审').addClass('active');
+
+
+});
+
+</script>
+</html>

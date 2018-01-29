@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli xinjianxiangmu">
+	<h4 class="page_title">新建项目</h4>
+	<div class="content_box1">
+		<div class="con_d"><span class="lable need">委托方</span><i class="x">*</i>
+			<input class="common_input common_inputr" type="text" />编号：<span>0068</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			联系人：<span>0068</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			联系电话：<span>0068</span>
+		</div>
+		<div class="con_d"><span class="lable need">CRO名称</span><i class="x">*</i><input class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">项目名称/题目</span><i class="x">*</i><input class="common_input common_input2" type="text" /></div>
+		<div class="con_d"><span class="lable need">药物/器械名称</span><i class="x">*</i><input class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">适应症</span><i class="x">*</i><input class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">注册分类</span><i class="x">*</i><input class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">项目类型</span><i class="x">*</i><select class="common_select"><option></option></select></div>
+		<div class="con_d"><span class="lable need">项目分期</span><i class="x">*</i>
+			<div class="check_box"><i class="i"></i>Ⅰ期</div>
+			<div class="check_box"><i class="i"></i>Ⅱ期</div>
+			<div class="check_box"><i class="i"></i>Ⅲ期</div>
+			<div class="check_box"><i class="i"></i>Ⅳ期</div>
+		</div>
+		<div class="con_d">
+			<span class="lable">中心实验室</span><i class="x">*</i><input class="common_input common_input3" type="text" />
+			<span class="lable lable2">检测单位</span><i class="x">*</i><input class="common_input common_input3" type="text" />
+		</div>
+		<div class="con_d">
+			<span class="lable">《实验方案》版本号</span><i class="x">*</i><input class="common_input common_input3" type="text" />
+			<span class="lable lable2">版本日期</span><i class="x"></i><input class="common_input common_input3" type="text" />
+		</div>
+		<div class="con_d">
+			<span class="lable">项目SOP版本号</span><i class="x">*</i><input class="common_input common_input3" type="text" />
+			<span class="lable lable2">版本日期</span><i class="x"></i><input class="common_input common_input3" type="text" />
+		</div>
+		<div class="con_d"><span class="lable need">项目启动函</span><i class="x">*</i><textarea class="common_textarea"></textarea></div>
+		<div class="con_d">
+			<span class="lable">受托方</span><input readonly class="common_input common_input3 readonly" type="text" />
+			<span class="lable lable2">地址</span><input readonly class="common_input common_input3 readonly" type="text" />
+		</div>
+		<div class="con_d">
+			<span class="lable">联系方式</span><input readonly class="common_input common_input3 readonly" type="text" />
+			<span class="lable lable2">手机</span><input readonly class="common_input common_input3 readonly" type="text" />
+		</div>
+		<div class="con_d">
+			<span class="lable">微信公众号</span><input readonly class="common_input common_input3 readonly" type="text" />
+			<span class="lable lable2">网址</span><input readonly class="common_input common_input3 readonly" type="text" />
+		</div>
+		<div class="con_d">
+			<span class="lable need">商务经理</span><i class="x">*</i><select class="common_select"><option></option></select>
+		</div>
+		<div class="con_d">
+			<span class="lable need">项目经理</span><i class="x">*</i><select class="common_select"><option></option></select>
+		</div>
+		<div class="btns_div"><a back='项目管理.html' class="common_abtn goback type1">取消</a><a class="common_abtn type2">创建</a></div>
+	</div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/index.js"></script> -->
+	
+</body>
+<script>
+$(function(){
+
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active');
+	$('#menu_show_t .s0',parent.document).html('项目管理');
+	$('#menu_show_t .s1',parent.document).html(' > 新建项目').addClass('active');
+	
+
+});
+
+</script>
+</html>

@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli xiangmufabu">
+	
+	<div id="choise_menu" class="m_info">
+		<a class="choise panel_lable active" val="Enrolment" >报名中(<span id="cmnum1" class="value">0</span>)</a>
+		<a class="choise panel_lable" val="Mine" >我的报名(<span id="cmnum2" class="value">0</span>)</a>
+		<a class="choise panel_lable renWuQiang_YiJieShu" val="Completed" >已结束(<span id="cmnum3" class="value">0</span>)</a>
+	</div>
+	<div id="choise_div2" style="display:none;" class="cm_bo">
+		<a href="javascript:;" val="all" class="cmb_a active">全部</a>
+		<a href="javascript:;" val="checked" class="cmb_a">已报名</a>
+		<a href="javascript:;" val="succeeded" class="cmb_a">报名成功</a>
+		<a href="javascript:;" val="failed" class="cmb_a last">报名失败</a>
+	</div>
+	<div id="tableList" class="table_div_list">
+		<!-- <div class="tdl_one">
+			<div class="to_title">依托考昔片</div>
+			<div class="to_text">稽查地点：<span>中国中医研究院西苑医院</span><span>入组早期</span></div>
+			<div class="to_text">稽查时间：<span>2017.11.18～2017.11.19</span></div>
+			<div class="to_text type2">招募职位：<span>稽查组长、稽查员</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已报名：<span>稽查组长3人、稽查员3人</span></div>
+			<div class="to_text type3">发布时间：<span>2017/11/24/17:05</span></div>
+			<a href="javascript:;" class="setBtn"></a>
+			<a href="javascript:;" class="setBtn type2"></a>
+			<a href="javascript:;" class="rvBtn type4">立即报名</a>
+		</div>
+		<div class="tdl_one">
+			<div class="to_title">依托考昔片</div>
+			<div class="to_text">稽查地点：<span>中国中医研究院西苑医院</span><span>入组早期</span></div>
+			<div class="to_text">稽查时间：<span>2017.11.18～2017.11.19</span></div>
+			<div class="to_text type2">招募职位：<span>稽查组长、稽查员</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已报名：<span>稽查组长3人、稽查员3人</span></div>
+			<div class="to_text type3">发布时间：<span>2017/11/24/17:05</span></div>
+			<a href="javascript:;" class="setBtn"></a>
+			<a href="javascript:;" class="setBtn type2"></a>
+			<a href="javascript:;" class="rvBtn type1">报名成功</a>
+		</div>
+		<div class="tdl_one maneger">
+			<div class="to_title">依托考昔片</div>
+			<div class="to_text type4">招募职位：<span>稽查组长、稽查员</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已报名：<span>稽查组长3人、稽查员3人</span></div>
+			<div class="to_text type3">发布时间：<span>2017/11/24/17:05</span></div>
+			<a href="javascript:;" class="setBtn"></a>
+			<a href="javascript:;" class="setBtn type2"></a>
+			<a href="javascript:;" class="rvBtn type2">已报名</a>
+		</div>
+		<div class="tdl_one fail">
+			<div class="to_title">依托考昔片</div>
+			<div class="to_text">稽查地点：<span>中国中医研究院西苑医院</span><span>入组早期</span></div>
+			<div class="to_text">稽查时间：<span>2017.11.18～2017.11.19</span></div>
+			<div class="to_text type2">招募职位：<span>稽查组长、稽查员</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已报名：<span>稽查组长3人、稽查员3人</span></div>
+			<div class="to_text type3">发布时间：<span>2017/11/24/17:05</span></div>
+			<a href="javascript:;" class="setBtn"></a>
+			<a href="javascript:;" class="setBtn type2"></a>
+			<a href="javascript:;" class="rvBtn type3">报名失败</a>
+		</div> -->
+		
+	</div>
+
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+		
+			<div class="sbox prosbox1">
+				<h4 class="sbox_h4">录入问题归类</h4>
+				<div class="sbox_c"><span class="slable">录入类型</span><i class="star"></i>
+					<select id="luruleixings" class="sbox_select">
+						<option value="新增">新增</option>
+					</select></div>
+				<div class="sbox_c"><span class="slable">模块</span><i class="star"></i><input id="mokuais" readonly class="sbox_input readonly" type="text"/></div>
+				<div class="sbox_c"><span class="slable">分类</span><i class="star"></i><input id="fenleis" readonly class="sbox_input readonly" type="text"/></div>
+				<div class="sbox_c"><span class="slable">问题</span><i class="star"></i><input id="wentis" readonly class="sbox_input readonly" type="text"/></div>
+				<div class="sbox_c"><span class="slable">条例</span><i class="star">*</i><textarea style="height:75px;" id="tiaolis" class="sbox_input"></textarea></div>
+				<div class="sbox_c"><span class="slable">依据详情</span><i class="star">*</i><textarea style="height:75px;" id="yijuxiangs" class="sbox_input"></textarea></div>
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+			<!-- 详情 -->
+			<div class="sbox prosbox2">
+				<h4 class="sbox_h4">详情</h4>
+				<div class="sbox_c"><span class="slable">问题归纳</span><i class="star"></i><span style="display:inline-block;line-height:30px;float:right;vertical-align:top;width:79%;" id="guinas2"></span></div>
+				<div class="sbox_c"><span class="slable">问题</span><i class="star"></i><span style="display:inline-block;margin:6px 0;float:right;vertical-align:top;width:79%;" id="wentis2"></span></div>
+				<div class="sbox_c"><span class="slable">分类</span><i class="star"></i><input id="fenleis2" readonly class="sbox_input readonly" type="text"/></div>
+				<div class="sbox_c"><span class="slable">依据</span><i class="star"></i><textarea style="height:75px;" readonly id="yijus2" class="sbox_input readonly"></textarea></div>
+				<div class="sbox_btn_div" style="text-align:center;"></div>
+			</div>
+			
+		</div>
+	</div>	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.ser = Utils.getQueryString("ser") || "";//从工作台获取搜索项
+	if(g.ser != ''){g.ser = decodeURI(g.ser)}//解码
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	//判断权限
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).html('任务墙').addClass('active');
+	loadPage();
+	
+
+/* **************************************** setTing ******************************************** */	
+	
+	
+	//加载页面
+	function loadPage(){
+		is_show('.renWuQiang_YiJieShu');
+		tableListShow(1);//显示列表
+		
+	}
+	
+	//定义点击报名中 我的报名 已结束
+	$('#choise_menu').find('.choise').on('click',function(){
+		var _val = $(this).attr('val') || '';
+		$(this).addClass('active').siblings('.choise').removeClass('active');
+		if(_val == 'Mine'){$('#choise_div2').slideDown();}else{$('#choise_div2').fadeOut(200);}
+		tableListShow();
+	});
+	//点击我的报名底下的选项
+	$('#choise_div2').find('.cmb_a').on('click',function(){
+		$(this).addClass('active').siblings('.cmb_a').removeClass('active');
+		tableListShow();
+	});
+	
+	//列表
+	function tableListShow(){
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "publish/task/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '';
+					var con = data || [];
+					var EnrolmentNum = data.EnrolmentNum || 0;//报名中个数
+					var CompletedNum = data.CompletedNum || 0;//已结束个数
+					var MineNum = data.MineNum || 0;//我的报名个数
+					$('#cmnum1').html(EnrolmentNum);
+					$('#cmnum2').html(MineNum);
+					$('#cmnum3').html(CompletedNum);
+					
+					
+					$('#choise_menu').find('.choise').each(function(){
+						var mname = $(this).attr('val') || '';
+						var d = con[mname] || '';
+						var res = d.content || [];
+						if(!$(this).hasClass('active')){
+							return true;
+						}else if(mname == 'Mine'){//判断是 我的报名 项
+							$('#choise_div2').find('.cmb_a').each(function(){
+								var itname = $(this).attr('val') || '';
+								if($(this).hasClass('active')){
+									res = d[itname] || [];
+								}
+							});
+						}
+						for(var j=0,len2=res.length;j<len2;j++){
+							var dd = res[j] || {};
+							var id = dd.id || '';//任务id
+							var centerName = dd.centerName || '';
+							var stage = dd.stage || '';
+							var type = dd.type || '';//项目发布、任务发布
+							var status = dd.status || '';//立即报名、报名中、报名结束、报名失败
+							var detailStr = dd.detailStr || '';
+							var enrollStr = dd.enrollStr || '';
+							var medicine = dd.medicine || '';
+							var recruitmentStr = dd.recruitmentStr || '';
+							var startTime = getDate(dd.startTime || '',2);
+							var endTime = getDate(dd.endTime || '',2);
+							var publishTime = getDate(dd.publishTime || '');
+							var tostr = '';
+							var is1 = type == '任务发布';
+							var detailType = is1 ? 'type2' : 'type4';
+							if(!is1){tostr = 'maneger';}
+							if(status == '报名失败'){tostr += ' fail ';}
+							var ittype = is1 ? 'task' : 'project' ;//判断是任务还是项目
+							html+='<div aid="'+id+'" type="'+ittype+'" class="tdl_one '+tostr+'">'
+								+'<div class="to_title">'+medicine+'</div>';
+								if(is1)html+='<div class="to_text">稽查地点：<span>'+centerName+'</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>'+stage+'</span></div>';
+								if(is1)html+='<div class="to_text">稽查时间：<span>'+startTime+'～'+endTime+'</span></div>';
+								html+='<div class="to_text '+detailType+'">招募职位：'+recruitmentStr+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已报名：'+enrollStr+'</div>'
+								//html+='<div class="to_text '+detailType+'">'+detailStr+'</div>'
+								+'<div class="to_text type3">发布时间：<span>'+publishTime+'</span></div>'
+								+'<a href="javascript:;" class="setBtn setit renWuQiang_SheZhi"></a>'
+								+'<a href="javascript:;" class="setBtn delit type2 renWuQiang_ShanChu"></a>';
+								if(status == '立即报名')html+='<a href="javascript:;"  class="rvBtn baomingbtn type4">立即报名</a>';
+								if(status == '报名成功')html+='<a href="javascript:;"  class="rvBtn type1">报名成功</a>';
+								if(status == '已报名')html+='<a href="javascript:;"  class="rvBtn type2">已报名</a>';
+								if(status == '报名失败')html+='<a href="javascript:;"  class="rvBtn type3">报名失败</a>';
+							html+='</div>';
+							
+						}
+					});
+					
+					$('#tableList').html(html);
+					is_show('.renWuQiang_SheZhi');
+					is_show('.renWuQiang_ShanChu');
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//设置
+	$('#tableList').on('click','.setit',function(e){
+		var id = $(this).parents('.tdl_one').attr('aid') || '';
+		var type = $(this).parents('.tdl_one').attr('type') || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		var _do = 'set';
+		Utils.offLineStore.set("waraid",id,false);
+		Utils.offLineStore.set("wartype",type,false);
+		Utils.offLineStore.set("wardo",_do,false);
+		parent.document.getElementById("iframeObj").src = 'applyto.html?aid='+id+'&do='+_do+'&type='+type;
+		stopPropagation(e);
+	});
+	//立即报名
+	$('#tableList').on('click','.baomingbtn',function(e){
+		var id = $(this).parents('.tdl_one').attr('aid') || '';
+		var type = $(this).parents('.tdl_one').attr('type') || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		var _do = 'apply';
+		Utils.offLineStore.set("waraid",id,false);
+		Utils.offLineStore.set("wartype",type,false);
+		Utils.offLineStore.set("wardo",_do,false);
+		parent.document.getElementById("iframeObj").src = 'applyto.html?aid='+id+'&do='+_do+'&type='+type;
+		stopPropagation(e);
+	});
+	
+	//详情
+	$('#tableList').on('click','.tdl_one',function(e){
+		var id = $(this).attr('aid') || '';
+		var type = $(this).attr('type') || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		var _do = 'check';
+		Utils.offLineStore.set("waraid",id,false);
+		Utils.offLineStore.set("wartype",type,false);
+		Utils.offLineStore.set("wardo",_do,false);
+		parent.document.getElementById("iframeObj").src = 'applyto.html?aid='+id+'&do='+_do+'&type='+type;
+		
+		stopPropagation(e);
+	});
+	
+	
+	//删除一条发布任务或发布项目
+	$('#tableList').on('click','.delit',function(e){
+		var id = $(this).parents('.tdl_one').attr('aid') || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认要撤销发布吗？')){return false;}
+		var condi = {};
+		condi.publishTaskId = id;
+		var url = Base.serverUrl + "publish/task/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('删除成功！');
+					tableListShow();
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+		
+		stopPropagation(e);
+	});
+	
+	
+	//加载时间控件
+	var start = {
+	  elem: '#start_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(end);
+
+});
+
+</script>
+</html>

@@ -1,0 +1,18 @@
+@import url(gongyong.css);
+
+.esw_01{ width:800px; height:260px; margin:0 auto; margin-top:240px}
+.esw_01lt{ width:280px; height:214px; float:left}
+.esw_01rt{ width:475px; height:260px; float:right; background:url(../images/esw_03.png) no-repeat; position:relative; z-index:1}
+.esw_01bc{ background:url(../images/esw_04.png) repeat-x; width:40%; height:260px; position:absolute; right:0; top:240px }
+.esw_01rtp1{ width:163px; float:left; line-height:32px; font-size:16px; margin-left:116px; display:inline; color:#fff}
+.zh_01{ width:295px; float:left; margin:13px 0 0 116px; display:inline}
+.zh_01 span{ float:left; color:#010100; font-size:14px; line-height:28px; margin-right:8px;}
+.zh_01p1{ width:199px; height:28px; border:solid 1px #888888; line-height:28px; float:left}
+.zh_01p2{ width:105px; height:20px; line-height:20px; float:left; border:solid 1px #888; margin-right:11px; display:inline}
+.line20{ line-height:20px !important}
+.zh_01 img{ float:left}
+.zh_02{ width:193px; height:32px; float:left; margin:40px 0 0 172px; display:inline}
+.zh_02inpu1{ width:106px; height:30px; background:url(../images/esw_06.png) no-repeat; border:none; float:left}
+.zh_02inpu2{ width:87px; height:30px; background:url(../images/esw_07.png) no-repeat; border:none; float:left}
+
+.footp1{ width:100%; text-align:center; color:#b3b3b3; position:absolute; left:0; bottom:20px;}

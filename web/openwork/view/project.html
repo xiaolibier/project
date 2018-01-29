@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>项目列表</title>
+	
+</head>
+<body class="projectLs">
+	<!-- 公共头部 -->
+	<div class="com_header"></div>
+	
+	<!-- 项目列表 -->
+	<div class="project_tt">
+		<h4 class="pro_h4"><span class="title_text">正在进行的项目</span></h4>
+		<div id="tablecontent">
+		<!-- <div class="pro_content">
+			<div class="pro_one">
+				<span class="ttt">中国健康男性受试者空腹和餐后单次口服安立生坦片的随机、开放、两周期交叉设计生物等效性试验</span>
+			</div>
+			<div class="pro_one">
+				<span class="ttt">中国健康男性受试者空腹和餐后单次口服安立生坦片的随机、开放、两周期交叉设计生物等效性试验</span>
+			</div>
+			<div class="pro_one">
+				<span class="ttt">中国健康男性受试者空腹和餐后单次口服安立生坦片的随机、开放、两周期交叉设计生物等效性试验</span>
+			</div>
+		</div>
+		<div class="more_div"><a class="more_one_btn">更多项目<i class="dd"></i></a></div> -->
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	loadPage();//加载页面
+
+	
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		setTimeout(function(){tableListShow();},800);
+		//tableListShow();//获取项目列表
+	}
+	
+	//切换申办方时自动搜索
+	$('.projectLs').on('mousedown','.choiseDanwei01 li',function(e){
+		setTimeout(function(){
+			tableListShow();
+			var spaid = $('#headInput').attr('tipid') || '';//获取申办方id
+			Utils.offLineStore.set("sid",spaid,false);//存储申办方id
+		},600);
+	});
+	
+	//获取项目列表
+	function tableListShow(){
+		var spaid = $('#headInput').attr('tipid') || '';//获取申办方id
+		if(spaid == ''){spaid = 0;}//传0 获取空
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.sponsor_id = spaid;
+		var url = Base.serverUrl + "open/platform/projects";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				g.totalPage = data.totalPages || 0;//总页数
+				if(status){
+					var data = data.result || [];
+					var html = '<div class="pro_content">';
+					g.totalElements = data.length || 0;//总数
+					for(var i=0,len=data.length;i<g.showPages;i++){
+						var d = data[i] || '';
+						if(d == '')continue;
+						var id = d.id || '';
+						var name = d.name || '';
+						var sponsor_id = d.sponsor_id || '';
+						html += '<div onclick="toRenwu(\''+id+'\',\''+name+'\',\''+sponsor_id+'\')" class="pro_one">'
+							+'<span class="ttt">'+name+'</span>'
+						+'</div>';
+					}
+					html += '</div>';
+					if(g.showPages < g.totalElements)html += '<div class="more_div"><a onclick="showMore()" class="more_one_btn">更多项目<i class="dd"></i></a></div>';
+					$('#tablecontent').html(html);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+					$('#tablecontent').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#tablecontent').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//点击跳转到任务页
+	window.toRenwu = function(id,name,sponsor_id){
+		var id = id || '';
+		var sponsor_id = sponsor_id || '';
+		var name = name || '';
+		name = encodeURI(encodeURI(name));//加密
+		Utils.offLineStore.set("sid",sponsor_id,false);//存储申办方id
+		location.href="renwu.html?xid="+id+"&xname="+name+"&sid="+sponsor_id;
+		
+	} 
+	//点击查看更多
+	window.showMore = function(){
+		if(g.showPages >= g.totalElements){return false;}
+		if(g.totalElements - g.showPages < 10 ){g.showPages = g.totalElements;}
+		else{g.showPages += 10;}
+		tableListShow();
+	} 
+	
+
+});
+</script>
+</html>

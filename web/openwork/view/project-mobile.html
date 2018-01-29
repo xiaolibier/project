@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>项目列表</title>
+	<style>
+		.common_header{background-color:#fff;padding-bottom:10px;position:relative;overflow:hidden;}
+		.common_header .head_choice{padding-left:52px;left:40px;right:40px;height:32px;line-height:32px;margin:0 auto;display:block;top:9px;position:absolute;width:75%;border: 1px solid #EEEEEE;border-radius: 4px;background:url('../public/img/qid.png') no-repeat 5px 10px;background-size:auto 42%;background-color: #FAFAFA;}
+		.common_header .head_choice:active,.common_header .head_choice:focus{background:url('../public/img/qid.png') no-repeat 5px 10px;background-size:auto 42%;background-color: #FAFAFA;}
+		.common_header .body_head_ico{width:34px;height:34px;}
+		.common_header .body_head_ico.small{width:19px;height:19px;margin-left:5px;}
+		.projectLs{position:relative;}
+		.project_tt{width:auto;padding-top:7px;}
+		.pro_h4{margin-bottom:27px;}
+		.pro_h4 .title_text{font-size: 16px;color: #000000;padding-left:5%;padding-right:4px;}
+		.pro_h4 .title_text.r{font-size: 12px;color: #787778;left:auto;right:0;padding-left:4px;padding-right:5%;}
+		.pro_one{border:none;height:60px;padding-left:19px;line-height:60px;margin:0 4% 11px;}
+		.pro_one:hover{border:none;}
+		.pro_one .ttt{margin-top:0;}
+		.sta_tip{position:relative;margin-right:16px;margin-top:7px;display:inline-block;float:right;text-align:center;}
+		.n_span{position:absolute;width:56px;bottom:-9px;left:-5px;display:inline-block;font-size:8px;color:#787778;}
+		.hh_ico{display:inline-block;margin-left:7px;position:relative;}
+		.n_text{display:block;font-size:10px;color:#787778;}
+		.timg{vertical-align:bottom;}
+		.timg_i{position:absolute;right:1px;top:3px;display:inline-block;width:5px;height:5px;background:url('../public/img/val.png') no-repeat center center;background-size:contain;}
+		.upmainmenu{top:60px;left:10px;width:100px;position:absolute;z-index:999;display:none;}
+		.upmainmenu .upmmone{border-radius:5px;font-size: 16px;color: #2D8CF0;height:28px;line-height:28px;background-color:#fff;width:100%;text-align:center;display:inline-block;box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);}
+		.bg_main{z-index:99;background-color:#000000;position:fixed;width:100%;height:100%;top:0;left:0;right:0;bottom:0;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity: 0.5;display:none;}
+		
+	</style>
+</head>
+<body class="projectLs">
+	<!-- 公共头部 -->
+	<!-- <div class="com_header"></div> -->
+	<div class="upmainmenu"><a href="javascript:;" id="login_out" class="upmmone">退出登录</a></div>
+	<div class="bg_main"></div>
+	<div class="common_header">
+		<div class="chead_content">
+			<div class="hh_ico">
+				<a href="javascript:;" class="body_head_ico">
+					<img class="iimg" src="../public/img/head_big.png" />
+				</a>
+				<span id="wxwei" style="display:none;" class="n_span">微信未绑定</span>
+			</div>	
+			<select class="head_choice" id="headInput">
+			</select>
+			<a href="javascript:;" id="godongtai" class="sta_tip">
+				<img class="timg" src="../public/img/tips.png" /><span class="n_text">动态</span>
+				<i style="display:none;" class="timg_i"></i>
+			</a>
+		</div>
+	</div>
+	
+	<!-- 项目列表 -->
+	<div class="project_tt">
+		<h4 class="pro_h4"><span class="title_text">项目</span><span id="ingproject" class="title_text r">正在进行的项目/0</span></h4>
+		<div id="tablecontent">
+		</div>
+	</div>
+	
+
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.sid = Utils.offLineStore.get("sid",false);//从项目列表页面传来 传申办方id
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	loadPage();//加载页面
+	$('#godongtai').on('click',godongtaiFunc);
+	$('#login_out').on('click',loginOutfunc);
+	$('.bg_main').on('click',function(e){$('.upmainmenu,.bg_main').fadeOut(200);return false;});
+	$('.body_head_ico').on('click',function(e){$('.upmainmenu,.bg_main').fadeIn(0);});
+	
+	
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		setTimeout(function(){tableListShow();},800);
+		//tableListShow();//获取项目列表
+		getSponsors();//获取机构申办方列表
+		getUserInfoFunc();//获取用户信息
+		getdynms();//获取判断是否有新的动态
+	}
+	
+	//跳转动态页面
+	function godongtaiFunc(){
+		location.href = "dynamics-mobile.html";
+	}
+	
+	//退出登录
+	function loginOutfunc(){
+		//if(!confirm('确认退出系统吗？')){$('.upmainmenu,.bg_main').fadeOut(200);return false;}
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		var url = Base.serverUrl + "logout";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('退出成功！');
+					setTimeout(function(){
+						location.href="login-mobile.html";
+					},1000);
+				}
+				else{
+					var msg = data.message || "退出失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	//获取判断是否有新的动态
+	function getdynms(){
+		var spaid = $('#headInput').val() || '';//获取申办方id
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		condi.sponsor_id = spaid;
+		var url = Base.serverUrl + "open/platform/dynamic/count";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || 0;
+					if(data > 0){$('.timg_i').show();}else{$('.timg_i').hide();}
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//获取机构申办方列表
+	function getSponsors(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "open/platform/sponsors";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					//判断data为空 表示没有权限
+					var thtml = '<div class="notipsdiv"><h4 class="ttl">登录成功</h4><p>您还没有任务权限<br/>管理员会尽快为您分配权限</p></div>';
+					if(data.length <= 0){
+						$('.project_tt').html(thtml);
+						$('.projectLs').css({'background':'url("../public/img/mo_bg.jpg") no-repeat center center;','background-size':'cover'});
+						
+						return false;
+					}
+					var html = '';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || {};
+						var id = d.id || '';
+						var name = d.name || '';
+						html += '<option value="'+id+'">'+name+'</option>';
+					}
+					$('#headInput').html(html);
+					if(g.sid != ''){$('#headInput').val(g.sid);}
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+					$('#tablecontent').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#tablecontent').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//获取用户信息
+	function getUserInfoFunc(){
+		var condi = {};
+		var url = Base.serverUrl + "open/user/currentUserInfo";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || {};
+					var name1 = data.name || '';
+					var bindWechat = data.bindWechat || '';
+					var icons = data.icons || '../public/img/head_big.png';
+					var hasLogin = data.hasLogin || '';//判断用户是否修改过密码
+					var _style = 'background:url('+icons+') no-repeat center center;background-size:contain;';
+					$('.usr_name').html(name1);
+					$('#userInfoName').html(name1);
+					Utils.offLineStore.set("usernamestr",name1,false);//权限存储
+					$('.iimg').attr('src',icons);
+					//判断是否绑定过微信
+					if(bindWechat != 1){$('#wxwei').show();$('.body_head_ico').addClass('small');}else{$('#wxwei').hide();}
+					//if(hasLogin == 0){//判断用户没有修改密码 提示修改
+					//	if(confirm('系统检测到您还未修改过密码，请修改密码！')){location.href = "changepass.html";}
+					//}
+					
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+		
+	//切换申办方时自动搜索
+	$('.projectLs').on('change','#headInput',function(e){
+		setTimeout(function(){
+			tableListShow();
+			var spaid = $('#headInput').val() || '';//获取申办方id
+			Utils.offLineStore.set("sid",spaid,false);//存储申办方id
+		},600);
+	});
+	
+	//获取项目列表
+	function tableListShow(){
+		var spaid = $('#headInput').val() || '';//获取申办方id
+		if(spaid == ''){spaid = 0;}//传0 获取空
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.sponsor_id = spaid;
+		var url = Base.serverUrl + "open/platform/projects";
+		g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				g.totalPage = data.totalPages || 0;//总页数
+				if(status){
+					var data = data.result || [];
+					var html = '<div class="pro_content">';
+					g.totalElements = data.length || 0;//总数
+					$('#ingproject').html('正在进行的项目/'+g.totalElements);
+					for(var i=0,len=data.length;i<g.showPages;i++){
+						var d = data[i] || '';
+						if(d == '')continue;
+						var id = d.id || '';
+						var name = d.name || '';
+						var sponsor_id = d.sponsor_id || '';
+						html += '<div onclick="toRenwu(\''+id+'\',\''+name+'\',\''+sponsor_id+'\')" class="pro_one">'
+							+'<span class="ttt">'+name+'</span>'
+						+'</div>';
+					}
+					html += '</div>';
+					if(g.showPages < g.totalElements)html += '<div class="more_div"><a onclick="showMore()" class="more_one_btn">更多项目<i class="dd"></i></a></div>';
+					$('#tablecontent').html(html);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+					$('#tablecontent').html('');
+				}
+				g.httpTip.hide();
+			},
+			error:function(data,status){
+				g.httpTip.hide();
+				$('#tablecontent').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//点击跳转到任务页
+	window.toRenwu = function(id,name,sponsor_id){
+		var id = id || '';
+		var sponsor_id = sponsor_id || '';
+		var name = name || '';
+		name = encodeURI(encodeURI(name));//加密
+		Utils.offLineStore.set("sid",sponsor_id,false);//存储申办方id
+		location.href="renwu-mobile.html?xid="+id+"&xname="+name+"&sid="+sponsor_id;
+		
+	} 
+	//点击查看更多
+	window.showMore = function(){
+		if(g.showPages >= g.totalElements){return false;}
+		if(g.totalElements - g.showPages < 10 ){g.showPages = g.totalElements;}
+		else{g.showPages += 10;}
+		tableListShow();
+	} 
+	
+
+});
+</script>
+</html>

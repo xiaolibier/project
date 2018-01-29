@@ -1,0 +1,136 @@
+@charset "utf-8";
+/*网页的全局样式 解决兼容问题*/
+body,div,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,td,form,input,select,textarea,span,img,a,em,strong,*{ margin:0; padding:0;font-weight:normal;}
+article,section,aside,nav,header,footer,address,header,hgroup,blockquote,figure,figcaption{ display:block;}
+body{ font-family:"微软雅黑";color:#000000;}
+ul,ol,li{ list-style:none;}
+h1,h2,h3,h4,h5,h6{ font-family: "Arial"; font-weight:normal; font-size:12px; }
+input,select,textarea{ vertical-align:middle;}
+img{ border:none; vertical-align:middle;}
+a{ text-decoration:none;cursor: pointer; }
+a img { border: none; }
+a span, form label { cursor: pointer; }
+table { border-collapse: collapse; }
+blockquote, q { quotes: "" ""; }
+img, object, button, input, select { vertical-align: middle; }
+input,select { outline: none; }
+em, s, i { font-style: normal; text-decoration:none; }
+.clear{ clear:both;  overflow:hidden;}
+.fl{float:left; display:inline;}
+.fr{float:right;display:inline;}
+
+/*公共样式*/
+a{text-decoration: none;}
+.cont .act_top{height:27px;}
+.cont .act_top p{width:100px; line-height:13px; float:left; background:url(../img/arrow.png) no-repeat 2px 0; font-size:14px; color:#006684; padding-left:24px;}
+.cont .more{width:50px; float:right; background:url(../img/more.png) no-repeat 0 center; padding-left:10px; font-size:10px;}
+.cont .more a{color:#b0b0b0;}
+/********************首页开始*********************/
+.bj{ background:url(../img/bg.png);}
+/*头部开始*/
+.header{width:100%; height:86px; background:#FFF url(../img/bb.png) repeat-x 0 bottom;box-shadow:0 5px 5px #cdcdcd;}
+.header .inner{width:1200px; height:86px; margin:0 auto;}
+.header .inner .logo{width:368px; height:86px; margin-left:72px; float:left; padding-top:10px;}
+.header .inner .top{width:688px; float:left;}
+.header .inner .top .top_wrap{width:329px; height:40px; float:right; padding-top:15px;position:relative;}
+.button{ border:none;background:url(../img/seach.png) no-repeat; width:33px; height:22px;}
+
+.header .inner .top .top_wrap .email{width:63px; height:24px; background:url(../img/email.png) no-repeat; display:block; padding-left:35px; line-height:24px; float:left;}
+
+.header .inner .top .top_wrap .email:hover{background:url(../img/emaih.png) no-repeat;}
+.header .inner .top .top_wrap .email a{font-size:12px; color:#868686;}
+.header .inner .top .top_wrap .email a:hover{color:#006684;}
+.header .inner .top .top_wrap .seach{width:163px; height:19px; border:1px solid #e5e5e5;  float:left; margin-left:5px; padding-left:10px; float:left; margin-top:2px; border-radius:20px 0 0 20px;}
+.header .inner .top .top_wrap .btn{width:33px; height:22px; float:right; position:absolute; right:6%;z-index:2;}
+
+.header .inner .top .nav{padding-top:55px; padding-left:50px; font-size:14px;}
+.header .inner .top .nav span{margin:0 16px; color:#ababab;}
+.header .inner .top .nav a{color:#868686;font-weight:bold;}
+.nav a:first-child{ font-weight:bold;}
+
+.header .inner .top .nav a:hover{color:#006684;}
+.header .inner .top .nav .current{color:#006684; }
+/*头部结束*/
+
+/*foot开始*/
+.footer{width:100%; height:101px; margin:0 auto; background:url(../img/bt_bj.png) repeat-x; position:relative;}
+.footer .inner{width:1200px; height:102px; margin:0 auto;}
+.footer .inner .inn_left{width:655px; height:70px; background:url(../img/erwm.png) no-repeat 0 22px; padding-left:90px; padding-top:32px; float:left; font-size:14px;}
+.footer .inner .inn_left p{line-height:23px; color:#868686;}
+.footer .inner .inn_left a{color:#006684;}
+.footer .inner .inn_right{width:285px; height:70px; float:right; padding-top:32px; font-size:14px;}
+.footer .inner .inn_right a{color:#868686;}
+.footer .inner .inn_right a:hover{color:#006684;}
+.footer .inner .inn_right span{margin:0 8px; color:#868686;}
+.footer .inner .inn_right p{color:#868686; line-height:30px;}
+.footer .inner .inn_right p span{margin:0; color:#006684;}
+.footer .bg{width:100%; height:6px; background:url(../img/border.png) repeat-x; position:absolute; top:-6px;}
+/*foot结束*/
+
+
+/* 2017-6-5 */
+
+/* 顶部 */
+
+.newHeader{transition: all 0.3s ease 0s;background-color:#2E3033;position:relative;top:auto;left:auto;right:auto;z-index:1;font-size:16px;box-shadow:none;}
+.newHeaderContent{width:1040px;margin:0 auto;height:60px;line-height:60px;}
+.newHeader .logo{display:inline-block;vertical-align:top;height:100%;margin-right:25px;}
+.newHeader .logoImg{max-width:100%;margin-top:-3px;}
+.newHeader .menuDiv{display:inline-block;height:100%;vertical-align:top;}
+.newHeader .menuList{height:100%;}
+.newHeader .menuList .list{padding:0 21px;height:100%;font-size:14px;font-family:PingFangSC-Light;text-align:center;color:#fff;float:left;display:inline-block;}
+.newHeader .menuList .list:hover{color:#049CEF;}
+.newHeader .menuList .list.current{/* color:#02A2FA; */}
+.newHeader .contactAdd{cursor:unset;float:right;color:#0B7FA7;vertical-align:top;display:inline-block;height:100%;}
+
+/* 顶部下拉菜单 */
+.choiseMenu{transition:all .25s ease-in-out;/*box-shadow:0 0 5px 1px #000;*/margin-top:0px;width:100px;background: rgba(46,48,51,0.60);position:absolute;left:0;top:0;z-index:999;display:block;display:none;}
+.choiseMenu1{width:112px;}
+.choiseMenu li{color:#ffffff;float:left;font-size:14px;cursor:pointer;text-align:center;display:inline-block;width:100%;height:40px;line-height:40px;}
+.choiseMenu li > a{color:#ffffff;font-size:14px;cursor:pointer;text-align:center;display:inline-block;width:100%;height:40px;line-height:40px;}
+.choiseMenu li.last{border:none;}
+.choiseMenu li:last-child{border:none;}
+.choiseMenu li:hover a,.choiseMenu li.active a{color:#049CEF;}
+
+
+/* 首页底部 */
+.indexFooter{background-color:#2E3033;padding:50px 0 40px;}
+.indexFooter .nf_content{width:800px;margin:0 auto;}
+.indexFooter .ove{overflow:hidden;}
+.indexFooter .nf_content .nf_top{overflow:hidden;margin:37px 0 6px;font-size:16px;color:#fff;width:470px;}
+.indexFooter .nf_content .nf_img1{margin-top:0px;margin-right:0px;display:inline-block;vertical-align:bottom;}
+.indexFooter .nf_content .nf_mess{line-height:20px;margin-bottom:6px;font-size:12px;color:#fff;}
+.indexFooter .nf_content .mar{margin-top:30px;padding-left:118px;display:block;color:#ffffff;font-size:12px;}
+.indexFooter .nf_erweima{vertical-align:top;margin-right:20px;font-size:14px;color:#fff;display:inline-block;float:left;text-align:center;}
+.indexFooter .nf_right{padding-right:57px;vertical-align:top;display:inline-block;float:left;}
+.indexFooter .inlineRight{vertical-align:top;display:inline-block;float:left;}
+
+
+/* 其他页面底部 */
+.newFooter{background:#2E3033;}
+.newFooter .nf_content{padding:40px 0 40px 100px;width:927px;margin:0 auto;}
+.newFooter .nf_content .nf_one{color:#fff;display:inline-block;float:left;width:33%;overflow:hidden;}
+.newFooter .nf_content .nf_one_title{font-size:16px;margin-bottom:15px;}
+.newFooter .nf_content .nf_a{padding:0;float:left;display:inline-block;clear:both;font-size:12px;line-height:24px;}
+.newFooter .nf_content .nf_a:hover{top:-4px;position:absolute;font-size:14px;text-decoration:underline;}
+.newFooter .nf_bb{color:#fff;margin-top:24px;font-size:12px;text-align:center;}
+.newFooter .nf_poDiv{height:24px;position:relative;}
+
+
+
+/* common */
+.common_banner{margin-bottom:60px;height:250px;background:url('../newImg/cimg.jpg') no-repeat center center;background-size:auto 100%;}
+.common_banner1{background:url('../newImg/cimg1.jpg') no-repeat center center;background-size:auto 100%;}
+.common_banner2{background:url('../newImg/cimg2.jpg') no-repeat center center;background-size:auto 100%;}
+.common_banner3{background:url('../newImg/cimg3.jpg') no-repeat center center;background-size:auto 100%;}
+.common_banner4{background:url('../newImg/cimg4.jpg') no-repeat center center;background-size:auto 100%;}
+.common_banner5{background:url('../newImg/cimg5.jpg') no-repeat center center;background-size:auto 100%;}
+.common_banner6{background:url('../newImg/cimg6.jpg') no-repeat center center;background-size:auto 100%;}
+
+.common_banner .cimg{vertical-align:bottom;}
+.bj{background:none;}
+.logo_compay{display:inline-block;margin-left:5px;color:#fff;font-size:18px;font-weight:400;font-family:PingFangSC-Light,"helvetica neue","hiragino sans gb",arial,"microsoft yahei ui","microsoft yahei",simsun,sans-serif;}
+
+
+
+

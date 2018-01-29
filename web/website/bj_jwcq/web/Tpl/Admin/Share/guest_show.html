@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__SYSWEB__/images/mainFrom.css" rel="stylesheet" type="text/css"/>
+<link href="__SYSWEB__/images/skinv2.0.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="__SYSWEB__/images/35Public.js"></script>
+<script src="__SYSWEB__/images/Verify.js"></script></head></html>
+<style type="text/css">
+<!--
+.STYLE1 {color: #FFFFFF}
+-->
+</style>
+</head>
+
+<body>
+<form name="Gforms" method="post" action="">
+  <div class="con-ico">
+    <div class="con-fl" style="height:30px;">当前位置：我的站点 &gt; <span class="con-fl" style="height:30px;">投诉意见 </span></div>
+  </div>
+  <table width="80%" border="0" cellpadding="2" cellspacing="1" bgcolor="#CDCDCD">
+    <tr class="content-table">
+      <th align="right" class="tdblodthnone"> 属性项 </th>
+      <th class="tdblodthnone"> 属性值 </th>
+    </tr>
+   
+    <tr>
+      <td width="17%" height="20" align="center" bgcolor="#F4F4F4">姓名：</td>
+      <td width="83%" bgcolor="#FFFFFF">{$menu_info.GName}</td>
+    </tr>
+	
+	
+   <tr bgcolor="#cdcdcd" style="" >
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">电话：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.Gtel}</td>
+    </tr>
+	
+	<tr bgcolor="#cdcdcd" >
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">邮箱：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.GEmail}</td>
+    </tr>
+	
+	<tr bgcolor="#cdcdcd" style="display:none" >
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">QQ：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.GQQ}</td>
+    </tr>
+	  <tr bgcolor="#cdcdcd" style="display:none" >
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">联系时间：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.Glxfs}</td>
+    </tr>
+	
+	 <tr bgcolor="#cdcdcd" style="display:none" >
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">酒店类型：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.GSex}</td>
+    </tr>
+	
+	 
+     
+     <tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">旅行主题：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.Gaddress}</td>
+    </tr>
+ 
+     <tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">出行交通工具：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.Gjtgj}</td>
+    </tr>
+	
+	 <tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">其他出行交通工具：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.uqtjt}</td>
+    </tr>
+    <tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">出发时间：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.sendTime}</td>
+    </tr>
+    
+	<tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">返回时间：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.backTime}</td>
+    </tr>
+	<tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">游玩天数：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.uts}天</td>
+    </tr>
+	
+	<tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">目的地：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.Gphone}</td>
+    </tr>
+	<tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">住宿要求：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.Gzsyq}</td>
+    </tr>
+	<tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">其他住宿要求：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.uqtzs}</td>
+    </tr>
+	<tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">旅游人数：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.ulxrs}</td>
+    </tr>
+	
+	<tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">人均预算：</td>
+      <td bgcolor="#FFFFFF">{$menu_info.uys}元/人</td>
+    </tr>
+	
+	
+  
+   
+   <tr bgcolor="#cdcdcd" style="">
+    <td height="25" align="center" bgcolor="#F4F4F4" class="font1">标题：</td>
+    <td bgcolor="#FFFFFF">{$menu_info.GTitle}</td>
+  </tr>
+    
+    <tr bgcolor="#cdcdcd" >
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">内容：</td>
+      <td bgcolor="#FFFFFF" style="padding:10px 0px; padding-right:10px;">
+     {$menu_info.GContent}</td>
+    </tr>
+	
+	<tr bgcolor="#cdcdcd">
+    <td height="25" align="center" bgcolor="#F4F4F4" class="font1">提交时间：</td>
+    <td bgcolor="#FFFFFF"> {$menu_info.GTime}</td>
+  </tr>
+	
+     <tr bgcolor="#cdcdcd" style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">回复内容：</td>
+      <td bgcolor="#FFFFFF">
+        <label>
+          <textarea name="GRContent" cols="50" rows="7" id="GRContent"></textarea>
+       </label></td>
+    </tr>
+    <tr bgcolor="#cdcdcd"  style="display:none">
+      <td height="25" align="center" bgcolor="#F4F4F4" class="font1">是否显示：</td>
+      <td bgcolor="#FFFFFF">
+     
+     <input type="radio" name="flags" value="0" checked="checked"  />否&nbsp;<input type="radio" name="flags" value="1" />是
+    
+         
+
+   
+     </td>
+    </tr>
+    <tr >
+      <td height="40" colspan="2" align="center" bgcolor="#F4F4F4"><label>
+         <input name="btn" type="button" class="Botton" id="btn"  onclick="window.history.back();" value="返回" />
+           <input name="edit" type="hidden" id="hiddenField" value="edit" />
+      </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

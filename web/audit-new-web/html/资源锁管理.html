@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<!-- <link rel="stylesheet" type="text/css" href="../public/css/iview.css"/> -->
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<!-- <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css"> -->
+    <!-- <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script> -->
+    <!-- <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script> -->
+	<title></title>
+
+</head>
+<body class="xiangmuguanli">
+	<h4 class="page_title">资源占用列表</h4>
+	<div id="tableList1" class="table_div">
+	</div>
+	<h4 class="page_title">用户占用列表</h4>
+	<div id="tableList2" class="table_div">
+	</div>
+	<br/>
+
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/vue.min.js"></script> -->
+	<!-- <script type="text/javascript" src="../public/js/iview.min.js"></script> -->
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/index.js"></script> -->
+	
+</body>
+
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.ids = [];//存储当前所有项目id及其状态
+	g.quanxuan = 0;
+	
+/* **************************************** lodding ******************************************** */	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	//$('#menu_show_t .s0',parent.document).html('项目管理');
+	$('#menu_show_t .s0',parent.document).html('资源锁管理').addClass('active');
+	tableListShow1();//显示资源占用
+	tableListShow2();//显示用户占用
+
+/* **************************************** setTing ******************************************** */	
+
+
+	//资源占用列表
+	function tableListShow1(){
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		var url = Base.serverUrl + "lock/resources/list";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					//$('#totalElements').html(totalElements);
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:58px;">被锁资源</th>'
+							+'<th style="min-width:80px;">用户ID</th>'
+							+'<th style="min-width:80px;">用户名称</th>'
+							+'<th style="min-width:51px;">资源类型</th>'
+							+'<th style="min-width:51px;">任务编号</th>'
+							+'<th style="min-width:51px;">最后更新时间</th>'
+							//+'<th style="min-width:51px;">Session</th>'
+							+'<th style="min-width:50px;">操作</th>'
+						+'</tr>';
+					var con = data || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';//
+						var name = d.name || '';//
+						var userName = d.userName || '';//
+						var userId = d.userId || '';
+						var resourceName = d.resourceName || '';
+						var taskCode = d.taskCode || '';
+						var lastUpdateTime = getDate(d.lastUpdateTime || '');
+						var sessionId = d.sessionId || '';
+						var create_time = d.create_time || '';
+						var token = d.token || '';
+						html+='<tr>'
+							+'<td>'+name+'</td>'
+							+'<td>'+userId+'</td>'
+							+'<td>'+userName+'</td>'
+							+'<td>'+resourceName+'</td>'
+							+'<td>'+taskCode+'</td>'
+							+'<td>'+lastUpdateTime+'</td>'
+							//+'<td>'+sessionId+'</td>'
+							+'<td class="last">'
+							+'<a href="javascript:;" onclick="deleteIt1(\''+id+'\')" class="cao_btn cao_btn3">解锁</a>'
+							+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList1').html(html);
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//删除一项
+	window.deleteIt1 = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认解锁吗？')){return false;}
+		var condi = {};
+		condi.resourceId = id;
+		var url = Base.serverUrl + "lock/unlockResource";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('解锁成功！');
+					tableListShow1();//列表
+				}
+				else{
+					var msg = data.message || "解锁失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//用户占用列表
+	function tableListShow2(){
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		var url = Base.serverUrl + "lock/getAllOnlineUser";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					//$('#totalElements').html(totalElements);
+					var html = '';
+					var sstr = '';
+					if(g.quanxuan == 1){sstr = 'active';}
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:58px;">用户名称</th>'
+							+'<th style="min-width:80px;">用户ID</th>'
+							+'<th style="min-width:51px;">IP</th>'
+							+'<th style="min-width:41px;">最后登陆时间</th>'
+							+'<th style="min-width:51px;">Session</th>'
+							//+'<th style="min-width:51px;">Token</th>'
+							+'<th style="min-width:50px;">操作</th>'
+						+'</tr>';
+					var con = data || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var userName = d.userName || '';//
+						var userId = d.userId || '';
+						var ip = d.ip || '';
+						var lastUpdateTime = getDate(d.lastUpdateTime || '');
+						var sessionId = d.sessionId || '';
+						var create_time = d.create_time || '';
+						var token = d.token || '';
+						html+='<tr>'
+							+'<td>'+userName+'</td>'
+							+'<td>'+userId+'</td>'
+							+'<td>'+ip+'</td>'
+							+'<td>'+lastUpdateTime+'</td>'
+							+'<td>'+sessionId+'</td>'
+							//+'<td>'+token+'</td>'
+							+'<td class="last">'
+							+'<a href="javascript:;" onclick="deleteIt2(\''+userId+'\',\''+sessionId+'\')" class="cao_btn cao_btn3">解锁</a>'
+							+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList2').html(html);
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//删除一项
+	window.deleteIt2 = function(id,sessionId){
+		var id = id || '';
+		var sessionId = sessionId || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认解锁吗？')){return false;}
+		var condi = {};
+		condi.userId = id;
+		condi.sessionId = sessionId;
+		var url = Base.serverUrl + "lock/unlockUser";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('解锁成功！');
+					tableListShow2();//列表
+				}
+				else{
+					var msg = data.message || "解锁失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+
+	//加载时间控件
+	var start = {
+	  elem: '#start_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(end);
+
+});
+
+</script>
+</html>

@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="稽查 药品稽查 第三方稽查 临床试验 临床试验稽查 经纬"/>
+<meta name="description" content="北京经纬传奇医药科技有限公司,临床试验第三方稽查信心标志"/>
+
+<title>北京经纬传奇医药科技有限公司--首页</title>
+<link href="__PUBLIC__/css/style.css" type="text/css" rel="stylesheet">
+<link href="__PUBLIC__/css/top_bottom_Public.css" rel="stylesheet" />
+<script src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script src="__PUBLIC__/js/all.js" ></script>
+<script src="__PUBLIC__/js/jquery.min.js"></script><!--产品展示JS轮播-->
+<script src="__PUBLIC__/js/lunbo.js"></script><!--产品展示JS轮播-->
+<script src="__PUBLIC__/js/jquery.excoloSlider.js"></script><!--新闻动态JS-->
+<script src="__PUBLIC__/js/adapt.min.js"></script><!--新闻动态JS-->
+<style>
+.rslides_nav{display:none;}
+</style>
+</head>
+<body>
+<!--首页开始-->
+<!--header-->
+ <include file="Index:top" />
+<div class="content">
+<!--banner-->
+     <div class="banner">
+        <div class="wrap">
+            <ul>
+			<volist name="colnews" id="vo">
+				 <li><a href="{$vo.Col_Editor}"><img src="__SYSWEB__/Uploads/{$vo.Col_Pic}" width="1200" height="495" /></a></li>
+			</volist>
+            </ul>
+            <ol>
+			<volist name="colnews" id="vo" key="k">
+				  <li class="<if condition="$k eq '1' ">cur  <else/> </if>"></li>
+			</volist>
+            </ol>
+            <span class="left"></span>
+            <span class="right"></span>
+    	</div>
+    </div>
+<!--cont-->
+<div class="cont">
+	<div class="activity">
+    	<div class="act_top">
+        	<p><a href="{:U('active')}">最新活动</a></p>
+        	</div>
+         <div class="new_banner">
+    <ul class="rslides f426x240">
+    
+         <volist name="activeinfo" id="vo" >
+					 <li><a href="{:U('activeinfo?nid='.$vo['Col_ID'].'')}"><img src="__SYSWEB__/Uploads/{$vo.Col_Pic}" /></a><i><a href="{:U('activeinfo?nid='.$vo['Col_ID'].'')}">{$vo.Col_Title|msubstr=0,15}</a></i></li>
+					</volist>
+    </ul>
+</div>
+    </div>
+    <div class="news">
+    	<div class="act_top">
+        	<p>新闻动态</p>
+            <div class="more"><a href="{:U('news')}">MORE</a></div>
+        </div>
+        <ul>
+		<volist name="datanews" id="vo">
+				<li>
+            	<a href="{:U('newsinfo?nid='.$vo['Col_ID'].'')}">{$vo.Col_Title|msubstr=0,10}</a>
+            	<span>{$vo.Col_Time}</span>
+            </li> 
+			
+		</volist>
+        </ul>
+        
+     </div>
+     <div class="manage">
+    	<div class="act_top">
+        	<p>政策法规</p>
+            <div class="more"><a href="{:U('zcfg')}">MORE</a></div>
+        </div>
+        
+         
+         
+         
+         <div class="container_12">
+		<div class="grid_8">
+			<div id="sliderA" class="slider">
+            <volist name="activeinfo1" id="vo" >
+					 <a href="{:U('zcfginfo?nid='.$vo['Col_ID'].'')}"><img src="__SYSWEB__/Uploads/{$vo.Col_Pic}" width="236" height="79" /></a>
+					</volist>
+            
+            
+				
+			</div>
+		</div>
+  </div>
+         
+         
+     </div>
+     
+    <div class="test">
+    	<div class="act_top">
+        	<p>试验机构查询</p>
+            <div class="more"><a href="http://app1.sfda.gov.cn/datasearch/face3/base.jsp?tableId=19&tableName=TABLE19&title=%E8%8D%AF%E7%89%A9%E4%B8%B4%E5%BA%8A%E8%AF%95%E9%AA%8C%E6%9C%BA%E6%9E%84%E5%90%8D%E5%8D%95&bcId=118714941832181502104731901420" target="_blank">MORE</a></div>
+        </div>
+        <div class="test_pic">
+   	   		<a href="http://app1.sfda.gov.cn/datasearch/face3/base.jsp?tableId=19&tableName=TABLE19&title=%E8%8D%AF%E7%89%A9%E4%B8%B4%E5%BA%8A%E8%AF%95%E9%AA%8C%E6%9C%BA%E6%9E%84%E5%90%8D%E5%8D%95&bcId=118714941832181502104731901420" target="_blank"><img src="__PUBLIC__/img/pic.jpg" width="245" height="79" /></a>
+            <p><a href="http://app1.sfda.gov.cn/datasearch/face3/base.jsp?tableId=19&tableName=TABLE19&title=%E8%8D%AF%E7%89%A9%E4%B8%B4%E5%BA%8A%E8%AF%95%E9%AA%8C%E6%9C%BA%E6%9E%84%E5%90%8D%E5%8D%95&bcId=118714941832181502104731901420" target="_blank">临床研究服务商</a></p>
+        </div>
+     </div>
+<div class="border"></div>
+</div>
+ <include file="Index:footer" />
+</div>
+</body>
+</html>

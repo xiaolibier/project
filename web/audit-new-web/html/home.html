@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>经纬传奇稽查管理系统</title>
+	
+</head>
+<body class="">
+	<div info="公共头部" class="header">
+		<div class="logo_div">
+			<!-- <img class="logo_img" style="width:63%;" src="../public/img/logo.png"> -->
+			<a id="slideLmenu" class="slideLmenu"><img class="go_img" src="../public/img/s_io.png"></a>
+		</div>
+		<div id="menu_show_t" class="header_title">
+			<span class="ss s0 active"></span><span class="ss s1"></span><span class="ss s2"></span>
+			<div class="login_div">
+				<a class="usr_head"></a>
+				<a class="usr_name"></a>
+				<!-- <a class="login_abtn">登录</a> -->
+				<!-- <a href="javascript:;" class="out_abtn">退出</a> -->
+				<!-- <a href="javascript:;" style="margin-left:10px;" class="changePassWord">修改密码</a> -->
+				<a class="header_menu_ico" href="javascript:;"><img class="hmi_img" src="../public/img/hmi.png"/></a>
+				<ul class="hmi_ul">
+					<li class="uli changePassWord">修改密码</li>
+					<li class="uli out_abtn">退出</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div info="左侧菜单" id="common_menu" class="left_menu">
+		<div id="scrollbarList" class="scrollbar">
+		<!-- <div id="1" class="mm c1"><span class="text_c">项目管理</span></div>
+		<div id="11" pid="1" url="项目管理.html" class="mm c2"><span class="text_c">项目管理</span></div>
+		<div id="13" pid="1" url="总体进度报表.html" class="mm c2"><span class="text_c">总体进度报表</span></div>
+		<div id="2" class="mm c1"><span class="text_c">稽查管理</span></div>
+		<div id="21" pid="2" url="稽查任务.html" class="mm c2"><span class="text_c">稽查任务</span></div>
+		<div id="23" pid="2" url="修改记录.html" class="mm c2"><span class="text_c">修改记录</span></div>
+		<div id="3" class="mm c1"><span class="text_c">评审任务</span></div>
+		<div id="31" pid="3" url="问题归类评审.html" class="mm c2"><span class="text_c">问题归类评审</span></div>
+		<div id="32" pid="3" url="依据评审.html" class="mm c2"><span class="text_c">依据评审</span></div>
+		<div id="33" pid="3" url="单中心报告评审.html" class="mm c2"><span class="text_c">单中心报告评审</span></div>
+		<div id="4" class="mm c1"><span class="text_c">系统管理</span></div>
+		<div id="41" pid="4" url="用户管理.html" class="mm c2"><span class="text_c">用户管理</span></div>
+		<div id="42" pid="4" url="角色管理.html" class="mm c2"><span class="text_c">角色管理</span></div>
+		<div id="43" pid="4" url="部门管理.html" class="mm c2"><span class="text_c">部门管理</span></div>
+		<div id="44" pid="4" url="权限管理.html" class="mm c2"><span class="text_c">权限管理</span></div>
+		<div id="5" class="mm c1"><span class="text_c">知识库</span></div>
+		<div id="51" pid="5" url="中心管理.html" class="mm c2"><span class="text_c">中心管理</span></div>
+		<div id="52" pid="5" url="模块管理.html" class="mm c2"><span class="text_c">模块管理</span></div>
+		<div id="53" pid="5" url="分类管理.html" class="mm c2"><span class="text_c">分类管理</span></div>
+		<div id="54" pid="5" url="问题归类管理.html" class="mm c2"><span class="text_c">问题归类管理</span></div>
+		<div id="55" pid="5" url="依据管理.html" class="mm c2"><span class="text_c">依据管理</span></div>
+		<div id="56" pid="5" url="委托方管理.html" class="mm c2"><span class="text_c">委托方管理</span></div>
+		<div id="57" pid="5" url="单中心报告稽查概述.html" class="mm c2"><span class="text_c">单中心报告稽查概述</span></div>
+		<div id="58" pid="5" url="项目阶段报告概述.html" class="mm c2"><span class="text_c">项目阶段报告概述</span></div>
+		<div id="59" pid="5" url="目的范围依据.html" class="mm c2"><span class="text_c">目的范围依据</span></div>
+		<div id="50" pid="5" url="公司基本信息.html" class="mm c2"><span class="text_c">公司基本信息</span></div> -->
+		</div>
+	</div>
+	<div class="frame_div">
+		<div style="position:relative;height:100%;">
+		<iframe class="iframe" id="iframeObj"  src="工作台.html" height="98%" width="100%" frameborder="0"></iframe>
+		</div>
+	</div>
+	
+		<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+			<!--  -->
+			<div class="sbox xiugaimimaBox">
+				<h4 class="sbox_h4">修改密码</h4>
+				<div class="sbox_c"><span class="slable">旧密码</span><i class="star"></i><input id="password1" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">新密码</span><i class="star"></i><input id="password2" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">确认新密码</span><i class="star"></i><input id="password3" class="sbox_input" type="text"/></div>
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/index.js"></script> -->
+	
+	
+	
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.page = Utils.getQueryString("page") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage1 = true;//判断页面刚加载一次 定义分页的地方用
+	g.serTT = '';//存储所有按钮权限集合
+	
+/* **************************************** lodding ******************************************** */		
+	//页面防止闪
+	
+	
+	$('.out_abtn').on('click',loginOutFunc);
+	$('.changePassWord').on('click',gochange);
+	//getAllMenu();//获取所有菜单
+	loadWork();//加载工作台
+	getUserInfoFunc();//获取用户信息
+	getAllUserFunc();//获取所有用户的id和name 供替换名称为id使用
+	
+/* **************************************** setTing ******************************************** */	
+	
+	
+	
+	//获取所有用户的id和name
+	function getAllUserFunc(){
+		var condi = {};
+		var url = Base.serverUrl + "user/allUsers";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || {};
+					var usr = {};
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || {};
+						var userCode = d.userCode || '';
+						var userId = d.userId || '';
+						var userName = d.userName || '';
+						if(userCode != '' && userName != ''){
+							usr[userName] = userCode;
+						}
+					}
+					//console.log(usr['李现其']);
+					var usr_save = JSON.stringify(usr);
+					Utils.offLineStore.set("usrsave",usr_save,false);//存储所有人供替换id与人名使用
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	
+	//刚开始加载工作台
+	function loadWork(){
+		if(g.loadPage1 = true && g.page == ''){
+			var vmurl = '工作台.html';
+			if(g.vm != ''){vmurl += '?vm=1'; }
+			$('#iframeObj').attr('src',vmurl);
+			$('#menu_show_t .ss').removeClass('active').html('');
+			$('#menu_show_t .s0').css('cursor','pointer').html('工作台');
+			g.loadPage1 = false;
+		}
+	}
+	//修改密码
+	function gochange(){
+		location.href = "changepass.html";
+	}
+	//显示退出 和 修改密码
+	$('.usr_name,.header_menu_ico').click(function(){
+		$('.hmi_ul').slideToggle(200);
+	});
+	/* $('.usr_name,.header_menu_ico').hover(function(e){
+		$('.hmi_ul').show();
+		stopPropagation(e);
+	},function(e){
+		$('.hmi_ul').hide();
+		stopPropagation(e);
+	});*/
+	/*$('.hmi_ul').hover(function(e){
+		$('.hmi_ul').show();
+		stopPropagation(e);
+	});*/
+	//$(document).click(function(e){
+	//	$('.hmi_ul').hide();
+	//	stopPropagation(e);
+	//})
+	//显示修改密码弹窗
+	/* function showChangePassBox(){
+		showSbox('.xiugaimimaBox');//显示弹窗
+		$('#yesBtn').off().on('click',function(){
+			changePassFunc();
+		});
+	} */
+	
+	//修改密码
+	/*function changePassFunc(){
+		var pas1 = $('#password1').val() || '';
+		var pas2 = $('#password2').val() || '';
+		var pas3 = $('#password3').val() || '';
+		if(pas1 == ''){Utils.alert('旧密码不能为空！');return false;}
+		if(pas2 == ''){Utils.alert('新密码不能为空！');return false;}
+		if(pas3 != pas2){Utils.alert('两次输入新密码不一致！');return false;}
+		
+		var condi = {};
+		condi.oldPassword = pas1;
+		condi.newPassword = pas2;
+		var url = Base.serverUrl + "user/setPassword";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || {};
+					Utils.alert('修改密码成功！');
+				}
+				else{
+					var msg = data.message || "修改失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}*/
+
+	
+	//获取用户信息
+	function getUserInfoFunc(){
+		var vmhtml = '<div id="1" pid="" url="工作台.html" class="mm c1"><i class="left_ico type1"></i><span class="text_c">工作台</span></div>'
+		+'<div id="2" pid="" class="mm c1"><i class="left_ico type3"></i><span class="text_c">稽查管理</span></div>'
+		+'<div id="21" pid="2" url="稽查任务.html" class="mm c2"><span class="text_c">稽查任务</span></div>'
+		+'<div id="3" pid="" class="mm c1"><i class="left_ico type4"></i><span class="text_c">系统管理</span></div>'
+		+'<div id="31" pid="3" url="资源锁管理.html" class="mm c2"><span class="text_c">资源锁管理</span></div>';
+		
+		var condi = {};
+		var url = Base.serverUrl + "user/currentUserInfo";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || {};
+					var name1 = data.name || '';
+					var icons = data.icons || '';
+					var wechatHeadImgUrl = data.wechatHeadImgUrl || '';
+					var hasLogin = data.hasLogin || '';//判断用户是否修改过密码
+					var _style = 'background:url('+wechatHeadImgUrl+') no-repeat center center;background-size:contain;';
+					$('.usr_name').html(name1);
+					Utils.offLineStore.set("usernamestr",name1,false);//权限存储
+					$('.usr_head').attr('style',_style);
+					if(hasLogin == 0){//判断用户没有修改密码 提示修改
+						if(confirm('系统检测到您还未修改过密码，请修改密码！')){location.href = "changepass.html";}
+					}
+					//左侧菜单
+					var html = '';
+					var con = data.privileges || [];
+					var isa = 0;
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var pid = d.pid || '';
+						var name = d.name || '';//名称
+						var type = d.type || '';//
+						var value = d.value || '';//
+						var url = d.url || '';//
+						var state = d.state || '';//
+						var state_str = d.state_str || '';//
+						var level = d.level || '';
+						var lstr = '';
+						switch(level){
+							case 1:lstr = 'c1';isa++;break;
+							case 2:lstr = 'c2';break;
+							case 3:lstr = 'c3';break;
+							default:break;
+						}
+						if(type == '按钮' && value != ''){//存储按钮权限值 集合
+							g.serTT = g.serTT != '' ? g.serTT + ',' + value : value;
+						}
+						if(type == '按钮'){continue;}
+						if(type == '菜单' && name == '工作台'){continue;}//过滤菜单工作台
+						if(type == '菜单' && name == '数据统计'){continue;}//过滤菜单数据统计
+						if(name == '稽查任务'){//判断加载稽查任务页面
+							lstr += ' JiChaRenWuBtn ';
+							if(g.page == 'renwu'){lstr += ' active ';$('#iframeObj').attr('src',value);}
+							if(g.page == 'jichamokuai'){lstr += ' active ';$('#iframeObj').attr('src','稽查模块.html');}
+							if(g.page == 'jichafaxian'){lstr += ' active ';$('#iframeObj').attr('src','稽查发现.html');}
+							if(g.page == 'binglijicha'){lstr += ' active ';$('#iframeObj').attr('src','病例稽查.html');}
+						}
+						else if(name == '单中心报告评审'){//判断加载稽查任务页面
+							lstr += ' danzhognxinbaobtn ';
+							if(g.page == 'pingshen'){lstr += ' active ';$('#iframeObj').attr('src',value);}
+						}
+						
+						var icostr = level == 1 ? '<i class="left_ico type'+isa+'"></i>' : '';
+						html+='<div id="'+id+'" pid="'+pid+'" url="'+value+'" class="mm '+lstr+'">'+icostr+'<span class="text_c">'+name+'</span></div>';	
+					}
+					Utils.offLineStore.set("serTT",g.serTT,false);//权限存储
+					//$('#scrollbarList').html(html);
+					$('#scrollbarList').html(vmhtml);
+					//if(g.page == 'renwu'){$('.JiChaRenWuBtn').click();}
+					menuFunction();
+					loadWork();//加载工作台
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+			
+	//退出
+	function loginOutFunc(){
+		
+		//location.href= Base.serverUrl + "logout";
+		
+		//Utils.alert('功能正在开发！');return false;
+		if(!confirm('确认退出吗？')){return false;}
+		var condi = {};
+		var url = Base.serverUrl + "logout";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('JWCQ', 'JWCQ');
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('退出成功！');
+					
+				}
+				else{
+					var msg = data.message || "退出失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+		
+
+	//获取所有菜单
+	function getAllMenu(){
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "privilege/getAll";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '';
+					var con = data || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var pid = d.pid || '';
+						var name = d.name || '';//名称
+						var type = d.type || '';//
+						var value = d.value || '';//
+						var url = d.url || '';//
+						var state = d.state || '';//
+						var state_str = d.state_str || '';//
+						var level = d.level || '';
+						var lstr = '';
+						switch(level){
+							case 1:lstr = 'c1';break;
+							case 2:lstr = 'c2';break;
+							case 3:lstr = 'c3';break;
+							default:break;
+						}
+						if(name == '稽查任务'){lstr += ' JiChaRenWuBtn ';}
+						html+='<div id="'+id+'" pid="'+pid+'" url="'+value+'" class="mm '+lstr+'"><span class="text_c">'+name+'</span></div>';	
+					}	
+					$('#scrollbarList').html(html);
+					menuFunction();
+				}
+				else{
+					var msg = data.message || "获取菜单失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//公共左侧菜单展开与收
+	function menuFunction(){
+		//var obj = $('#common_menu') || {};
+		var obj = $('#scrollbarList') || {};
+		if(!obj){Utils.alert("左侧公共菜单ID不存在"); return false;}
+		//判断当前菜单有否有子菜单
+		$('.mm').each(function(){
+			var _is = $(this) || {};
+			if(_is.hasClass('c1') && _is.next().hasClass('c2') || _is.hasClass('c2') && _is.next().hasClass('c3') ){
+				_is.addClass('has');
+			}else{
+				_is.removeClass('has');
+			}
+			
+		});
+		//一级菜单点击
+		obj.find('.c1').on('click',function(){
+			var _this = $(this) || {};
+			var _id = _this.attr('id') || '';
+			var _e = _this.find('.text_c').html() || '';
+			var _url = _this.attr('url') || '';
+			//$('#menu_show_t .ss').removeClass('active');
+			//$('#menu_show_t .ss').html('');
+			//$('#menu_show_t .s0').html(_e).addClass('active');
+			if(_id == ''){Utils.alert("当前菜单ID不存在"); return false;}
+			if(!_this.next().hasClass('c2')){//判断当前菜单为直接链接地址
+				$('.mm').removeClass('active');
+				_this.addClass('active');
+				if(_url != ''){document.getElementById("iframeObj").src = _url ;}//跳转
+				return false;
+			}
+			obj.find('.c2').each(function(n){
+				var _t = $(this) || {};
+				var _pid = _t.attr('pid') || '';
+				if(_pid == _id){
+					if(_this.hasClass('down')){
+						_t.slideUp(200);
+					}
+					else{
+						_t.slideDown(200);
+					}
+					if(_t.hasClass('c2') && _t.next().hasClass('c3')){//判断是当前菜单的是否有子元素
+						var _id2 = _t.attr('id') || '';
+						obj.find('.c3').each(function(n){
+							var _t2 = $(this) || {};
+							var _pid2 = _t2.attr('pid') || '';
+							if(_pid2 == _id2 && _this.hasClass('down')){_t2.slideUp(200);}
+						});
+					}
+				}
+			});
+			_this.toggleClass('down');
+		});
+		//二级菜单点击
+		obj.find('.c2').on('click',function(){
+			var _this = $(this) || {};
+			var _id = _this.attr('id') || '';
+			var _pid = _this.attr('pid') || '';
+			var _e = _this.find('.text_c').html() || '';
+			var _e2 = $('#'+_pid).find('.text_c').html() || '';
+			var _url = _this.attr('url') || '';
+			//$('#menu_show_t .ss').removeClass('active');
+			//$('#menu_show_t .ss').html('');
+			//$('#menu_show_t .s0').html(_e2);
+			//$('#menu_show_t .s1').html(' > '+_e).addClass('active');
+			if(_id == ''){Utils.alert("当前菜单ID不存在"); return false;}
+			if(!_this.next().hasClass('c3')){
+				$('.mm').removeClass('active');
+				_this.addClass('active');
+				if(_url != ''){document.getElementById("iframeObj").src = _url ;}//跳转
+				return false;
+			}
+			if(_this.next().hasClass('c3')){//判断是当前菜单的是否有子元素
+				obj.find('.c3').each(function(n){
+					var _t2 = $(this) || {};
+					var _pid2 = _t2.attr('pid') || '';
+					if(_pid2 == _id){_t2.slideToggle(200);}
+				});
+			}
+			_this.toggleClass('down');
+		});
+		//三级菜单点击
+		obj.find('.c3').on('click',function(){
+			var _this = $(this) || {};
+			var _pid = _this.attr('pid') || '';
+			var _pid2 = $('#'+_pid).attr('pid') || '';
+			var _e = _this.find('.text_c').html() || '';
+			var _e2 = $('#'+_pid).find('.text_c').html() || '';
+			var _e3 = $('#'+_pid2).find('.text_c').html() || '';
+			var _url = _this.attr('url') || '';
+			//$('#menu_show_t .ss').removeClass('active');
+			//$('#menu_show_t .ss').html('');
+			//$('#menu_show_t .s0').html(_e3);
+			//$('#menu_show_t .s1').html(' > '+_e2);
+			//$('#menu_show_t .s2').html(' > '+_e).addClass('active');
+			$('.mm').removeClass('active');_this.addClass('active');
+			if(_url != ''){document.getElementById("iframeObj").src = _url ;}//跳转
+		});
+	}
+	
+	
+	
+});	
+</script>
+</body>
+</html>

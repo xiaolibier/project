@@ -1,0 +1,179 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!--用于报告里的统计表格的主分类，id是保持顺序的，-->
+	<bean id="主类别01" class="com.zhb.bean.MainCategory">
+		<property name="name" value="保密性"></property>
+		<property name="categoryIds">
+			<list>
+				<value>CON1</value>
+				<value>CON2</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别02" class="com.zhb.bean.MainCategory">
+		<property name="name" value="人员"></property>
+		<property name="categoryIds">
+			<list>
+				<value>PER1</value>
+				<value>PER2</value>
+				<value>PER3</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别03" class="com.zhb.bean.MainCategory">
+		<property name="name" value="伦理"></property>
+		<property name="categoryIds">
+			<list>
+				<value>EIR1</value>
+				<value>EIR2</value>
+				<value>EIR3</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别04" class="com.zhb.bean.MainCategory">
+		<property name="name" value="基本文件"></property>
+		<property name="categoryIds">
+			<list>
+				<value>DOC1</value>
+				<value>DOC2</value>
+				<value>DOC3</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别05" class="com.zhb.bean.MainCategory">
+		<property name="name" value="设施/设备"></property>
+		<property name="categoryIds">
+			<list>
+				<value>FEQ1</value>
+				<value>FEQ2</value>
+				<value>FEQ3</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别06" class="com.zhb.bean.MainCategory">
+		<property name="name" value="研究用药物/器械"></property>
+		<property name="categoryIds">
+			<list>
+				<value>IMP1</value>
+				<value>IMP2</value>
+				<value>IMP4</value>
+				<value>IMP3</value>
+				<value>IMP5</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别07" class="com.zhb.bean.MainCategory">
+		<property name="name" value="生物样本/器械"></property>
+		<property name="categoryIds">
+			<list>
+				<value>SPE1</value>
+				<value>SPE2</value>
+				<value>SPE3</value>
+				<value>SPE4</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别08" class="com.zhb.bean.MainCategory">
+		<property name="name" value="质量管理"></property>
+		<property name="categoryIds">
+			<list>
+				<value>QMS1</value>
+				<value>QMS2</value>
+				<value>QMS3</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别09" class="com.zhb.bean.MainCategory">
+		<property name="name" value="研究者职责"></property>
+		<property name="categoryIds">
+			<list>
+				<value>SD00</value>
+				<value>IC00</value>
+				<value>EV00</value>
+				<value>SRI0</value>
+				<value>COM0</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别10" class="com.zhb.bean.MainCategory">
+		<property name="name" value="申办方/CRO职责"></property>
+		<property name="categoryIds">
+			<list>
+				<value>SIT0</value>
+				<value>SMA0</value>
+				<value>CONT</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别11" class="com.zhb.bean.MainCategory">
+		<property name="name" value="药物安全/警戒"></property>
+		<property name="categoryIds">
+			<list>
+				<value>AE00</value>
+				<value>PCO0</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别12" class="com.zhb.bean.MainCategory">
+		<property name="name" value="数据管理与生物统计"></property>
+		<property name="categoryIds">
+			<list>
+				<value>DMB0</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别13" class="com.zhb.bean.MainCategory">
+		<property name="name" value="电子系统"></property>
+		<property name="categoryIds">
+			<list>
+				<value>EDC0</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别14" class="com.zhb.bean.MainCategory">
+		<property name="name" value="其它"></property>
+		<property name="categoryIds">
+			<list>
+				<value>OTH0</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="主类别15" class="com.zhb.bean.MainCategory">
+		<property name="name" value="总数（N）"></property>
+		<property name="categoryIds">
+			<list>
+				<value>TOTAL</value>
+			</list>
+		</property>
+	</bean>
+</beans>

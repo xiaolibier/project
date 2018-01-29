@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>第三届临床研究质量学术研讨会-报名</title>
+	<style>
+		
+	</style>
+</head>
+<body class="common_body  apply-mobie myorder-mobie bind-mobie">
+	<div class="mobie_div">
+		<!-- <h4 class="head_h4"><a href="javascript:;" class="backto gotoyiqixiu">大会介绍</a></h4> -->
+		<div class="bind_div">
+			<div class="pdd">
+				<input class="common_input" id="urname" placeholder="真实姓名" type="text" />
+			</div>
+			<div class="pdd">
+				<input class="common_input" id="codePhone" placeholder="手机号" type="text" />
+			</div>
+			<div style="position:relative;" class="pdd">
+				<input class="common_input" id="yanzhengma" placeholder="验证码" type="text" />
+				<a href="javascript:;" id="getBtncode" class="getSendCodeBtn" >获取验证码</a>
+			</div>
+			<div><a href="javascript:;" id="bindWX" class="payBtn_div" >绑定手机</a></div>
+		</div>	
+	</div>
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("logintoken",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	loadPage();//加载页面
+	
+	$('#getBtncode').on('click',btnSendCodeFunc);//获取验证码
+	$('#bindWX').on('click',bindWeixinFunc);//绑定微信
+
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		
+	}
+	
+	//绑定微信
+	function bindWeixinFunc(){
+		var usrName = trim2($('#urname').val() || '');
+		var phoneNum = trim2($('#codePhone').val() || '');
+		var yancode = trim2($('#yanzhengma').val() || '');
+		if(usrName == ''){Utils.alert('请输入用户名！');return false;}
+		if(phoneNum == ''){Utils.alert('请输入手机号！');return false;}
+		if(!validPhone(phoneNum)){return false;}
+		if(yancode == ''){Utils.alert('验证码不能为空！');return false;}
+		var condi = {};
+		condi.name = usrName;
+		condi.phone = phoneNum;
+		condi.vCode = yancode;
+		var url = Base.serverUrl + "conference/user/bindPhone";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || {};
+					var phone = data.phone || '';
+					Utils.alert('绑定成功！');
+					loginOutAndGoto();//退出并跳转
+					//setTimeout(function(){
+					//	location.href = "apply-mobie.html";
+					//},1000);
+				}
+				else{
+					var msg = data.message || "绑定失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//退出并跳转
+	function loginOutAndGoto(){
+		var condi = {};
+		var url = Base.serverUrl + "logout";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+						var _url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx38871ac04c8208af&redirect_uri=http%3a%2f%2fconference.3audit.com%2f3audit%2flogin%2fwechat&response_type=code&scope=snsapi_userinfo&state=aa#wechat_redirect";
+						location.href = _url;
+				}
+				else{
+					var msg = data.message || "退出失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	
+	
+	//发送验证----------------------------begin---------------------------
+	var InterValObj; //timer变量，控制时间
+	var count = 30; //间隔函数，1秒执行
+	var curCount;//当前剩余秒数
+	
+	//timer处理函数
+	function SetRemainTime(obj) {
+		var obj = obj || '';
+		if(obj == ''){Utils.alert('获取对象失败！');return false;}
+		if (curCount == 1) {                
+			window.clearInterval(InterValObj);//停止计时器
+			obj.find("#getBtncode").removeClass("disabled");//启用按钮
+			obj.find("#getBtncode").html("重新发送");
+			obj.find('#getBtncode').on('click',btnSendCodeFunc);
+		}
+		else {
+			curCount--;
+			obj.find("#getBtncode").html("" + curCount + "秒后重发");
+		}
+	}
+	//获取验证码
+	function btnSendCodeFunc(){
+		var obj = $(this).parents('.mobie_div') || '';
+		if(obj == ''){Utils.alert('获取对象失败！');return false;}
+		var phoneNum = trim2($('#codePhone').val() || '');
+		if(phoneNum == ''){Utils.alert('请输入手机号！');return false;}
+		if(!validPhone(phoneNum)){return false;}
+		curCount = count;
+	　　//设置button效果，开始计时
+		 obj.find("#getBtncode").addClass("disabled");
+		 obj.find("#getBtncode").html("" + curCount + "秒后重发");
+		 obj.find('#getBtncode').off('click');
+		 InterValObj = window.setInterval(function(){SetRemainTime(obj)}, 1000); //启动计时器，1秒执行一次
+		 //return false;
+	　　//向后台发送处理数据
+		var condi = {};
+		condi.phone = phoneNum;
+		var url = Base.serverUrl + "conference/short/message/getValidCode";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//发送验证--------------------------------end-----------------------
+		
+
+	
+	
+});
+</script>	
+</html>

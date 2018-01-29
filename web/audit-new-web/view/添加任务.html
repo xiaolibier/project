@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+	<style>
+		.check_box .i, .check_box2 .i{margin-right:5px;}
+		.choiseDanwei li{width:99%;}
+		.serinputClass{width:97%;}
+	</style>
+</head>
+<body class="xiangmuguanli tianjiazhongxin">
+	<ul style="width:551px;margin-top:-15px;" class="choiseDanwei choiseDanwei11">
+	</ul>
+	<!-- <h4 class="page_title">添加任务</h4> -->
+	<div style="margin-top:30px;" class="form_div">
+		<div>
+			<span class="lable">中心机构</span><i class="star">*</i>
+			<!-- <select id="zhongxinjigou" class="jigou_sel"><option>北京同仁医院</option></select> -->
+			<input id="zhongxinjigou" readonly class="cen_code" type="text" />
+			机构代码：<span id="jigoudaima" class="ji_code"></span>
+		</div>
+		<div>
+			<span class="lable">中心编号</span><i class="star">*</i>
+			<input id="zhonxinbianhao" class="cen_code" type="text" />
+		</div>
+		<div>
+			<span class="lable">项目分期</span><i class="star">*</i>
+			<select id="proStage" class="jigou_sel"><option value="">请选择分期</option></select>
+		</div>
+		<div id="xiangmujieduan">
+			<span class="lable">项目阶段</span><i class="star">*</i>
+			<div style="padding-right:36px;" class="check_box"><i class="i"></i>启动阶段</div>
+			<div style="padding-right:36px;" class="check_box"><i class="i"></i>入组早期</div>
+			<div style="padding-right:36px;" class="check_box"><i class="i"></i>入组中期</div>
+			<div style="padding-right:36px;" class="check_box"><i class="i"></i>入组末期</div>
+			<div style="padding-right:36px;" class="check_box"><i class="i"></i>数据答疑阶段</div>
+			<div style="padding-right:36px;" class="check_box"><i class="i"></i>数据库锁定后</div><br/>
+			<div style="margin-top:2px;margin-left:63px;" class="check_box"><i class="i"></i>启动阶段—空腹</div>
+			<div style="margin-top:2px;" class="check_box"><i class="i"></i>入组早期—空腹</div>
+			<div style="margin-top:2px;" class="check_box"><i class="i"></i>入组中期—空腹</div>
+			<div style="margin-top:2px;" class="check_box"><i class="i"></i>入组末期—空腹</div>
+			<div style="margin-top:2px;" class="check_box"><i class="i"></i>数据答疑阶段—空腹</div>
+			<div style="margin-top:2px;" class="check_box"><i class="i"></i>数据库锁定后—空腹</div><br/>
+			<div style="margin-top:2px;margin-left:63px;" class="check_box"><i class="i"></i>启动阶段—餐后</div>
+			<div style="margin-top:2px;" class="check_box"><i class="i"></i>入组早期—餐后</div>
+			<div style="margin-top:2px;" class="check_box"><i class="i"></i>入组中期—餐后</div>
+			<div style="margin-top:2px;" class="check_box"><i class="i"></i>入组末期—餐后</div>
+			<div style="margin-top:2px;" class="check_box"><i class="i"></i>数据答疑阶段—餐后</div>
+			<div style="margin-top:2px;" class="check_box"><i class="i"></i>数据库锁定后—餐后</div>
+		</div>
+		<div class="btns_div">
+			<a href="javascript:;" back="项目任务.html" class="common_abtn goback type1">取消</a>
+			<a id="new_project" href="javascript:;" class="common_abtn type2" >创建</a>
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/index.js"></script> -->
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.id = Utils.getQueryString("rid") || Utils.offLineStore.get("rid",false);//从项目管理传来 项目id
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('项目管理').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '项目管理.html';
+	});
+	$('#menu_show_t .s1',parent.document).css('cursor','pointer').html(' > 项目任务').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '项目任务.html';
+	});
+	$('#menu_show_t .s2',parent.document).html(' > 添加任务').addClass('active');
+	$('#new_project').on('click',createNewProject);
+	getxiangmufenqi();//获取项目分期
+	getzhongxinjigou();//获取中心机构
+	
+	
+/* **************************************** setTing ******************************************** */	
+	
+	
+	//添加中心任务
+	function createNewProject(){
+		var zhongxinjigou = $('#zhongxinjigou').val() || '';
+		var jigoudaima = $('#jigoudaima').html() || '';
+		var zhonxinbianhao = $('#zhonxinbianhao').val() || '';
+		var proStage = $('#proStage').val() || '';
+		var xiangmujieduan = setGetCheckValue('#xiangmujieduan');
+		if(zhongxinjigou == ''){Utils.alert('中心机构不能为空！');return false;}
+		if(zhonxinbianhao == ''){Utils.alert('中心编号不能为空！');return false;}
+		if(proStage == ''){Utils.alert('项目分期不能为空！');return false;}
+		if(xiangmujieduan == ''){Utils.alert('项目阶段不能为空！');return false;}
+		var lens = xiangmujieduan.split(',') || [];
+		lens = lens.length <= 0 ? '' : lens.length+'个';
+		var confirm_str = '您要为该中心添加试验阶段为'+xiangmujieduan+lens+'任务吗？';
+		if(!confirm(confirm_str)){return false;}
+		var condi = {};
+		condi.project_id = g.id;
+		condi.center_name = zhongxinjigou;
+		condi.center_code = jigoudaima;
+		condi.center_number = zhonxinbianhao;
+		condi.project_staging = proStage;
+		condi.stage = xiangmujieduan;
+		var url = Base.serverUrl + "task/addcentertask";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('添加成功！');
+					setTimeout(function(){
+						parent.document.getElementById("iframeObj").src = '项目任务.html';
+					},1000);
+				}
+				else{
+					var msg = data.message || "添加失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	setGetSearchInput2('#zhongxinjigou','.choiseDanwei11');
+	//输入时搜索中心机构
+	/* $(".choiseDanwei11 ").keyup(function(){
+		var _vth = $(this);
+		var _li = $('.choiseDanwei11 li');
+		var _val = _vth.val() || '';
+		if(_val == '' || _li.length <= 0){return false;}
+		_li.show();
+		_li.each(function(){//循环搜索
+			var _tt = $(this);
+			var _val2 = _tt.html() || '';
+			var _if = _val2.indexOf(_val);
+			if(_if <= -1){//不符合
+				_tt.hide();
+			}else{_tt.show();}
+		});
+	}); */
+	//选择中心机构
+	$("#zhongxinjigou").click(function(e){
+		var _is = $(this);
+		var xx = _is.offset().left || 0;
+        var yy = _is.offset().top || 0;
+		var _top = yy + _is.height() -9;
+        $('.choiseDanwei11 li').show();
+		$('.choiseDanwei').hide();
+		$('.choiseDanwei11').show().css({"left":xx,"top":_top});
+		$('.choiseDanwei11 li').on('click',function(e){
+			var _tis = $(this);
+			var _vdan= _tis.html() || '';
+			var _vtip= _tis.attr('tip') || '';
+			var sid= _tis.attr('sid') || '';
+			_is.val(_vdan);
+			_is.attr('sid',sid);
+			$('#jigoudaima').html(_vtip);
+			_tis.parents('.choiseDanwei').hide();
+			stopPropagation(e);
+		});
+		stopPropagation(e);
+    });
+	
+	//获取中心机构列表
+	function getzhongxinjigou(){
+		var condi = {};
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "center/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var data = data.content || [];
+					var html = '';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || [];
+						var id = d.id || '';
+						var name = d.name || '';
+						var code = d.code || '';
+						html += '<li sid="'+id+'" tip="'+code+'">'+name+'</li>';
+					}
+					$('.choiseDanwei11').find('li').remove();
+					$('.choiseDanwei11').append(html);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//获取项目分期
+	function getxiangmufenqi(){
+		var condi = {};
+		condi.id = g.id;
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "project/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					var project_staging = d.project_staging || '';
+					var data = project_staging.split(',') || [];
+					var html = '';//'<option value="">请选择分期</option>';
+					for(var i=0,len=data.length;i<len;i++){
+						var name = data[i] || '';
+						var check = '';
+						if(len <= 1){check = 'checked="checked"';}
+						html += '<option '+check+' value="'+name+'">'+name+'</option>';
+					}
+					$('#proStage').html(html);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	
+});
+
+</script>
+</html>

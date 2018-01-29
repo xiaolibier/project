@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>项目任务</title>
+	<style>
+		.re_div{min-height:450px;}
+		.projectLs .table1 .td6{min-width:0;position:initial;}
+		.common_choice{width:351px;}
+		.common_input{width:140px;}
+		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+			color: #888888; opacity:1; 
+		}
+		::-moz-placeholder { /* Mozilla Firefox 19+ */
+			color: #888888;opacity:1;
+		}
+		input:-ms-input-placeholder{
+			color: #888888;opacity:1;
+		}
+		input::-webkit-input-placeholder{
+			color: #888888;opacity:1;
+		}
+	</style>
+</head>
+<body class="projectLs">
+	<!-- 公共头部 -->
+	<div class="com_header"></div>
+	
+	<!-- 项目列表 -->
+	<div class="project_tt">
+		<h4 class="re_bk_text">
+			<span id="pro_name_span" class="pro_name"></span>
+			<a href="javascript:;" id="tomember" class="mem_right_info"><span id="mber_num" class="t">0</span><br/>成员</a>
+		</h4>
+		<div class="re_div">
+			<div class="tt_div"><a href="javascript:;" id="jichafaxian" class="ttd_a">任务</a><a href="javascript:;" class="ttd_a active">稽查发现</a></div>
+			<div class="serch_div">
+				<select id="censer" class="common_choice"><option value="">全部任务</option></select>
+				<select id="fenjiser" class="common_choice"><option value="">全部分级</option><option value="一般问题">一般问题</option><option value="主要问题">主要问题</option><option value="严重问题">严重问题</option></select>
+				<select id="moduleser" class="common_choice"><option value="">全部模块</option></select>
+				<select id="fenleiser" class="common_choice"><option value="">全部分类</option></select>
+				<select id="wentiser" class="common_choice"><option value="">全部问题归纳</option></select>
+				<input id="codeser" class="common_input" placeholder="受试者编号" type="text" />
+				<div class="ser_cdiv">
+					<a id="searchBtn" class="ser_btn type2">搜索</a>
+					<a id="searchAll" class="ser_btn">清空条件</a>
+				</div>
+			</div>
+			<div id="tablecontent" style="margin:0 10px 10px;" class="tableList">
+				<!-- <table class="table1 table0">
+					<tr>
+						<th>序号</th>
+						<th>分级</th>
+						<th>模块</th>
+						<th>分类</th>
+						<th>问题归纳</th>
+						<th>受试者编号</th>
+						<th>问题说明</th>
+					</tr>
+					<tr>
+						<td>001</td>
+						<td>一般问题</td>
+						<td>安利生坦片</td>
+						<td>江苏嘉逸医药有限公司</td>
+						<td>3A-0058-17009-7</td>
+						<td>058</td>
+						<td>新增</td>
+					</tr>
+				</table> -->
+			</div>
+		</div>
+	</div>
+
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.xid = Utils.getQueryString("xid") || "";//从任务页面传来 传项目id
+	g.rid = Utils.getQueryString("rid") || "";//从任务页面传来 传任务id
+	g.xname = Utils.getQueryString("xname") || "";//从任务列表页面传来 传项目名称
+	g.cname = Utils.getQueryString("cname") || "";//从任务列表页面传来 传中心名称
+	if(g.xname != ''){g.xname = decodeURI(g.xname)}//解码
+	if(g.cname != ''){g.cname = decodeURI(g.cname)}//解码
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	loadPage();//加载页面
+	$('#pro_name_span').on('click',function(){
+		location.href="project.html";
+	});
+	//点击跳转到稽查任务页面
+	$('#jichafaxian').on('click',function(){
+		var xname = encodeURI(encodeURI(g.xname));//加密
+		location.href="renwu.html?xid="+g.xid+"&xname="+xname;
+	});
+	//点击跳转到 项目成员 页面
+	$('#tomember').on('click',function(){
+		var xname = encodeURI(encodeURI(g.xname));//加密
+		location.href="proManager.html?xid="+g.xid+"&xname="+xname;
+	});
+	$('#searchAll').on('click',function(){tableListShow(2)});
+	$('#searchBtn').on('click',function(){tableListShow(1)});
+	
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		$('#pro_name_span').html(g.xname);//给标题 项目名称赋值
+		getparams();//获取筛选项 参数
+		tableListShow();//获取列表
+		getmember();//获取当前项目的成员数
+	}
+	
+		
+	//获取当前项目的成员数
+	function getmember(){
+		var condi = {};
+		condi.project_id = g.xid;
+		var url = Base.serverUrl + "open/platform/members/count";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || 0;
+					$('#mber_num').html(data);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	//切换申办方时自动搜索
+	$('.projectLs').on('mousedown','.choiseDanwei01 li',function(e){
+		//setTimeout(function(){tableListShow(1);},600);
+		var spaid = $(this).attr('tip') || '';//获取申办方id
+		Utils.offLineStore.set("sid",spaid,false);//存储申办方id
+		location.href = "project.html";
+	});
+	
+	
+		
+	//获取筛选项 参数
+	function getparams(){
+		var spaid = $('#headInput').attr('tipid') || '';//获取中心id
+		var condi = {};
+		condi.sponsor_id  = spaid;
+		condi.project_id  = g.xid;
+		//condi.task_id  = g.rid;
+		//condi.center_name  = title;
+		//condi.module_name  = title;
+		//condi.category_name  = title;
+		var url = Base.serverUrl + "open/platform/discovery/search/params";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var data1 = data.centers || [];
+					var data3 = data.modules || [];
+					var data4 = data.categories || [];
+					var data5 = data.problems || [];
+					var html1 = '<option value="">所有任务</option>',
+						html2 = '<option value="">所有分级</option>',
+						html3 = '<option value="">所有模块</option>',
+						html4 = '<option value="">所有分类</option>',
+						html5 = '<option value="">所有问题归纳</option>';
+					//中心列表
+					for(var i=0,len=data1.length;i<len;i++){
+						var name = data1[i] || [];
+						var _selected = '';
+						if(g.rid != '' && g.cname == name){_selected = 'selected="selected"';}
+						html1 += '<option '+_selected+' value="'+name+'">'+name+'</option>';
+					}
+					$('#censer').html(html1);
+					
+					//模块
+					for(var i=0,len=data3.length;i<len;i++){
+						var name = data3[i] || [];
+						html3 += '<option value="'+name+'">'+name+'</option>';
+					}
+					$('#moduleser').html(html3);
+					//分类
+					for(var i=0,len=data4.length;i<len;i++){
+						var name = data4[i] || [];
+						html4 += '<option value="'+name+'">'+name+'</option>';
+					}
+					$('#fenleiser').html(html4);
+					//问题归纳
+					for(var i=0,len=data5.length;i<len;i++){
+						var name = data5[i] || [];
+						html5 += '<option value="'+name+'">'+name+'</option>';
+					}
+					$('#wentiser').html(html5);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//获取列表
+	function tableListShow(is){
+		var is = is || '';
+		
+		var censer = $('#censer').val() || '';
+		var fenjiser = $('#fenjiser').val() || '';
+		var moduleser = $('#moduleser').val() || '';
+		var fenleiser = $('#fenleiser').val() || '';
+		var wentiser = $('#wentiser').val() || '';
+		var codeser = $('#codeser').val() || '';
+		
+		var spaid = $('#headInput').attr('tipid') || '';//获取中心id
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		condi.project_id = g.xid;
+		condi.task_id = g.rid;
+		condi.sponsor_id = spaid;
+		if(is == 1){//搜索条件
+			condi.center_name = censer;
+			condi.grade = fenjiser;
+			condi.module_name = moduleser;
+			condi.category_name = fenleiser;
+			condi.problem = wentiser;
+			condi.patient_code = codeser;
+		}else if(is == 2){//搜索全部
+			$('#censer').val('');
+			$('#fenjiser').val('');
+			$('#moduleser').val('');
+			$('#fenleiser').val('');
+			$('#wentiser').val('');
+			$('#codeser').val('');
+		}
+		var url = Base.serverUrl + "open/platform/discovery/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				g.totalPage = data.totalPages || 0;//总页数
+				if(status){
+					var data = data.result || [];
+					var data = data.content || [];
+					var html = '<table class="table1">'
+								+'<tr>'
+									+'<th style="min-width:30px;">序号</th>'
+									+'<th style="min-width:55px;">分级</th>'
+									+'<th style="min-width:138px;">模块</th>'
+									+'<th style="min-width:138px;">分类</th>'
+									+'<th style="min-width:149px;">问题归纳</th>'
+									+'<th style="min-width:70px;">受试者编号</th>'
+									+'<th style="min-width:60px;">问题说明</th>'
+								+'</tr>';
+					g.totalElements = data.length || 0;//总数
+					for(var i=0,len=data.length;i<len;i++){
+						var xu = len - i;
+						var d = data[i] || {};
+						var id = d.task_id || '';
+						var module_name = d.module_name || '';
+						var classify = d.classify || '';
+						var problem = d.problem || '';
+						var grade = d.grade || '';
+						var patient_code = d.patient_code || '';
+						var problem_detail = d.problem_detail || '';
+						html += '<tr>'
+							+'<td class="td1">'+xu+'</td>'
+							+'<td class="td2">'+grade+'</td>'
+							+'<td class="td3">'+module_name+'</td>'
+							+'<td class="td4">'+classify+'</td>'
+							+'<td class="td5">'+problem+'</td>'
+							+'<td class="td6">'+patient_code+'</td>'
+							+'<td class="td7">'+problem_detail+'</td>'
+						+'</tr>';
+					}
+					html += '</table>';
+					
+					$('#tablecontent').html(html);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+					$('#tablecontent').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#tablecontent').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+});
+</script>
+</html>

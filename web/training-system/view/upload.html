@@ -1,0 +1,57 @@
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<script type="text/javascript">  
+
+	window.onload = function() {
+
+	    var rs = decodeURI(window.location).split('?').slice(1); //decodeURI是为了兼容中文解码
+
+	    var list = rs.toString().split("&");
+
+	    var msg;
+
+	    var result;
+
+	    var json='{';//最终还是获取json对象，这样kindeditor也可以用
+
+	    for(var i = 0; i<list.length; i++){
+
+	    	var list1 = list[i].split('=');
+
+	    	if(i != 0){
+
+	    		json += ','
+
+	    	}
+
+	    	json += '"' + list1[0] + '":"' + list1[1] + '"';
+
+	    }
+
+	    json += '}';
+
+	    if(window.parent.callback != null){
+
+	    	window.parent.callback(json); //这是针对普通上传 
+
+	    }else{
+
+	    	document.body.innerHTML += '<pre>' + json  + '</pre>';//这是针对kindeditor框架可以获取到json对象
+
+	    }
+
+	}
+
+	</script> 
+
+</head>
+
+<body>
+
+</body>
+
+</html>

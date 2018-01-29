@@ -1,0 +1,11 @@
+ <div class="jianjie_01 jianjie_center_left fl">
+    <!-- <span>经纬学院</span> -->
+    <span>
+      <ul>
+	   <volist id="vo" name="datasrows">
+	  	 <li id="{$vo['Main_ID']}"><a href="{:U('news?id='.$vo['Main_ID'].'')}">{$vo.Main_Name}</a></li>
+	  </volist>
+      </ul>
+    </span>
+  
+  </div>

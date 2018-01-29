@@ -1,0 +1,17 @@
+ <div class="jianjie_01 jianjie_center_left fl">
+    <!-- <span>联系我们</span> -->
+    <span>
+      <ul>
+	   <volist name="datasrows" id="vo">
+				<switch name="vo.Main_Type">
+				<case value="1"><li id="{$vo['Main_ID']}"><a href="{:U('contact?id='.$vo['Main_ID'].'')}" >{$vo.Main_Name}</a></li> </case>	
+				    <case value="5"><li id="{$vo['Main_ID']}"><a href="{:U('states?id='.$vo['Main_ID'].'')}" >{$vo.Main_Name}</a></li> </case>	
+	 			</switch>
+		</volist>
+	  
+	  
+     
+      </ul>
+    </span>
+  
+  </div>

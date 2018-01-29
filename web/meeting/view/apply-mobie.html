@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>第三届临床研究质量学术研讨会-报名</title>
+	<style>
+		
+	</style>
+</head>
+<body class="common_body apply-mobie">
+	<div class="mobie_div">
+		<!-- <h4 class="head_h4"><a href="javascript:;" class="backto gotoyiqixiu">大会介绍</a></h4> -->
+		<div class="banner_img_div"></div>
+		<h4 class="h4title1">第三届临床研究质量学术研讨会（暨2017中国临床研究质量年度报告发布会）</h4>
+		<div class="h4title2"><i class="hi1 type1"></i>2017年11月18-19日</div>
+		<div class="h4title2"><i class="hi1 type2"></i>北京.江西大酒店</div>
+		<div class="h4title2"><i class="hi1 type3"></i>北京经纬传奇医药科技有限公司</div>
+		<div class="pdd">
+			<span class="common_lable top">费用说明</span>
+			<span class="context context2"><span class="col1">2200 元/人</span>，含报名费、资料费、18 日晚餐、19 日午餐费，住宿、交通费用自理</span>
+		</div>
+		<div class="pdd">
+			<span class="common_lable">报名人数</span>
+			<span style="overflow:hidden;display:inline-block;vertical-align:middle;">
+				<a href="javascript:;" class="less_btn">-</a>
+				<input id="peper" readonly type="text" class="num_input" />
+				<a href="javascript:;" class="add_btn">+</a>
+				<span style="margin-left:12px;display:inline-block;vertical-align:middle;font-size:11px;color:#646464;">人</span>
+			</span>
+		</div>
+		<div class="pdd">
+			<span class="common_lable">公司名称</span>
+			<input id="company_name" class="common_input" type="text" />
+		</div>
+		<div class="pdd">
+			<span class="common_lable top">发票类型</span>
+			<div id="choiseHide" class="posi">
+				<div><div name="zeng1" val="增值税普通发票" class="common_radio active zengzhishui"><i class="i"></i>增值税普通发票</div>
+				<div name="zeng1" val="不需要发票" class="common_radio"><i class="i"></i>不需要发票</div></div>
+				<span class="r_tip">（ 如需开具增值税专用发票，请联系会务组 ）</span>
+			</div>
+		</div>
+		<div class="pdd hidefapiao">
+			<span class="common_lable color2">税号</span>
+			<input id="shuihao" class="common_input" type="text" />
+		</div>
+		<div class="pdd hidefapiao">
+			<span class="common_lable color2">发票抬头</span>
+			<input id="fapiaotaitou" class="common_input" type="text" />
+		</div>
+		<div class="pdd hidefapiao last">
+			<span class="common_lable color2">发票邮寄</span>
+			<input id="fapiaoyouji" class="common_input" type="text" />
+		</div>
+		<h4 class="h4title3">填写参会人员信息</h4>
+		<div id="addone_list">
+		</div>
+		<div class="payres">
+			<div class="tt_show">总计： ¥ <span id="tttmoney">2200</span></div>
+			<!-- <div id="tttmoney_str" class="computer_show">2200x1 + 0x0  = 2200</div> -->
+		</div>
+		<div style="display:none;" class="pdd zhifubaoChoise"><div name="radiopay" val="支付宝" class="common_radio common_radio0"><i class="i"></i><img src="../public/img/zhifu.png" class="pay_c_ico" />支付宝</div></div>
+		<div class="pdd last weixinChoise"><div name="radiopay" val="微信公众号" class="common_radio common_radio0 active"><i class="i"></i><img src="../public/img/weixin.png" class="pay_c_ico" />微信</div></div>
+		<div class="payapp_bg"><a href="javascript:;" id="pay_apply_btn" class="payBtn_div" >确认支付 <span id="ttm"></span></a></div>
+	</div>
+	<ul class="bottom_cmenu"><li class="cmenu active">参会报名</li><li id="MobieOrder" class="cmenu">我的订单</li></ul>
+
+	
+<!-- 弹出层 -->
+<div class="stip_bg"></div>
+<!-- 扫码微信支付 -->
+<div class="weixinloginerweima" style="display:none;top:50%;margin-top:-200px;left:50%;margin-left:-150px;position:fixed;z-index:999;" id="login_container">
+	<div class="main impowerBox">
+		<div class="loginPanel normalPanel">
+			<div class="title">微信支付</div>
+			<div class="waiting panelContent">
+				<div id="erweimaHtml" class="wrp_code qrcode"></div>
+				<div class="info">
+					<div class="status status_browser js_status" id="wx_default_tip">
+						<p>请使用微信扫描二维码支付</p>
+						<p>“经纬传奇”</p>
+					</div>
+					<div class="status status_succ js_status" style="display:none" id="wx_after_scan">
+						<i class="status_icon icon38_msg succ"></i>
+						<div class="status_txt">
+							<h4>扫描成功</h4>
+							<p>请在微信中点击确认即可支付</p>
+						</div>
+					</div>
+					<div class="status status_fail js_status" style="display:none" id="wx_after_cancel">
+						<i class="status_icon icon38_msg warn"></i>
+						<div class="status_txt">
+							<h4>您已取消此次支付</h4>
+							<p>您可再次扫描支付，或关闭窗口</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 支付宝支付跳转 form表单 -->
+<div id="payzhifubao" style="display:none;"></div>
+		
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.qrcode.min.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("logintoken",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.lunxun = '';//定义轮询变量
+	
+/* **************************************** lodding ******************************************** */		
+	
+	loadPage();//加载页面
+	$('.less_btn').on('click',function(){peperNum('-')});//减少一个
+	$('.add_btn').on('click',function(){peperNum('+')});//加一个
+	$('#addone_list').on('change','.choiseHotel',function(){
+		var obj = $(this).parents('.appl_one');
+		hideshowFunc(obj);
+		runtt();//计算总值 并 改变底部显示的公式
+	});//选择住宿方式
+	$('#addone_list').on('change','.liveintime,.liveouttime',function(){
+		var obj = $(this).parents('.appl_one');
+		computelivedays(obj);
+		runtt();//计算总值 并 改变底部显示的公式
+	});//选择住宿方式
+	
+	$('#choiseHide .common_radio').on('click',hideshowFunc2);//选择发票
+	$('#pay_apply_btn').on('click',payFunc);//支付
+	$('#MobieOrder').on('click',MobieOrderFunc);//跳转到手机我的订单页
+	$('.common_body').on('blur','input',saveInputDataFunc);//存储缓存数据
+	$('.common_body').on('change','select',saveInputDataFunc);//存储缓存数据
+	$('.common_body').on('click','.common_radio',saveInputDataFunc);//存储缓存数据
+	$('.common_body').on('click','.add_btn,.less_btn',saveInputDataFunc);//存储缓存数据
+	
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		$('#peper').val(1);//给人数赋值；
+		addOrDeleteOne('add');//默认一个人
+		//if(!browser.versions.weiXin){$('.zhifubaoChoise').show();}
+		getInputDataFunc();//缓存数据 赋值
+	}
+	
+		
+	//缓存数据 赋值
+	function getInputDataFunc(){
+		var condi = {};
+		//
+		condi.people = Utils.offLineStore.get("people_token",false) || '';
+		condi.orderList = Utils.offLineStore.get("orderlist_token",false) || '';
+		condi.invoice = Utils.offLineStore.get("invoice_token",false) || '';
+		condi.payType = Utils.offLineStore.get("paytype_token",false) || '';
+		condi.orderList = condi.orderList != '' ? JSON.parse(condi.orderList) : '';
+		condi.invoice = condi.invoice != '' ? JSON.parse(condi.invoice) : '';
+		var invoice = condi.invoice;
+		$('#company_name').val(invoice.company);
+		$('#shuihao').val(invoice.number);
+		$('#fapiaotaitou').val(invoice.title);
+		$('#fapiaoyouji').val(invoice.address);
+		if(invoice.type && invoice.type != ''){
+			setRadioVal('#choiseHide','zeng1',invoice.type);
+			if(invoice.type == '不需要发票'){$('.hidefapiao').hide();}
+		}
+		var ppp = parseInt(condi.people) || 0;
+		if(condi.people && condi.people != ''){$('#peper').val(condi.people)}
+		for(var i=1,len=ppp;i<len;i++){
+			addOrDeleteOne('add');//添加
+		}
+		//if(condi.payType && condi.payType != ''){setRadioVal('#pay_type_one','radiopay',condi.payType)}
+		
+		if(condi.orderList && condi.orderList != ''){
+			for(var i=0,len=condi.orderList.length;i<len;i++){
+				var m = i + 1;
+				var d = condi.orderList[i] || {};
+				var t = {};
+				$('#addone_list').find('.appl_one').each(function(){
+					var _m = $(this).attr('num') || '';
+					if(m == _m && _m != ''){t = $(this)}
+				});
+				t.find('.xingming1').val(d.name);
+				t.find('.phonenum1').val(d.phone);
+				t.find('.job1').val(d.job);
+				t.find('.email1').val(d.email);
+				//酒店选择
+				t.find('.choiseHotel').val(d.hotelPrice);
+				if(d.hotelPrice && d.hotelPrice != '0'){t.find('.hidethisor').show();}else{t.find('.hidethisor').hide();}
+				t.find('.liveintime').val(d.hotelStart);
+				t.find('.liveouttime').val(d.hotelEnd);
+				t.find('.livetttime').html(d.hotelDay);
+				//分论坛选择
+				if(d.subForums.indexOf('1') > -1){t.find('.selectonetalk').val('1');}
+				if(d.subForums.indexOf('2') > -1){t.find('.selectonetalk').val('2');}
+				if(d.subForums.indexOf('3') > -1){t.find('.selecttwotalk').val('3');}
+				if(d.subForums.indexOf('4') > -1){t.find('.selecttwotalk').val('4');}
+				
+			}
+		}
+	}
+	//缓存数据
+	function saveInputDataFunc(){
+		var peper = $('#peper').val() || '';
+		var company_name = $('#company_name').val() || '';
+		var choiseHide = getRadioVal('#choiseHide','zeng1');
+		var number = $('#shuihao').val() || '';
+		var fapiaotaitou = $('#fapiaotaitou').val() || '';
+		var fapiaoyouji = $('#fapiaoyouji').val() || '';
+		var invoice = {};
+		invoice.company  = company_name;
+		invoice.type  = choiseHide;
+		invoice.number  = number;
+		invoice.title  = fapiaotaitou;
+		invoice.address  = fapiaoyouji;
+		var orderList = [];
+		//遍历每一个人的信息-----------------------------------------------
+		var everyPass = true;
+		$('#addone_list').find('.appl_one').each(function(n){
+			var mm = n + 1;
+			var order = {};
+			var t = $(this) || {};
+			order.name = t.find('.xingming1').val() || '';
+			order.phone = t.find('.phonenum1').val() || '';
+			order.job = t.find('.job1').val() || '';
+			order.email = t.find('.email1').val() || '';
+			//酒店选择
+			order.hotelPrice = t.find('.choiseHotel').val();
+			
+			//自理的时候清空下面两个
+			order.hotelStart = order.hotelPrice == 0 || order.hotelPrice == '' ? '' : t.find('.liveintime').val() || '';
+			order.hotelEnd = order.hotelPrice == 0 || order.hotelPrice == '' ? '' : t.find('.liveouttime').val() || '';
+			order.hotelDay = order.hotelPrice == 0 || order.hotelPrice == '' ? '' : t.find('.livetttime').html() || '';
+			//判断选中项 分论坛选择
+			order.subForums = '';
+			var se1 = t.find('.selectonetalk').val() || '';
+			var se2 = t.find('.selecttwotalk').val() || '';
+			if(se1 != ''){order.subForums = order.subForums == '' ? se1 : order.subForums +','+ se1;}
+			if(se2 != ''){order.subForums = order.subForums == '' ? se2 : order.subForums +','+ se2;}
+			orderList.push(order);
+		});
+		if(!everyPass){return false;}//校验为空返回
+		var pay_type = getRadioVal('.mobie_div','radiopay','val');//支付方式
+		var condi = {};
+		condi.people  = peper;
+		condi.orderList  = JSON.stringify(orderList);
+		condi.invoice  = JSON.stringify(invoice);
+		condi.payType  = pay_type;
+		Utils.offLineStore.set("people_token",condi.people,false);
+		Utils.offLineStore.set("orderlist_token",condi.orderList,false);
+		Utils.offLineStore.set("invoice_token",condi.invoice,false);
+		Utils.offLineStore.set("paytype_token",condi.payType,false);
+	}	
+	
+	//跳转到手机我的订单页
+	function MobieOrderFunc(){
+		location.href = "myorder-mobie.html";
+	}
+	
+	//隐藏二维码
+	$('.stip_bg').on('click',function(){
+		$('.stip_bg').fadeOut(200);
+		$('#login_container').hide();
+	});
+	
+	//支付
+	function payFunc(){
+		var peper = $('#peper').val() || '';
+		var company_name = $('#company_name').val() || '';
+		var choiseHide = getRadioVal('#choiseHide','zeng1');
+		var number = $('#shuihao').val() || '';
+		var fapiaotaitou = $('#fapiaotaitou').val() || '';
+		var fapiaoyouji = $('#fapiaoyouji').val() || '';
+		if(peper == ''){Utils.alert('报名人数不能为空！');return false;}
+		if(company_name == ''){Utils.alert('公司名称不能为空！');return false;}
+		if(choiseHide == ''){Utils.alert('发票类型不能为空！');return false;}
+		if(choiseHide == '增值税普通发票' && number == ''){Utils.alert('税号不能为空！');return false;}
+		if(choiseHide == '增值税普通发票' && fapiaotaitou == ''){Utils.alert('发票抬头不能为空！');return false;}
+		if(choiseHide == '增值税普通发票' && fapiaoyouji == ''){Utils.alert('发票邮寄地址不能为空！');return false;}
+		var invoice = {};
+		invoice.company  = company_name;
+		invoice.type  = choiseHide;
+		invoice.number  = number;
+		invoice.title  = fapiaotaitou;
+		invoice.address  = fapiaoyouji;
+		var orderList = [];
+		//遍历每一个人的信息-----------------------------------------------
+		var everyPass = true;
+		$('#addone_list').find('.appl_one').each(function(n){
+			var mm = n + 1;
+			var order = {};
+			var t = $(this) || {};
+			order.name = t.find('.xingming1').val() || '';
+			order.phone = t.find('.phonenum1').val() || '';
+			order.job = t.find('.job1').val() || '';
+			order.email = t.find('.email1').val() || '';
+			//酒店选择
+			order.hotelPrice = t.find('.choiseHotel').val();
+			
+			//自理的时候清空下面两个
+			order.hotelStart = order.hotelPrice == 0 || order.hotelPrice == '' ? '' : t.find('.liveintime').val() || '';
+			order.hotelEnd = order.hotelPrice == 0 || order.hotelPrice == '' ? '' : t.find('.liveouttime').val() || '';
+			order.hotelDay = order.hotelPrice == 0 || order.hotelPrice == '' ? '' : t.find('.livetttime').html() || '';
+			//判断选中项 分论坛选择
+			order.subForums = '';
+			var se1 = t.find('.selectonetalk').val() || '';
+			var se2 = t.find('.selecttwotalk').val() || '';
+			if(se1 != ''){order.subForums = order.subForums == '' ? se1 : order.subForums +','+ se1;}
+			if(se2 != ''){order.subForums = order.subForums == '' ? se2 : order.subForums +','+ se2;}
+			if(order.name == ''){Utils.alert('第'+mm+'个订单姓名不能为空！');everyPass = false;return false;}
+			var reg = /^1[3,4,5,7,8]\d{9}$/g;
+			if(order.phone == ''){Utils.alert('第'+mm+'个订单手机号不能为空！');everyPass = false;return false;}
+			if(!reg.test(order.phone)){Utils.alert('第'+mm+'个订单手机号输入格式错误！');everyPass = false;return false;}
+			if(order.job == ''){Utils.alert('第'+mm+'个订单职务不能为空！');everyPass = false;return false;}
+			if(order.email == ''){Utils.alert('第'+mm+'个订单邮箱不能为空！');everyPass = false;return false;}
+			if(order.hotelPrice == ''){Utils.alert('第'+mm+'个订单请选择酒店或自理！');everyPass = false;return false;}
+			if(order.hotelPrice != 0 && order.hotelPrice != '' && (order.hotelStart == '' || order.hotelStart == 0)){Utils.alert('第'+mm+'个订单酒店入住时间不能为空！');everyPass = false;return false;}
+			if(order.hotelPrice != 0 && order.hotelPrice != '' && (order.hotelEnd == '' || order.hotelEnd == 0)){Utils.alert('第'+mm+'个订单酒店离开时间不能为空！');everyPass = false;return false;}
+			if(order.hotelPrice != 0 && order.hotelPrice != '' && order.hotelDay == ''){Utils.alert('第'+mm+'个订单酒店住宿天数不能为空！');everyPass = false;return false;}
+			if(order.subForums.indexOf('1') < 0 && order.subForums.indexOf('2') < 0 ){Utils.alert('第'+mm+'个订单分论坛选择一/二不能为空！');everyPass = false;return false;}
+			if(order.subForums.indexOf('3') < 0 && order.subForums.indexOf('4') < 0 ){Utils.alert('第'+mm+'个订单分论坛选择三/四不能为空！');everyPass = false;return false;}
+			orderList.push(order);
+		});
+		if(!everyPass){return false;}//校验为空返回
+		var pay_type = getRadioVal('.mobie_div','radiopay','val');//支付方式
+		var condi = {};
+		condi.people  = peper;
+		condi.orderList  = JSON.stringify(orderList);
+		condi.invoice  = JSON.stringify(invoice);
+		condi.payType  = pay_type;
+		var url = Base.serverUrl + "conference/order/submit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var dd = data.result || {};
+					var orderId = dd.orderId || '';
+					var url = dd.url || '';
+					if(pay_type == '微信公众号'){//微信支付显示支付二维码
+						var appId = dd.appId || '';
+						var timeStamp = dd.timeStamp || '';
+						var nonceStr = dd.nonceStr || '';
+						var packageStr = dd.packageStr || '';
+						var signType = dd.signType || '';
+						var paySign = dd.paySign || '';
+						
+						//支付----------------------------------------------------------------------------------
+						function onBridgeReady(){
+							   WeixinJSBridge.invoke(
+								   'getBrandWCPayRequest', {
+									   "appId":appId,     //公众号名称，由商户传入     
+									   "timeStamp":timeStamp,         //时间戳，自1970年以来的秒数     
+									   "nonceStr":nonceStr, //随机串     
+									   "package":packageStr,     
+									   "signType":signType,         //微信签名方式：     
+									   "paySign":paySign  //微信签名 
+								   },
+								   function(res){
+									   if(res.err_msg == "get_brand_wcpay_request:ok" ){location.href = "myorder-mobie.html";}     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+								   }
+							   ); 
+							}
+							if (typeof WeixinJSBridge == "undefined"){
+							   if( document.addEventListener ){
+								   document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+							   }else if (document.attachEvent){
+								   document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+								   document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+							   }
+							}else{
+							   onBridgeReady();
+							}
+					//支付-------------------------------------end---------------------------------------------	
+					}else if(pay_type == '支付宝'){//支付宝支付
+						$('#payzhifubao').html(url);
+						//跳到支付并传值到支付页面
+						//var _href = "pay.html?pay=1";//pay校验非法请求
+						//Utils.offLineStore.set("xform",url,false);
+						//window.open(_href);
+					}
+				}
+				else{
+					var msg = data.message || "支付失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+	
+
+	
+	// Converts image to canvas; returns new canvas element
+	function convertImageToCanvas(image) {
+		var canvas = document.createElement("canvas");
+		canvas.width = image.width;
+		canvas.height = image.height;
+		canvas.getContext("2d").drawImage(image, 0, 0);
+
+		return canvas;
+	}
+	// Converts canvas to an image
+	function convertCanvasToImage(canvas) {
+		var image = new Image();
+		image.src = canvas.toDataURL("image/png");
+		return image;
+	}
+	//轮询接口 微信扫码支付 请求状态
+	function request(orderId){
+		//二维码已经关闭 停止轮询
+		if($('#login_container').css('display') == 'none'){clearInterval(g.lunxun);return false;}
+		var orderId = orderId || '';
+		var condi = {};
+		condi.orderId = orderId;
+		var url = Base.serverUrl + "conference/order/pay/polling";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var res = data.result || '';
+					//支付成功
+					if(res == '1'){
+						clearInterval(g.lunxun);
+						Utils.alert("支付成功！");
+						$('#login_container').fadeOut();
+						$('.stip_bg').hide();
+						location.href = "myorder.html";
+					}
+					
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//计算每个人住的天数
+	function computelivedays(obj){
+		var obj = obj || '';
+		if(obj == ''){return false;}
+		var _in = obj.find('.liveintime').val() || '';//入住时间
+		var _out = obj.find('.liveouttime').val() || '';//离开时间
+		var res = '';
+		if(_in == _out && _in != 0){Utils.alert('入住日期跟离开日期不能相同！');}
+		if(_in > _out && _out != 0){Utils.alert('入住日期不能大于离开日期！');}
+		if(_in != 0 && _out != 0 && _in != _out && _in < _out){res = _out - _in;}
+		obj.find('.livetttime').html(res);
+		runtt();//计算总值 并 改变底部显示的公式
+	}
+	
+	//计算总值 并 改变底部显示的公式
+	function runtt(){
+		var obj = $('#addone_list').find('.appl_one') || {};
+		var pernum = obj.length || 0;//人数
+		var livett = 0;//总共住宿费
+		var livett_str = '';//总共住宿费 字符串
+		obj.each(function(){
+			var _t = $(this) || {};
+			var liveMonney = parseInt(_t.find('.choiseHotel').val() || '0');//存一个人的住宿费
+			var liveDays = 0;//存一个人的住宿天数
+			var Days = _t.find('.livetttime').text() || '';
+			if(Days != ''){liveDays = parseInt(Days);}//获取住宿天数
+			
+			livett += liveMonney*liveDays;//加一块
+			livett_str = livett_str == '' ?  liveMonney+'*'+liveDays : livett_str +' + ' +liveMonney+'*'+liveDays ;
+		});
+		//var ttmonney = 2200*pernum + livett;//总费用
+		var ttmonney = 2200*pernum;//总费用
+		var ttmonney_str = 2200+'*'+pernum +' + '+ livett_str +' = '+ttmonney;//总费用 字符串
+		
+		$('#tttmoney').html(ttmonney);
+		$('#ttm').html('¥'+ttmonney);
+		$('#tttmoney_str').html(ttmonney_str);
+	}
+	
+	
+	//添加删除一个人
+	function addOrDeleteOne(is){
+		var is = is || '';//del add
+		if(is == 'del'){//删除一个
+			$('#addone_list .appl_one:last').prev('.bt_line').remove();//删除分割线
+			$('#addone_list .appl_one:last').remove();
+			return false;
+		}
+		//添加一个
+		var _num = $('#addone_list .appl_one').length || 0;
+		_num++;
+		var xunum = _num - 1;
+		var xu = ['①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩'];
+		var one = '';
+			if(_num != 1)one += '<div class="bt_line type2"></div>';//增加分割线
+					one += '<div num='+_num+' class="addonemore appl_one">'
+						+'<div class="pdd">'
+							+'<span style="position:relative;" class="common_lable color2"><i class="ll"></i>姓名'+xu[xunum]+'</span>'
+							+'<input class="common_input xingming1" type="text" />'
+						+'</div>'
+						+'<div class="pdd">'
+							+'<span class="common_lable color2">手机号</span>'
+							+'<input class="common_input phonenum1" type="text" />'
+						+'</div>'
+						+'<div class="pdd">'
+							+'<span class="common_lable color2">职务</span>'
+							+'<input class="common_input job1" type="text" />'
+						+'</div>'
+						+'<div class="pdd">'
+							+'<span class="common_lable color2">邮箱</span>'
+							+'<input class="common_input email1" type="text" />'
+						+'</div>'
+						+'<div class="pdd">'
+							+'<span class="common_lable color2">酒店选择</span>'
+							+'<select class="common_input common_select choiseHotel">'
+								+'<option selected="selected" disabled="disabled" style="display: none" value=""></option>'
+								+'<option value="0">自理</option>'
+								+'<option value="200">200元/天/床位/豪华标间</option>'
+								+'<option value="400">400元/天/豪华大床间</option>'
+								+'<option value="600">600元/天/豪华套间</option>'
+							+'</select>'
+						+'</div>'
+						+'<div style="margin-left:18px;font-size:13px;color:#71767b;" class="tipss">（酒店选择仅用于预定，费用自行与酒店结算）</div>'
+						+'<div style="" class="hide_show_div hidethisor">'
+							+'<div class="pdd">'
+								+'<span class="common_lable color2">入住时间</span>'
+								+'<select class="common_input common_select liveintime">'
+									+'<option selected="selected" disabled="disabled" style="display: none" value=""></option>'
+									+'<option value=17 >11月17日</option>'
+									+'<option value=18 >11月18日</option>'
+									+'<option value=19 >11月19日</option>'
+								+'</select>'
+							+'</div>'
+							+'<div class="pdd">'
+								+'<span class="common_lable color2">离开时间</span>'
+								+'<select class="common_input common_select liveouttime">'
+									+'<option selected="selected" disabled="disabled" style="display: none" value=""></option>'
+									+'<option value=18 >11月18日</option>'
+									+'<option value=19 >11月19日</option>'
+									+'<option value=20 >11月20日</option>'
+								+'</select>'
+							+'</div>'
+							+'<div class="blueC">共计入住 <span class="livetttime"></span> 天</div>'
+						+'</div>'
+						+'<h4 class="h4title4">分论坛选择（共4个论坛，可选择2个）</h4>'
+						+'<div class="pdd">'
+							+'<select class="common_input selectonetalk common_select long">'
+								+'<option value="" >请选择19号上午分论坛（二选一）</option>'
+								+'<option value=1 >分论坛一:落实创新，全球同步——打造政府威信力</option>'
+								+'<option value=2 >分论坛二:真实科研，重视质量——建立机构公信力</option>'
+							+'</select>'
+						+'</div>'
+						+'<div class="pdd">'
+							+'<select class="common_input selecttwotalk common_select long">'
+								+'<option value="" >请选择19号下午分论坛（二选一）</option>'
+								+'<option value=3 >分论坛三:真实研发，保证质量——树立企业诚信力</option>'
+								+'<option value=4 >分论坛四:真实服务，兑现质量——确立服务忠信力</option>'
+							+'</select>'
+						+'</div>'
+					+'</div>';
+				
+		$('#addone_list').append(one);
+				
+	}
+	
+	//显示隐藏入住时间 离开时间
+	function hideshowFunc(obj){
+		var obj = obj || '';
+		if(obj == ''){return false;}
+		setTimeout(function(){
+			if(obj.find('.choiseHotel').val() != '0' && obj.find('.choiseHotel').val() != '' ){
+				obj.find('.hidethisor').slideDown();
+			}else{
+				obj.find('.hidethisor').slideUp();
+			}
+		},0);
+	}
+	//显示隐藏发票信息
+	function hideshowFunc2(){
+		setTimeout(function(){
+			if($('.zengzhishui').hasClass('active')){
+				$('.hidefapiao').slideDown();
+			}else{
+				$('.hidefapiao').slideUp();
+			}
+		},0);
+	}
+	
+	//添加减少人数 +1 -1
+	function peperNum(add){
+		var add = add || '';
+		var num = $('#peper').val() || '';
+		if(num == ''){$('#peper').val(1);return false;}
+		num = parseInt(num);
+		if(add == '+'){//加一
+			num++;
+			addOrDeleteOne('add');//添加
+		}else if(add == '-'){//减一
+			if(num <= 1){return false;}
+			num--;
+			addOrDeleteOne('del');//删除一个
+		}
+		$('#peper').val(num);
+		runtt();//计算总值 并 改变底部显示的公式
+	}
+
+
+	
+});
+</script>
+</html>

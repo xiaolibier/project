@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title>经纬传奇稽查报价系统</title>
+	
+</head>
+<body class="xiangmuguanli">
+	<ul style="width:155px;" class="choiseDanwei choiseDanwei5">
+		<li>审核中</li>
+		<li>审核通过</li>
+		<li>审核驳回</li>
+		<li>暂存</li>
+	</ul>
+	<div class="page_common" id="page0">
+	<!-- <h4 class="page_title">预算列表</h4> -->
+	<div class="btn_div">
+		<!-- <input id="serial" class="com_input com_input1 com_input0" placeholder="预算项目编号" type="text" />
+		<input id="name" class="com_input com_input2" style="width:228px;" placeholder="项目名称" type="text" />
+		<input id="sponsor" class="com_input com_input1" placeholder="申办方-编号" type="text" />
+		<input id="maker" class="com_input com_input1" placeholder="创建人" type="text" />
+		<input id="static" class="com_input com_input1 seldown" value="审核中" placeholder="状态" type="text" />
+		&nbsp;&nbsp;<span class="m_lable">创建时间</span>
+		<input class="com_input com_input3" id="start_time" placeholder="起" type="text" />
+		<input class="com_input com_input4" id="end_time" placeholder="止" type="text" />
+		<a id="srBtn" class="top_btn">搜索</a>
+		<a id="srAllBtn" mark="all" class="top_btn">全部</a> -->
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">预算项目编号</span>
+					<input id="serial" class="com_input com_input1 com_input0" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">项目名称</span>
+					<input id="name" class="com_input com_input2" style="width:228px;" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">申办方-编号</span>
+					<input id="sponsor" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">创建人</span>
+					<input id="maker" class="com_input com_input1" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">状态</span>
+					<input id="static" value="审核中" class="com_input com_input1 seldown" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">创建时间</span>
+					<input class="com_input com_input3" id="start_time" placeholder="起" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">创建时间</span>
+					<input class="com_input com_input4" id="end_time" placeholder="止" type="text" />
+				</td>
+				<td class="searBtnTd">
+					<a id="srBtn" class="top_btn">搜索</a>
+					<a id="srAllBtn" mark="all" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<!-- <div class="m_info">
+		<a class="creat_forse button button--moema button--text-thick button--text-upper button--size-s" id="" >导出</a>
+	</div> -->
+	<div id="listTable2" class="table_div">
+		<table class="table1">
+			
+		</table>
+	</div>
+	</div>
+	<!-- ---------------------------------------------------------------------------- -->
+
+	<div class="page_common" style="display:none;" id="page1">
+	<h4 class="page_title">中心列表</h4>
+	<div class="m_info">
+		<select class="com_select com_select1"><option disabled selected>选择稽查城市</option></select>
+		<input class="com_input com_input2" placeholder="城市中心数" type="text" />
+		<a class="creat_forse button button--moema button--text-thick button--text-upper button--size-s" id="" >添加中心</a>
+	</div>
+	<div class="table_div">
+		<table class="table1">
+			<!-- <tr>
+				<th>城市名</th>
+				<th>城市稽查中心数</th>
+				<th>操作</th>
+			</tr> -->
+			<!-- <tr>
+				<td>武汉</td>
+				<td>上海</td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">编辑</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr> -->
+		</table>
+	</div>
+	</div>
+	<!-- <div class="pageSelect">
+		<ul class="pageList"><li class="up">上一页</li><span class="pageNum">1/5</span><li class="down">下一页</li></ul>
+	</div> -->
+	<div class="pages plist2">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+          <!-- <span class="page-sum">共<strong class="allPage">1</strong>页</span> -->
+          <!-- <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn">GO</a> -->
+        </div>
+    </div>
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/js/list.js"></script>
+	<script type="text/javascript">
+			$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+			$('#menu_show_t .s0',parent.document).html('审核').addClass('active');
+	</script>
+</body>
+</html>

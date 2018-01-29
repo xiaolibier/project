@@ -1,0 +1,78 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<bean id="AudoSaveInterval" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="定时保存时间间隔（分钟）"></property>
+		<property name="content" value="5"></property>
+	</bean>
+
+	<bean id="CenterReportOverview" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="单中心报告稽查概述"></property>
+		<property name="content" value="我公司受XXXX（申办单位、CRO公司、研究中心）委托，于X年X月X日至X年X月X日对本临床试验中心（以下简称“中心”）开展的XXX（BE、一期或二期、三期）项目，进行了为期X天的稽查工作。根据日程安排召开了首次会及末次会。\n本项临床试验计划入组X例，实际筛选X例，入组X例。临床试验中发生严重不良事件（SAE） X例，药物编号为*、******、。\n本次稽查药物临床试验病例X例，药物编号为1、2、3、4、5、6、7。稽查涵盖六个环节：\n（一）访谈研究者：于XX 月XX 日在XX 地点与临床试验研究者XXX、机构质控XXX、研究护士XXX、药品管理员XXX人进行持续XX 小时XX 分中的访谈。过程中确认的信息包括：。\n（二）查阅研究者文件夹（和/研究主文件夹）：于XX月XX日XX时在（具体地点，如：5号楼4号会议室）查阅研究者文件夹(和/或研究主文件夹)。\n（三）复核试验用药品管理的执行情况：于XX月XX日XX时XX地点核查试验用药品储存设施，储存场所的温湿度记录、试验用药品接收、发放、回收及销毁记录等资料。\n（四）复核生物样本管理的执行情况：于XX月XX日XX时在XX地点查阅生物样本的采集、处理、保存、转运及检测等过程及资料。\n（五）查阅研究者操作记录：于XX月XX日XX时在XX地点查阅知情同意书、原始病历、以及CRF。\n（六）追溯实验室检查结果：针对医学检查（如实验室检查、CT、B超、等）报告进行溯源。\n稽查中共发现严重问题X个，主要问题X个，一般问题X个，见《稽查发现问题统计表》。其中，XXX方面的问题较为突出，建议加强监督管理。"></property>
+	</bean>
+
+	<bean id="StageReportOverview" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="项目阶段报告稽查概述"></property>
+		<property name="content" value="我公司受XXXX（申办单位、CRO公司、研究中心）委托，对本临床试验X家中心（以下简称“中心”）/X家检测单位开展的XXX（BE、一期或二期、三期）项目，进行了为期X天的稽查工作。根据日程安排召开了首次会及末次会。\n本项临床试验计划入组X例，实际筛选X例，入组X例，筛选失败X例。临床试验中发生严重不良事件（SAE） X例，受试者编号为*、******、。\n本次稽查药物临床试验病例X例，受试者编号为1、2、3、4、5、6、7。稽查涵盖X个环节，包括访谈、伦理信息核实、项目文件、研究药物/器械查验、生物样本管理、研究者操作记录及实验室溯源等。"></property>
+	</bean>
+
+	<bean id="ProjectPurpose" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="项目目的"></property>
+		<property name="content" value="1.为了协助委托方完善项目质量管理系统，进一步提高项目质量，核实项目开展流程是否符合方案、SOP等相关要求；\n2.通过稽查药品链、样本链、受试者链、研究者链核实项目是否存在系统漏洞，完善项目SOP；\n3.对本项目目前实施风险进行评估，辅助项目组开展纠正及预防措施；\n4.使项目操作符合国家现行相关法规要求。"></property>
+	</bean>
+
+	<bean id="ProjectRange" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="项目范围"></property>
+		<property name="content" value="1研究者存档文件夹\n2本中心伦理相关资料\n3人员资质及相关实验室条件\n4受试者原始资料（门诊／住院病历）及CRF\n5实验室检查结果溯源\n6项目培训记录\n7其它过程中产生的原始记录\n8生物样本的采集、处理、保存、交接、运输\n9试验药品相关记录\n10知情同意过程及知情同意书\n11受试者试验过程中的安全性事件的收集及处理\n12受试者筛选情况与总结报告间一致性"></property>
+	</bean>
+
+	<bean id="ProjectFoundation" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="项目依据"></property>
+		<property name="content" value="《药物临床试验质量管理规范》2003年版\n《药品注册管理办法》2007年版\n《中华人民共和国药品管理法》2015年修正\n《国家食品药品监督管理总局关于发布药物临床试验数据现场核查要点》（228号文件）\n《ICH-GCP》1996年版"></property>
+	</bean>
+	
+	<bean id="Assignee" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="受托方"></property>
+		<property name="content" value="北京经纬传奇医药科技有限公司"></property>
+	</bean>
+	
+	<bean id="Address" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="地址"></property>
+		<property name="content" value="北京市东城区安定门大街28号雍和大厦A座701-703室"></property>
+	</bean>
+	
+	<bean id="Telephone" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="联系方式"></property>
+		<property name="content" value="010-85806088"></property>
+	</bean>
+	
+	<bean id="Mobilephone" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="手机"></property>
+		<property name="content" value="13811838318"></property>
+	</bean>
+	
+	<bean id="Url" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="网址"></property>
+		<property name="content" value="www.3audit.com"></property>
+	</bean>
+		
+	<bean id="Wechat" class="com.zhb.bean.DataTemplate">
+		<property name="name" value="微信公众号"></property>
+		<property name="content" value="jingweichuanqi"></property>
+	</bean>
+</beans>

@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=yes, width=1320, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>第三届临床研究质量学术研讨会-我的订单</title>
+	<style>
+		body{background-color:#f7f7f7;}
+		.part3_div .tt_show{margin:0 41px 35px;}
+	</style>
+</head>
+<body class="common_body apply">
+	<div class="header">
+		<span class="logo_content"><img src="../public/img/logo.png" class="logo_ico" /></span>
+		<ul class="menu_content">
+			<li class="mm gotoHome">首页</li>
+			<li class="mm gotoHome">大会介绍</li>
+			<li class="mm gotoHome">大会主讲</li>
+			<li class="mm gotoHome">大会议程</li>
+			<li class="mm gotoHome">精彩回顾</li>
+			<li class="mm gotoHome">联系我们</li>
+			<li class="mm apply_common_btn">大会报名</li>
+			<li class="mm myorderabtn active">我的订单</li>
+		</ul>
+		<div class="h_right_part">
+			<span style="display:none;" class="hrp_span usr_hh_phone type2"></span>
+			<a href="javascript:;" id="login_abtn" class="hrp_span">登录</a>
+			<a href="javascript:;" style="display:none;" id="login_out" class="hrp_span">退出</a>
+		</div>
+	</div>
+	<div class="app_content">
+		<div id="order_list_box" class="left_app_div">
+			<!-- <h4 class="appl_title">订单信息</h4>
+			<div class="noorder">
+				<div><img src="../public/img/no.png" class="noimg" /></div>
+				<p class="pp">您还没有相关的订单</p>
+				<div><a class="reg_btn apply_common_btn">立即报名</a></div>
+			</div> -->
+			
+		</div>
+		<div class="right_app_div">
+			<div class="part1_p">
+				<h4 class="p1p_title">报名流程</h4>
+				<p class="p1p_text p1p_text1">
+					1、信息填写<br/>
+					2、提交订单并支付成功<br/>
+					3、客服会尽快（工作日）与您确认参会者信息<br/>
+					4、届时为您提供参会凭证和相关发票报销
+				</p>
+				<p class="p1p_text">
+					如有其他问题，请拨打客服电话<br/>
+					4008-157-222
+				</p>
+			</div>
+			<div class="part2_p">
+				<h4 class="p1p_title">参会须知</h4>
+				<p class="p2p_text">
+					1. 报名截止日期:2017 年 11 月 13 日<br/><br/>
+					2. 组委会指定汇款账号:11001042300053017272<br/>
+					开户名称：北京经纬传奇医药科技有限公司<br/>
+					开户银行：中国建设银行北京永安支行<br/><br/>
+					3. 报名注意事项:<br/>
+					1) 网站支付，可直接填写信息后使用微信或者支付宝支付，支付成功后可以在我的订单里查看到订单信息，随后客服会尽快与您联系。<br/>
+					2）支付成功后将为您准备增值税普通发票，会议签到时领取发票，如有特别需求需要开具增值税专用发票的可以与客服联系， <br/>
+					3) 请认真填写此表，保证信息的真实有效，如有多人参加，点击增加报名人数即可。<br/><br/>
+					4. 会务组联系: <br/>
+					北京经纬传奇医药科技有限公(3AUDIT.COM) <br/>
+					电话:010-85806088 <br/>
+					免费电话:4008-157-222 <br/>
+					地址:北京市西城区西环广场T1座20层D3B-D6<br/><br/>
+					5. 会务组联系人<br/>
+					叶   敏 :  15072376710 <br/>
+					蔡绪柳 :  18910275153<br/>
+					蔡靖芳 :  13811838318<br/>
+					王娜娜 :  15811417456<br/>
+				</p>
+				
+			</div>
+		</div>
+	</div>
+	
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+			<!-- 登录 -->
+			<div style="width:385px;" class="sbox login_box_box">
+				<div class="login_box">
+					<a class="close_common_btn"></a>
+					<div style="position:relative;">
+						<div style="margin-bottom:20px;" class="lb_co"><input id="login_usr" class="userName lb_input" placeholder="手机号" type="text" /></div>
+						<div class="lb_co"><input id="login_pass" class="passWord lb_input" placeholder="密码" type="password" /></div>
+						<div class="lb_co font">
+							<!-- <div class="check_box"><i class="i"></i>&nbsp;下次自动登录</div> -->
+							<a href="javascript:;" class="findPass common_goto_findpass">忘记密码了？</a>
+						</div>
+						<div class="lb_btn "><a href="javascript:;" class="login_btn common_login_btn">登&nbsp;&nbsp;&nbsp;&nbsp;录</a></div>
+						<div class="btom">还没有账号？ <a href="javascript:;"  class="common_goto_reg reg_url">立即注册 ></a></div>
+					</div>
+				</div>
+			</div>
+			<!-- 注册 -->
+			<div style="width:385px;" class="sbox reg_box_box">
+				<div class="login_box">
+					<a class="close_common_btn"></a>
+					<div style="position:relative;">
+						<div class="audit_div"><img class="ldd1" src="../public/img/audit.png"/></div>
+						<div style="margin-bottom:15px;" class="lb_co"><input id="usrName" class="userName lb_input" placeholder="真实姓名" type="text" /></div>
+						<div style="margin-bottom:15px;" class="lb_co"><input class="userName lb_input phoneNum" placeholder="手机号" type="text" /></div>
+						<div style="margin-bottom:15px;" class="lb_co">
+							<input id="yancode" class="userName lb_input type2" placeholder="验证码" type="text" />
+							<a href="javascript:;" class="login_btn2 btnSendCode">获取验证码</a>
+						</div>
+						<div class="lb_co"><input id="newPass" class="passWord lb_input" placeholder="设置6位以上密码" type="password" /></div>
+						<div class="lb_btn "><a href="javascript:;" id="regBtn" class="login_btn common_reg_btn">注&nbsp;&nbsp;&nbsp;&nbsp;册</a></div>
+						<div class="btom">已有账号 <a href="javascript:;" class="common_goto_login reg_url">返回登录 ></a></div>
+					</div>
+				</div>
+			</div>
+			<!-- 找回密码 -->
+			<div style="width:385px;" class="sbox findpass_box_box">
+				<div class="login_box">
+					<a class="close_common_btn"></a>
+					<div style="position:relative;">
+						<div class="audit_div"><img class="ldd1" src="../public/img/audit.png"/></div>
+						<div style="margin-bottom:15px;" class="lb_co"><input class="userName lb_input phoneNum" placeholder="手机号" type="text" /></div>
+						<div style="margin-bottom:15px;" class="lb_co">
+							<input id="yancode2" class="userName lb_input type2" placeholder="验证码" type="text" />
+							<a href="javascript:;" class="login_btn2 btnSendCode">获取验证码</a>
+						</div>
+						<div class="lb_co"><input id="newPass2" class="passWord lb_input" placeholder="设置6位以上新密码" type="password" /></div>
+						<div class="lb_btn "><a href="javascript:;" id="resetpass" class="login_btn">重置密码</a></div>
+						<div class="btom">又想起了，<a href="javascript:;" class="common_goto_login reg_url">返回登录 ></a></div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>	
+	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("logintoken",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	loadPage();//加载页面
+	
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		getmyorder();//获取订单列表
+		
+	}
+	
+	//获取订单列表
+	function getmyorder(){
+		var nohtml = ''
+			+'<h4 class="appl_title">订单信息</h4>'
+			+'<div class="noorder">'
+				+'<div><img src="../public/img/no.png" class="noimg" /></div>'
+				+'<p class="pp">您还没有相关的订单</p>'
+				+'<div><a class="reg_btn apply_common_btn">立即报名</a></div>'
+			+'</div>';
+		
+		var condi = {};
+		var url = Base.serverUrl + "conference/order/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || '';
+					var html = '';
+					for(var i=0,len=data.length;i<len;i++){
+						var di = data[i] || {};
+						var items = di.items || [];
+						var code = di.code || '';
+						var people = di.people || '';
+						var invoice = di.invoice || {};
+						var address = invoice.address || '';
+						var number = invoice.number || '';
+						var title = invoice.title || '';
+						var type = invoice.type || '';
+						var company = invoice.company || '';
+						var total = di.total || '';
+						var totalStr = di.totalStr || '';
+						
+						
+						html+='<h4 class="appl_title">订单信息 '+code+'</h4>'
+							+'<div class="part_div1">'
+								+'<div class="pdd">'
+									+'<span class="common_lable">会议名称</span>'
+									+'<span class="context">2017第三届临床研究质量大会 （2017年11月18日-2017年11月19日）</span>'
+								+'</div>'
+								+'<div class="pdd">'
+									+'<span class="common_lable">费用说明</span>'
+									+'<span class="context context2"><span class="col1">2200 元/人</span>，含报名费、资料费、18 日晚餐、19 日午餐费，住宿、交通费用自理</span>'
+								+'</div>'
+								+'<div class="pdd">'
+									+'<span class="common_lable">报名人数</span>'
+									+'<span class="context">'+people+'人</span>'
+								+'</div>'
+								+'<div class="pdd">'
+									+'<span class="common_lable">公司名称</span>'
+									+'<span class="context type3">'+company+'</span>'
+									+'<span class="common_lable type2">发票类型</span>'
+									+'<div class="common_radio active"><i class="i"></i>'+type+'</div>'
+								+'</div>';
+								if(type == '增值税普通发票'){
+									html+='<div class="pdd">'
+										+'<span class="common_lable">税号</span>'
+										+'<span class="context type3">'+number+'</span>'
+										+'<span class="common_lable type2">发票抬头</span>'
+										+'<span class="context">'+title+'</span>'
+									+'</div>'
+									+'<div class="pdd">'
+										+'<span class="common_lable">发票邮寄</span>'
+										+'<span class="context">'+address+'</span>'
+									+'</div>';
+								}
+							html+='</div>'
+							+'<div class="bt_line"></div>'
+							+'<div class="app_list">';
+							for(var j=0,lenj=items.length;j<lenj;j++){
+								var dj = items[j] || {};
+								var name = dj.name || '';
+								var phone = dj.phone || '';
+								var job = dj.job || '';
+								var email = dj.email || '';
+								var hotelPrice = dj.hotelPrice || '';
+								var hotelStart = dj.hotelStart || '';
+								var hotelEnd = dj.hotelEnd || '';
+								var hotelDay = dj.hotelDay || '';
+								var subForums = dj.subForums || '';
+								var hotel_str = '';
+								var _style = 'style="display:none;"';
+								var case1 = '',case2 = '',case3 = '',case4 = '';
+								if(hotelPrice == 0){hotel_str = '自理';}
+								else if(hotelPrice > 0){
+									hotel_str = hotelPrice+'元/天/豪华标间&nbsp;&nbsp;&nbsp;2017年11月'+hotelStart+'日-11月'+hotelEnd+'日&nbsp;&nbsp;&nbsp;';
+									_style = '';
+								}
+								//判断显示论坛几
+								case1 = subForums.indexOf('1') > -1 ? 'display:inline-block;' : '';
+								case2 = subForums.indexOf('2') > -1 ? 'display:inline-block;' : '';
+								case3 = subForums.indexOf('3') > -1 ? 'display:inline-block;' : '';
+								case4 = subForums.indexOf('4') > -1 ? 'display:inline-block;' : '';
+								
+								
+								html+='<div class="appl_one">'
+									+'<div class="pdd">'
+										+'<span style="position:relative;" class="common_lable color2"><i class="ll"></i>姓名</span>'
+										+'<span class="context color2 type3">'+name+'</span>'
+										+'<span class="common_lable type2 color2">手机号</span>'
+										+'<span class="context color2">'+phone+'</span>'
+									+'</div>'
+									+'<div class="pdd">'
+										+'<span class="common_lable color2">职务</span>'
+										+'<span class="context color2 type3">'+job+'</span>'
+										+'<span class="common_lable type2 color2">邮箱</span>'
+										+'<span class="context color2">'+email+'</span>'
+									+'</div>'
+									+'<div class="pdd">'
+										+'<span class="common_lable color2">酒店选择</span>'
+										+'<span class="context color2">'+hotel_str+'</span>'
+										+'<span '+_style+' class="blueC">共计入住 <span>'+hotelDay+'</span> 天</span>'
+									+'</div>'
+									+'<div class="pdd">'
+										+'<span class="common_lable color2">分论坛选择</span>'
+										+'<div style="display:inline-block;vertical-align:top;width:700px;">'
+											+'<span style="display:none;'+case1+case2+'" class="context color2">11月19日（周日）上午 8:30-12:00 </span>&nbsp;&nbsp;&nbsp;'
+											+'<span style="display:none;'+case1+'" class="context color2">分论坛一：落实创新，全球同步——打造政府威信力</span>'
+											+'<span style="display:none;'+case2+'" class="context color2">分论坛二：真实科研，重视质量——建立机构公信力</span>'
+											+'<span style="display:none;'+case3+case4+'" class="context color2">11月19日（周日）下午 12:30-18:00  </span>&nbsp;&nbsp;&nbsp;'
+											+'<span style="display:none;'+case3+'" class="context color2">分论坛三：真实研发，保证质量——树立企业诚信力</span>'
+											+'<span style="display:none;'+case4+'" class="context color2">分论坛四：真实服务，兑现质量——确立服务忠信力</span>'
+										+'</div>'
+									+'</div>'
+								+'</div>';
+								if(j < lenj - 1)html+='<div class="bt_line type2"></div>';
+							}
+							html+='</div>'
+							+'<div class="part3_div">'
+								+'<div class="bt_line type3"></div>'
+								+'<div style="margin:25px 41px 25px 0;text-align:right;" class="computer_show">'+totalStr+'</div>'
+								+'<div style="text-align:right;" class="tt_show">已完成支付： ¥ <span>'+total+'</span></div>'
+							+'</div>';	
+					}
+					$('#order_list_box').html(html);
+					if(data.length <= 0)$('#order_list_box').html(nohtml);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+					$('#order_list_box').html(nohtml);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			$('#order_list_box').html(nohtml);
+			}
+		});
+	}
+	
+
+	
+});
+</script>
+</html>

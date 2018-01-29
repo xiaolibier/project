@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+
+</head>
+<body class="xiangmuguanli ">
+	
+	<div class="diaodu_info">
+		<div id="setStaticBtn" class="diaodu_div"><span class="dlable">设置状态：</span>
+		<div name="static1" val="未完成" class="common_radio"><i class="i"></i>未完成</div>
+		<div name="static1" val="稽查完成" class="common_radio"><i class="i"></i>稽查完成</div>
+		</div>
+		<div class="diaodu_div"><span class="dlable">项目编号：</span><span id="pro_number" class="dtext"></span></div>
+		<div class="diaodu_div"><span class="dlable">项目名称：</span><span id="pro_name" class="dtext"></span></div>
+		<div class="diaodu_div"><span class="dlable">项目经理：</span><span id="pro_maneger" class="dtext"></span></div>
+		<div class="diaodu_div"><span class="dlable">项目助理：</span><span id="pro_assign" class="dtext"></span></div>
+		<div class="diaodu_div"><span class="dlable">商务经理：</span><span id="pro_boss" class="dtext"></span></div>
+		<ul id="addoneli_content" class="dul">
+			<!-- <li class="lione">
+				<span class="utd utd1">01</span>
+				<span class="utd utd2">北京航空总医院——入组早期</span>
+				<span class="utd utd3">已稽查 <i class="c1">1</i> 次</span>
+			</li>
+			<li class="lione">
+				<span class="utd utd1">02</span>
+				<span class="utd utd2">北京航空总医院——入组早期</span>
+				<span class="utd utd3">已稽查 <i class="c1">22</i> 次</span>
+			</li>
+			<li class="lione">
+				<span class="utd utd1">03</span>
+				<span class="utd utd2">北京航空总医院——入组早期</span>
+				<span class="utd utd3 type1">计划中</span>
+			</li>
+			<li class="lione">
+				<span class="utd utd1">04</span>
+				<span class="utd utd2">北京航空总医院——入组早期</span>
+				<span class="utd utd3 type2">未稽查</span>
+			</li> -->
+		</ul>
+	</div>
+	
+	<div id="tableList" class="table_div">
+	</div>
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	
+</body>
+
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.id = Utils.getQueryString("id") || "";//从项目调度页面传来 传项目id
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.ids = [];//存储当前所有项目id及其状态
+	g.quanxuan = 0;
+	
+/* **************************************** lodding ******************************************** */	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('项目调度').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '项目调度.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 调度详情').addClass('active');
+	loadPage();
+	
+	
+/* **************************************** setTing ******************************************** */	
+	
+	//加载页面
+	function loadPage(){
+		getInfoFunc();//加载edit信息
+		tableListShow();//显示列表
+		
+	}
+
+	$('.xiangmuguanli').on('click','.common_radio',function(){
+		var _this = $(this) || {};
+		var name = _this.attr('name') || '';
+		_this.siblings('.common_radio').each(function(){
+			var name2 = $(this).attr('name') || '';
+			if(name == name2 && name != ''){$(this).removeClass('active');}
+		});
+		_this.addClass('active');
+	});
+	//点击单选按钮 设置项目状态
+	$('#setStaticBtn').on('click','.common_radio',function(){
+		var val = $(this).attr('val') || '';
+		var condi = {};
+		condi.id = g.id;
+		condi.state = val;
+		var url = Base.serverUrl + "schedule/project/updateState";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('状态设置成功！');
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	});
+		
+	//加载edit信息
+	function getInfoFunc(){
+		
+		var condi = {};
+		condi.id = g.id;
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "schedule/project/projectDetail";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var d = data || {};
+					$('#pro_number').html(d.projectCode || '');
+					$('#pro_name').html(d.projectName || '');
+					$('#pro_maneger').html(d.projectManager || '');
+					$('#pro_assign').html(d.assistManager || '');
+					$('#pro_boss').html(d.businessManager || '');
+					var sta = d.state || '';
+					setRadioVal('#setStaticBtn','static1',sta);
+					var tasks = d.scheduleTaskDetails || [];
+					//tasks = JSON.stringify(tasks);
+					var html = '';
+					for(var i=0,len=tasks.length;i<len;i++){
+						var num = i +1;
+						var ds = tasks[i] || {};
+						var name = ds.name || '';
+						var state = ds.state || '';
+						var times = ds.times || '';
+						var timestr = times > 0 ? '已稽查 <i class="c1">'+times+'</i> 次' : '未稽查';
+						html+='<li num="'+num+'" class="lione">'
+							+'<span class="utd utd1">'+num+'</span>'
+							+'<span class="utd utd2">'+name+'</span>'
+							+'<span class="utd utd3">'+timestr+'</span>'
+						+'</li>';
+					}
+					$('#addoneli_content').html(html);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//列表
+	function tableListShow(){
+		var condi = {};
+		condi.id = g.id;
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "schedule/project/eventsDetail";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					//$('#totalElements').html(totalElements);
+					var html = '';
+					var sstr = '';
+					if(g.quanxuan == 1){sstr = 'active';}
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">序号</th>'
+							+'<th style="min-width:60px;">任务名称</th>'
+							+'<th style="min-width:60px;">稽查时间</th>'
+							+'<th style="min-width:60px;">稽查组长</th>'
+							+'<th style="min-width:45px;">稽查员</th>'
+							+'<th style="min-width:30px;">专家</th>'
+							+'<th style="min-width:30px;">备注</th>'
+							+'<th style="min-width:30px;">状态</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var xu = totalElements - g.nowPage*g.showPages - i;
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var scheduleTaskName = d.scheduleTaskName || '';
+						var sponsor_name = d.sponsor_name || '';
+						var center_number = d.center_number || '';
+						var project_manager_name = d.project_manager_name || '';
+						var total_task_number = d.total_task_number || 0;//总任务数
+						var complete_task_number = d.complete_task_number || 0;//已完成任务数
+						var startTime = getDate((d.startTime || ''),2);
+						var endTime = getDate((d.endTime || ''),2);
+						var jichatime = startTime+' - '+endTime;
+						var state = d.state || '';
+						var remark = d.remark || '';
+						var stra = '';
+						var users = d.scheduleEventUsers || [];
+						var auditDay = d.auditDay || 0;
+						var zuzhang = '',jichayuan = '',zhuanjia = '';
+						for(var j=0,lenj=users.length;j<lenj;j++){
+							var df = users[j] || {};
+							var role = df.role || '';//组长
+							var userName = df.userName || '';//稽查员
+							if(role == '稽查组长'){zuzhang = zuzhang == '' ? userName : zuzhang +','+ userName;}
+							if(role == '稽查员'){jichayuan = jichayuan == '' ? userName : jichayuan +','+ userName;}
+							if(role == '专家'){zhuanjia = zhuanjia == '' ? userName : zhuanjia +','+ userName;}
+						}
+						html+='<tr>'
+							+'<td>'+xu+'</td>'
+							+'<td>'+scheduleTaskName+'</td>'
+							+'<td>'+jichatime+'</td>'
+							+'<td>'+zuzhang+'</td>'
+							+'<td>'+jichayuan+'</td>'
+							+'<td>'+zhuanjia+'</td>'
+							+'<td>'+remark+'</td>'
+							+'<td>'+state+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+
+});
+
+</script>
+</html>

@@ -1,0 +1,165 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!--稽查发现问题归类-->
+	<bean id="DOC101" class="com.zhb.bean.Problem">
+		<property name="name" value="更新版方案未经伦理许可即使用"></property>
+		<property name="categoryId" value="DOC1"></property>
+	</bean>
+
+	<bean id="IMP501" class="com.zhb.bean.Problem">
+		<property name="name" value="试验过程中药物相关记录未保存"></property>
+		<property name="categoryId" value="IMP5"></property>
+	</bean>
+
+	<bean id="SD0001" class="com.zhb.bean.Problem">
+		<property name="name" value="药物发放记录不规范"></property>
+		<property name="categoryId" value="SD00"></property>
+	</bean>
+
+	<bean id="PER301" class="com.zhb.bean.Problem">
+		<property name="name" value="随机帐号由授权以外其它人员代为登陆和完成"></property>
+		<property name="categoryId" value="PER3"></property>
+	</bean>
+
+	<bean id="AE0001" class="com.zhb.bean.Problem">
+		<property name="name" value="SAE发生及处理的详细情况描述不全面"></property>
+		<property name="categoryId" value="AE00"></property>
+	</bean>
+
+	<bean id="AE0002" class="com.zhb.bean.Problem">
+		<property name="name" value="未见SAE上报国家局、申办方的记录"></property>
+		<property name="categoryId" value="AE00"></property>
+	</bean>
+
+	<bean id="AE0003" class="com.zhb.bean.Problem">
+		<property name="name" value="AE漏记"></property>
+		<property name="categoryId" value="AE00"></property>
+	</bean>
+
+	<bean id="EV0001" class="com.zhb.bean.Problem">
+		<property name="name" value="无法判断是否符合入排标准"></property>
+		<property name="categoryId" value="EV00"></property>
+	</bean>
+
+	<bean id="AE0004" class="com.zhb.bean.Problem">
+		<property name="name" value="潜在的AE漏记"></property>
+		<property name="categoryId" value="AE00"></property>
+	</bean>
+
+	<bean id="IC0001" class="com.zhb.bean.Problem">
+		<property name="name" value="知情同意书的签署笔迹存疑"></property>
+		<property name="categoryId" value="IC00"></property>
+	</bean>
+
+	<bean id="IC0002" class="com.zhb.bean.Problem">
+		<property name="name" value="未签署知情同意书"></property>
+		<property name="categoryId" value="IC00"></property>
+	</bean>
+
+	<bean id="IC0003" class="com.zhb.bean.Problem">
+		<property name="name" value="签署的知情同意书有问题"></property>
+		<property name="categoryId" value="IC00"></property>
+	</bean>
+
+	<bean id="DOC102" class="com.zhb.bean.Problem">
+		<property name="name" value="批件未见批准人员签名"></property>
+		<property name="categoryId" value="DOC1"></property>
+	</bean>
+
+	<bean id="DOC103" class="com.zhb.bean.Problem">
+		<property name="name" value="没有监查员访问本研究中心的记录"></property>
+		<property name="categoryId" value="DOC1"></property>
+	</bean>
+
+	<bean id="DOC104" class="com.zhb.bean.Problem">
+		<property name="name" value="研究者文件夹资料存在问题"></property>
+		<property name="categoryId" value="DOC1"></property>
+	</bean>
+
+	<bean id="IMP201" class="com.zhb.bean.Problem">
+		<property name="name" value="药品包装标签错误"></property>
+		<property name="categoryId" value="IMP2"></property>
+	</bean>
+
+	<bean id="IMP202" class="com.zhb.bean.Problem">
+		<property name="name" value="部分批次无药检报告"></property>
+		<property name="categoryId" value="IMP2"></property>
+	</bean>
+
+	<bean id="PC0001" class="com.zhb.bean.Problem">
+		<property name="name" value="合并用药漏记"></property>
+		<property name="categoryId" value="PCO0"></property>
+	</bean>
+
+	<bean id="IMP502" class="com.zhb.bean.Problem">
+		<property name="name" value="保存药物记录温度的操作过程存在问题"></property>
+		<property name="categoryId" value="IMP5"></property>
+	</bean>
+
+	<bean id="IMP503" class="com.zhb.bean.Problem">
+		<property name="name" value="药物表格记录问题"></property>
+		<property name="categoryId" value="IMP5"></property>
+	</bean>
+
+	<bean id="IMP504" class="com.zhb.bean.Problem">
+		<property name="name" value="《药物接收单》记录错误，接收单填写不完整"></property>
+		<property name="categoryId" value="IMP5"></property>
+	</bean>
+
+	<bean id="IMP301" class="com.zhb.bean.Problem">
+		<property name="name" value="药物接收无记录"></property>
+		<property name="categoryId" value="IMP3"></property>
+	</bean>
+
+	<bean id="PER302" class="com.zhb.bean.Problem">
+		<property name="name" value="授权与实际操作存在问题"></property>
+		<property name="categoryId" value="PER3"></property>
+	</bean>
+
+	<bean id="SPE101" class="com.zhb.bean.Problem">
+		<property name="name" value="生物样本采集、处理、存储过程无记录"></property>
+		<property name="categoryId" value="SPE1"></property>
+	</bean>
+
+	<bean id="SD0002" class="com.zhb.bean.Problem">
+		<property name="name" value="AE不能溯源或部分信息不能溯源"></property>
+		<property name="categoryId" value="SD00"></property>
+	</bean>
+
+	<bean id="SD0003" class="com.zhb.bean.Problem">
+		<property name="name" value="原始资料缺失"></property>
+		<property name="categoryId" value="SD00"></property>
+	</bean>
+
+	<bean id="SD0004" class="com.zhb.bean.Problem">
+		<property name="name" value="病程记录无跟踪记录"></property>
+		<property name="categoryId" value="SD00"></property>
+	</bean>
+
+	<bean id="SD0005" class="com.zhb.bean.Problem">
+		<property name="name" value="数据未录入"></property>
+		<property name="categoryId" value="SD00"></property>
+	</bean>
+
+	<bean id="SD0006" class="com.zhb.bean.Problem">
+		<property name="name" value="数据与原始记录不一致"></property>
+		<property name="categoryId" value="SD00"></property>
+	</bean>
+
+</beans>

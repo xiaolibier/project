@@ -1,0 +1,164 @@
+@import "../../less/global.less";
+@page-height:31px;
+/*
+    页码
+*/
+.main-page{
+    text-align: left;
+    clear:both;
+    .pagination{
+        margin: 0;
+        float: right;
+        li{
+            a,span{
+                color: #666;
+                padding: 4px 10px 5px;
+                font-size: 12px;
+            }
+        }
+        .active{
+            a{
+                color:#45b5e9;
+                &:hover{
+                    color: #45b5e9;
+                }
+            }
+        }
+    }
+    ul{
+        vertical-align: top;
+    }
+    p{
+        float: left;
+    }
+    .page-button{
+        display: inline-block;
+        vertical-align: middle;
+        margin:0 0 20px 0;
+        float: right;
+        .input-mini{
+            width: 20px;
+            float: left;
+            font-size: 12px;
+            line-height: normal;
+            color: #666;
+            padding: 4px 10px 5px;
+            height: 28px;
+        }
+        input{
+            margin-bottom: 0px;
+        }
+        .page-number,.page-text{
+            display: inline-block;
+            height:28px;
+            line-height:28px;
+            margin: 0 4px 0 8px;
+            width: auto;
+            background: none;
+            float: left;
+            font-size: 12px;
+        }
+        .page-text{
+            float: none;
+        }
+        .goto-page{
+            margin-top: 0px;
+            font-size: 12px;
+            color: #666;
+            padding: 4px 10px 5px;
+        }
+    }
+    .page-info{
+        float: none;
+        display: inline-block;
+        height:27px;
+        line-height:27px;
+        font-size: 12px;
+        .form-control{
+            .select2-choice{
+                border: 0px !important;
+                font-size: 12px;
+                padding:0px;
+                height:23px;
+                .select2-arrow{
+                    border: 0px;
+                    top:-3px;
+                }
+                .select2-chosen{
+                    margin-right: 14px;
+                }
+            }
+        }
+        input[disabled]{
+            background-color: #fff !important;
+        }
+        .page-text{
+            display: inline-block;
+            float: left;
+            height:27px;
+            line-height:27px;
+            margin: 0 4px;
+            width: auto;
+            font-size: 12px;
+            background: none;
+//            float: left;
+        }
+        .btn-group{
+            .btn-default{
+                border-color: #fff;
+                padding:6px 0;
+                &:hover,&:focus{
+                    background: #fff;
+                }
+            }
+            .dropdown-menu{
+                li{
+                    text-align: left;
+                }
+            }
+        }
+        .page-size-select{
+            margin-bottom: 0px;
+            width: 52px;
+            height: 26px;
+            text-align: center;
+            float:left;
+            padding: 2px;
+            border:1px solid #e5e5e5;
+            .selectpicker{
+                padding: 0;
+            }
+            .filter-option{
+                left: 3px;
+            }
+            .btn{
+                font-size: 12px;
+                .caret {
+                    top: 58%;
+                }
+            }
+            .btn-default{
+                &:hover,&:focus,&:active{
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+}
+.page-info .btn-default:hover,.page-info .btn-default:focus,.page-info .btn-default:active,.page-info .btn-default.active,.page-info .open .dropdown-toggle.btn-default {
+    background-color: #fff;
+}
+.select2-drop-active{
+    border:1px solid #ddd !important;
+    .select2-choice{
+        border: 0px;
+    }
+    .select2-results{
+        margin:0px;
+        padding:0px;
+        .select2-result-label{
+            font-size: 12px;
+            color: #666;
+        }
+    }
+}

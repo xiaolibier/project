@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>登录</title>
+	<style>
+		body{position:relative;background:url('../public/img/login_bg.png') no-repeat center center;background-size:cover;}
+		.login_div1{height:100%;position:relative;min-height:400px;background:url('../public/img/login_bg.png') no-repeat center center;background-size:cover;}
+		.login_div1 .ld1_img1{width:30%;max-width:100%;position:absolute;left:35%;margin-left:-200px;bottom:13%;}
+		.login_box{z-index:999;top:64%;margin-top:-165px;border-radius:4px;width:321px;padding:54px 32px 30px;background-color:#fff;position:absolute;margin-left:-192px;left:50%;box-shadow: 0 0 11px 0 rgba(0,0,0,0.10);}
+		.login_box .lb_title{text-align:center;margin-bottom:30px;padding:30px 0 25px;border-bottom: 1px solid #C6C6C6;font-size:18px;color: #000000;}
+		.login_box .lb_input{outline:none;transition:all .25s ease-in-out;border-radius:4px;padding-left:5%;width:94%;display:block;margin:0 auto;border:1px solid #C6C6C6;font-size: 14px;color: #000000;height:42px;line-height:42px;}
+		.login_box .login_btn{text-decoration:none;transition:all .25s ease-in-out;text-align:center;border-radius:4px;background-color:#2D8CF0;width:100%;display:block;margin:30px auto 0px;font-size: 18px;color: #ffffff;height:45px;line-height:45px;}
+		.login_box .login_btn:hover{background-color:#1372d6;}
+		.login_box .login_btn2{border:1px solid #19BE6B;text-decoration:none;transition:all .25s ease-in-out;text-align:center;border-radius:4px;width:100%;display:block;margin:30px auto 0px;font-size: 18px;color: #19BE6B;height:45px;line-height:45px;}
+		.login_box .login_btn2:hover{border:1px solid #19BE6B;background-color:#19BE6B;color:#ffffff;}
+		.login_box .login_btn2 .ii{vertical-align:middle;transition:all .25s ease-in-out;background:url('../public/img/wexin.png') no-repeat center center;background-size:contain;display:inline-block;height:20px;width:20px;}
+		.login_box .login_btn2:hover .ii{background:url('../public/img/wexin2.png') no-repeat center center;background-size:contain;}
+		.footerText{opacity: 0.6;position:absolute;left:0;right:0;bottom:6%;text-align:center;font-size:12px;color:#333333;line-height:14px;}
+		.font{margin-top:10px;font-family:Microsoft YaHei;font-size: 12px;color: #989898;letter-spacing: 0;line-height: 12px;}
+		.findPass{float:right;color: #989898;}
+		.findPass:hover{color: #2D8CF0;}
+		.audit_div{left:0;right:0;text-align:center;position:absolute;top:-174px;}
+		.audit_div h4{font-size:28px;color:#999999;margin-top:12px;font-family:Microsoft YaHei;}
+		.btom{left:0;right:0;text-align:center;position:absolute;bottom:-60px;font-family: Microsoft YaHei;font-size: 14px;color: #989898;letter-spacing: 0;line-height: 12px;}
+		.line{height:1px;margin:30px auto;background-color:#D8D8D8;}
+		.reg_url{color:#2D8CF0;}
+		.login_box .lb_input:active,.login_box .lb_input:focus{border:1px solid #2D8CF0;}
+	</style>
+</head>
+<body class="">
+	<div class="login_box">
+		<div style="position:relative;">
+			<div class="audit_div">
+				<img class="ldd1" src="../public/img/audit.png"/>
+				<h4>稽查预算工具</h4>
+			</div>
+			<div style="margin-bottom:20px;" class="lb_co"><input id="phoneInput" class="userName lb_input" placeholder="手机号" type="text" /></div>
+			<div class="lb_btn "><a href="javascript:;" id="loginBtn" class="login_btn">登&nbsp;&nbsp;&nbsp;&nbsp;录</a></div>
+		</div>
+	</div>
+	<div class="footerText">copyright 2009-2017 北京经纬传奇医药科技有限公司 版权所有.京ICP备14047540号-4</div>
+	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+</body>
+<script>
+$(function(){
+	var g = {};
+	//g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	$('#loginBtn').on('click',loginFunc);
+	
+/* **************************************** setTing ******************************************** */	
+
+	//获取项目列表
+	function loginFunc(){
+		var phoneInput = trim2($('#phoneInput').val() || '');
+		if(!validPhone(phoneInput)){return false;}
+		var condi = {};
+		condi.username = phoneInput;
+		condi.password = '111111';
+		var url = Base.serverUrl + "/open/calculator/login";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				g.totalPage = data.totalPages || 0;//总页数
+				if(status){
+					var phone = data.result || '';
+					Utils.offLineStore.set("logininyusuan",phone,false);
+					Utils.alert('登录成功！');
+					setTimeout(function(){location.href="home.html";},1000);
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+
+});
+</script>
+</html>

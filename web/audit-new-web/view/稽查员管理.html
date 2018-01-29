@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/select2/css/select2.min.css" />
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+	<style>
+		.select2-container{float:right;margin-bottom:5px;}
+	</style>
+</head>
+<body class="xiangmuguanli yonghuguanli">
+	<ul class="choiseDanwei choiseDanwei3">
+		<li tip="">角色</li>
+	</ul>	
+	<!-- <h4 class="page_title">用户管理</h4> -->
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">姓名</span>
+					<input id="userName" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">电话</span>
+					<input id="userPhone" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">所在部门</span>
+					<select id="bumen" class="com_select com_select1"><option disabled selected>部门</option></select>
+				</td>
+				<td>
+					<span class="sear_lable">稽查职位</span>
+					<select id="userzhiwei" class="com_select com_select3">
+						<option value="">请选择</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">状态</span>
+					<select id="userStatic" class="com_select com_select3">
+						<option value="">请选择</option>
+						<option value="在职">在职</option>
+						<option value="离职">离职</option>
+					</select>
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td class="searBtnTd">
+					<a id="searchBtn" class="top_btn">搜索</a>
+					<a id="searchAll" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		<a class="creat_forse" id="newCenter" >新建用户</a>
+	</div>
+	<div id="tableList" class="table_div">
+		
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	
+	
+	
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+		
+			<div class="sbox xiugaizhongxin">
+				<h4 class="sbox_h4">用户管理</h4>
+				<div class="sbox_c"><span class="slable">用户头像</span><i class="star"></i>
+					<a class="positi">
+						<img height=60 width=60  id="head_img" src="" />
+						<form enctype="multipart/form-data" method="post" id="fileForm" name="fileForm">
+							<input id="orderMaterialFile" name="file" class="headUpload" type="file" />
+						</form>	
+					</a>
+				</div>
+				<div class="sbox_c"><span class="slable">用户姓名</span><i class="star">*</i><input id="xingming" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">手机号</span><i class="star">*</i><input id="lianxiPhone" maxlength=11 class="sbox_input" type="text"/></div>
+				<!-- <div class="sbox_c"><span class="slable">用户密码</span><i class="star"></i><input id="mima" class="sbox_input" type="text"/></div> -->
+				<div class="sbox_c"><span class="slable">所属部门</span><i class="star"></i>
+					<select id="suoshubumen" class="sbox_select">
+						<option value="">所属部门</option>
+					</select>
+				</div>
+				<div class="sbox_c"><span class="slable">所属角色</span><i class="star"></i>
+					<select id="suoshujiaose" style="width:81%;" multiple class="sbox_select">
+						<option value="">所属部门</option>
+					</select>
+				</div>	
+				<div class="sbox_c"><span class="slable">账号</span><i class="star"></i><input id="youxiangEmail" class="sbox_input" type="text"/></div>
+				<!-- <div class="sbox_c"><span class="slable">状态</span><i class="star"></i>
+					<select id="zhuangtai" class="sbox_select">
+						<option value="1">正常</option>
+						<option value="0">停用</option>
+					</select>
+				</div> -->
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+			
+		</div>
+	</div>	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/libs/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/js/jquery.form.js"></script>
+	<script type="text/javascript" src="../public/select2/js/select2.full.min.js"></script>
+	<script type="text/javascript" src="../public/select2/js/i18n/zh-CN.js"></script>
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.usrid = '';//存储用户id
+	
+/* **************************************** lodding ******************************************** */		
+	
+	
+	$('.cao_btn4').on('click',function(){
+		showSbox('.quanxianguanli');
+	});
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active');
+	//$('#menu_show_t .s0',parent.document).html('系统管理');
+	$('#menu_show_t .s0',parent.document).html('稽查员管理').addClass('active');
+	$('#newCenter').on('click',function(){shownewCenterSbox('new')});
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	
+	getbumenList();//获取部门列表
+	
+	//saveOrClearCookie(3,'jichag_');//加载搜索条件
+	//tableListShow();//显示列表
+	
+/* **************************************** setTing ******************************************** */	
+	
+
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//搜索条件 获取稽查职位
+	function getjiaoseList(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		var url = Base.serverUrl + "role/getAllNoPage";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data;
+					var html = '<option value="">请选择</option>';
+					var html2 = '';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var name = d.name || '';//名称
+						html+='<option value="'+id+'">'+name+'</option>';
+					}	
+					$('#userzhiwei').html(html);
+					saveOrClearCookie(3,'jichag_');//加载搜索条件
+					tableListShow(1);//显示列表
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//搜索条件 获取部门列表
+	function getbumenList(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "department/getAll";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data;
+					var html = '<option value="">选择部门</option>';
+					var html2 = '<option value="">选择部门</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var level = d.level || '';
+						var name = d.name || '';//名称
+						var pName = d.pName || '';//父级名称
+						var _name = level == '2' ? '&nbsp;&nbsp;&nbsp;&nbsp;'+name : name;
+						html+='<option value="'+name+'">'+_name+'</option>';
+						html2+='<option value="'+name+'">'+_name+'</option>';
+					}	
+					$('#bumen').html(html);
+					$('#suoshubumen').html(html2);
+					getjiaoseList();// 获取稽查职位
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+	 
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		var name = $('#userName').val() || '';
+		var phone = $('#userPhone').val() || '';
+		var department = $('#bumen').val() || '';
+		var userStatic = $('#userStatic').val() || '';
+		var userzhiwei = $('#userzhiwei').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		if(is == 1 || is == 'pa'){//搜索
+			//if(mokuaiInfo == ''){Utils.alert('模块名称/编号不能为空！');}
+			condi.name = name;
+			condi.phone = phone;
+			condi.department = department;
+			condi.userStatic = userStatic;
+			condi.userzhiwei = userzhiwei;
+			g.loadPage = true;//开启分页
+			saveOrClearCookie(2,'jichag_');//存储搜索条件
+		}else if(is == 2){//搜索全部
+			$('.btn_div input,.btn_div select').val('');//全部的时候 清空搜索项
+			g.loadPage = true;//开启分页
+			saveOrClearCookie(1,'jichag_');//清空搜索条件
+		}
+		var url = Base.serverUrl + "user/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共模块数
+					$('#totalElements').html(totalElements);
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">编号</th>'
+							+'<th style="min-width:30px;">姓名</th>'
+							+'<th style="min-width:30px;">账号</th>'
+							+'<th style="min-width:30px;">头像</th>'
+							+'<th style="min-width:30px;">电话</th>'
+							+'<th style="min-width:52px;">职位认证</th>'
+							+'<th style="min-width:45px;">所在地</th>'
+							+'<th style="min-width:30px;">邮箱</th>'
+							+'<th style="min-width:30px;">签名</th>'
+							+'<th style="min-width:52px;">擅长领域</th>'
+							+'<th style="min-width:52px;">在职状态</th>'
+							+'<th style="min-width:150px;">操作</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var name = d.name || '';//名称
+						var icons = d.icons || '';//
+						var department = d.department || '';//
+						var roles = d.roles || '';//
+						var phone = d.phone || '';//
+						var email = d.email || '';//
+						var state_str = d.state_str || '';//
+						var state = d.state || '';//
+						var isBindWechat = d.isBindWechat || '';//
+						html+='<tr>'
+							+'<td>'+id+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td>'+email+'</td>'
+							+'<td><i style="background:url(\''+icons+'\') no-repeat center center;background-size:contain;" class="head_img"></i></td>'
+							+'<td>'+department+'</td>'
+							+'<td>'+roles+'</td>'
+							+'<td>'+phone+'</td>'
+							+'<td>'+phone+'</td>'
+							+'<td>'+phone+'</td>'
+							+'<td>'+phone+'</td>'
+							+'<td>'+state_str+'</td>'
+							+'<td class="last">'
+								+ '<a href="javascript:;" onclick="info(\''+id+'\')" class="cao_btn cao_btn1">信息</a>'
+								+'<a href="javascript:;" onclick="jianli(\''+id+'\')" class="cao_btn cao_btn2">简历</a>'
+								+'<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn5">删除</a>';
+							html+='</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//信息
+	window.info = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		parent.document.getElementById("iframeObj").src = '稽查员管理-基本信息.html';
+		
+	
+	}
+	//简历
+	window.jianli = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		parent.document.getElementById("iframeObj").src = '稽查员管理-基本信息.html';
+		
+	
+	}
+
+	//删除一项
+	window.deleteIt = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "user/deleteById";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	
+	
+	
+});
+
+</script>
+</html>

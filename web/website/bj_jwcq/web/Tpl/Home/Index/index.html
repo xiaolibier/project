@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/> -->
+	<meta name="viewport" content="width=1200px"/>
+	<!-- <meta content="yes" name="apple-mobile-web-app-capable"> -->
+	<!-- <meta content="black" name="apple-mobile-web-app-status-bar-style"> -->
+	<!-- <meta name="format-detection" content="telephone=no"/> -->
+	<meta name="keywords" content="稽查 药品稽查 第三方稽查 临床试验 临床试验稽查 经纬"/>
+	<meta name="description" content="北京经纬传奇医药科技有限公司,临床试验第三方稽查信心标志"/>
+	<title>北京经纬传奇医药科技有限公司--首页</title>
+	<link href="__PUBLIC__/css/top_bottom_Public.css" rel="stylesheet" />
+	<link href="__PUBLIC__/css/common.css" type="text/css" rel="stylesheet">
+	<link href="__PUBLIC__/video/video-js.css" type="text/css" rel="stylesheet">
+	<style>
+		html,body{min-width:1200px;}
+		div.newHeader{background:none;}
+		a > img[height='20']{display:none;}/* 隐藏咨询窗口 */
+	</style>
+</head>
+<body class="newBody">
+	<!--header-->
+	<include file="Index:top" />
+	<!-- bannner -->
+	<div class="newBanner">
+		<ul class="bannerUl">
+			<volist name="colnews" id="vo">
+				<a href="{$vo.Col_Editor}">
+				<li class="li active" style='background:url("__SYSWEB__/Uploads/{$vo.Col_Pic}") no-repeat center top;background-size:auto 100%;'>
+				<!-- <li class="li active" >	 -->
+						<!-- <img class="bannerImg" src="__SYSWEB__/Uploads/{$vo.Col_Pic}" /> -->
+				</li>
+				</a>
+			</volist>
+			
+		</ul>
+		<div class="panelList">
+			<volist name="colnews" id="vo" key="k">
+			<a class="pl <if condition="$k eq '1' ">active<else/> </if>"></a>
+			</volist>
+			<!-- <a class="pl"></a> -->
+		</div>
+		<a class="newLeftBtn commonnewBtn"><img class="btn_img" src="/web/Tpl/Public/newImg/left0.png"/></a>
+		<a class="newRightBtn commonnewBtn"><img class="btn_img" src="/web/Tpl/Public/newImg/right0.png"/></a>
+	</div>
+	<!-- 业务范围 -->
+	<div info="业务范围" class="newBussDiv">
+		<!-- <h4 class="newTitle">业务范围<span class="s">／Business</span></h4> -->
+		<div class="newContent">
+			<a href="{:U('business')}">
+			<div class="ncList">
+				<img class="bg_img" src="/web/Tpl/Public/newImg/pa1.png"/>
+				<span class="tt">第三方稽查</span><br/>
+				<span class="ncMess ncMess1">GCP/GLP/GMP/GPVP稽查</span>
+				<span class="ncMess ncMess1">数据管理与统计现场稽查</span>
+				<span class="ncMess ncMess1">制药企业质量体系稽查</span>
+				<span class="ncMess ncMess1">临床试验现场稽查</span>
+				<span class="ncMess ncMess1">CRO质量体系稽查</span>
+				<span class="ncMess ncMess1">研究机构质量体系稽查</span>
+				<span class="ncMess ncMess1">研究文档的稽查</span>
+				<span class="ncMess ncMess1">研究机构和供应商评估中心实验室现场稽</span>
+			</div>
+			</a>
+			<a href="{:U('business?id=360')}">
+			<div class="ncList">
+				<div class="line_shu line_shu1"></div>
+				<div class="line_shu line_shu2"></div>
+				<img class="bg_img" src="/web/Tpl/Public/newImg/pa2.png"/>
+				<span class="tt">全过程质量控制</span><br/>
+				<span class="ncMess ncMess2">项目管理与沟通计划</span>
+				<span class="ncMess ncMess2">临床试验方案的风险评估</span>
+				<span class="ncMess ncMess2">临床研究基本文件质量审核</span>
+				<span class="ncMess ncMess2">临床项目的质控与风险管理</span>
+				<span class="ncMess ncMess2">临床项目人员评估与辅导</span>
+				<span class="ncMess ncMess2">检查和注册核查前的准备</span>
+				<span class="ncMess ncMess2">检查和核查后的跟进与改进</span>
+			</div>
+			</a>
+			<a href="{:U('business?id=361')}">
+			<div class="ncList last">
+				<img class="bg_img" src="/web/Tpl/Public/newImg/pa3.png"/>
+				<span class="tt">咨询和培训</span><br/>
+				<span class="ncMess ncMess3">优秀QA/QC人员外包服务</span>
+				<span class="ncMess ncMess3">制药企业和研究机构质量体系</span>
+				<span class="ncMess ncMess3">标准流程的建立与维护</span>
+				<span class="ncMess ncMess3">临床项目的评估、规划与管理</span>
+				<span class="ncMess ncMess3">独立新药投资尽职调查</span>
+				<span class="ncMess ncMess3">专业人员的系统培训与认证</span>
+			</div>
+			</a>
+		</div>
+		
+	</div>
+	<!-- 新闻资讯 -->
+	<!-- <div info="新闻资讯" class="newsDiv">
+		<h4 class="newTitle">新闻资讯<span class="s">／News</span><a href="{:U('news')}" class="moreBtn">MORE</a></h4>
+		<div class="newsList">
+			<volist name="datanews" id="vo">
+			<div class="newsOne">
+				<a href="{:U('newsinfo?nid='.$vo['Col_ID'].'')}">
+				<div class="imgBody"><img class="img" src="/web/Public/Uploads/{$vo.Col_Pic}"/></div>
+				<div class="newsText">
+					<h5 class="title1" title="{$vo.Col_Title}">
+						{$vo.Col_Title}
+					</h5>
+					<p class="text1" title="{$vo.Col_Source}">
+						{$vo.Col_Source}
+					</p>
+					<div class="fabuDate">{$vo.Col_Time}</div>
+				</div>
+				</a>
+			</div>
+			</volist>
+		</div>
+	</div> -->
+	<!-- 视频展示 -->
+	<div info="视频展示" class="videosDiv">
+		<h4 class="newTitle">视频展示<!-- <span class="s">／Videos</span> --></h4>
+		<div class="videoBox">
+			<div class="videoPanel">
+				<!-- <a class="play_btn"><img class="vimg2" src="/web/Tpl/Public/newImg/play.png"/></a> -->
+				<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="800" height="448"
+					  poster="/web/Tpl/Public/newImg/video.jpg"
+					  data-setup="{}">
+					<source src="/web/Tpl/Public/video/jingwei.mp4" type='video/mp4' />
+					<!-- <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' /> -->
+					<!-- <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' /> -->
+					<track kind="captions" src="/web/Tpl/Public/video/demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+					<track kind="subtitles" src="/web/Tpl/Public/video/demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+				 </video>
+				<!-- <img class="vimg" src="/web/Tpl/Public/newImg/video.png"/> -->
+				<!-- <p class="vtips">
+					公司介绍视频<br/>
+					
+				</p> -->
+			</div>
+			
+		</div>
+	</div>
+	<div info="合作伙伴" class="companysDiv">
+		<h4 class="newTitle">合作伙伴</h4>
+		<ul class="companyUl">
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a1.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a2.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a3.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a4.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a5.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a6.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a7.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a8.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a9.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a10.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a11.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a12.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a13.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a14.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a15.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a16.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a17.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a18.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a19.jpg" /></li>
+			<li class="cs"><img class="comimg" src="/web/Tpl/Public/img/company/a20.jpg" /></li>
+		</ul>
+		<!-- <div style="text-align:center;margin-top:20px;"><a class="askBtn">我要咨询</a></div> -->
+	
+	</div>
+	
+	<!-- 底部 -->
+	<div info="底部" class="indexFooter">
+		<div class="nf_content">
+			<div class="ove">
+			<div class="nf_erweima">
+				<img class="nf_img1" src="/web/Tpl/Public/newImg/erwei.png" />
+			</div>
+			<div class="nf_right">
+				<!-- <div class="nf_top">
+					北京经纬传奇医药科技有限公司
+				</div> -->
+				<p class="nf_mess">
+					总<span style="display:inline-block;width:36px;"></span>部：北京经纬传奇医药科技有限公司<br/>
+                  <span style="display:inline-block;width:73px;"></span>北京市西城区西直门西环广场T1座20层
+				</p>
+				<p class="nf_mess">
+					成都分公司：成都市武侯区科华北路62号力宝大厦北楼701室
+				</p>
+				<p class="nf_mess">
+					上海分公司：上海市张江高科技园区哈雷路898弄1号楼305室
+				</p>
+				<p class="nf_mess">
+					武汉分公司：武汉市江汉区解放大道686号世贸大厦2903-2904室
+				</p>
+			</div>
+			<div class="inlineRight">
+				<p class="nf_mess">
+					电话：400-815-7222<br/>
+					传真：010-85806786<br/>
+					微博：http://weibo.com/i/2257477852<br/>
+					微信：经纬传奇<br/>
+					Email：3audit@3audit.com<br/>
+					网址：http://www.3audit.com
+				</p>
+			</div>
+			</div>
+			<div class="mar">copyright 2009-2017 北京经纬传奇医药科技有限公司 版权所有.京ICP备14047540号-4</div>
+		</div>
+	</div>
+
+	<script src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+	<script src="__PUBLIC__/js/all.js" ></script>
+	
+	<script src="__PUBLIC__/js/jquery.min.js"></script><!--产品展示JS轮播-->
+	<script src="__PUBLIC__/js/lunbo.js"></script><!--产品展示JS轮播-->
+	<script src="__PUBLIC__/js/jquery.excoloSlider.js"></script><!--新闻动态JS-->
+	<script src="__PUBLIC__/video/video.js"></script><!--新闻动态JS-->
+	<script src="__PUBLIC__/js/common.js" ></script>
+	<!--新闻动态JS-->
+	<!-- <script src="__PUBLIC__/js/adapt.min.js"></script> -->
+	<script>
+    videojs.options.flash.swf = "video-js.swf";
+	$('#index').addClass('current');
+	$(function(){
+		setBanner();
+		$(window).resize(function(){setBanner();});
+		//设置banner宽度高度
+		function setBanner(){
+			var bili = 1920/640;
+			var win = $(window).width() || 0;
+			var wind = window.screen.width || 0;
+			var hei = $(window).height() || 0;
+			var hei2 = $('.newHeader').height() || 0;
+			var hh = hei - hei2;
+			var set = (win/bili).toFixed(0);
+			if(hh > 500){hh = 500;}else if(hh < 450){hh = 450;}
+			if(wind < 640){hh = 450;}//适配手机
+			//alert(wind);
+			//console.log(win);
+			//console.log(1920*hh/win);
+			$('.newBanner').height(hh);
+			$('.newBanner .bannerUl .li').width(win);
+			setBannerL();
+		}
+		
+		
+	//自动收起顶部菜单
+	$(window).scroll(function(){
+		  topmenu();
+	});
+	 topmenu();
+	 //顶部菜单鼠标经过
+	 $('.newHeader').hover(function(){
+		$('.newHeader').css({"background":"#2e3033"});
+	 },function(){
+		var sc = $(document).scrollTop() || 0;
+		 if(sc <= 0){
+			 $('.newHeader').css({"background":"none"});
+		 }else{
+			 $('.newHeader').css({"background":"#2e3033"});
+		 }
+	 });
+	//自动收起顶部菜单
+	function topmenu(){
+		var sc = $(document).scrollTop() || 0;
+		 if(sc <= 0){
+			 $('.newHeader').css({"background":"none"});
+		 }else{
+			 $('.newHeader').css({"background":"#2e3033"});
+		 }
+	}
+	});
+  </script>
+  <script src="__PUBLIC__/js/new.js" ></script>
+  <!-- <script type="text/javascript"> var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1222ad17de51a51b15a3d0e54d1399ae' type='text/javascript'%3E%3C/script%3E")) </script> -->
+</body>
+</html>

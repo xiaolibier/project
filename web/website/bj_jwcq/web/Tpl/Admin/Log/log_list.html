@@ -1,0 +1,67 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="__SYSWEB__/images/mainFrom.css" rel="stylesheet" type="text/css"/>
+<link href="__SYSWEB__/images/skinv2.0.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="__SYSWEB__/images/35Public.js"></script>
+
+<style type="text/css">
+<!--
+.STYLE1 {color: #FFFFFF}
+-->
+</style>
+</head>
+
+<body>
+<div class="con-ico">
+  <div class="con-fl" style="height:30px;">当前位置：我的站点 &gt; 日志管理</div>
+</div>
+
+
+<form action="__APP__/Admin/Log/log_delete" method="post" name="Gforms" id="Gforms" enctype="multipart/form-data">
+  <table width="72%" border="0" cellpadding="0" cellspacing="1" bgcolor="#CDCDCD">
+    <tr>
+      <td width="3%" height="22" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>选中</strong></td>
+      <td width="13%" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>姓名 </strong></td>
+      <td width="30%" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>标题</strong></td>
+      <td width="22%" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>栏目</strong></td>
+      <td width="14%" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>类型</strong></td>
+      <td width="18%" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>时间</strong></td>
+	   <td width="18%" align="center" bgcolor="#F4F4F4" class="tdblodthnone"><strong>IP地址</strong></td>
+    </tr>
+     <volist name="info_detail" id="vo">
+    <tr bgcolor="#F4F4F4" onMouseOver="this.style.backgroundColor=&quot;#FFFFFF&quot;" onMouseOut="this.style.backgroundColor=&quot;&quot;">
+      <td align="center"><label>
+        <input name="nCID[]" type="checkbox" id="nCID[]" value="{$vo.LID}" />
+      </label></td>
+      <td>&nbsp;{$vo.LName}</td>
+      <td align="center">&nbsp;{$vo.Ltitle|default='------'}</td>
+    <!--  <td align="center">{$vo.Lcon|htmlspecialchars_decode|cutstr_html=30}</td>-->
+	<td align="left">&nbsp;{$vo.Lfname}</td>
+      <td align="center">{$vo.Ltype}</td>
+        <td align="center">{$vo.LTime}</td>
+	  <td align="center">{$vo.LIP}</td>
+    </tr>
+    </volist>
+    <tr>
+      <td height="24" colspan="8" bgcolor="#F4F4F4"><table width="795" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="2%"><input type="checkbox" name="chkall" value="on" onclick="CheckAll(this.form)" /></td>
+          <td width="14%"> 全部选中(清空)
+            <label></label></td>
+          <td width="24%"><input name="Submit" type="submit" class="Botton" value="批量删除" onclick="return confirm('您确定要批量删除吗？');" />&nbsp;<input name="Submit" type="button" class="Botton" value="导出数据"  onclick="window.location.href='__APP__/Admin/Sys/export_excel'" />&nbsp; </td>
+          <Td width="60%"> <input type="hidden" name="leadExcel" value="true"><input type="file" name="file"><input type="submit" class="Botton" value="导入数据"></Td>
+          </tr>
+      </table>
+      <label></label></td>
+    </tr>
+    <tr>
+      <td height="21" colspan="8" align="center" bgcolor="#E2EEE1">{$page}</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

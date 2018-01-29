@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli danzhongxinbaogaopingshen updownbody">
+	<!-- <h4 class="page_title">单中心报告评审</h4> -->
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">项目/任务编号</span>
+					<input id="xiangMuRenWuNum" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">模块名称</span>
+					<select id="mokuaisear" class="com_select com_select2">
+						<option value="">请选择</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">分类名称</span>
+					<select id="fenleisousuo" class="com_select com_select2">
+						<option value="">请选择</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">问题名称</span>
+					<input id="wentiming" class="com_input com_input1" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">发起人</span>
+					<select id="renLingRen" class="com_select com_select2">
+						<option value="">请选择</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">操作结果</span>
+					<select id="caozuojieguo" class="com_select com_select2">
+						<option value="">请选择</option>
+						<option value="已录入">已录入</option>
+						<option value="作废">作废</option>
+					</select>
+				</td>
+				<td>
+					
+				</td>
+				<td style="height:31px;">
+					
+				</td>
+			</tr>
+		</table>
+		<span class="searBtnTd">
+			<a id="searchBtn" class="top_btn danZhongXinBaoGao_sousuo">搜索</a>
+			<a id="searchAll" class="top_btn type2">清空条件</a>
+			<a class="upserBtn" href="javascript:;" >更多</a>
+		</span>
+		<div class="sear_line"></div>
+	</div>
+	<div id="choise_menu" class="m_info">
+		<a class="choise panel_lable active" val="pending" >待评审(<span class="value">0</span>)</a>
+		<a class="choise panel_lable" val="reviewed" >已评审(<span class="value">0</span>)</a>
+	</div>
+	<div id="tableList" class="table_div">
+		
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div style="display:none;" class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		  </span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	
+	
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+		
+			<div class="sbox prosbox1">
+				<h4 class="sbox_h4">录入问题归类</h4>
+				<div class="sbox_c"><span class="slable">录入类型</span><i class="star"></i>
+					<select id="luruleixings" class="sbox_select">
+						<option value="新增">新增</option>
+						<option value="修改">修改</option>
+					</select></div>
+				<div class="sbox_c"><span class="slable">模块</span><i class="star"></i><input id="mokuais" readonly class="sbox_input readonly" type="text"/></div>
+				<div class="sbox_c"><span class="slable">分类</span><i class="star"></i><input id="fenleis" readonly class="sbox_input readonly" type="text"/></div>
+				<div class="sbox_c"><span class="slable">问题</span><i class="star">*</i><input id="wentis" class="sbox_input" type="text"/></div>
+				<div class="sbox_c xiugaiboxdiv"><span class="slable">修改问题</span><i class="star">*</i><input id="xiugaiwentis" class="sbox_input" type="text"/></div>
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+			<!-- 详情 -->
+			<div class="sbox prosbox2">
+				<h4 class="sbox_h4">详情<a href="javascript:;" onclick="closeSbox()" class="close_x"></a></h4>
+				<div class="sbox_c"><span class="slable">问题归纳</span><i class="star"></i><span style="display:inline-block;line-height:30px;float:right;vertical-align:top;width:79%;" id="guinas2"></span></div>
+				<div class="sbox_c"><span class="slable">问题</span><i class="star"></i><span style="display:inline-block;margin:6px 0;float:right;vertical-align:top;width:79%;" id="wentis2"></span></div>
+				<div class="sbox_c"><span class="slable">分类</span><i class="star"></i><span style="display:inline-block;margin:6px 0;float:right;vertical-align:top;width:79%;" id="fenleis2"></span></div>
+				<div class="sbox_c"><span class="slable">依据</span><i class="star"></i><span style="display:inline-block;margin:6px 0;float:right;vertical-align:top;width:79%;" id="yijus2"></span></div>
+				<div class="sbox_btn_div" style="text-align:center;"></div>
+			</div>
+			
+		</div>
+	</div>	
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.ser = Utils.getQueryString("ser") || "";//从工作台获取搜索项
+	if(g.ser != ''){g.ser = decodeURI(g.ser)}//解码
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	//判断权限
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).html('问题归类评审').addClass('active');
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	$('#choise_menu .choise').on('click',setGetList);//给状态添加点击事件
+	
+	loadPage();
+	
+
+/* **************************************** setTing ******************************************** */	
+	
+	
+	//加载页面
+	function loadPage(){
+		
+		if(g.ser != ''){//判断从工作台传搜索项过来
+			$('#choise_menu .choise').each(function(){
+				var _val = $(this).attr('val') || '';
+				if(_val != '' && _val == g.ser){
+					$(this).addClass('active').siblings('.choise').removeClass('active');
+				}
+			});
+			tableListShow(1);//显示列表
+		}else{
+			tableListShow();//显示列表
+		} 
+		getfenleiList();//获取搜索条件列表
+	}
+	
+	//给状态添加点击事件
+	function setGetList(){
+		$(this).addClass('active').siblings('.choise').removeClass('active');
+		g.nowPage = 0;//
+		tableListShow(1);//显示列表
+	
+	}
+	
+	//搜索条件 获取创建者/分类/问题归类接口
+	function getfenleiList(){
+		var condi = {};
+		//condi.code = '';
+		var url = Base.serverUrl + "problemReview/getCreatorsAndCategories";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var categories = data.categories || [];
+					var creators = data.creators || [];
+					var modules = data.modules || [];
+					var html1 = '<option value="">请选择</option>';
+					var html2 = '<option value="">请选择</option>';
+					var html3 = '<option value="">请选择</option>';
+					for(var i=0,len=categories.length;i<len;i++){
+						var name = categories[i] || '';
+						html1+='<option value="'+name+'">'+name+'</option>';
+					}
+					for(var i=0,len=creators.length;i<len;i++){
+						var name = creators[i] || '';
+						html2+='<option value="'+name+'">'+name+'</option>';
+					}
+					for(var i=0,len=modules.length;i<len;i++){
+						var name = modules[i] || '';
+						html3+='<option value="'+name+'">'+name+'</option>';
+					}	
+					$('#fenleisousuo').html(html1);
+					$('#renLingRen').html(html2);
+					$('#mokuaisear').html(html3);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		var xiangMuRenWuNum = $('#xiangMuRenWuNum').val() || '';
+		var mokuaisear = $('#mokuaisear').val() || '';
+		var renLingRen = $('#renLingRen').val() || '';
+		var wentiming = $('#wentiming').val() || '';
+		var fenleisousuo = $('#fenleisousuo').val() || '';
+		var caozuojieguo = $('#caozuojieguo').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		if(is == 1 || is == 'pa'){//搜索条件
+			condi.module = mokuaisear;//
+			condi.code = xiangMuRenWuNum;//
+			condi.creator = renLingRen;//
+			condi.category = fenleisousuo;//
+			condi.problem = wentiming;//
+			condi.state = caozuojieguo;//
+			g.loadPage = true;//开启分页
+		}else if(is == 2){//搜索全部
+			$('#xiangMuRenWuNum').val('');
+			$('#mokuaisear').val('');
+			$('#renLingRen').val('');
+			$('#wentiming').val('');
+			$('#fenleisousuo').val('');
+			$('#caozuojieguo').val('');
+			g.loadPage = true;//开启分页
+		}
+		var url = Base.serverUrl + "problemReview/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:60px;">任务编号</th>'
+							+'<th style="min-width:30px;">模块</th>'
+							+'<th style="min-width:30px;">分类</th>'
+							+'<th style="min-width:75px;">原问题归类</th>'
+							+'<th style="min-width:90px;">修改问题归类</th>'
+							+'<th style="min-width:120px;">发起人/发起时间</th>'
+							+'<th style="min-width:30px;">状态</th>'
+							+'<th style="min-width:120px;">操作人/操作时间</th>'
+							+'<th style="min-width:145px;">操作</th>'
+						+'</tr>';
+					var con = data || [];
+					
+					$('#choise_menu').find('.choise').each(function(){
+						var mname = $(this).attr('val') || '';
+					//for(var i=0,len=con.length;i<len;i++){
+						var d = con[mname] || '';
+						var totalElements = d.totalElements || 0;
+						//var _str = mname+'（'+totalElements+'）';
+						$(this).find('.value').html(totalElements);
+						if(!$(this).hasClass('active')){
+							return true;
+						}else{
+							g.totalPage = d.totalPages || 0;//总页数
+						}
+						var con2 = d.content || [];
+						for(var j=0,len2=con2.length;j<len2;j++){
+							var dd = con2[j] || {};
+							var id = dd.id || '';//任务id
+							var task_code = dd.task_code || '';
+							var module = dd.module || '';
+							var category = dd.category || '';
+							var original_problem = dd.original_problem || '';
+							var new_problem = dd.new_problem || '';
+							var state = dd.state || '';
+							var cancel = dd.cancel || '';//判断是否已作废 0 1
+							var creator = dd.creator || '';
+							var original_problem_id = dd.original_problem_id || '';
+							var ppid = original_problem_id == '' ? 0 : 1;//判断是否已经存在
+							var create_time = getDate(dd.create_time || '');
+							var ccstr = creator != '' && create_time != '' ? creator + '/' + create_time : creator + create_time ;
+							var operator = dd.operator || '';
+							var operate_time = getDate(dd.operate_time || '');
+							var oostr = operator != '' && operate_time != '' ? operator + '/' + operate_time : operator + operate_time ;
+							
+							html+='<tr>'
+								+'<td>'+task_code+'</td>'
+								+'<td>'+module+'</td>'
+								+'<td>'+category+'</td>'
+								+'<td>'+original_problem+'</td>'
+								+'<td>'+new_problem+'</td>'
+								+'<td>'+ccstr+'</td>'
+								+'<td>'+state+'</td>'
+								+'<td>'+oostr+'</td>'
+								+'<td class="last">';
+								if(state == '待评审'){
+									html+='<a href="javascript:;" onclick="luru(\''+id+'\','+ppid+')" class="cao_btn cao_btn2">录入</a>';
+									html+='<a href="javascript:;" onclick="zuofei(\''+id+'\')" class="cao_btn cao_btn3">作废</a>';
+									html+='<a href="javascript:;" onclick="check(\''+id+'\')" class="cao_btn cao_btn1">详情</a>';
+								}else if(state == '已评审'){
+									if(cancel == 1){
+										html+='作废';
+									}else if(ppid == 0){
+										html+='已录入<br/>'+task_code;
+									}else if(ppid == 1){
+										html+='已修改<br/>'+task_code;
+									}
+								}
+								html+='</td>';
+							+'</tr>';
+						}	
+					});	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//录入
+	window.luru = function(id,ppid){
+		var id = id || '';
+		var ppid = ppid || '';
+		if(id == ''){Utils.alert('id为空！');return false;}
+		var _do = ppid == 1 ? 'change' : 'new';
+		showOrChange(id,_do);
+		
+	}
+	//详情
+	window.check = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id为空！');return false;}
+		showinfomes(id,'check');//查看问题详情
+	}
+	
+	//初始化弹窗
+	function reloadSbox(){
+		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		$('#yesBtn').off().show();
+		$('.xiugaizhongxin input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.xiugaizhongxin select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	
+	//查看问题详情
+	window.showinfomes = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "problemReview/getDetail";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+
+					//详情
+					$('#guinas2').html(d.problem || '');
+					$('#fenleis2').html(d.classify || '');
+					$('#yijus2').html(d.reference || '');
+					$('#wentis2').html(d.problem_detail || '');
+					showSbox('.prosbox2');
+					
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//查看或者修改的 公共方法
+	window.showOrChange = function(id,is){
+		var id = id || '';
+		var is = is || '';
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "problemReview/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					reloadSbox();//初始化弹窗
+					//赋值
+					$('#mokuais').val(d.module || '');
+					$('#fenleis').val(d.category || '');
+					$('#xiugaiwentis').val(d.new_problem || '');
+					//详情
+					$('#xiugaiwentis').val(d.new_problem || '');
+
+					if(is == 'new'){
+						$('#luruleixings').val('新增').attr('disabled',true).addClass('readonly');
+						$('#wentis').val(d.new_problem || '');
+						$('#wentis').removeAttr('readonly').removeClass('readonly');
+						$('.xiugaiboxdiv').hide();
+					}else{
+						$('#luruleixings').val('修改').removeAttr('disabled').removeClass('readonly');
+						$('#wentis').val(d.original_problem || '').attr('aid',(d.original_problem_id || ''));
+						$('#wentis').attr('readonly',true).addClass('readonly');
+						$('.xiugaiboxdiv').show();
+					}
+					if(is == 'check'){showSbox('.prosbox2');}
+					else{showSbox('.prosbox1');}
+					$('#yesBtn').off().on('click',function(){centerFunc(is,id)});
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//新建或修改
+	window.centerFunc = function(is,id){
+		var is = is || '';
+		var id = id || '';
+		var luruleixings = $('#luruleixings').val() || '';
+		var mokuais = $('#mokuais').val() || '';
+		var fenleis = $('#fenleis').val() || '';
+		var wentis = $('#wentis').val() || '';
+		var paid = $('#wentis').attr('aid') || '';
+		var xiugaiwentis = $('#xiugaiwentis').val() || '';
+		$('#yesBtn').off();
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.id = id;
+		condi.type = luruleixings;
+		condi.module = mokuais;
+		condi.category = fenleis;
+		if(is == 'new'){
+			condi.problem = wentis;
+			if(wentis == ''){Utils.alert('问题不能为空！');return false;}
+		}else{
+			condi.problem = xiugaiwentis;
+			condi.originalProblemId = paid;
+			if(xiugaiwentis == ''){Utils.alert('问题不能为空！');return false;}
+		}
+		var url = Base.serverUrl + "problemReview/add";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					if(is == 'change'){tips = '修改成功！';}
+					Utils.alert(tips);
+					tableListShow(2);//列表
+					closeSbox();//关闭弹窗
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					Utils.alert(msg);
+					$('#yesBtn').off().on('click',function(){centerFunc('new',id)});
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#yesBtn').off().on('click',function(){centerFunc('new',id)});
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//作废
+	window.zuofei = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('id为空！');return false;}
+		if(!confirm('确认作废吗？')){return false;}
+		var condi = {};
+		condi.id  = id;
+		condi.cancel  = 1;//1:作废，0：取消作废
+		var url = Base.serverUrl + "problemReview/cancel";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('作废成功！');
+					tableListShow(1);
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+		$('.searchPage').show();
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+	 
+	//加载时间控件
+	var start = {
+	  elem: '#start_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(end);
+
+});
+
+</script>
+</html>

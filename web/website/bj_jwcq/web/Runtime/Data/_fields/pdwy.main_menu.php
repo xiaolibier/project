@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'Main_ID', 1 => 'Main_Name', 2 => 'Main_Type', 3 => 'Main_Father', 4 => 'Main_Order', 5 => 'Main_State', 6 => 'Main_Content', 7 => 'Main_Pic', 8 => 'Main_Language', 9 => 'Main_xl', 10 => 'Main_year', 11 => 'Main_yq', 12 => 'Main_place', 13 => 'Main_bm', '_autoinc' => true, '_pk' => 'Main_ID', ); ?>

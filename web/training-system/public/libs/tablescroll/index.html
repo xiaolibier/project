@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>jQuery带横向滚动条头部固定表格代码</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<link rel="stylesheet" type="text/css" href="thirdParty/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="thirdParty/easyui/themes/icon.css">
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="thirdParty/jquery/jquery-1.9.1.min.js"></script>
+<script src="thirdParty/easyui/jquery.easyui.min.js"></script>
+<script src="thirdParty/easyui/easyui-lang-zh_CN.js"></script>
+
+</head>
+<body class="full-page">
+
+<div class="queryBox">
+	<!-- 列表-->
+	<div class="queryList">
+		<table class="easyui-datagrid" cellspacing="0" cellpadding="0" width="100%" height="260"
+			   data-options="
+				singleSelect: true,
+				collapsible: true,
+				fitColumns: true,
+				url: '',
+				method: 'get',
+				onLoadSuccess: function(){
+					$(this).datagrid('freezeRow');
+				}">
+			<thead data-options="frozen:true">
+			<tr>
+				<th data-options="frozen:true,field:'operate'">操作</th>
+				<th data-options="frozen:true,field:'name'">姓名</th>
+				<th data-options="frozen:true,field:'sex'">性别</th>
+				<th data-options="frozen:true,field:'birth'">出生日期</th> 
+			</tr>
+			</thead>
+			<thead>
+			<tr class="listTit tabTh">
+				<th data-options="frozen:true,field:'file'">证件类型</th>
+				<th data-options="frozen:true,field:'number'">证件号码</th>
+				<th data-options="frozen:true,field:'tel'">固定电话</th>
+				<th data-options="frozen:true,field:'mobile'">手机号码</th>
+				<th data-options="frozen:true,field:'people'">联系人电话</th>
+				<th data-options="frozen:true,field:'date'">预约日期</th>
+				<th data-options="frozen:true,field:'sftx'">随访提醒</th>
+				<th data-options="frozen:true,field:'way'">随访方式</th>
+				<th data-options="frozen:true,field:'mcdate'">末次随访日期</th>
+				<th data-options="frozen:true,field:'mociblood'">末次随访血糖</th>
+				<th data-options="frozen:true,field:'manager'">业务管理机构</th>
+				<th data-options="frozen:true,field:'bgdate'">报告日期</th>
+				<th data-options="frozen:true,field:'bgdw'">报告单位</th>
+				<th data-options="frozen:true,field:'bgdoctor'">报告医生</th>
+				<th data-options="frozen:true,field:'bgaddress'">报告地址</th>
+			</tr>
+			</thead>
+
+			<tbody id="content" class="easyui-panel" style="height:200px" data-options="href:''">
+			<tr class="listTr">
+				<td><a href="tnb.html" class="lookBtn">查看</a><a href="" class="lookBtn">编辑</a><a href="" class="lookBtn">编辑</a></td>
+				<td>张XX</td>
+				<td>男</td>
+				<td>1965-12-20</td>
+				<td>身份证号身份证号身份证号身份证号身份证号身份证号身份证号身份证号</td>
+				<td>310110199001010123</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市北京市</td>
+			</tr>
+			
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗.</p>
+<p>来源：<a href="http://www.lanrenzhijia.com/" target="_blank">懒人素材</a></p>
+</div>
+</body>
+</html>

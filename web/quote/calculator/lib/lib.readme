@@ -1,0 +1,8 @@
+在pom.xml中添加如下部分
+<dependency>
+    <groupId>com</groupId>
+    <artifactId>alibaba</artifactId>
+    <version>1.0.1.RELEASE</version>
+</dependency>
+
+mvn install:install-file -Dfile=D:\workspace\source\demo\budget\budget\lib\taobao-sdk-java-auto_1455552377940-20160607.jar -DgroupId=com -DartifactId=alibaba -Dversion=1.0.1.RELEASE -Dpackaging=jar

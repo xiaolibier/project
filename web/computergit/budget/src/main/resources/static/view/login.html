@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/login.css" />
+	<title>经纬传奇报价管理系统</title>
+	
+</head>
+<body class="body_bg">
+	
+<div class="login-container">
+	<h1>经纬传奇报价管理系统</h1>
+	
+	<div class="connect">
+		<p> </p>
+	</div>
+	
+	<form action="" method="post" id="loginForm">
+		<div>
+			<input type="text" id="usr" name="username" class="username" placeholder="用户名" autocomplete="off"/>
+		</div>
+		<div>
+			<input type="password" id="pass" name="password" class="password" placeholder="密码" oncontextmenu="return false" onpaste="return false" />
+		</div>
+		<button id="submit" type="submit">登 录</button>
+	</form>
+
+	<!-- <a href="register.html">
+		<button type="button" class="register-tis">还有没有账号？</button>
+	</a> -->
+
+</div>
+
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.f_id = Utils.getQueryString("f_id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.usr = ['admin','usr','jingweichuanqi'];//用户名
+	g.pass = ['123456','123456','jingweichuanqi'];//密码
+	
+	//判断是否已经登录
+	if(g.login_token != ''){
+		location.href="home.html";
+	}
+	$('#submit').on('click',loginFunc);
+	
+	
+
+	//登录
+	function loginFunc(){
+		var istrue = 0;
+		var usr = $('#usr').val() || '';
+		var pass = $('#pass').val() || '';
+		if(usr == ''){Utils.alert('用户不能为空！');return false;}
+		if(pass == ''){Utils.alert('密码不能为空！');return false;}
+		for(var i=0,len=g.usr.length;i<len;i++){
+			var user = g.usr[i] || '';
+			var password = g.pass[i] || '';
+			if(user == usr && pass == password){
+				istrue = 1;
+			}
+		}
+		if(istrue){//登录成功
+			console.log(1);
+			Utils.offLineStore.set("token",usr,false);
+			location.href="home.html";
+		}else{
+			Utils.alert('用户名或密码错误！');console.log(2);return false;
+		}
+	
+	}
+	//登录新
+	function loginFunc2(){
+		var usr = $('#usr').val() || '';
+		var pass = $('#pass').val() || '';
+		if(usr == ''){Utils.alert('用户不能为空！');return false;}
+		if(pass == ''){Utils.alert('密码不能为空！');return false;}
+		var condi = {};
+		condi.usr = usr;
+		condi.pass = pass;
+		var url = Base.serverUrl + "login";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.offLineStore.set("token",usr,false);
+					location.href="home.html";
+				}
+				else{
+					var msg = data.message || "登录失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+
+
+});
+</script>
+</html>

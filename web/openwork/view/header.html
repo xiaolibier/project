@@ -1,0 +1,312 @@
+
+	<ul style="width:272px;margin-top:13px;max-height:200px;overflow:hidden;overflow-y:auto;" class="choiseDanwei choiseDanwei01">
+		<li tip="">加载失败</li>
+	</ul>
+	<!-- 公共头部 -->
+	<div class="common_header">
+		<div class="chead_content">
+			<span class="logo"><img class="logo_ico" src="../public/img/logo.png" /></span>
+			<input class="head_choice" placeholder="请选择申办方" id="headInput" type="text"/>
+			<ul class="head_menu">
+				<li sc="project.html" class="mu clicksrc">项目</li>
+				<li sc="dynamics.html" class="mu clicksrc">动态<i class="dynamics_ico"></i></li>
+				<li sc="buManager.html" class="mu clicksrc">企业管理员</li>
+				<!-- <li sc="proManager.html" class="mu">稽查日历</li> -->
+			</ul>
+			<div class="head_body">
+				<a href="javascript:;" class="body_head_ico" style="cursor:default;"><img class="iimg" src="../public/img/head_big.png" /></a>
+				<a href="javascript:;" id="userInfoName" class="loginOut" style="cursor:default;"></a>
+				<a href="javascript:;" id="login_out" class="loginOut">退出</a>
+				<a href="javascript:;" style="display:none;" id="bindWeixin" class="loginOut">绑定微信</a>
+				<a href="javascript:;" style="display:none;" id="unbindWeixin" class="loginOut">解绑微信</a>
+			</div>
+		</div>
+	</div>
+
+<!-- 弹出层 -->
+<div class="stip_bg stip_bg2"></div>
+<div class="weixinloginerweima" style="display:none;top:50%;margin-top:-195px;left:50%;margin-left:-192px;position:fixed;z-index:999;" id="login_container"></div>
+	
+<script>
+$(function(){
+	var g = {};
+	g.userid = Utils.getQueryString("userid") || "";//从扫微信获取
+	g.sid = Utils.offLineStore.get("sid",false);//从项目列表页面传来 传申办方id
+	if(g.userid != ''){Utils.offLineStore.set("token",g.userid,false);}//存储用户id
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	
+	
+	//判断用户是否登录
+	if(g.login_token == ''){
+		//Utils.alert('请登录后操作！');
+		//setTimeout(function(){
+			location.href="login.html";
+		//},1000);
+		return false;
+	}
+	
+	setGetSearchInput('#headInput','.choiseDanwei01');//定义可以搜索下拉的
+	$('#login_out').on('click',loginOutfunc);
+	$('#bindWeixin').on('click',bindWeixinFunc);
+	$('#unbindWeixin').on('click',unbindWeixinFunc);
+	getSponsors();//获取机构列表
+	getUserInfoFunc();//获取用户信息
+	//getdynms();//获取判断是否有新的动态
+	
+	geterweima();
+	function geterweima(){
+	//加载微信二维码
+		var obj = new WxLogin({
+		  id:"login_container", 
+		  appid: "wxb9b0badbc053646e", 
+		  scope: "snsapi_login", 
+		  redirect_uri: Base.http3,
+		  style: "white",
+		  href: "",
+		  state:g.login_token,
+		  response_type:"code"
+		});
+	}
+	
+	//微信绑定
+	function bindWeixinFunc(){
+		$('.stip_bg2').show();
+		$('#login_container').fadeIn();
+	}
+	//解除微信绑定
+	function unbindWeixinFunc(){
+		if(!confirm('确认解绑微信吗？')){return false;}
+		var condi = {};
+		var url = Base.serverUrl + "open/user/unbind";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('解绑成功！');
+					$('#bindWeixin').show();
+					$('#unbindWeixin').hide();
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//隐藏二维码
+	$('.stip_bg').on('click',function(){
+		$('.stip_bg2').fadeOut(200);
+		$('#login_container').hide();
+	});
+	
+	//退出登录
+	function loginOutfunc(){
+		if(!confirm('确认退出系统吗？')){return false;}
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		var url = Base.serverUrl + "logout";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('退出成功！');
+					setTimeout(function(){
+						location.href="login.html";
+					},1000);
+				}
+				else{
+					var msg = data.message || "退出失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//获取判断是否有新的动态
+	function getdynms(){
+		var spaid = $('#headInput').attr('tipid') || '';//获取申办方id
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		condi.sponsor_id = spaid;
+		var url = Base.serverUrl + "open/platform/dynamic/count";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || 0;
+					if(data > 0){$('.dynamics_ico').show();}else{$('.dynamics_ico').hide();}
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//获取机构列表
+	function getSponsors(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "open/platform/sponsors";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					//判断data为空 表示没有权限
+					var thtml = '<div class="notipsdiv pc"><div><img class="tttimg" src="../public/img/ttt.png" /></div><h4 class="ttl">登录成功</h4><p>您还没有任务权限，管理员会尽快为您分配权限</p></div>';
+					if(data.length <= 0){
+						$('.project_tt').html(thtml);
+						$('.projectLs').css({'background':'url("../public/img/mo_bg.jpg") no-repeat center center;','background-size':'cover'});
+						
+						return false;
+					}
+					var html = '';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || {};
+						var id = d.id || '';
+						var name = d.name || '';
+						if(i == 0){$('#headInput').attr('tipid',id).val(name);}
+						if(g.sid == id){$('#headInput').attr('tipid',id).val(name);}
+						html += '<li tip="'+id+'">'+name+'</li>';
+					}
+					$('.choiseDanwei01').html(html);
+					getdynms();//判断项目是否有动态
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+					$('#tablecontent').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#tablecontent').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//获取用户信息
+	function getUserInfoFunc(){
+		var condi = {};
+		var url = Base.serverUrl + "open/user/currentUserInfo";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || {};
+					var name1 = data.name || '';
+					var bindWechat = data.bindWechat || '';
+					var icons = data.icons || '../public/img/head_big.png';
+					var hasLogin = data.hasLogin || '';//判断用户是否修改过密码
+					var _style = 'background:url('+icons+') no-repeat center center;background-size:contain;';
+					$('.usr_name').html(name1);
+					$('#userInfoName').html(name1);
+					Utils.offLineStore.set("usernamestr",name1,false);//权限存储
+					$('.iimg').attr('src',icons);
+					//判断是否绑定过微信
+					if(bindWechat != 1){$('#bindWeixin').show();}else{$('#unbindWeixin').show();}
+					//if(hasLogin == 0){//判断用户没有修改密码 提示修改
+					//	if(confirm('系统检测到您还未修改过密码，请修改密码！')){location.href = "changepass.html";}
+					//}
+					
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+			
+	
+});
+</script>

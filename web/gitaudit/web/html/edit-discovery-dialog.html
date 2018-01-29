@@ -1,0 +1,146 @@
+<div tabindex="-1" class="modal fade in" id="dialog-edit-discovery">
+  <div class="modal-dialog" style="width: 1000px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        <h4 class="modal-title">修改稽查发现  编号：<span class="discovery-id"></span></h4>
+      </div>
+      <div class="modal-body" style="height: 560px;">
+        <div class="form-horizontal dialog-form">
+          <div class="col-md-12 discovery-fields">
+            <div class="row">
+              <div class="col-md-8 col-sm-12">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">受试者编号</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control field-control discovery-patientNo">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <div class="checkbox">
+                  <label><input type="checkbox" class="discovery-inReport"> 入报告</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label class="col-md-4 control-label">分级</label>
+                  <div class="col-md-8">
+                    <select class="form-control field-control discovery-level">
+                      <option value="严重问题">严重问题</option>
+                      <option value="主要问题">主要问题</option>
+                      <option value="一般问题">一般问题</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label class="col-md-4 control-label">分类</label>
+                  <div class="col-md-8">
+                    <select class="form-control field-control discovery-category"></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-sm-12">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">分级员分级</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control discovery-level2" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" class="discovery-level2Accepted"> 已处理
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">问题归类</label>
+              <div class="col-md-10">
+                <select class="discovery-problem form-control field-control discovery-problem"></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">问题说明</label>
+              <div class="col-md-10">
+                <textarea class="form-control field-control discovery-description"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-sm-12">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">评审意见</label>
+                  <div class="col-md-9">
+                    <textarea class="form-control field-control discovery-descriptionOpinion" readonly></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <div class="checkbox">
+                  <label class="discovery-descriptionOpinionAccepted-container">
+                    <input type="checkbox" class="discovery-descriptionOpinionAccepted"> 已处理
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">备注</label>
+              <div class="col-md-10">
+                <textarea class="form-control field-control discovery-memo"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label">创建者</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control discovery-creator" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label">创建时间</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control discovery-created" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label">修改者</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control discovery-editor" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label">修改时间</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control discovery-editTime" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="dialog-ok btn btn-info" type="button">确定</button>
+        <button class="btn default" data-dismiss="modal" type="button">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+

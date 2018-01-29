@@ -1,0 +1,54 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<bean id="01" class="com.zhb.bean.Department">
+		<property name="name" value="稽查部"></property>
+		<property name="parentId" value="-"></property>
+	</bean>
+
+	<bean id="0101" class="com.zhb.bean.Department">
+		<property name="name" value="稽查一组"></property>
+		<property name="parentId" value="01"></property>
+	</bean>
+	
+	<bean id="0102" class="com.zhb.bean.Department">
+		<property name="name" value="稽查二组"></property>
+		<property name="parentId" value="01"></property>
+	</bean>
+	
+	<bean id="0103" class="com.zhb.bean.Department">
+		<property name="name" value="稽查三组"></property>
+		<property name="parentId" value="01"></property>
+	</bean>
+	
+	<bean id="0104" class="com.zhb.bean.Department">
+		<property name="name" value="稽查四组"></property>
+		<property name="parentId" value="01"></property>
+	</bean>
+	
+	<bean id="0105" class="com.zhb.bean.Department">
+		<property name="name" value="稽查五组"></property>
+		<property name="parentId" value="01"></property>
+	</bean>
+	
+	<bean id="02" class="com.zhb.bean.Department">
+		<property name="name" value="专家审核部"></property>
+		<property name="parentId" value="-"></property>
+	</bean>
+</beans>

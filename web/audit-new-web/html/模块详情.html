@@ -1,0 +1,2132 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/select2/css/select2.min.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	<style>
+		
+		.tongyong_box.common_moka_box .cmb_lable{width:258px;white-space:normal;}
+		.tongyong_box.common_moka_box .cmb_lable.type2{width:258px;white-space:normal;}
+		.tongyong_box.common_moka_box .cmb_select.type2{width:108px;}
+		.tongyong_box.common_moka_box .cmb_input.type2{width:96px;}
+		.choiseDanwei{margin-top:-24px;}
+		.common_moka_box .cmb_textarea.morenWenTi{height:190px;}
+	</style>
+</head>
+<body class="xiangmuguanli mokuaixiangqing">
+	<!-- 药物安全/警戒 -->
+	<ul style="width:250px;" class="choiseDanwei choiseDanwei12">
+		<li>国家局</li>
+		<li>省局</li>
+		<li>卫计委</li>
+		<li>本中心伦理</li>
+		<li>申办方</li>
+		<li>其它</li>
+	</ul>
+	<!-- 稽查组长 -->
+	<ul style="width:250px;" class="choiseDanwei choiseDanwei102">
+		<li>加载失败</li>
+	</ul>
+	<!-- 稽查员 -->
+	<ul style="width:250px;" class="choiseDanwei choiseDanwei103">
+		<li>加载失败</li>
+	</ul>
+	<!-- 问题归纳2 -->
+	<ul style="width:607px;" class="choiseDanwei choiseDanwei110">
+		<li tip='' >加载失败</li>
+	</ul>
+	<!-- 问题归纳3 -->
+	<ul style="width:607px;" class="choiseDanwei choiseDanwei120">
+		<li tip='' >加载失败</li>
+	</ul>
+	<div style="position:relative;margin-top:40px;min-height:30px;" class="m_info">
+		<a style="float:none;background-color:#388cff;color:#fff;" class="creat_forse type1" id="checkAllDis" >所有稽查发现</a>
+		<a class="creat_forse newoneBtn" style="float:none;" >新增发现</a>
+		<span style="display:inline-block;line-height:28px;position:absolute;left:36%;margin-left:-58px;color:#4A505F;font-size:16px;" class="minfo_title"></span>
+	</div>
+	<div class="box_content">
+		<!-- 基本信息 -->
+		<!-- <div info="稽查总结会议" templet="module17"  class="common_moka_box modelbase">
+			<h4 class="cmb_title"><span class="tt">基本信息</span>
+				<a href="javascript:;"  class="cmb_btn cancelbtn type2 last">取消</a>
+				<a href="javascript:;"  class="cmb_btn savebtn type1">保存</a>
+				<a href="javascript:;"  class="cmb_btn editbtn type1">编辑</a>
+			</h4>
+			<div class="cmb_inps">
+				<div class="cmb_c">
+					<span class="cmb_lable">问题</span>
+					<i class="cmb_x"></i>
+					<textarea class="cmb_textarea cmb_values" ></textarea>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">答复</span>
+					<i class="cmb_x"></i>
+					<textarea class="cmb_textarea cmb_values" ></textarea>
+				</div>
+			</div>	
+		</div> -->
+		<div info="其它" templet="module13" style="display:none;"  class="common_moka_box modelbase"></div>
+		<!-- <div info="电子系统" templet="module15" style="display:none;"  class="common_moka_box modelbase"></div> -->
+		<!-- <div info="数据管理与生物统计" templet="module14" style="display:none;"  class="common_moka_box modelbase"></div> -->
+		<div info="研究中心的方案依从性" templet="module9"  class="common_moka_box modelbase">
+			<h4 class="cmb_title"><span class="tt">基本信息</span>
+				<a href="javascript:;"  class="cmb_btn cancelbtn type2 last">取消</a>
+				<a href="javascript:;"  class="cmb_btn savebtn type1">保存</a>
+				<a href="javascript:;"  class="cmb_btn editbtn type1">编辑</a>
+			</h4>
+			<div class="cmb_inps">
+				<div class="cmb_c">
+					<span class="cmb_lable">发生SAE受试者编号</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2" title="SAE发生研究者获知日期">SAE发生研究者获知日期</span>
+					<i class="cmb_x"></i>
+					<input id="timesae" class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">是否揭盲</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2" title="SAE报告日期">SAE报告日期</span>
+					<i class="cmb_x"></i>
+					<input id="timesae2" class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">报告类型</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2" title="首次报告机构">首次报告机构</span>
+					<i class="cmb_x"></i>
+					<!-- <input value="多选" class="cmb_input type2 xunzeguojia1 cmb_values" type="text" /> -->
+					<select multiple class="cmb_select type2 cmb_values xunzeguojia1">
+						<option value="国家局">国家局</option>
+						<option value="省局">省局</option>
+						<option value="卫计委">卫计委</option>
+						<option value="本中心伦理">本中心伦理</option>
+						<option value="申办方">申办方</option>
+						<option value="其它">其它</option>
+					</select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">随访报告机构</span>
+					<i class="cmb_x"></i>
+					<!-- <input value="多选" class="cmb_input type2 xunzeguojia2  cmb_values" type="text" /> -->
+					<select multiple class="cmb_select type2 cmb_values xunzeguojia2">
+						<option value="国家局">国家局</option>
+						<option value="省局">省局</option>
+						<option value="卫计委">卫计委</option>
+						<option value="本中心伦理">本中心伦理</option>
+						<option value="申办方">申办方</option>
+						<option value="其它">其它</option>
+					</select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">总结报告机构</span>
+					<i class="cmb_x"></i>
+					<!-- <input value="多选" class="cmb_input type2 xunzeguojia3 cmb_values" type="text" /> -->
+					<select multiple class="cmb_select type2 cmb_values xunzeguojia3">
+						<option value="国家局">国家局</option>
+						<option value="省局">省局</option>
+						<option value="卫计委">卫计委</option>
+						<option value="本中心伦理">本中心伦理</option>
+						<option value="申办方">申办方</option>
+						<option value="其它">其它</option>
+					</select>
+				</div>
+			</div>	
+		</div>
+		<div info="试验管理" templet="module11" style="display:none;"  class="common_moka_box modelbase"></div>
+		<div info="计算机化系统" templet="module12" style="display:none;"  class="common_moka_box modelbase"></div>
+		<div info="知情同意" templet="module6"  class="common_moka_box modelbase">
+			<h4 class="cmb_title"><span class="tt">基本信息</span>
+				<a href="javascript:;"  class="cmb_btn cancelbtn type2 last">取消</a>
+				<a href="javascript:;"  class="cmb_btn savebtn type1">保存</a>
+				<a href="javascript:;"  class="cmb_btn editbtn type1">编辑</a>
+			</h4>
+			<div class="cmb_inps">
+				<div class="cmb_c">
+					<span class="cmb_lable">ICF签署份数</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2" title="筛选受试者例数">筛选受试者例数</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">首例受试者ICF日期</span>
+					<i class="cmb_x"></i>
+					<input id="timushouli" class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2" title="筛选失败受试者例数">筛选失败受试者例数</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">首例受试者入组时间</span>
+					<i class="cmb_x"></i>
+					<input id="timushouli2" class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2" title="筛选失败ICF份数">筛选失败ICF份数</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">缺失ICF的药物编号</span>
+					<i class="cmb_x"></i>
+					<textarea class="cmb_textarea cmb_values" ></textarea>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">知情同意执行地点</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type1 cmb_values" type="text" />
+				</div>
+			</div>	
+		</div>
+		<div info="受试者保护" templet="module7" style="display:none;"  class="common_moka_box modelbase"></div>
+		<!-- <div info="质量管理" templet="module10" style="display:none;"  class="common_moka_box modelbase"></div> -->
+		<div info="试验用药品/器械" templet="module8"  class="common_moka_box modelbase">
+			<h4 class="cmb_title"><span class="tt">基本信息</span>
+				<a href="javascript:;"  class="cmb_btn cancelbtn type2 last">取消</a>
+				<a href="javascript:;"  class="cmb_btn savebtn type1">保存</a>
+				<a href="javascript:;"  class="cmb_btn editbtn type1">编辑</a>
+			</h4>
+			<div class="cmb_inps">
+				<div class="cmb_c">
+					<span class="cmb_lable">药物名称</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">试验药批号</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">接收人</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">药品管理员</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">存放地点</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">冰箱/药柜编号</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">温湿度记录保存情况</span>
+					<i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2">交接日期</span>
+					<i class="cmb_x"></i>
+					<input id="jjtime1" class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">过渡日期</span>
+					<i class="cmb_x"></i>
+					<input id="jjtime4" class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">回收日期</span>
+					<i class="cmb_x"></i>
+					<input id="jjtime2" class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">接收量</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">使用量</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">剩余量</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">返还量</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">丢失量</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">销毁量</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">药物清点时间</span>
+					<i class="cmb_x"></i>
+					<input id="jjtime3" class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				
+			</div>	
+		</div>
+		<!-- <div info="设施/设备" templet="module7" style="display:none;" class="common_moka_box modelbase"></div> -->
+		<div info="通用" templet="module4"  class="common_moka_box modelbase tongyong_box">
+			<h4 class="cmb_title"><span class="tt">基本信息</span>
+				<a href="javascript:;"  class="cmb_btn cancelbtn type2 last">取消</a>
+				<a href="javascript:;"  class="cmb_btn savebtn type1">保存</a>
+				<a href="javascript:;"  class="cmb_btn editbtn type1">编辑</a>
+			</h4>
+			<div class="cmb_inps">
+				<div class="cmb_c">
+					<span class="cmb_lable" >所有文件存放地点</span><i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2" >研究者手册（或及更新件）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >试验方案及其修正案（签名）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >病例报告表（样表）（或及更新件）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >知情同意书（或及更新件）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >财务规定</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >多方协议（已签名）（研究者、申办者、合同研究组织）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2">伦理委员会审查批件</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">伦理委员会成员表</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >临床试验申请表（申办方）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">临床前实验室资料（申办方）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >CFDA临床研究批件</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">研究者资质（履历、相关文件及更新）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2">临床试验有关的实验室检测正常值范围及更新</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >医学或实验室操作的质控证明及设备型号</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2">试验用药品的标签（申办方）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">试验用药物及相关物资的运货单、交接单</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >药检证明或及更新件（试验药、对照药、安慰剂、新批号）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >设盲试验的破盲规程及应急信件（申办方）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >总随机表（申办方）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >监查访视报告（申办方）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >招募广告（其它提供给受试者书面文件）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >保险和赔偿措施</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2">委托书（申办方对CRO／CRA）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >新研究者的履历</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >研究者致申办者的SAE报告（如有）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >申办者致CFDA、伦理委员会的SAE报告（如有）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >中期或年度报告</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">受试者鉴认代码表</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >受试者筛选与入选表</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">试验药物发放回收登记表</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2">研究者签名样张</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >试验药物销毁证明</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >完成试验受试者编码目录</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >稽查证明件（申办方）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >最终监查报告或关闭中心报告（申办方）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >治疗分配与破盲证明（申办方）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >试验完成报告（致伦理委员会、CFDA）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >定稿并盖章签字的总结报告</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >Site启动会会议纪要、培训课件及参会者签名</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >分工与研究者（PI）授权表</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >企业资质（GMP、营业执照、生产许可证）</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">相关通讯记录</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >数据答疑表</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >药品／生物样本储存温度记录</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+					<span class="cmb_lable type2" >试验药品处方</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable" >研究中心启动访视报告</span><i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+				
+				
+			</div>	
+		</div>
+		<div info="伦理委员会" templet="module5" style="display:none;" class="common_moka_box modelbase"></div>
+		<div info="人员访谈" templet="module2" style="border:none;"  class="common_moka_box modelbase renyuanfangt">
+			<div info="一个记录" num="1" class="common_moka_box cmb_con">
+				<h4 class="cmb_title"><span class="tt">基本信息</span>
+					<a href="javascript:;"  class="cmb_btn cancelbtn type2 last">取消</a>
+					<a href="javascript:;" style="display:none;" class="cmb_btn newCreatOneTalk type3">新增访谈</a>
+					<a href="javascript:;"  class="cmb_btn savebtn type1">保存</a>
+					<a href="javascript:;"  class="cmb_btn editbtn type1">编辑</a>
+					
+				</h4>
+				<div class="cmb_inps">
+					<div class="cmb_c">
+						<span class="cmb_lable">研究角色</span>
+						<i class="cmb_x"></i>
+						<input class="cmb_input type2 cmb_values" type="text" />
+						<span class="cmb_lable type2">人员名称</span>
+						<i class="cmb_x"></i>
+						<input class="cmb_input type2 cmb_values" type="text" />
+					</div>
+					<div class="cmb_c">
+						<span class="cmb_lable">访谈时间</span>
+						<i class="cmb_x"></i>
+						<input id="fangtime" class="cmb_input type2 cmb_values" type="text" />
+						<span class="cmb_lable type2">访谈地点</span>
+						<i class="cmb_x"></i>
+						<input class="cmb_input type2 cmb_values" type="text" />
+					</div>
+					<div class="cmb_c">
+						<span class="cmb_lable">Q&amp;A</span>
+						<i class="cmb_x"></i>
+						<textarea class="cmb_textarea cmb_values" ></textarea>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div info="试验监管" templet="module3" style="display:none;" class="common_moka_box modelbase"></div>
+		<div info="项目简介" templet="module1"  class="common_moka_box modelbase">
+			<h4 class="cmb_title"><span class="tt">基本信息</span>
+				<a href="javascript:;"  class="cmb_btn cancelbtn type2 last">取消</a>
+				<a href="javascript:;"  class="cmb_btn savebtn sendDataBtn type1">保存</a>
+				<a href="javascript:;"  class="cmb_btn editbtn type1">编辑</a>
+			</h4>
+			<div class="cmb_inps">
+				<div style="display:none;" class="cmb_c">
+					<span class="cmb_lable">承担项目机构名称</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie1 type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">机构负责人</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie2 type2 cmb_values" type="text" />
+				</div>
+				<div style="display:none;" class="cmb_c">
+					<span class="cmb_lable">项目实施科室</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie3 type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">主要研究者</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie4 type2 cmb_values" type="text" />
+				</div>
+				<div style="display:none;" class="cmb_c">
+					<span class="cmb_lable">试验题目</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie5 type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">药物名称</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie6 type2 cmb_values" type="text" />
+				</div>
+				<div style="display:none;" class="cmb_c">
+					<span class="cmb_lable">适应症</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie7 type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">注册申请机构</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie8 type2 cmb_values" type="text" />
+				</div>
+				<div style="display:none;" class="cmb_c">
+					<span class="cmb_lable">注册分类</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie9 type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">稽查类型</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie10 type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">中心试验开展阶段</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input xiangJianJie13 type2 cmb_values" type="password" />
+					<span class="cmb_lable type2">稽查开始时间</span>
+					<i class="cmb_x"></i>
+					<input id="timeDat2" class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">稽查组长</span>
+					<i class="cmb_x"></i>
+					<input id="getjichazuzhang" class="cmb_input xiangJianJie11 type2 cmb_values" type="password" />
+					<span class="cmb_lable type2">稽查结束时间</span>
+					<i class="cmb_x"></i>
+					<input id="timeDat" class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">稽查成员</span>
+					<i class="cmb_x"></i>
+					<input id="getjichachengyuan" class="cmb_input xiangJianJie12 type2 cmb_values" type="password" />
+					<span class="cmb_lable type2">稽查陪同人员</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<!-- <div class="cmb_c">
+					<span class="cmb_lable">稽查目的</span>
+					<i class="cmb_x"></i>
+					<textarea class="cmb_textarea cmb_values" ></textarea>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">稽查范围</span>
+					<i class="cmb_x"></i>
+					<textarea class="cmb_textarea cmb_values" ></textarea>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">稽查依据</span>
+					<i class="cmb_x"></i>
+					<textarea class="cmb_textarea cmb_values" ></textarea>
+				</div> -->
+				<div class="cmb_c">
+					<span class="cmb_lable">监查员</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">稽查例数</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">受试者编号</span>
+					<i class="cmb_x"></i>
+					<textarea class="cmb_textarea cmb_values" ></textarea>
+				</div>
+				
+			</div>
+		</div>
+		<div info="实验室/技术设备" templet="module10"  class="common_moka_box modelbase">
+			<h4 class="cmb_title"><span class="tt">基本信息</span>
+				<a href="javascript:;"  class="cmb_btn cancelbtn type2 last">取消</a>
+				<a href="javascript:;"  class="cmb_btn savebtn type1">保存</a>
+				<a href="javascript:;"  class="cmb_btn editbtn type1">编辑</a>
+			</h4>
+			<div class="cmb_inps">
+				<div class="cmb_c">
+					<span class="cmb_lable">完成溯源检查项</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type1 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">未完成溯源检查项</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type1 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">无法溯源项</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type1 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">溯源地点</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type1 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">完成溯源受试者编号</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type1 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">保存地点</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">存储冰箱号</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">清点数量</span>
+					<i class="cmb_x"></i>
+					<input class="cmb_input type2 cmb_values" type="text" />
+					<span class="cmb_lable type2">清点时间</span>
+					<i class="cmb_x"></i>
+					<input id="timeyao" class="cmb_input type2 cmb_values" type="text" />
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">存储温度记录保存</span>
+					<i class="cmb_x"></i>
+					<select class="cmb_select type2 cmb_values"><option selected="selected" disabled="disabled"  style='display: none' value=''></option><option value="有">有</option><option value="无">无</option><option value="N/A">N/A</option></select>
+				</div>
+			</div>
+		</div>
+		<!-- 稽查发现 -->
+		<div id="discovery_list_content">
+		<!-- <div class="common_moka_box">
+			<h4 class="cmb_title"><span class="tt">稽查发现</span>
+				<span class="tt">3A-0045-17019-0001</span>
+				<a href="javascript:;" class="cmb_btn deleteBtn type4 last">删除</a>
+				<a href="javascript:;" class="cmb_btn newoneBtn type3">新增发现</a>
+				<a href="javascript:;"  class="cmb_btn editbtn type1">编辑</a>
+				<a href="javascript:;" style="display:none" class="cmb_btn cancelbtn type2 last">取消</a>
+				<a href="javascript:;" style="display:none" class="cmb_btn savebtn type1">保存</a>
+			</h4>
+			<div class="cmb_inps">
+				<div class="cmb_c">
+					<span class="cmb_lable">入报告</span>
+					<i class="cmb_x"></i>
+					<div class="check_box ruBaoGao"><i class="i"></i></div>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">受试者编号</span>
+					<i class="cmb_x"></i>
+					<div class="check_x_content" style="display:inline-block;" >
+					<div class="check_x"><span>034</span><i class="xx"></i></div>
+					</div>
+					<input style="width:84px;" class="cmb_input type1 xxInput" type="text" />
+					<a href="javascript:;" class="check_x_ben luRu">录入</a>
+				</div>
+				<div class="shz_list">
+					<div class="cmb_c">
+						<span class="cmb_lable">问题说明</span>
+						<i class="cmb_x"></i>
+						<textarea class="cmb_textarea morenWenTi" ></textarea>
+					</div>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">分级</span>
+					<i class="cmb_x"></i>
+					<select class="cmb_select xuanZeFenJi">
+						<option value="">选择分级</option>
+					</select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">分类</span>
+					<i class="cmb_x"></i>
+					<select class="cmb_select xuanZeFenLei">
+						<option value="">选择分类</option>
+					</select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">问题归类</span>
+					<i class="cmb_x"></i>
+					<select class="cmb_select wentiGuiLei">
+						<option value="">选择问题归类</option>
+					</select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">备注</span>
+					<i class="cmb_x"></i>
+					<textarea class="cmb_textarea beiZhu" ></textarea>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">创建人/创建时间：</span>
+					<i class="cmb_x"></i>
+					<span class="chuanJianInfo"></span>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">最近修改人/修改时间：</span>
+					<i class="cmb_x"></i>
+					<span class="xiuGaiInfo"></span>
+				</div>
+			</div>
+		</div> -->
+		</div>
+		<!-- 新增稽查发现 -->
+		<div style="display:none;" class="common_moka_box newonebox">
+			<h4 class="cmb_title"><span class="tt">新增稽查发现</span>
+				<span class="tt"></span>
+				<a href="javascript:;"  id="cancelCreate"  class="cmb_btn type2">取消</a>
+				<a href="javascript:;" id="createDis"  class="cmb_btn savebtn type1">新建</a>
+			</h4>
+			<div class="cmb_inps">
+				<div class="cmb_c">
+					<span class="cmb_lable">入报告</span>
+					<i class="cmb_x"></i>
+					<div class="check_box ruBaoGao"><i class="i"></i></div>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">受试者编号</span>
+					<i class="cmb_x"></i>
+					<!-- <div class="check_x_content" style="display:inline-block;" ></div> -->
+					<!-- <input style="width:84px;" class="cmb_input type1 xxInput newCreat" type="text" /> -->
+					<input style="" id="new_shoushizhe" class="cmb_input type1" type="text" />
+					<!-- <a href="javascript:;" class="check_x_ben luRu">录入</a> -->
+				</div>
+				<div class="shz_list">
+					<div class="cmb_c">
+						<span class="cmb_lable">问题说明</span>
+						<i class="cmb_x"></i>
+						<textarea class="cmb_textarea morenWenTi" ></textarea>
+					</div>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">分级</span>
+					<i class="cmb_x"></i>
+					<select class="cmb_select xuanZeFenJi">
+						<option value="">选择分级</option>
+						<option value="严重问题">严重问题</option>
+						<option value="主要问题">主要问题</option>
+						<option value="一般问题">一般问题</option>
+					</select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">模块</span>
+					<i class="cmb_x"></i>
+					<select class="cmb_select xuanMoKuai xuanMoKuai_new">
+						<option value="">选择模块</option>
+					</select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">分类</span>
+					<i class="cmb_x"></i>
+					<select class="cmb_select xuanZeFenLei xuanZeFenLei_new">
+						<option value="">选择分类</option>
+					</select>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">问题归类</span>
+					<i class="cmb_x"></i>
+					<input placeholder="选择问题" class="cmb_input type1 wentiGuiLei wentiGuiLei_new" type="text"/>
+					<!-- <select class="cmb_select wentiGuiLei wentiGuiLei_new">
+						<option value="">选择问题归类</option>
+					</select> -->
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">备注</span>
+					<i class="cmb_x"></i>
+					<textarea class="cmb_textarea beiZhu" ></textarea>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">创建人/创建时间：</span>
+					<i class="cmb_x"></i>
+					<span class="chuanJianInfo"></span>
+				</div>
+				<div class="cmb_c">
+					<span class="cmb_lable">最近修改人/修改时间：</span>
+					<i class="cmb_x"></i>
+					<span class="xiuGaiInfo"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/select2/js/select2.full.min.js"></script>
+	<script type="text/javascript" src="../public/select2/js/i18n/zh-CN.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/index.js"></script> -->
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.rid = Utils.getQueryString("renjiid") || Utils.offLineStore.get("renjiid",false);//传值 从稽查任务传来 传任务id
+	g.id = Utils.getQueryString("mokuaiid") || Utils.offLineStore.get("mokuaiid",false);//从稽查模块页面获取 模块id
+	g.editing = Utils.getQueryString("mokuaiediting") || Utils.offLineStore.get("mokuaiediting",false);//从稽查模块页面获取 模块是否正在编辑
+	g.module_template = Utils.getQueryString("mokuaitemplate") || Utils.offLineStore.get("mokuaitemplate",false);//从稽查模块页面获取 识别是哪个模块详情
+	g.task = Utils.getQueryString("task") || Utils.offLineStore.get("task",false);//传值 从稽查任务 到稽查模块 传来 传是否已经生成报告 1是已经生成
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.codeVal = {};//记录当前发现的受试者编号和相应的问题
+	g.baseObj = {};//存储基本信息对应的对象
+	g.moduleName = '';//模块名称
+	var nowres = '';//缓存返回的查询结果
+	
+/* **************************************** lodding ******************************************** */	
+
+	//测试
+	$('#new_project').on('click',function(){
+		parent.document.getElementById("iframeObj").src = '添加任务.html';
+	});
+	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html();
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('稽查任务').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '稽查任务.html';
+	});
+	$('#menu_show_t .s1',parent.document).css('cursor','pointer').html(' > 稽查模块').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '稽查模块.html';
+	});
+	$('#menu_show_t .s2',parent.document).html(' > 模块详情').addClass('active');
+	$('.modelbase').on('click','.savebtn',baseSave);//修改保存基本信息
+	$('.modelbase').on('click','.sendDataBtn',sendDataBtnFunc);//项目简介 保存数据时 把稽查开始时间 稽查结束时间传给后台
+	$('.mokuaixiangqing').on('click','.newoneBtn',shownewone);//显示新增发现窗口
+	$('.mokuaixiangqing').on('click','.cancelbtn',cancelfunc);//取消
+	$('.modelbase').on('click','.editbtn',function(){isEdittingBaseInfo($(this));});//编辑基本信息
+	$('#discovery_list_content').on('click','.editbtn',function(){isEdittingFaXian($(this));});//编辑单个发现
+	$('.mokuaixiangqing').on('click','#createDis',addDiscovery);//新增发现
+	$('.mokuaixiangqing').off('click','#cancelCreate').on('click','#cancelCreate',canceladdDiscovery);//取消新增发现
+	//$('.mokuaixiangqing').on('click','.luRu',addShouShiZhe);//新增 受试者
+	$('.mokuaixiangqing .xxInput.newCreat').blur(addShouShiZhe);//新增 受试者
+	$('.mokuaixiangqing').on('click','.check_x',deleteShouShiZhe);//删除 受试者
+	$('.mokuaixiangqing').on('blur','.valueText',saveShouShiZhe);//修改 受试者问题
+	$('#discovery_list_content').on('click','.savebtn',discoverySave);//修改保存稽查发现
+	$('#discovery_list_content').on('click','.deleteBtn',discoveryDelete);//删除稽查发现
+	$('.box_content').on('click','.newCreatOneTalk',addOneTalk);//新增一个访谈
+	$('.box_content').on('click','.deleteOneTalk',deleteOneTalk);//删除一个访谈
+	$('#checkAllDis').on('click',checkAllDisFunc);//查看此模块所有稽查发现
+	loadPage();//加载页面
+	
+	setGetSearchInput('.xunzeguojia','.choiseDanwei12');//定义可以搜索下拉的
+	setGetSearchInput('.wentiGuiLei_new','.choiseDanwei110');//定义可以搜索下拉的
+	setGetSearchInput('.wentiGuiLei_list','.choiseDanwei120');//定义可以搜索下拉的
+	//setSearchRole('.choiseDanwei102','稽查组长','li');//给 选框赋值
+	//setGetSearchInput('#getjichazuzhang','.choiseDanwei102');//定义可以搜索下拉的
+	//setSearchRole('.choiseDanwei103','稽查员','li');//给 选框赋值
+	//setGetSearchInput('#getjichachengyuan','.choiseDanwei103');//定义可以搜索下拉的
+	//定义控件
+	$(".xunzeguojia1").select2({tags: true});
+	$(".xunzeguojia2").select2({tags: true});
+	$(".xunzeguojia3").select2({tags: true});
+	
+/* **************************************** setTing ******************************************** */	
+	//页面加载 判断属于哪个模块
+	function loadPage(){
+		if(g.module_template == ''){Utils.alert('模块无法识别');return false;}
+		if(g.id == ''){Utils.alert('模块id为空');return false;}
+		//初始化所有基本信息
+		$('.modelbase').find('.savebtn,.cancelbtn').hide();
+		$('.modelbase').find('.editbtn,.deleteBtn,.newoneBtn').show();
+		$('.modelbase').find('input').addClass('readonly').attr('readonly',true);
+		$('.modelbase').find('textarea').addClass('readonly').attr('readonly',true);
+		$('.modelbase').find('select').addClass('readonly').attr('disabled','disabled');
+		//判断当前哪个模块 显示相应的基本信息部分
+		//var obj = '';
+		$('.modelbase').each(function(){
+			var _this = $(this) || {};
+			var templet = _this.attr('templet') || '';
+			var info = _this.attr('info') || '';
+			if(templet != '' && g.module_template == templet){
+				if(_this.html() != '')_this.show(0);
+				$('.minfo_title').html(info);
+				g.baseObj = _this;
+				g.moduleName = info;
+			}
+		});
+		getbaseInfo();//加载基本信息和发现
+		//getModelName();//加载新增发现里面的 模块
+		getModelName(g.moduleName,'.xuanMoKuai_new');//给新增发现填充 默认选中当前模块
+		getFenlei(g.moduleName);//给新增发现填充 默认选中当前模块
+		//报告生成 隐藏增删改查功能
+		if(g.task == '1'){$('#discovery_list_content .editbtn,.deleteBtn,.newoneBtn,#checkAllDis').remove();}
+		//console.log(g.moduleName);
+	}
+	
+	//查看该模块的所有稽查发现
+	function checkAllDisFunc(){
+		window.open('稽查发现.html');
+	}
+	
+	//取消新增发现
+	function canceladdDiscovery(){
+		$('.newonebox').fadeOut(300);
+	}
+	
+	//删除一个访谈
+	function deleteOneTalk(){
+		_this = $(this) || '';
+		if(_this == ''){Utils.alert('删除对象获取失败！');return false;}
+		if(!confirm('确认要删除吗？')){}
+		_this.parents('.cmb_con').remove();
+		//重新给标识排序
+		$('.renyuanfangt').find('.cmb_con').each(function(n){
+			var a = n+1;
+			$(this).attr('num',a);
+		});
+	}
+	
+	
+	
+	//新增一个访谈
+	function addOneTalk(){
+		
+		//var _this = $(this) || '';
+		//if(_this == ''){Utils.alert('新增对象获取失败！');return false;}
+		//重新给标识排序
+		$('.renyuanfangt').find('.cmb_con').each(function(n){
+			var a = n+1;
+			$(this).attr('num',a);
+		});
+		var _num = $('.renyuanfangt').find('.cmb_con').length || 0;
+		_num++;
+		var talk = '';
+		talk+='<div info="一个记录" num="'+_num+'" class="common_moka_box cmb_con">'
+				+'<h4 class="cmb_title"><span class="tt">基本信息</span>'
+					+'<a href="javascript:;" style="display:none;"  class="cmb_btn cancelbtn type2 last">取消</a>'
+					+'<a href="javascript:;" style="display:none;"  class="cmb_btn newCreatOneTalk type3">新增访谈</a>'
+					+'<a href="javascript:;"  class="cmb_btn savebtn type1">保存</a>'
+					+'<a href="javascript:;" style="display:none;"  class="cmb_btn editbtn type1">编辑</a>'
+					+'<a href="javascript:;"  class="cmb_btn deleteOneTalk type4">删除</a>'
+				+'</h4>'
+				+'<div class="cmb_inps">'
+					+'<div class="cmb_c">'
+						+'<span class="cmb_lable">研究角色</span>'
+						+'<i class="cmb_x"></i>'
+						+'<input class="cmb_input type2 cmb_values" type="text" />'
+						+'<span class="cmb_lable type2">人员名称</span>'
+						+'<i class="cmb_x"></i>'
+						+'<input class="cmb_input type2 cmb_values" type="text" />'
+					+'</div>'
+					+'<div class="cmb_c">'
+						+'<span class="cmb_lable">访谈时间</span>'
+						+'<i class="cmb_x"></i>'
+						+'<input id="fangtime'+_num+'" onclick="laydate(date11)" class="cmb_input type2 cmb_values" type="text" />'
+						+'<span class="cmb_lable type2">访谈地点</span>'
+						+'<i class="cmb_x"></i>'
+						+'<input class="cmb_input type2 cmb_values" type="text" />'
+					+'</div>'
+					+'<div class="cmb_c">'
+						+'<span class="cmb_lable">Q&amp;A</span>'
+						+'<i class="cmb_x"></i>'
+						+'<textarea class="cmb_textarea cmb_values" ></textarea>'
+					+'</div>'
+				+'</div>'
+			+'</div>';
+		$('.renyuanfangt').append(talk);	
+	
+	}
+	window.date11 = {
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+	  }
+	 } 
+	//初始时给项目简介赋值
+	function setMorenJianJie(){
+		var condi = {};
+		condi.task_id  = g.rid;
+		var url = Base.serverUrl + "task/baseInfo";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var p = data.project || '';
+					var t = data.task || '';
+					
+					
+					$('.xiangJianJie1').val(t.center_name || '');
+					$('.xiangJianJie2').val(t.org_head || '');
+					$('.xiangJianJie3').val(t.org_departments || '');
+					$('.xiangJianJie4').val(t.main_researcher || '');
+					$('.xiangJianJie5').val(p.name || '');
+					$('.xiangJianJie6').val(t.medicine || '');
+					$('.xiangJianJie7').val(p.indication || '');
+					$('.xiangJianJie8').val(p.sponsor_name || '');
+					$('.xiangJianJie9').val(p.classification || '');
+					$('.xiangJianJie10').val(p.audit_type || '');
+					var project_group_leader = t.project_group_leader || '';
+					var project_group_member = t.project_group_member || '';
+					project_group_leader = replaceName(project_group_leader);
+					project_group_member = replaceName(project_group_member);
+					$('.xiangJianJie11').val(project_group_leader);
+					$('.xiangJianJie12').val(project_group_member);
+					$('.xiangJianJie13').val(t.stage || '');
+					
+				}
+				else{
+					var msg = data.message || "失败";
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+	
+	//修改稽查发现 调用edit 判读是否正在编辑
+	function isEdittingBaseInfo(obj){
+		var obj = obj || '';
+		if(obj == ''){Utils.alert('按钮对象为空！');return false;}
+		var condi = {};
+		condi.task_module_id  = g.id;
+		var url = Base.serverUrl + "task/module/info/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					editfunc(obj);
+				}
+				else{
+					var msg = data.message || "编辑失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+	
+	
+	//修改稽查发现 调用edit 判读是否正在编辑
+	function isEdittingFaXian(obj){
+		var obj = obj || '';
+		if(obj == ''){Utils.alert('按钮对象为空！');return false;}
+		var condi = {};
+		condi.id  = obj.attr('aid') || '';
+		var url = Base.serverUrl + "discovery/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					editfunc(obj);
+				}
+				else{
+					var msg = data.message || "编辑失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+	
+	
+	
+	//点击编辑按钮
+	function editfunc(obj){
+		var _this = obj || '';
+		if(_this == ''){return false;}
+		//_this.hide().siblings('.savebtn,.cancelbtn,.newoneBtn,.deleteBtn').show();
+		_this.hide().siblings('.savebtn,.cancelbtn,.newCreatOneTalk').show();
+		_this.siblings('.editbtn,.newoneBtn,.deleteBtn').hide();
+		_this.parents('.common_moka_box').find('input').removeClass('readonly').removeAttr('readonly');
+		_this.parents('.common_moka_box').find('textarea').removeClass('readonly').removeAttr('readonly');
+		_this.parents('.common_moka_box').find('select').removeClass('readonly').removeAttr('disabled');
+		$('.xiangJianJie11,.xiangJianJie12,.xiangJianJie13').addClass('readonly').attr('readonly',true);
+		//loadTime();//开启时间插件
+	}
+	//点击任意取消
+	function cancelfunc(){
+		var _this = $(this) || '';
+		if(_this == ''){return false;}
+		_this.hide().siblings('.savebtn').hide();
+		_this.siblings('.editbtn,.newoneBtn,.deleteBtn,.newCreatOneTalk').show();
+		_this.parents('.common_moka_box').find('input').addClass('readonly').attr('readonly',true);
+		_this.parents('.common_moka_box').find('textarea').addClass('readonly').attr('readonly',true);
+		_this.parents('.common_moka_box').find('select').addClass('readonly').attr('disabled','disabled');
+		_this.parents('.common_moka_box').find('input').off();
+		var id = _this.siblings('.savebtn').attr('aid') || '';
+		if(_this.parents('#discovery_list_content').length <= 0){//判断是基本信息
+			unLockBaseInfo(g.id);//解锁基本信息
+		}else{
+			if(id != ''){unLockFaXian(id);}//解锁发现
+		}
+	}
+	
+	
+
+	//定义协同项目经理 多选
+	$(".xunzeguojia").click(function(e){
+		var choiseLi = $('.choiseDanwei12 li');
+		var _is = $(this);
+		var xx = _is.offset().left || 0;
+        var yy = _is.offset().top || 0;
+		var _top = yy + _is.height() -9;
+		//初始给选项 增加选中项
+		var _isval = _is.val() || '';
+		if(_isval != ''){
+			choiseLi.each(function(){
+				var _tti = $(this);
+				var _ttival = _tti.val() || '';
+				if(_tti.hasClass('active') && _ttival == ''){
+					if(_isval.indexOf(_ttival) > -1){_tti.addClass('active');}
+				}
+			});
+		}
+        $('.choiseDanwei').hide();
+		$('.choiseDanwei12').show().css({"left":xx,"top":_top});
+		choiseLi.off().on('click',function(e){
+			var _tis = $(this);
+			if(_tis.hasClass('active')){_tis.removeClass('active');}else{_tis.addClass('active');}
+			var _vdan= _tis.html() || '';
+			var _ttval = '';
+			choiseLi.each(function(){
+				var _tti = $(this);
+				if(_tti.hasClass('active')){
+					_ttval = _ttval == '' ? _tti.html() : _ttval + ',' + _tti.html();
+				}
+			});
+			_is.val(_ttval);
+			//_tis.parents('.choiseDanwei').hide();
+			stopPropagation(e);
+		});
+		stopPropagation(e);
+    });
+	//项目简介 保存数据时 把稽查开始时间 稽查结束时间传给后台
+	function sendDataBtnFunc(){
+		var timeDat2 = $('#timeDat2').val() || '';//稽查开始时间
+		var timeDat = $('#timeDat').val() || '';//稽查结束时间
+		var condi = {};
+		condi.id = g.rid;
+		condi.task_start_time = timeDat2;
+		condi.task_end_time = timeDat;
+		var url = Base.serverUrl + "task/update";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					
+				}
+				else{
+					var msg = data.message || "保存失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//删除稽查发现
+	function discoveryDelete(){
+		if(!confirm('确认删除吗？')){return false;}
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('删除按钮对象不存在！');return false;}
+		var did = _this.attr('aid') || '';
+		var condi = {};
+		condi.id = did;
+		var url = Base.serverUrl + "discovery/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('删除成功！');
+					getbaseInfo();
+				}
+				else{
+					var msg = data.message || "修改失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+	
+	//保存修改的稽查发现
+	function discoverySave(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('保存按钮对象不存在！');return false;}
+		var did = _this.attr('aid') || '';
+		var pobj = _this.parents('.common_moka_box');//发现窗口
+		var ruBaoGao = pobj.find('.ruBaoGao').hasClass('active') || false;//判断是否入报告
+		var xxInput = pobj.find('.xxInput').val() || '';
+		var morenWenTi = pobj.find('.morenWenTi').val() || '';
+		var xuanZeFenJi = pobj.find('.xuanZeFenJi').val() || '';
+		var xuanZeFenLei = pobj.find('.xuanZeFenLei').val() || '';
+		var wentiGuiLei = pobj.find('.wentiGuiLei').val() || '';//获取问题字符
+		var wentiGuiLei2 = pobj.find('.wentiGuiLei').attr('tipid') || '';//获取问题id
+		var beiZhu = pobj.find('.beiZhu').val() || '';
+		var moduleid = pobj.find('.xuanMoKuai').find('option:selected').attr('mid') || '';//当前选择的模块id
+		
+		//入报告
+		//if(ruBaoGao && xxInput == ''){Utils.alert('受试者编号不能为空！');return false;}
+		if(ruBaoGao && morenWenTi == ''){Utils.alert('问题说明不能为空！');return false;}
+		if(ruBaoGao && xuanZeFenJi == ''){Utils.alert('分级不能为空！');return false;}
+		if(ruBaoGao && xuanZeFenLei == ''){Utils.alert('分类不能为空！');return false;}
+		if(ruBaoGao && wentiGuiLei == ''){Utils.alert('问题归类不能为空！');return false;}
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.id = did;
+		condi.task_module_id = moduleid;//当前选择的模块id
+		condi.inReport = ruBaoGao ? '是' : '否';
+		condi.patientCode = xxInput;
+		condi.grade = xuanZeFenJi;
+		condi.classify = xuanZeFenLei;
+		condi.problem = wentiGuiLei;
+		condi.problemDescription  = morenWenTi;
+		condi.remark  = beiZhu;
+		condi.problem_id  = wentiGuiLei2;
+		var url = Base.serverUrl + "discovery/update";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('修改成功！');
+					//改变状态
+					pobj.find('.savebtn,.cancelbtn').hide();
+					pobj.find('.editbtn,.deleteBtn,.newoneBtn').show();
+					pobj.find('input').addClass('readonly').attr('readonly',true);
+					pobj.find('textarea').addClass('readonly').attr('readonly',true);
+					pobj.find('select').addClass('readonly').attr('disabled','disabled');
+					getbaseInfo();
+				}
+				else{
+					var msg = data.message || "修改失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//搜索条件 模块名称填充数据
+	function getModelName(moren,x){
+		var moren = moren || '';
+		var x = x || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		condi.task_id = g.rid;//根据任务id查询模块
+		condi.has_discovery = true;//屏蔽 项目简介 人员访谈
+		var url = Base.serverUrl + "task/modules";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data || [];
+					var html = '<option value="">选择模块</option>';
+					//var html2 = '<option value="">选择模块</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var name = d.module_name || '';//名称
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						html+='<option '+_select+' mid="'+id+'" name="'+name+'" value="'+name+'">'+name+'</option>';
+						//html2+='<option '+_select+' name="'+name+'" value="'+name+'">'+name+'</option>';
+					}	
+					if(x != ''){$(x).html(html);}
+					$('.xuanMoKuai_new').html(html);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	//根据模块获取分类
+	$('.xuanMoKuai_new').change(function(){
+		var name1 = $(this).find('option:selected').attr('name') || '';
+		getFenlei(name1);
+	});
+	//加载分类
+	function getFenlei(name1,moren,x){
+		var name1 = name1 || '';
+		var moren = moren || '';
+		var x = x || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		condi.number = 1000;//每页显示行数
+		condi.module_name = name1;
+		var url = Base.serverUrl + "category/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.content || [];
+					//var html = '<option value="">选择分类</option>';
+					var html2 = '<option value="">选择分类</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || {};
+						var id = d.id || '';
+						var name = d.name || '';//名称
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						//html+='<option '+_select+' name1="'+name1+'" name="'+name+'" value="'+name+'">'+name+'</option>';
+						html2+='<option '+_select+' name1="'+name1+'" name="'+name+'" value="'+name+'">'+name+'</option>';
+					}	
+					if(x != ''){$(x).html(html2);}
+					else{$('.xuanZeFenLei_new').html(html2);}//新增窗口使用
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//根据分类获取问题
+	$('.xuanZeFenLei_new').change(function(){
+		var module_name = $(this).find('option:selected').attr('name1') || '';
+		var category_name = $(this).find('option:selected').attr('name') || '';
+		getWenti(module_name,category_name);
+	});
+	
+	function getWenti(module_name,category_name,moren,x,li){
+		var module_name = module_name || '';
+		var category_name = category_name || '';
+		var moren = moren || '';
+		var x = x || '';
+		var li = li || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		condi.module_name = module_name;
+		condi.category_name = category_name;
+		var url = Base.serverUrl + "problem/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.content || [];
+					var html = '';//'<li>选择问题</li>';
+					var html2 = '<option value="">选择问题</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || {};
+						var id = d.id || '';
+						var name = d.name || '';//名称
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						var _select2 = (moren == name && name != '') ? 'active' : '';
+						html+='<li tip="'+id+'" class="'+_select2+'">'+name+'</li>';
+						//html+='<option '+_select+' value="'+name+'">'+name+'</option>';
+						html2+='<option '+_select+' wentiid="'+id+'" value="'+id+'">'+name+'</option>';
+					}	
+					if(x != ''){
+						if(li == 'li'){$(x).html(html);}else{
+							$(x).html(html2);
+						}
+					}
+					else{$('.choiseDanwei110').html(html);}//新增窗口使用
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//添加受试者编号
+	function addShouShiZhe(){
+		var _this = $('.xxInput.newCreat') || '';
+		if(_this == ''){Utils.alert('录入对象无法获取！');return false;}
+		var obj = _this.val() || '';
+		if(obj == ''){Utils.alert('录入对象不能为空！');return false;}
+		if(obj in g.codeVal){Utils.alert('受试者编号'+obj+'已存在！');return false;}
+		var pobj = _this.parents('.common_moka_box');
+		SetSSZ(pobj,obj);//添加受试者
+		_this.val('');//清空输入框
+	}
+	//删除受试者编号
+	function deleteShouShiZhe(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('无法删除！');return false;}
+		var obj = _this.find('span').html() || '';
+		if(obj == ''){Utils.alert('删除对象不能为空！');return false;}
+		var pobj = _this.parents('.common_moka_box');
+		SetSSZ(pobj,obj,' ',1);//删除受试者
+	}
+	//修改受试者 问题发现
+	function saveShouShiZhe(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('找不到修改对象！');return false;}
+		var val = _this.val() || '';
+		var obj = _this.attr('obj') || '';
+		if(obj == ''){Utils.alert('受试者不能为空！');return false;}
+		var pobj = _this.parents('.common_moka_box');
+		SetSSZ(pobj,obj,val);//修改受试者
+	}
+	//受试者公共方法
+	function SetSSZ(pobj,obj,val,del){
+		var pobj = pobj || '';
+		var obj = obj || '';
+		var val = val || '';
+		var del = del || '';//判断是不是删除
+		if(obj == '' || pobj == ''){return false;}
+		if(!del){g.codeVal[obj] = val;}//修改或添加
+		else{delete g.codeVal[obj];}//删除
+		var aaa = g.codeVal;
+		var html1 = '',html2 = '';
+		for(var item in aaa){
+			var value = aaa[item] || '';
+			html1+='<div class="check_x"><span>'+item+'</span><i class="xx"></i></div>';
+			html2+='<div class="cmb_c">'
+					+'<span class="cmb_lable">受试者编号<br>'+item+'</span>'
+					+' <i class="cmb_x"></i> '
+					+'<textarea obj="'+item+'" class="cmb_textarea valueText" >'+value+'</textarea>'
+				+'</div>';
+		}
+		if(html2 == ''){
+			html2+='<div class="cmb_c">'
+					+'<span class="cmb_lable">问题说明</span>'
+					+' <i class="cmb_x"></i> '
+					+'<textarea class="cmb_textarea morenWenTi" ></textarea>'
+				+'</div>';
+		}
+		pobj.find('.check_x_content').html(html1);
+		pobj.find('.shz_list').html(html2);
+	}
+	//加载基本信息 和 发现
+	function getbaseInfo(){
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.task_module_id = g.id;
+		var url = Base.serverUrl + "task/module/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var base = data.taskModule || {};//基本信息
+					var discoveries = data.discoveries || [];//发现列表
+					var content = data.content || '';
+					var module_name = data.module_name || '';
+					var module_template = data.module_template || '';
+					//$('.minfo_title').html(module_name);
+					if(content == '' && module_name == '项目简介'){//判断是初始加载 项目简介 给赋值默认信息
+						setMorenJianJie();
+					}
+					if(content != ''){
+						var context = JSON.parse(content) || '';
+						if(g.baseObj.attr('templet') == 'module2'){//判断是人员访谈模块
+							var le =  0;
+							for(var js2 in context){
+								le++;
+							}
+							var inputs = g.baseObj.find('.cmb_con').find('.cmb_lable').length || 0;
+							var addNum = Math.ceil(le/inputs);
+							if(addNum > 1){//给人员访谈 增加赋值框 n个
+								for(var s=1;s<addNum;s++){
+									addOneTalk();
+								}
+							}
+							g.baseObj.find('.cmb_lable').each(function(n){
+								var a = n + 1;
+								var key1 = $(this).html() || '';
+								var key_num = $(this).parents('.cmb_con').attr('num') || '';
+								if(key_num != ''){key1 = key1 + key_num;}
+								var key_text = context[key1] || '';
+								$(g.baseObj.find('.cmb_values')[n]).val(key_text);//给基本信息的输入框赋值
+							});
+							
+						}else{//其他模块基本信息赋值
+							g.baseObj.find('.cmb_lable').each(function(n){
+								var a = n + 1;
+								var key1 = $(this).html() || '';
+								var key_text = context[key1] || '';
+								var objx = $(g.baseObj.find('.cmb_values')[n]) || {};
+								if(objx.hasClass('xunzeguojia1') || objx.hasClass('xunzeguojia2') || objx.hasClass('xunzeguojia3')){
+									objx.val(key_text).select2();//给基本信息的输入框赋值
+								}else{
+									objx.val(key_text);//给基本信息的输入框赋值
+								}
+							});
+						}
+						
+					}
+					//给发现赋值
+					$('#discovery_list_content').html('');
+					for(var i=0,len=discoveries.length;i<len;i++){
+						var html = '';
+						var dd = discoveries[i] || {};
+						var id = dd.id || '';
+						var code = dd.code || '';
+						var remark = dd.remark || '';
+						var in_report = dd.in_report || '';
+						var is_active = in_report == '入报告' || in_report == '是' ? 'active' : '' ;
+						var patient_code = dd.patient_code || '';
+						var problem_detail = dd.problem_detail || '';
+						var creator = dd.creator || '';
+						creator = replaceName(creator);
+						var create_time = getDate(dd.create_time || '');
+						var ccr = creator == '' || create_time == '' ? '' : creator+'/'+ create_time; 
+						var last_modifier = dd.last_modifier || '';
+						last_modifier = replaceName(last_modifier);
+						var last_modify_time = getDate(dd.last_modify_time || '');
+						var llr = last_modifier == '' || last_modify_time == '' ? '' : last_modifier+'/'+ last_modify_time; 
+						var grade = dd.grade || '';
+						var classify = dd.classify || '';
+						var problem = dd.problem || '';
+						var module_name = dd.module_name || '';
+						var op1='',op2='',op3='';
+						//判断问题
+						switch(grade){
+							case '严重问题':op1 = 'selected="selected"';break;
+							case '主要问题':op2 = 'selected="selected"';break;
+							case '一般问题':op3 = 'selected="selected"';break;
+							default:break;
+						}
+						
+						html+='<div class="common_moka_box">'
+							+'<h4 class="cmb_title"><span class="tt">稽查发现</span>'
+							+'	<span class="tt">'+code+'</span>'
+							+'	<a href="javascript:;" aid="'+id+'" class="cmb_btn deleteBtn type4 last">删除</a>'
+							+'	<a href="javascript:;" class="cmb_btn newoneBtn type3">新增发现</a>'
+							+'	<a href="javascript:;" aid="'+id+'"  class="cmb_btn editbtn type1">编辑</a>'
+							+'	<a href="javascript:;" style="display:none" class="cmb_btn cancelbtn type2 last">取消</a>'
+							+'	<a href="javascript:;" aid="'+id+'" style="display:none" class="cmb_btn savebtn type1">保存</a>'
+							+'</h4>'
+							+'<div class="cmb_inps">'
+							+'	<div class="cmb_c">'
+							+'		<span class="cmb_lable">入报告</span>'
+							+'		<i class="cmb_x"></i>'
+							+'		<div class="check_box ruBaoGao '+is_active+'"><i class="i"></i></div>'
+							+'	</div>'
+							+'	<div class="cmb_c">'
+							+'		<span class="cmb_lable">受试者编号</span>'
+							+'		<i class="cmb_x"></i>'
+							+'		<input value="'+patient_code+'" readonly class="cmb_input type1 xxInput readonly" type="text" />'
+							+'	</div>'
+							+'	<div class="cmb_c">'
+							+'		<span class="cmb_lable">问题说明</span>'
+							+'		<i class="cmb_x"></i>'
+							+'		<textarea readonly class="cmb_textarea morenWenTi readonly" >'+problem_detail+'</textarea>'
+							+'	</div>'
+							+'	<div class="cmb_c">'
+							+'		<span class="cmb_lable">分级</span>'
+							+'		<i class="cmb_x"></i>'
+							+'		<select disabled="disabled" class="cmb_select xuanZeFenJi readonly">'
+							+'			<option value="">选择分级</option>'
+							+'			<option '+op1+' value="严重问题">严重问题</option>'
+							+'			<option '+op2+' value="主要问题">主要问题</option>'
+							+'			<option '+op3+' value="一般问题">一般问题</option>'
+							+'		</select>'
+							+'	</div>'
+							+'	<div class="cmb_c">'
+							+'		<span class="cmb_lable">模块</span>'
+							+'		<i class="cmb_x"></i>'
+							+'		<select disabled="disabled" aid="'+id+'" class="cmb_select xuanMoKuai readonly xuanMoKuai'+id+'">'
+							+'			<option value="">选择模块</option>'
+							+'		</select>'
+							+'	</div>'
+							+'	<div class="cmb_c">'
+							+'		<span class="cmb_lable">分类</span>'
+							+'		<i class="cmb_x"></i>'
+							+'		<select disabled="disabled" aid="'+id+'" class="cmb_select xuanZeFenLei readonly xuanZeFenLei'+id+'">'
+							+'			<option value="">选择分类</option>'
+							+'		</select>'
+							+'	</div>'
+							+'	<div class="cmb_c">'
+							+'		<span class="cmb_lable">问题归类</span>'
+							+'		<i class="cmb_x"></i>'
+							+'		<input placeholder="选择问题" value="'+problem+'" readonly class="cmb_input type1 wentiGuiLei wentiGuiLei_list readonly wentiGuiLei'+id+'" type="text"/>'
+							//+'		<select disabled="disabled" class="cmb_select wentiGuiLei readonly wentiGuiLei'+id+'">'
+							//+'			<option value="">选择问题归类</option>'
+							//+'		</select>'
+							+'	</div>'
+							+'	<div class="cmb_c">'
+							+'		<span class="cmb_lable">备注</span>'
+							+'		<i class="cmb_x"></i>'
+							+'		<textarea readonly class="cmb_textarea readonly beiZhu" >'+remark+'</textarea>'
+							+'	</div>'
+							+'	<div class="cmb_c">'
+							+'		<span class="cmb_lable">创建人/创建时间：</span>'
+							+'		<i class="cmb_x"></i>'
+							+'		<span class="chuanJianInfo">'+ccr+'</span>'
+							+'	</div>'
+							+'	<div class="cmb_c">'
+							+'		<span class="cmb_lable">最近修改人/修改时间：</span>'
+							+'		<i class="cmb_x"></i>'
+							+'		<span class="xiuGaiInfo">'+llr+'</span>'
+							+'	</div>'
+							+'</div>'
+						+'</div>';
+						
+						$('#discovery_list_content').append(html);
+						//报告生成 隐藏增删改查功能
+						if(g.task == '1'){$('#discovery_list_content .editbtn,.deleteBtn,.newoneBtn,#checkAllDis').remove();}
+		
+						getModelName(module_name,'.xuanMoKuai'+id);
+						getFenlei(module_name,classify,'.xuanZeFenLei'+id);//加载 分类
+						getWenti(module_name,classify,problem,'.choiseDanwei120','li');//加载 问题
+						//根据模块获取分类
+						$('.xuanMoKuai'+id).change(function(){
+							var name1 = $(this).find('option:selected').attr('name') || '';
+							var aid = $(this).attr('aid') || '';
+							getFenlei(name1,'','.xuanZeFenLei'+aid);
+						});
+						//动态定义 根据分类获取 问题
+						$('.xuanZeFenLei'+id).change(function(){
+							var module_name1 = $(this).find('option:selected').attr('name1') || '';
+							var category_name = $(this).find('option:selected').attr('name') || '';
+							var aid = $(this).attr('aid') || '';
+							getWenti(module_name1,category_name,'','.choiseDanwei120','li');
+						}); 
+					}
+					//加载页面的时候 基本信息进入编辑状态
+					if(g.loadPage){
+						$('.modelbase').each(function(){
+							var _this = $(this) || {};
+							var templet = _this.attr('templet') || '';
+							if(templet != '' && module_template == templet){
+								_this.find('.editbtn').click();
+							}
+						});
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+	
+	//添加稽查发现
+	function addDiscovery(){
+		var pobj = '.newonebox ';//新建发现窗口
+		var value_first = $(pobj+'.morenWenTi').val() || '';
+		var objName = $('#new_shoushizhe').val() || '';
+		g.codeVal[objName] = value_first;//受试者编号及问题赋值
+		
+		
+		var ruBaoGao = $(pobj+'.ruBaoGao').hasClass('active') || false;//判断是否入报告
+		var morenWenTi = $(pobj+'.morenWenTi').val() || '';
+		var xuanZeFenJi = $(pobj+'.xuanZeFenJi').val() || '';
+		var xuanZeFenLei = $(pobj+'.xuanZeFenLei').val() || '';
+		var wentiGuiLei = $(pobj+'.wentiGuiLei').val() || '';//获取问题字符
+		var wentiGuiLei2 = $(pobj+'.wentiGuiLei').attr('tipid') || '';//获取问题id
+		var beiZhu = $(pobj+'.beiZhu').val() || '';
+		var moduleid = $(pobj+'.xuanMoKuai').find('option:selected').attr('mid') || '';//当前选择的模块id
+		//入报告
+		if($.isEmptyObject(g.codeVal)){Utils.alert('问题说明不能为空！');return false;}
+		if(ruBaoGao && $.isEmptyObject(g.codeVal) && morenWenTi == ''){Utils.alert('问题说明不能为空！');return false;}
+		if(ruBaoGao && moduleid == '' || moduleid == ''){Utils.alert('模块不能为空！');return false;}
+		if(ruBaoGao && xuanZeFenJi == ''){Utils.alert('分级不能为空！');return false;}
+		if(ruBaoGao && xuanZeFenLei == ''){Utils.alert('分类不能为空！');return false;}
+		if(ruBaoGao && wentiGuiLei == ''){Utils.alert('问题归类不能为空！');return false;}
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.task_module_id = moduleid;
+		condi.inReport = ruBaoGao ? '是' : '否';
+		condi.grade = xuanZeFenJi;
+		condi.classify = xuanZeFenLei;
+		condi.problem = wentiGuiLei;
+		condi.problemDetails = JSON.stringify(g.codeVal);
+		condi.problemDescription  = '';//morenWenTi;
+		condi.remark  = beiZhu;
+		condi.problem_id  = wentiGuiLei2;
+		var url = Base.serverUrl + "discovery/add";
+		$('.mokuaixiangqing').off('click','#createDis');
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('新建成功！');
+					$('.newonebox').hide().find('input').val('');
+					getbaseInfo();
+				}
+				else{
+					var msg = data.message || "新建失败";
+					Utils.alert(msg);
+				}
+				$('.mokuaixiangqing').on('click','#createDis',addDiscovery);//定义新增发现
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+				$('.mokuaixiangqing').on('click','#createDis',addDiscovery);//定义新增发现
+			}
+		});
+	
+	}
+
+	//显示新增窗口
+	function shownewone(){
+		var html='<div class="cmb_c">'
+					+'<span class="cmb_lable">问题说明</span>'
+					+' <i class="cmb_x"></i> '
+					+'<textarea class="cmb_textarea morenWenTi" ></textarea>'
+				+'</div>';
+		g.codeVal = {};
+		$('.newonebox').show();
+		$('.newonebox').find('.ruBaoGao').removeClass('active');
+		$('.newonebox').find('textarea').val('');
+		$('.newonebox').find('input').val('');
+		$('.newonebox').find('select').val('');
+		$('.newonebox').find('.check_x_content').html('').show();
+		$('.newonebox').find('.shz_list').html(html).show();
+		getModelName(g.moduleName,'.xuanMoKuai_new');//给新增发现填充 默认选中当前模块
+		getFenlei(g.moduleName);//给新增发现填充 默认选中当前模块
+		$('html,body').animate({scrollTop:$('.newonebox').offset().top}, 800);
+	}
+	
+	//保存基本信息
+	function baseSave(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('保存失败！');return false;}
+		var content1 = {};
+		//遍历存储每一项
+		var feikong = true;
+		var basem = _this.parents('.modelbase').attr('templet') || '';
+		_this.parents('.modelbase').find('.cmb_lable').each(function(n){
+			var a = n + 1;
+			var key1 = $(this).html() || '';
+			if(basem == 'module2'){//判断是人员访谈模块 为key增加标识
+				var kay_num = $(this).parents('.cmb_con').attr('num') || '';
+				if(kay_num != ''){key1 = key1 + kay_num;}
+			}
+			var obj1 = $(_this.parents('.modelbase').find('.cmb_values')[n]) || {};//获取value对象
+			var val = obj1.val() || '';
+			var x = $(this).siblings('.cmb_x')[0];
+			//if(val == ''){Utils.alert(key1+'不能为空！');feikong = true;return false;}
+			if($(this).parents('.cmb_c').css('display') == 'none'){return true;}//跳过隐藏的项
+			if(val == '' && !obj1.hasClass('readonly')){feikong = false;}
+			content1[key1] = val;
+		});
+		//if(feikong){return false;}
+		content1 = JSON.stringify(content1);//json对象转字符串
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.task_module_id = g.id;
+		condi.content = content1;
+		condi.completed = feikong;
+		var url = Base.serverUrl + "task/module/update";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('保存成功！');
+					_this.hide().siblings('.savebtn,.cancelbtn').hide();
+					_this.siblings('.editbtn,.deleteBtn,.newoneBtn,.newCreatOneTalk').show();
+					_this.parents('.common_moka_box').find('input').addClass('readonly').attr('readonly',true);
+					_this.parents('.common_moka_box').find('textarea').addClass('readonly').attr('readonly',true);
+					_this.parents('.common_moka_box').find('select').addClass('readonly').attr('disabled','disabled');
+				}
+				else{
+					var msg = data.message || "保存失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+
+loadTime();	
+//加载模块详情 所有时间插件	
+function loadTime(){
+
+var datetime1 = {
+	  elem: '#timeDat',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime1.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+var datetime2 = {
+	  elem: '#timeDat2',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime2.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+var datetime3 = {
+	  elem: '#jjtime1',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime3.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+var datetime4 = {
+	  elem: '#jjtime2',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime4.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+var datetime5 = {
+	  elem: '#jjtime3',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime5.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+var datetime6 = {
+	  elem: '#jjtime4',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime6.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+var datetime7 = {
+	  elem: '#fangtime',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime7.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+var datetime8 = {
+	  elem: '#timeyao',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime8.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+var datetime9 = {
+	  elem: '#timushouli',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime9.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	var datetime10 = {
+	  elem: '#timushouli2',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime10.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	var datetime11 = {
+	  elem: '#timesae',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime11.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	var datetime12 = {
+	  elem: '#timesae2',
+	  format: 'YYYY-MM-DD hh:mm:ss',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		//datetime12.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+
+	laydate(datetime1);
+	laydate(datetime2);
+	laydate(datetime3);
+	laydate(datetime4);
+	laydate(datetime5);
+	laydate(datetime6);
+	laydate(datetime7);
+	laydate(datetime8);
+	laydate(datetime9);
+	laydate(datetime10);
+	laydate(datetime11);
+	laydate(datetime12);
+}
+
+
+});
+
+</script>
+</html>

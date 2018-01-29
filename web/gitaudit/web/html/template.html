@@ -1,0 +1,239 @@
+<div class="all-template">
+    <!--task module in task-detail.jsp-->
+    <div id="taskModuleTemplate" class="template">
+        <div class="col-md-3 task-module" taskModuleId="${id}">
+            <div class="portlet box grey">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-reorder"></i>${name}
+                        </div>
+                    <div class="actions">
+                        <a pid="EDIT_TASK" href="javascript:void(0)" class="btn yellow btn-sm edit-task-module">
+                            <i class="fa fa-pencil"></i> 编辑
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="scroller" style="height:120px" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                        <ul class="feeds modify-record-container">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end task module in task-detail.jsp-->
+    <!--modify record in task-detail.jsp-->
+    <div id="modifyRecordTemplate" class="template">
+        <li class="modify-record">
+            <div class="row">
+                <div class="cont col-md-6">
+                    <div class="desc">${name}</div>
+                </div>
+                <div class="date col-md-6">${created}</div>
+            </div>
+        </li>
+    </div>
+    <!--end modify record in task-detail.jsp-->
+    <!--module record in task-detail.jsp-->
+    <div id="moduleRecordTemplate" class="template">
+        <div class="panel panel-default module-record" moduleRecordId="${id}">
+            <div class="panel-heading">
+                <div class="row">
+                    <span class="col-md-10 module-record-id">${id}</span>
+                    <div class="col-md-2 text-right">
+                        <a title="保存" href="javascript:void(0)" class="toolbar-icon save-record"><i class="glyphicon glyphicon-floppy-save"></i></a>
+                        <a title="编辑" href="javascript:void(0)" class="toolbar-icon edit-record"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a title="追加" href="javascript:void(0)" class="toolbar-icon add-record"><i class="glyphicon glyphicon-plus"></i></a>
+                        <a title="删除" href="javascript:void(0)" class="toolbar-icon delete-record"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <form class="form-horizontal fields-container" role="form">
+                    </form>
+                </div>
+            </div>
+        </div><!--pannel-->
+    </div>
+    <!--end module record in task-detail.jsp-->
+    <!--discovery in task-detail.jsp-->
+    <div id="discoveryTemplate" class="template">
+        <div class="panel panel-default discovery" discoveryId="${id}">
+            <div class="panel-heading">
+                <!--稽查发现记录工具条-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>发现编号</span>
+                        <span class="discovery-code">${code}</span>
+                        <input class="discovery-inReport field-control" type="checkbox">
+                        <span>入报告</span>
+                        <span class="pull-right">
+                            <a title="保存" href="javascript:void(0)" class="toolbar-icon save-discovery"><i class="glyphicon glyphicon-floppy-save"></i></a>
+                            <a title="编辑" href="javascript:void(0)" class="toolbar-icon edit-discovery"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a title="追加" href="javascript:void(0)" class="toolbar-icon add-discovery"><i class="glyphicon glyphicon-plus"></i></a>
+                            <a title="删除" href="javascript:void(0)" class="toolbar-icon delete-discovery"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    <div class="col-md-12 discovery-fields">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">受试者编号</label>
+                            <div class="field-control-container col-sm-9">
+                                <input type="text" class="form-control field-control discovery-patientNo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">问题说明</label>
+                            <div class="field-control-container col-sm-9">
+                                <textarea class="form-control field-control discovery-description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">分级</label>
+                            <div class="field-control-container col-sm-9">
+                                <select class="form-control field-control discovery-level">
+                                    <option value="严重问题">严重问题</option>
+                                    <option value="主要问题">主要问题</option>
+                                    <option value="一般问题">一般问题</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">分类</label>
+                            <div class="field-control-container col-sm-9">
+                                <select class="form-control field-control discovery-category"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">问题归类</label>
+                            <div class="field-control-container col-sm-9">
+                                <select class="form-control field-control discovery-problem"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">备注</label>
+                            <div class="field-control-container col-sm-9">
+                                <textarea class="form-control field-control discovery-memo"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!--panel body-->
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="col-md-6">创建者</span>
+                        <span class="col-md-6">${Global.getUserName($item.data.creatorId)}</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="col-md-6">创建时间</span>
+                        <span class="col-md-6">${created}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="col-md-6">修改者</span>
+                        <span class="col-md-6">${Global.getUserName($item.data.editorId)}</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="col-md-6">修改时间</span>
+                        <span class="col-md-6">${editTime}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--discovery in task-detail.jsp-->
+    <!--discoveryNotInReport in discovery-list.jsp-->
+    <div id="discoveryNotInReportTemplate" class="template">
+        <div class="panel panel-default discovery" discoveryId="${id}">
+            <div class="panel-heading">
+                <!--稽查发现记录工具条-->
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <span>发现编号</span>
+                        <span class="discovery-code">${code}</span>
+                        <input class="discovery-inReport field-control" type="checkbox">
+                        <span>入报告</span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    <div class="col-md-12 discovery-fields">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-sm-6 control-label">受试者编号</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control field-control discovery-patientNo" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-sm-6 control-label">分级</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control field-control discovery-level" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-sm-6 control-label">分类</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control field-control discovery-category" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">问题说明</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control field-control discovery-description" readonly></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">问题归类</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control field-control discovery-problem" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control field-control discovery-memo" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!--panel body-->
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-3">
+                        <span class="col-md-6">创建者</span>
+                        <span class="col-md-6">${Global.getUserName($item.data.creatorId)}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="col-md-6">创建时间</span>
+                        <span class="col-md-6">${created}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="col-md-6">修改者</span>
+                        <span class="col-md-6">${Global.getUserName($item.data.editorId)}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="col-md-6">修改时间</span>
+                        <span class="col-md-6">${editTime}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--discoveryNotInReport in discovery-list.jsp-->
+</div>

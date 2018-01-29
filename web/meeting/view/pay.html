@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>第三届临床研究质量学术研讨会-支付</title>
+</head>
+<body class="common_body apply">
+	<div class="payForm">
+	</div>
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.pay = Utils.getQueryString("pay") || "";
+	g.xform = Utils.offLineStore.get("xform",false) || "";
+	if(g.pay != '1'){alert('非法请求！');return false;}
+	$('.payForm').html(g.xform);
+});
+</script>
+</html>

@@ -1,0 +1,95 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<bean id="U001" class="com.zhb.bean.User">
+		<property name="name" value="伊丽娜"></property>
+		<property name="departmentId" value="0101"></property>
+		<property name="roleIds" value="评审员"></property>
+	</bean>
+
+	<bean id="U002" class="com.zhb.bean.User">
+		<property name="name" value="李玉超"></property>
+		<property name="departmentId" value="0101"></property>
+	</bean>
+
+	<bean id="U003" class="com.zhb.bean.User">
+		<property name="name" value="王海燕"></property>
+		<property name="departmentId" value="0102"></property>
+	</bean>
+
+	<bean id="U004" class="com.zhb.bean.User">
+		<property name="name" value="刘胜旭"></property>
+		<property name="departmentId" value="0102"></property>
+		<property name="roleIds" value="系统管理员"></property>
+	</bean>
+		
+	<bean id="U005" class="com.zhb.bean.User">
+		<property name="name" value="侯思佳"></property>
+		<property name="departmentId" value="0103"></property>
+		<property name="roleIds" value="分级员"></property>
+	</bean>
+		
+	<bean id="U006" class="com.zhb.bean.User">
+		<property name="name" value="杨坤"></property>
+		<property name="departmentId" value="0104"></property>
+		<property name="roleIds" value="打印员"></property>
+	</bean>
+		
+	<bean id="U007" class="com.zhb.bean.User">
+		<property name="name" value="杨娟"></property>
+		<property name="departmentId" value="0104"></property>
+		<property name="roleIds" value="业务管理员"></property>
+	</bean>
+	
+	<bean id="U008" class="com.zhb.bean.User">
+		<property name="name" value="周达"></property>
+		<property name="departmentId" value="0104"></property>
+	</bean>
+	
+	<bean id="U009" class="com.zhb.bean.User">
+		<property name="name" value="陈强"></property>
+		<property name="departmentId" value="0105"></property>
+	</bean>
+	
+	<bean id="U010" class="com.zhb.bean.User">
+		<property name="name" value="黄万丽"></property>
+		<property name="departmentId" value="0105"></property>
+	</bean>
+	
+	<bean id="U011" class="com.zhb.bean.User">
+		<property name="name" value="白秀丽"></property>
+		<property name="departmentId" value="0105"></property>
+	</bean>
+	
+	<bean id="U012" class="com.zhb.bean.User">
+		<property name="name" value="赵晓曦"></property>
+		<property name="departmentId" value="0105"></property>
+	</bean>
+	
+	<bean id="U013" class="com.zhb.bean.User">
+		<property name="name" value="解老师"></property>
+		<property name="departmentId" value="02"></property>
+	</bean>
+	
+	<bean id="U014" class="com.zhb.bean.User">
+		<property name="name" value="张老师"></property>
+		<property name="departmentId" value="02"></property>
+	</bean>
+	
+</beans>

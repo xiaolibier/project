@@ -1,0 +1,60 @@
+.table-operation-icon {
+    display:inline-block;
+    margin-right:6px;
+}
+
+.toolbar-icon {
+    display:inline-block;
+    margin-right:6px;
+}
+
+.editable button {
+    margin-right: 6px;
+}
+
+.editable .opinion-flag {
+    color: green;
+}
+
+.module-record a[disabled="disabled"] {
+    pointer-events: none;
+    cursor: default;
+}
+.module-record[status="editing"] {
+    border-color: blue;
+}
+.module-record[status="new"] {
+    border-color: yellow;
+}
+.module-record[status="dirt"] {
+    border-color: red;
+}
+.discovery a[disabled="disabled"] {
+    pointer-events: none;
+    cursor: default;
+}
+.discovery[status="editing"] {
+    border-color: blue;
+}
+.discovery[status="new"] {
+    border-color: yellow;
+}
+.discovery[status="dirt"] {
+    border-color: red;
+}
+
+.editable button {
+    margin-right: 6px;
+}
+
+.editable .opinion-flag {
+    color: green;
+}
+
+.navbar-form .magin-right-20 {
+    margin-right: 20px;
+}
+
+.form-control {
+    padding: 6px 2px;
+}

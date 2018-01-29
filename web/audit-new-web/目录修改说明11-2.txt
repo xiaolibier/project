@@ -1,0 +1,15 @@
+
+
+html目录为对外使用的
+view目录的页面对内使用
+
+修改的页面 主要是增加replaceName 替换名称
+
+home.html
+工作台.html
+稽查任务.html
+稽查模块.html
+模块详情.html
+稽查发现.html
+
+

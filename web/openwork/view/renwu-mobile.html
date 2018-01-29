@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title class="titleitt">项目任务</title>
+	<style>
+		.projectLs .table1 tr td.td1{}
+		.projectLs .cao_btn1{margin:0 2px;}
+		.projectLs .table1 tr td{}
+		.project_tt{width:auto;padding-top:0px;}
+		.serch_div{text-align:center;}
+		.projectLs .table1 tr td,.projectLs .table1 tr th{border:none;}
+	</style>
+</head>
+<body class="projectLs renwu">
+	<!-- 项目列表 -->
+	<div class="project_tt">
+		<!-- <h4 class="re_bk_text">
+			<span id="pro_name_span" class="pro_name"></span>
+			<a href="javascript:;" id="tomember" class="mem_right_info"><span id="mber_num" class="t">0</span><br/>成员</a>
+		</h4> -->
+		<div class="re_div">
+			<!-- <div class="tt_div"><a href="javascript:;" class="ttd_a active">任务</a><a href="javascript:;" id="jichafaxian" class="ttd_a">稽查发现</a></div> -->
+			<div class="serch_div">
+				<!-- <input class="common_choice" placeholder="选择状态" type="text"/> -->
+				<select id="select_btn" class="common_choice">
+					<option value="全部状态">全部状态</option>
+					<option value="未稽查">未稽查</option>
+					<option value="稽查中">稽查中</option>
+					<option value="报告提交">报告提交</option>
+				</select>
+			</div>
+			<div id="tablecontent" style="margin:0 10px 10px;" class="tableList">
+				<!-- <table class="table1">
+					<tr>
+						<td class="td1">01</td>
+						<td class="td2">中国武警总医院</td>
+						<td class="td3">未稽查</td>
+						<td class="td4"><a class="cao_btn cao_btn2">生成报告</a></td>
+					</tr>
+					
+				</table> -->
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- capa数据 -->
+	<div style="display:none;" class="capaNeed">
+	<div style="text-align:center;margin-bottom:11px;" class="biaoti1">
+		<span style="font-family:STHeiti Light;font-size:34px;color:#666666;font-weight:600;">
+		稽查报告</span>
+	</div>
+	<div style="text-align:center;margin-bottom:10px;" class="biaoti2">
+		<span style="font-family:STHeiti Light;font-size:34px;color:#666666;font-weight:600;">
+		AUDIT REPORT</span>
+	</div>
+	<div style="text-align:center;margin-bottom:26px;" class="biaoti3">
+		<span style="font-family:STFangsong;font-size:20px;font-weight:600;color:#666666;">
+		项目编号：</span>
+		<span class="projectCode" style="font-family:STFangsong;font-size:20px;font-weight:600;color:#666666;"></span>
+	</div>
+	<div style="text-align:center;margin-bottom:36px;" class="diyibufen">
+		<span style="font-family:STHeiti Light;font-size:21px;color:#666666;line-height:16px;">
+			第一部分：稽查目的、范围、依据
+		</span>
+	</div>
+	<div style="margin-bottom:10px;" class="diyibufen-ro1">
+		<span style="font-family:STHeiti Light;font-size:20px;color:#495060;line-height:16px;">
+			一、稽查目的
+		</span>
+	</div>
+	<div style="margin-bottom:30px;" class="diyibufen-ro1-1">
+		<span class="setvalue1" style="font-family:STFangsong;font-size:18px;color:#666666;line-height:30px;">
+			<!-- 稽查目的 -->
+		</span>
+	</div>
+	<div style="margin-bottom:10px;" class="diyibufen-ro2">
+		<span style="font-family:STHeiti Light;font-size:20px;color:#495060;line-height:16px;">
+			二、稽查范围
+		</span>
+	</div>
+	<div style="margin-bottom:30px;" class="diyibufen-ro1-1">
+		<span class="setvalue2" style="font-family:STFangsong;font-size:18px;color:#666666;line-height:30px;">
+			<!-- 稽查范围内容 -->
+		</span>
+	</div>
+	<div style="margin-bottom:10px;" class="diyibufen-ro2">
+		<span style="font-family:STHeiti Light;font-size:20px;color:#495060;line-height:16px;">
+			三、稽查依据
+		</span>
+	</div>
+	<div style="margin-bottom:30px;" class="diyibufen-ro1-1">
+		<span class="setvalue3" style="font-family:STFangsong;font-size:18px;color:#666666;line-height:30px;">
+			<!-- 稽查依据内容 -->
+		</span>
+	</div>
+	</div>
+	<div style="display:none;" id="partContent"></div>
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+	<script type="text/javascript" src="../public/libs/exportjs/FileSaver.js"></script>
+	<script type="text/javascript" src="../public/libs/exportjs/jquery.wordexport.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.xid = Utils.getQueryString("xid") || "";//从项目列表页面传来 传项目id
+	g.xname = Utils.getQueryString("xname") || "";//从项目列表页面传来 传项目名称
+	if(g.xname != ''){g.xname = decodeURI(g.xname)}//解码
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.wcName = '';//存储导出capa和导出word的编号名称
+	
+/* **************************************** lodding ******************************************** */		
+	
+	loadPage();//加载页面
+	//点击返回项目页面
+	$('#pro_name_span').on('click',function(){
+		var spaid = $('#headInput').attr('tipid') || '';//获取申办方id
+		Utils.offLineStore.set("sid",spaid,false);//存储申办方id
+		location.href="project.html";
+	});
+	//点击跳转到稽查发现页面
+	$('#jichafaxian').on('click',function(){
+		var xname = encodeURI(encodeURI(g.xname));//加密
+		location.href="faxian.html?xid="+g.xid+"&xname="+xname;
+	});
+	//点击跳转到 项目成员 页面
+	$('#tomember').on('click',function(){
+		var xname = encodeURI(encodeURI(g.xname));//加密
+		location.href="proManager.html?xid="+g.xid+"&xname="+xname;
+	});
+	
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		$('#pro_name_span,.titleitt').html(g.xname);//给标题 项目名称赋值
+		tableListShow();//获取列表
+		getmember();//获取当前项目的成员数
+	}
+	
+	//获取当前项目的成员数
+	function getmember(){
+		var condi = {};
+		condi.project_id = g.xid;
+		var url = Base.serverUrl + "open/platform/members/count";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || 0;
+					$('#mber_num').html(data);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//筛选状态时自动搜索
+	$('#select_btn').change(function(){
+		tableListShow();
+	});
+	
+	//切换申办方时自动搜索
+	$('.projectLs').on('mousedown','.choiseDanwei01 li',function(e){
+		//setTimeout(function(){tableListShow();},600);
+		var spaid = $(this).attr('tip') || '';//获取申办方id
+		Utils.offLineStore.set("sid",spaid,false);//存储申办方id
+		location.href = "project.html";
+	});
+	//获取列表
+	function tableListShow(){
+		var sta = $('#select_btn').val() || '';
+		var spaid = $('#headInput').attr('tipid') || '';//获取中心id
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.project_id = g.xid;
+		condi.state = sta;
+		condi.sponsor_id = spaid;
+		var url = Base.serverUrl + "open/platform/tasks";
+		g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				g.totalPage = data.totalPages || 0;//总页数
+				if(status){
+					var data = data.result || [];
+					var html = '<table class="table1">'
+								+'<tr>'
+									//+'<th style="min-width:60px;">中心编号</th>'
+									+'<th style="min-width:60px;">任务编号</th>'
+									//+'<th style="min-width:60px;">项目阶段</th>'
+									+'<th style="min-width:60px;">任务状态</th>'
+									+'<th style="min-width:60px;">操作</th>'
+								+'</tr>';
+					g.totalElements = data.length || 0;//总数
+					for(var i=0,len=data.length;i<len;i++){
+						var xu = len - i;
+						var d = data[i] || {};
+						var id = d.task_id || '';
+						var status = d.status || '';
+						var opened = d.opened || false;
+						var center_name = d.center_name || '';
+						var center_code = d.center_code || '';
+						var task_code = d.task_code || '';
+						var stage = d.stage || '';
+						html += '<tr>'
+							//+'<td class="td1">'+center_code+'</td>'
+							+'<td class="td2">'+task_code+'</td>'
+							//+'<td class="td2">'+stage+'</td>'
+							+'<td class="td3">'+status+'</td>'
+							+'<td class="td4">';
+							if(status == '稽查中' && opened){
+								html += '<a href="javascript:;" onclick="pingshen(\''+id+'\')" class="cao_btn cao_btn1">在线审阅</a>';
+							}else if(status == '报告提交'){
+								html += '<a href="javascript:;" onclick="printBaogao(\''+id+'\')" class="cao_btn cao_btn5">查看报告</a>';
+								//html += '<a href="javascript:;" onclick="downCapa(\''+id+'\')" class="cao_btn cao_btn2">下载CAPA</a>';
+								//html += '<a href="javascript:;" onclick="checkfaxian(\''+id+'\',\''+center_name+'\')" class="cao_btn cao_btn2">查看发现</a>';
+							}
+							html += '</td>'
+						+'</tr>';
+					}
+					html += '</table>';
+					
+					$('#tablecontent').html(html);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+					$('#tablecontent').html('');
+				}
+				g.httpTip.hide();
+			},
+			error:function(data,status){
+				g.httpTip.hide();
+				$('#tablecontent').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//点击跳转到发现页
+	window.checkfaxian = function(id,center_name){
+		var id = id || '';
+		var center_name = center_name || '';
+		if(id == ''){Utils.alert("任务id不能为空！");return false;}
+		var xname = encodeURI(encodeURI(g.xname));//加密
+		var cname = encodeURI(encodeURI(center_name));//加密
+		location.href="faxian.html?xid="+g.xid+"&rid="+id+"&xname="+xname+"&cname="+cname;
+	} 
+	
+	
+	//打印报告
+	window.printBaogao = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert("任务id不能为空！");return false;}
+		var url = Base.serverUrl + "open/task/report/print?taskId="+id;
+		window.open(url);
+	} 
+	//在线审阅
+	window.pingshen = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert("任务id不能为空！");return false;}
+		var xname = encodeURI(encodeURI(g.xname));//加密
+		location.href="taskMobie.html?xid="+g.xid+"&rid="+id+"&xname="+xname;
+	} 
+	
+	//点击查看更多
+	window.showMore = function(){
+		if(g.showPages >= g.totalElements){return false;}
+		g.showPages += 10;
+		tableListShow();
+	} 
+
+});
+</script>
+</html>

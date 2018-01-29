@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+<style>
+	.common_input{width:450px;height:25px;line-height:25px;}
+	.btns_div{width:570px;margin:25px 0;}
+</style>
+</head>
+<body class="xiangmuguanli jichainfo">
+	<div class="diaodu_info">
+		<div class="diaodu_div"><span class="dlable">姓名</span><i class="star">*</i><input id="ji_name" class="common_input" type="text" /></div>
+		<div class="diaodu_div"><span class="dlable">电话</span><i class="star">*</i><input id="ji_phone" class="common_input" type="text" /></div>
+		<div class="diaodu_div"><span class="dlable">头像</span><i class="star">*</i><div class="head_img_spam"><i class="head_imgs" style="background:url(../public/img/hb8_img2.png) no-repeat center center;background-size:cover;"></i></div></div>
+		<div class="diaodu_div"><span class="dlable">所在地</span><i class="star">*</i><select id="ji_address" class="common_select"><option>请选择</option></select></div>
+		<div class="diaodu_div"><span class="dlable">邮箱</span><i class="star">*</i><input id="ji_email" class="common_input" type="text" /></div>
+		<div class="diaodu_div"><span class="dlable">签名</span><i class="star">*</i><div class="head_img_spam"><i class="head_imgs" style="background:url(../public/img/hb8_img2.png) no-repeat center center;background-size:cover;"></i></div></div>
+		
+	</div>
+	<div id="new_create_btn" class="btns_div">
+		<a back='稽查员管理.html' class="common_abtn goback type1">取消</a>
+		<a href="javascript:;" id="create_new_btn" class="common_abtn type2">确认</a>
+	</div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	
+</body>
+
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.do = Utils.offLineStore.get("neworchangedd",false) || "";//从项目调度页面传来 传new或change
+	g.do2 = Utils.getQueryString("do") || "";//从项目调度页面传来 传new或change
+	g.id = Utils.getQueryString("id") || "";//从项目调度页面传来 传项目id
+	if(g.do2 != ''){g.do = g.do2;}
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.ids = [];//存储当前所有项目id及其状态
+	g.quanxuan = 0;
+	g.codeAll = '';
+	
+/* **************************************** lodding ******************************************** */	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('稽查员管理').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '稽查员管理.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 基本信息').addClass('active');
+	loadPage();
+	
+	
+	
+/* **************************************** setTing ******************************************** */	
+	
+	//加载页面
+	function loadPage(){
+		
+		getsuozaidi();//获取所在地
+		if(g.do == 'change'){//判断是修改
+			getInfoFunc();//加载edit信息
+			$('#create_new_btn').html('保存').on('click',changeitFunc);//修改项目
+		}else{//默认新建
+			$('#create_new_btn').on('click',createnewFunc);//新建项目
+		}
+	}
+
+	
+	//获取所在地列表
+	function getsuozaidi(){
+		var condi = {};
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "sponsor/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var data = data.content || [];
+					var html = '<option value="">请选择</option>';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || [];
+						var id = d.id || '';
+						var name = d.name || '';
+						var code = d.code || '';
+						html += '<option value="'+id+'">'+name+'</option>';
+					}
+					$('#ji_address').html(html);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	//加载edit信息
+	function getInfoFunc(){
+		
+		var condi = {};
+		condi.id = g.id;
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "schedule/project/editScheduleProject";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var d = data || {};
+					var projectCode = d.projectCode || '';
+					$('#pro_number').val(d.projectCode || '').attr('readonly',true).addClass('readonly');
+					$('#pro_name').val(d.projectName || '');
+					$('#pro_maneger').val(d.medicine || '');
+					$('#pro_assign').val(d.sponsorName || '').attr('tipid',d.sponsorId || '');
+					
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//修改项目调度
+	function changeitFunc(){
+		
+		var pro_name = $('#pro_name').val() || '';
+		var pro_maneger = $('#pro_maneger').val() || '';
+		var pro_assign = $('#pro_assign').val() || '';
+		var sponsorId = $('#pro_assign').attr('tipid') || '';
+		if(pro_name == ''){Utils.alert('项目名称不能为空！');return false;}
+		if(pro_maneger == ''){Utils.alert('产品名称不能为空！');return false;}
+		if(pro_assign == ''){Utils.alert('申办方不能为空！');return false;}
+		var allpeople = [];
+		var panduan = '';//判断是否为空
+		if($('#addoneli_content').find('li').length <= 0){panduan = '稽查中心不能为空！';}
+		$('#addoneli_content').find('li').each(function(){
+			var _num = $(this).attr('num') || '';
+			var aid = $(this).find('.prolione').attr('aid') || '';
+			var _v = $(this).find('.prolione').val() || '';
+			if($(this).find('.prolione').length <= 0){return true;}//剔除不能修改的项
+			if(_v == ''){panduan = '稽查中心第'+_num+'项不能为空！';return false;}
+			var as = {};
+			as['center'] = _v;
+			as['id'] = aid;
+			allpeople.push(as);
+		});
+		if(panduan != ''){Utils.alert(panduan);return false;}
+		allpeople = JSON.stringify(allpeople);
+		var condi = {};
+		condi.id = g.id;
+		condi.name = pro_name;
+		condi.medicine = pro_maneger;
+		//condi.sponsorName = pro_assign;
+		condi.sponsorId = sponsorId;
+		condi.tasks = allpeople;
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//g.showPages;//每页显示行数
+		var url = Base.serverUrl + "schedule/project/add";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('保存成功！');
+					setTimeout(function(){
+						parent.document.getElementById("iframeObj").src = '项目调度.html';
+					});
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+
+});
+
+</script>
+</html>

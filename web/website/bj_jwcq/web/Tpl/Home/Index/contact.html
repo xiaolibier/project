@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width"/>
+<title>北京经纬传奇医药科技有限公司--联系我们</title>
+<link href="__PUBLIC__/css/style.css" type="text/css" rel="stylesheet">
+<link href="__PUBLIC__/css/top_bottom_Public.css" rel="stylesheet" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+</head>
+<style>
+	html,body{min-width:1200px;}
+</style>
+<body class="bj">
+<!--header开始-->
+ <include file="Index:top" />
+<!--header结束-->
+ <div class="common_banner common_banner6">
+	<!-- <img class="cimg" src="/web/Tpl/Public/newImg/cimg.png"/> -->
+</div>
+<!--公司地图开始-->
+<section class="jianjie_center clear">
+ <include file="Index:leftcont" />
+  <div class="jianjie_center_right fr codiv">
+    <!-- <div class="rt_top"><a>当前位置：</a><a href="{:U('index')}">首页</a> > <a href="{:U('contact')}">联系我们</a> > {$datas["Main_Name"]}</div> -->
+    <div class="maptext">
+		北京经纬传奇医药科技有限公司，系国内首家专业的第三方稽查公司，专注于临床试验的质量服务。<br/>
+		公司成立于 2009 年，总部位于北京。上海、武汉、成都均设有分公司，其他十多个重要城市设有办事处。
+	</div>
+    <div style="position:relative;">
+		<div class="map_left" id="dituContent"></div>
+		<div class="mprbg"></div>
+		<div class="map_right coright">
+			<p class="commonContact contact1 active">
+				总部：北京经纬传奇医药科技有限公司<br/>
+				地址：北京市西城区西直门西环广场T1座20层
+			</p>
+			<p class="commonContact contact2">
+				成都分公司：成都市武侯区科华北路62号力宝大厦北楼701室
+			</p>
+			<p class="commonContact contact3">
+				武汉分公司：武汉市江汉区解放大道686号世贸大厦2903-2904室
+			</p>
+			<p class="commonContact contact4">
+				上海分公司：上海市张江高科技园区哈雷路898弄1号楼305室
+			</p>	
+			<!-- {$datas["Main_Content"]|htmlspecialchars_decode}  -->
+		</div>
+	</div>
+	<div style="margin:96px 0;text-align:center;"><img src="/web/Tpl/Public/newImg/map_img.png" /></div>
+	<div class="map_speak">
+		<p class="p1">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经纬传奇已为国内外近 100 家制药企业实施 300 余项，500 余院次临床试验的第三方稽查，涉及范围极为广泛。不仅包含各期临床试验，还包含各类药物以及众多的专业领域如 GCP、GLP、GMP 和 GPVP 以及供应商稽查，也包含众多的治疗领域如抗肿瘤、抗感染、心脑血管等。
+		</p>
+		<p class="p2">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经纬传奇已成为唯一一家拥有 50 名专业稽查员，可同时开展 20 家中心稽查，执行GCP/GLP/GMP/GPVP 稽查的公司，还是唯一一家拥有第三方专家指导委员会和第三方稽查信息平台的稽查公司。
+		</p>
+	</div>
+<script type="text/javascript" src="__PUBLIC__/js/map.js"></script>
+<script src="__PUBLIC__/js/common.js" ></script>
+
+</div>
+</section>
+
+<!--footer开始-->
+ <include file="Index:footer" />
+</div>
+<!--footeR结束-->
+</body>
+</html>
+<script type="text/javascript">
+$("#{$datas["Main_ID"]}").addClass('hover');
+$("#contact").addClass('current');
+$(function(){
+	$('.commonContact').each(function(n){
+		//var a = n +1;
+		$(this).click(function(){
+			$(this).addClass('active').siblings('.commonContact').removeClass('active');
+			initMap(n);//创建和初始化地图
+		})
+	});
+
+});
+</script>
+

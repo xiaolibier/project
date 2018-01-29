@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width"/>
+<title>荣誉资质</title>
+<link href="__PUBLIC__/css/style.css" type="text/css" rel="stylesheet">
+<link href="__PUBLIC__/css/top_bottom_Public.css" rel="stylesheet" />
+<script src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+</head>
+<style>
+	html,body{min-width:1200px;}
+</style>
+<body class="bj">
+ <include file="Index:top" />
+
+ <div class="common_banner common_banner1">
+	<!-- <img class="cimg" src="/web/Tpl/Public/newImg/cimg.png"/> -->
+</div>
+<!--公司地图开始-->
+<section class="jianjie_center clear">
+    <include file="Index:leftabout" />
+  <div class="jianjie_center_right fr">
+    <!-- <div class="rt_top"><a>当前位置：</a><a>首页</a> > <a>关于我们</a> > 荣誉资质</div> -->
+    <!-- <span><img src="__PUBLIC__/img/RTU.png"></span> -->
+    
+     <div class="ry_top clear">
+       <h5>社会荣誉</h5>
+	   <volist name="colpic" id="vo">
+	   
+	   		  <dl>
+          <dt><img src="__SYSWEB__/Uploads/{$vo.Col_Pic}"></dt>
+          <dd><a href="{$vo.Col_Editor}" target="_blank">{$vo.Col_Title}</a></dd>
+        </dl>
+	   </volist>
+	   
+      
+		
+		
+       
+     </div>
+     
+<div class="text_box clear">
+<h5>行业资质</h5>
+<ul>
+<volist name="colhy" id="vo">
+	<li><a href="{$vo.Col_Editor}" target="_blank">{$vo.Col_Title}</a></li>
+</volist>
+</ul> 
+</div>
+
+<div class="text_box clear">
+<h5>相关报道</h5>
+<ul>
+ <volist name="colnews" id="vo">
+	<li><a href="{$vo.Col_Editor}" target="_blank">{$vo.Col_Title}</a></li>
+</volist>
+</ul> 
+</div>
+
+
+
+
+
+
+
+
+</section>
+<!--footer开始-->
+ <include file="Index:footer" />
+ <script src="__PUBLIC__/js/common.js" ></script>
+</div>
+<!--footeR结束-->
+</body>
+</html>
+<script type="text/javascript">$("#{$datas["Main_ID"]}").addClass('hover');$("#about").addClass('current');</script>

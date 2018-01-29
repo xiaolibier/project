@@ -1,0 +1,669 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<bean id="7A46BAE3P1H001F8C01" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070017"></property><!--受试者编号-->
+		<property name="description" value="病程记录“曾行FOLFOX方案化疗6周期”未详细记录化疗日期。"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="EV00"></property><!--分类Id-->
+		<property name="problemId" value="EV0001"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C02" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070007"></property><!--受试者编号-->
+		<property name="description" value="签署的知情同意书笔迹不一样，且存在受试者签署的日期和研究者签署的日期笔迹高度一致"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IC00"></property><!--分类Id-->
+		<property name="problemId" value="IC0001"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C03" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070009"></property><!--受试者编号-->
+		<property name="description" value="签署的知情同意书笔迹不一样，且存在受试者签署的日期和研究者签署的日期笔迹高度一致"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IC00"></property><!--分类Id-->
+		<property name="problemId" value="IC0001"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C04" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070017"></property><!--受试者编号-->
+		<property name="description" value="签署的知情同意书笔迹不一样，且存在受试者签署的日期和研究者签署的日期笔迹高度一致"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IC00"></property><!--分类Id-->
+		<property name="problemId" value="IC0001"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C05" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070018"></property><!--受试者编号-->
+		<property name="description" value="签署的知情同意书笔迹不一样，且存在受试者签署的日期和研究者签署的日期笔迹高度一致"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IC00"></property><!--分类Id-->
+		<property name="problemId" value="IC0001"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C06" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070011"></property><!--受试者编号-->
+		<property name="description" value="访视日期为2012年7月5日，未签署5.0版知情同意书（5.0版伦理批准日期为2012年5月3日）"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IC00"></property><!--分类Id-->
+		<property name="problemId" value="IC0002"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C07" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="1.0版主知情同意书签字页处，受试者没有勾选是否同意“生物标记物/遗传药理学”研究，但Inform 4.6 中筛选期pgx及pgx1均记录“Yes”"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IC00"></property><!--分类Id-->
+		<property name="problemId" value="IC0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C08" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="0"></property><!--入报告-->
+		<property name="patientNo" value="0070021"></property><!--受试者编号-->
+		<property name="description" value="第三周期用药后出现肺部感染性休克死亡，而在SAE记录中只记录了第一周期用药信息，未记录第二周期和第三周期用药信息"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="AE00"></property><!--分类Id-->
+		<property name="problemId" value="AE0001"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C09" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="0"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="第三周期用药后出现肺部感染性休克死亡，而在SAE记录中只记录了第一周期用药信息，未记录第二周期和第三周期用药信息"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value=""></property><!--分类Id-->
+		<property name="problemId" value=""></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C10" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="0"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="第三周期用药后出现肺部感染性休克死亡，而在SAE记录中只记录了第一周期用药信息，未记录第二周期和第三周期用药信息"></property><!--问题说明-->
+		<property name="level" value=""></property><!--分级-->
+		<property name="categoryId" value="AE00"></property><!--分类Id-->
+		<property name="problemId" value=""></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C11" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070021"></property><!--受试者编号-->
+		<property name="description" value="未见SAE上报国家局、申办方的记录"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="AE00"></property><!--分类Id-->
+		<property name="problemId" value="AE0002"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C12" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value=" C7D1（2011年7月15日）血小板75*109/L（100~300*109/L），  Ⅰ度AE，Inform 4.6 中未记录；"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="AE00"></property><!--分类Id-->
+		<property name="problemId" value="AE0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C13" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070006"></property><!--受试者编号-->
+		<property name="description" value="C4D1（2011年7月22日）血白细胞3.8*109/L(4~10*109/L)，Ⅰ度AE，Inform 4.6 中未记录"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="AE00"></property><!--分类Id-->
+		<property name="problemId" value="AE0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C14" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=" 0070021"></property><!--受试者编号-->
+		<property name="description" value="住院病程记录：2016年6月22日出现气急、咳嗽，2016年6月26日出现肺部感染、低钠血症、凝血功能障碍，2016年6月27日查凝血指标异常，Inform 4.6 中均未记录"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="AE00"></property><!--分类Id-->
+		<property name="problemId" value="AE0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C15" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070018"></property><!--受试者编号-->
+		<property name="description" value="根据体温表显示，该受试者2011年12月10日出现短暂高热，体温38.6度，未记录AE，病程中无当日体温异常描述；C1D1：2012年3月4日血生化LDH结果1147 U/L（91~250U/L）判断为无临床意义，病程记录未对异常值进一步进行临床评估，Inform 4.6 中未记录AE"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="AE00"></property><!--分类Id-->
+		<property name="problemId" value="AE0004"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C17" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070017"></property><!--受试者编号-->
+		<property name="description" value="C2D1/C3D1/ C17D1/ C14D1/ EV4血生化LDH高出正常值（91~250U/L）上限较多，研究者均判断为无临床意义，病程记录没有进一步进行临床评估，Inform 4.6 中未记录AE"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="AE00"></property><!--分类Id-->
+		<property name="problemId" value="AE0004"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C16" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070018"></property><!--受试者编号-->
+		<property name="description" value="心电图检查2012年7月30日显示“频发房早”，2012年9月4日、2012年9月14日显示“频发房早、成对房早”，2012年10月25日显示“频发房早、成对房早、短阵房速”、2012年10月29日显示“异位心律、快速型房颤”，均判断无临床意义，病程记录没有进一步进行临床评估，Inform 4.6中未记录AE"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="AE00"></property><!--分类Id-->
+		<property name="problemId" value="AE0004"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C18" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070001"></property><!--受试者编号-->
+		<property name="description" value="C7D8（2011年3月30日）合并用药氯化钾静滴， Inform 4.6 中未记录"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="PCO0"></property><!--分类Id-->
+		<property name="problemId" value="PC0001"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C19" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="Screening：受试者有高血压病史，合并用药“波依定”，Inform 4.6 中未记录"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="PCO0"></property><!--分类Id-->
+		<property name="problemId" value="PC0001"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C20" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=" 0070005"></property><!--受试者编号-->
+		<property name="description" value="C7（2011年7月15日、2011年7月17日）合并用药胃复安、非那根，Inform 4.6 中未记录"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="PCO0"></property><!--分类Id-->
+		<property name="problemId" value="PC0001"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C21" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070017"></property><!--受试者编号-->
+		<property name="description" value="Inform 4.6 中记录的AE“cough”和“expectoration”，在病程记录中未见相关记录"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="DOC1"></property><!--分类Id-->
+		<property name="problemId" value="DOC101"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C23" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0700006"></property><!--受试者编号-->
+		<property name="description" value="C2D8/ C3D8、0070017 C7D1血常规检查示白细胞、中性粒细胞降低，化验单与病程记录均未记录AE级别、与药物相关性等信息"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0002"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C22" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="C2D1/ C2D8血常规检查示白细胞、中性粒细胞、血小板降低，化验单与病程记录均未记录AE级别、与药物相关性等信息"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0002"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C24" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070018"></property><!--受试者编号-->
+		<property name="description" value="Inform 4.6中记录AE： “自杀未遂”，属于SAE，2012年11月26日至2013年1月9日，但无2012年11月26日至2013年1月9日期间的任何原始病历记录"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C25" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="C9D1/ C10D1血生化检查肌酐异常，化验单判断NCS，      病程记录未记录判断为NCS的原因"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C26" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="C1D8/ C3D8/ EV33） 未见住院病程记录或门诊记录"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C27" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070017"></property><!--受试者编号-->
+		<property name="description" value="C2D8／EOT之后的随访"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C28" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="预筛选及主知情过程缺失，病历未描述"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C30" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070017"></property><!--受试者编号-->
+		<property name="description" value="结直肠癌的病理诊断报告缺如"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C29" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070006"></property><!--受试者编号-->
+		<property name="description" value="2011年9月5日因肝转移手术治疗，后期随访无原始病程记录，Inform 4.6 中也无相关记录"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C31" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070018"></property><!--受试者编号-->
+		<property name="description" value="结直肠癌的病理诊断报告缺如"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C32" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="生物样本采集、处理、存储过程无记录，只有血样运送单"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="SPE1"></property><!--分类Id-->
+		<property name="problemId" value="SPE101"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C33" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="2016年7月1日开始，研究护士只记录一份温度记录表，冰箱外面有5个温度计显示器，《温度记录表》中记录的温度计型号与研究护士及CRC所指向的温度计型号均不一致"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IMP5"></property><!--分类Id-->
+		<property name="problemId" value="IMP502"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C34" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="2016年7月1日之后几个项目共用一份药物储存温度记录表，且该表格中有其他项目信息"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IMP5"></property><!--分类Id-->
+		<property name="problemId" value="IMP503"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C35" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="缺少试验药品西妥昔单抗注射液7个批号（CT2788/1、CT2788/2、CT2788/3、CT2788/5、CT2788/6、CT2788/7、CT2788/8）的中检院药检报告。现场稽查时企业提供的5个批号（78371/78291/78518/78686/78598）药检报告与发货单上的批号不一致，且无申办方盖章"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IMP2"></property><!--分类Id-->
+		<property name="problemId" value="IMP201"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C36" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="用于该项目的其他药品的部分批次无药检报告。如注射用奥沙利铂，未见10E09、10C16等批次的药检报告"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IMP2"></property><!--分类Id-->
+		<property name="problemId" value="IMP202"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C37" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="生产商的药物发货单和研究中心的药物接收单均无发货和接收数量记录，仅在研究中心接收单显示了CRA申请的药物发货数量。如：2016年7月4日药物接收单上，记录显示CRA申请了2箱西妥昔单抗，但是生产商发出及研究中心接收的部分均未显示数量"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="IMP3"></property><!--分类Id-->
+		<property name="problemId" value="IMP301"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C38" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="2010年10月27日至2014年11月5日期间，血液采集授权给了研究者，研究者访谈常规抽血都是护士执行，但研究护士在此期间均未被授权"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="PER3"></property><!--分类Id-->
+		<property name="problemId" value="PER302"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C39" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="研究者MCY、QJ未被授权药物管理相关工作，但在药品接收单上签字"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="PER3"></property><!--分类Id-->
+		<property name="problemId" value="PER302"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C40" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="CRC 被授权采血，授权不合理，其中一位CRC于2016年7月离职，授权未停止"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="PER3"></property><!--分类Id-->
+		<property name="problemId" value="PER302"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C41" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="常温保存的药物温度记录表中的研究者均未被授权"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="PER3"></property><!--分类Id-->
+		<property name="problemId" value="PER302"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C42" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="快速审查批件未见批准人员签名；2012（补）33号快速审查批件受审时间晚于审批时间：受审时间为2012年5月14日，而审批时间为2012年5月3日。"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="DOC1"></property><!--分类Id-->
+		<property name="problemId" value="DOC102"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C43" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="根据研究者文件夹中site monitoring visit log 从2013年9月4日至2014年3月3日有连续六个月，没有监查员访问本研究中心的记录，需与申办方的监查计划进一步确认"></property><!--问题说明-->
+		<property name="level" value="主要问题"></property><!--分级-->
+		<property name="categoryId" value="DOC1"></property><!--分类Id-->
+		<property name="problemId" value="DOC103"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C44" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070017"></property><!--受试者编号-->
+		<property name="description" value="病史记录中提到文盲，但该受试者的ICF上无见证人签署。"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="IC00"></property><!--分类Id-->
+		<property name="problemId" value="IC0003"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C45" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="C4D1，对于出现的AE，病程记录无跟踪记录"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0004"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C46" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0700006"></property><!--受试者编号-->
+		<property name="description" value="C3D1/C4D1，对于出现的AE，病程记录无跟踪记录"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0004"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C47" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070001"></property><!--受试者编号-->
+		<property name="description" value="C5D1（2011年2月21日）电解质检查结果，Inform 4.6 中未记录；"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0005"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C48" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="Screening中记录受试者有高血压病史，Inform 4.6 中未记录"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0005"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C49" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="C9D1/ C10D1, 血生化检查肌酐偏高，化验单已作出判断，但       Inform 4.6 中对于该指标异常未录入是否有临床意义"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0005"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C50" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="Screening：病理诊断报告日期为2011年3月15，但Inform 4.6中记录为2011年3 月11日"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0006"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C51" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070005"></property><!--受试者编号-->
+		<property name="description" value="Screening：② KRAS检查报告日期为2011年3月30日，但Inform 4.6中记录为2011年3月31日"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0006"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C52" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070006"></property><!--受试者编号-->
+		<property name="description" value="Screening：病理诊断报告日期为2011年4月29日，但Inform 4.6中记录为2011年4月22日"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0006"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C53" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070017"></property><!--受试者编号-->
+		<property name="description" value="Screening：确诊日期病历记录为2008年11月19日，但Inform 4.6中记录为2008年12月"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0006"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C54" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value="0070021"></property><!--受试者编号-->
+		<property name="description" value="Screening：病理诊断报告日期为2011年3月28日，但Inform 4.6中记录为2011年3月22日"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="SD00"></property><!--分类Id-->
+		<property name="problemId" value="SD0006"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C56" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="2016年7月17日和2016年7月27日药物接收单接收意见均未勾选完整。如2016年7月27日药物接收意见中“运送是否准时”、“包装是否损坏”、“温度是否按照规定”这3个问题未勾选"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="IMP5"></property><!--分类Id-->
+		<property name="problemId" value="IMP504"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C55" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="2016年7月27日接收单，温度记录仪序号记录错误，将CKZ4100550记录为CFZ4100550"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="IMP5"></property><!--分类Id-->
+		<property name="problemId" value="IMP504"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C57" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="2014年11月19日的奥沙利铂、5-FU药物接收单中“项目温度记录仪指南”：最高最低温度，及相应报警持续时间均未记录；亚叶酸钙只记录了最高温度、最低温度，持续时间未记录"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="IMP5"></property><!--分类Id-->
+		<property name="problemId" value="IMP504"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C58" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="研究中心TSF中的单页研究监查员联系方式已经过时，但没有标注。默   克公司和昆泰公司在2014年3月的监查员交接，但没有交接记录；"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="DOC1"></property><!--分类Id-->
+		<property name="problemId" value="DOC104"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+	<bean id="7A46BAE3P1H001F8C59" class="com.zhb.bean.Discovery"><!--id 可以随便起，只要不重复即可-->
+		<property name="taskId" value="7A46BAE3P1H001"></property><!--稽查任务编号，暂时都用这个-->
+		<property name="inReport" value="1"></property><!--入报告-->
+		<property name="patientNo" value=""></property><!--受试者编号-->
+		<property name="description" value="研究中心TSF中有关SAE报告程序的指南，不够全面和详细"></property><!--问题说明-->
+		<property name="level" value="一般问题"></property><!--分级-->
+		<property name="categoryId" value="DOC1"></property><!--分类Id-->
+		<property name="problemId" value="DOC104"></property><!--问题归类Id-->
+		<property name="memo" value="备注"></property><!--备注-->
+	</bean>
+
+</beans>

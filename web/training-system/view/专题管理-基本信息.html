@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/libs/kindeditor/themes/default/default.css" />
+	<link rel="stylesheet" href="../public/libs/kindeditor/plugins/code/prettify.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title></title>
+	<style>
+		.check_box .i, .check_box2 .i{margin-right:5px;}
+	</style>
+</head>
+<body class="xiangmuguanli xiangmujibenxinxi zhuantiguanli">
+
+	<h4 class="zti_title">
+		<a href="javascript:;" back="专题管理-基本信息.html" class="goback ztit_abtn active">基本信息</a>
+		<a href="javascript:;" back="专题管理-专题课程.html" class="goback ztit_abtn">专题课程</a>
+		<a href="javascript:;" back="专题管理-人员管理.html" class="goback ztit_abtn">人员管理</a>
+	</h4>
+	<div class="content_box1">
+		<div class="con_d">
+			<span class="lable need">专题名称</span>
+			<i class="x">*</i>
+			<input id="zhuantiname" style="width:620px;" class="common_input" type="text" />
+		</div>
+		<div class="con_d">
+			<span class="lable need">专题封面</span>
+			<i class="x">*</i>
+			<ul id="zhuantifengmain" class="ztpage_ul">
+				<li class="atp_li added" asrc="../public/img/f1.jpg" style="background:url('../public/img/f1.jpg') no-repeat center center;background-size:cover;" ></li>
+				<li class="atp_li added" asrc="../public/img/f1.jpg" style="background:url('../public/img/f1.jpg') no-repeat center center;background-size:cover;" ></li>
+				<li class="atp_li" style="border: 1px solid #DDDEE1;background:url('../public/img/add1.png') no-repeat center center;background-size:45px 45px;" >
+					<form enctype="multipart/form-data" method="post" id="fileForm" name="fileForm">
+						<input id="orderMaterialFile" name="file" class="headUpload in" type="file" />
+					</form>
+				</li>
+			</ul>
+		</div>
+		<div class="con_d">
+			<span class="lable need">专题简介</span>
+			<i class="x"></i>
+			<div class="keditdiv">
+				<textarea id="editor_id" style="width:776px;height:272px;visibility:hidden;"></textarea>
+			</div>
+		</div>
+		
+		<div class="btns_div">
+			<a back='专题管理.html' class="common_abtn goback type1">取消</a>
+			<a href="javascript:;" id="change_ok_btn" class="common_abtn type2">确定</a>
+		</div>
+	</div>
+
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script charset="utf-8" src="../public/libs/kindeditor/kindeditor-all-min.js"></script>
+	<script charset="utf-8" src="../public/libs/kindeditor/lang/zh-CN.js"></script>
+	<!-- <script charset="utf-8" src="../public/libs/kindeditor/plugins/code/prettify.js"></script> -->
+	<script type="text/javascript" src="../public/js/jquery.form.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.id = Utils.getQueryString("zhuantiid") || Utils.offLineStore.get("zhuantiid",false);//专题id 从专题管理页面传来
+	g.do = Utils.getQueryString("zhuantido") || Utils.offLineStore.get("zhuantido",false);//专题do 从专题管理页面传来
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('专题管理').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '专题管理.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 基本信息').addClass('active');
+	
+	$('#change_ok_btn').on('click',function(){changeOrCreateProject(1)});
+	
+	loadPage();//加载页面
+/* **************************************** setTing ******************************************** */	
+
+	//加载页面
+	function loadPage(){
+		
+		//getProject();//获取专题信息
+	}
+
+	//编辑插件---------------------------------------------------
+		KindEditor.ready(function(K) {
+			g.editor = K.create('#editor_id');
+		});
+	//编辑插件---------------------------------------------------
+	
+	/* 上传封面 */
+	$(".xiangmuguanli").on('change','#orderMaterialFile',function(){
+		var orderMaterialFile = $("#orderMaterialFile").val() || "";
+		if(orderMaterialFile != ""){
+			uploadImage();
+		}
+	});
+	//上传form 提交
+	function uploadImage(){
+		 var form = $("#fileForm"); 
+		 var options = { 
+			url: Base.serverUrl + "user/uploadUserIcon",
+			xhrFields: { withCredentials: true }, 
+			crossDomain: true, 
+			dataType: 'json', 
+			success: function(data) { 
+				//alert("success： " + JSON.stringify(data));
+				var src = data.result || [];
+				getProject();//更新封面列表
+			}, 
+			error: function(err) {
+				Utils.alert("图片上传失败");
+			} 
+		 }; 
+		 form.ajaxSubmit(options); 
+	 } 
+	
+	//获取专题信息
+	function getProject(){
+		var condi = {};
+		condi.id = g.id;
+		var url = Base.serverUrl + "project/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					var id = d.id || '';
+					
+					$('#zhuantiname').val(d.zhuanti || '');
+					g.editor.html(d.zhuanti || '');
+					//加载封面列表
+					var jsonfeng = d.json || [];
+					var imglist = '';
+					for(var i=0,len=jsonfeng.length;i<len;i++){
+						var dd = jsonfeng[i] || {};
+						var id = dd.id || '';
+						var src = dd.src || '';
+						imglist+='<li class="atp_li added" asrc="'+src+'" style="background:url('+src+') no-repeat center center;background-size:cover;" ></li>';
+					}
+					imglist+='<li class="atp_li" style="border: 1px solid #DDDEE1;background:url(../public/img/add1.png) no-repeat center center;background-size:45px 45px;" >'
+								+'<form enctype="multipart/form-data" method="post" id="fileForm" name="fileForm">'
+									+'<input id="orderMaterialFile" name="file" class="headUpload in" type="file" />'
+								+'</form>'
+							+'</li>';
+					$('#zhuantifengmain').html(imglist);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	
+	
+	//修改保存项目信息
+	function changeOrCreateProject(is){
+		var zhuantiname = $('#zhuantiname').val() || '';
+		var edithtml = g.editor.html() || '';
+		//获取专题封面 src列表
+		var srcarray = [];
+		$('#zhuantifengmain').find('.added').each(function(){
+			var asrc = $(this).attr('asrc') || '';
+			var ks = {};
+			ks['src'] = asrc;
+			srcarray.push(ks);
+		});
+		var srcJson = JSON.stringify(srcarray);
+		if(zhuantiname == ''){Utils.alert('专题名称不能为空！');return false;}
+		if(srcarray.length <= 0){Utils.alert('专题封面不能为空！');return false;}
+		var condi = {};
+		condi.id = g.id;
+		condi.zhuantiname = zhuantiname;
+		condi.srcJson = srcJson;
+		condi.edithtml = edithtml;
+		var url = Base.serverUrl + "project/create";
+		if(g.do == 'change'){url = Base.serverUrl + "project/update"}
+		$('#create_new_btn').off();
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					var tip = g.do == 'change' ? '保存成功！' : '新建成功！' ;
+					Utils.alert(tip);
+					if(g.do != 'change'){//新建项目
+						setTimeout(function(){
+							parent.document.getElementById("iframeObj").src = '专题管理.html';
+						},1000);
+					}
+				}
+				else{
+					var msg = data.message || "保存失败";
+					Utils.alert(msg);
+					$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	
+
+	
+});
+
+</script>
+</html>

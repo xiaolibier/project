@@ -1,0 +1,215 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!--稽查发现分类-->
+	<bean id="CON1" class="com.zhb.bean.Category">
+		<property name="name" value="隐私（Confidentiality）"></property>
+		<property name="moduleId" value="91"></property>
+	</bean>
+
+	<bean id="CON2" class="com.zhb.bean.Category">
+		<property name="name" value="数据保护（Confidentiality）"></property>
+		<property name="moduleId" value="91"></property>
+	</bean>
+
+	<bean id="PER1" class="com.zhb.bean.Category">
+		<property name="name" value="授权和监督管理（Personnel）"></property>
+		<property name="moduleId" value="92"></property>
+	</bean>
+
+	<bean id="PER2" class="com.zhb.bean.Category">
+		<property name="name" value="组织和构架（Personnel）"></property>
+		<property name="moduleId" value="92"></property>
+	</bean>
+
+	<bean id="PER3" class="com.zhb.bean.Category">
+		<property name="name" value="资质和培训（Personnel）"></property>
+		<property name="moduleId" value="92"></property>
+	</bean>
+
+	<bean id="EIR1" class="com.zhb.bean.Category">
+		<property name="name" value="伦理沟通（EC/IRB  )"></property>
+		<property name="moduleId" value="94"></property>
+	</bean>
+
+	<bean id="EIR2" class="com.zhb.bean.Category">
+		<property name="name" value="伦理审查、跟踪（EC/IRB  )"></property>
+		<property name="moduleId" value="94"></property>
+	</bean>
+
+	<bean id="EIR3" class="com.zhb.bean.Category">
+		<property name="name" value="利益冲突（EC/IRB  )"></property>
+		<property name="moduleId" value="94"></property>
+	</bean>
+
+	<bean id="DOC1" class="com.zhb.bean.Category">
+		<property name="name" value="研究者文件夹（Doc）"></property>
+		<property name="moduleId" value="95"></property>
+	</bean>
+
+	<bean id="DOC2" class="com.zhb.bean.Category">
+		<property name="name" value="项目主文件夹（Doc）"></property>
+		<property name="moduleId" value="95"></property>
+	</bean>
+
+	<bean id="DOC3" class="com.zhb.bean.Category">
+		<property name="name" value="文件的设计/修订的科学性和完整性（Doc）"></property>
+		<property name="moduleId" value="95"></property>
+	</bean>
+
+	<bean id="FEQ1" class="com.zhb.bean.Category">
+		<property name="name" value="设施／设备的充足、校准、测试、维护(Facilities/equipment）"></property>
+		<property name="moduleId" value="96"></property>
+	</bean>
+
+	<bean id="FEQ2" class="com.zhb.bean.Category">
+		<property name="name" value="设施／设备的运行能力和安全性(Facilities/equipment）"></property>
+		<property name="moduleId" value="96"></property>
+	</bean>
+
+	<bean id="FEQ3" class="com.zhb.bean.Category">
+		<property name="name" value="设施/设备的环境监控(Facilities/equipment）"></property>
+		<property name="moduleId" value="96"></property>
+	</bean>
+
+	<bean id="IMP1" class="com.zhb.bean.Category">
+		<property name="name" value="研究用药物／器械生产、检验、供应、分配（IMP）"></property>
+		<property name="moduleId" value="97"></property>
+	</bean>
+
+	<bean id="IMP2" class="com.zhb.bean.Category">
+		<property name="name" value="研究用药物／器械包装、标签、重标签（IMP）"></property>
+		<property name="moduleId" value="97"></property>
+	</bean>
+
+	<bean id="IMP3" class="com.zhb.bean.Category">
+		<property name="name" value="研究用药物／器械配置、分发、使用、回收（IMP）"></property>
+		<property name="moduleId" value="97"></property>
+	</bean>
+
+	<bean id="IMP4" class="com.zhb.bean.Category">
+		<property name="name" value="研究用药物／器械随机、设盲、揭盲（IMP）"></property>
+		<property name="moduleId" value="97"></property>
+	</bean>
+
+	<bean id="IMP5" class="com.zhb.bean.Category">
+		<property name="name" value="研究用药物／器械接收、存储、清点、销毁（IMP）"></property>
+		<property name="moduleId" value="97"></property>
+	</bean>
+
+	<bean id="SPE1" class="com.zhb.bean.Category">
+		<property name="name" value="生物样本来源（Speciman）"></property>
+		<property name="moduleId" value="98"></property>
+	</bean>
+
+	<bean id="SPE2" class="com.zhb.bean.Category">
+		<property name="name" value="生物样本采集、预处理和保存（Speciman）"></property>
+		<property name="moduleId" value="98"></property>
+	</bean>
+
+	<bean id="SPE3" class="com.zhb.bean.Category">
+		<property name="name" value="生物样本转运和交接（Speciman）"></property>
+		<property name="moduleId" value="98"></property>
+	</bean>
+
+	<bean id="SPE4" class="com.zhb.bean.Category">
+		<property name="name" value="生物样本检测（Speciman）"></property>
+		<property name="moduleId" value="98"></property>
+	</bean>
+
+	<bean id="QMS1" class="com.zhb.bean.Category">
+		<property name="name" value="记录的一致性、保存和归档(QMS）"></property>
+		<property name="moduleId" value="99"></property>
+	</bean>
+
+	<bean id="QMS2" class="com.zhb.bean.Category">
+		<property name="name" value="监查(QMS）"></property>
+		<property name="moduleId" value="99"></property>
+	</bean>
+
+	<bean id="QMS3" class="com.zhb.bean.Category">
+		<property name="name" value="稽查(QMS）"></property>
+		<property name="moduleId" value="99"></property>
+	</bean>
+
+	<bean id="SD00" class="com.zhb.bean.Category">
+		<property name="name" value="原始数据的记录和报告（SD）"></property>
+		<property name="moduleId" value="9A"></property>
+	</bean>
+
+	<bean id="IC00" class="com.zhb.bean.Category">
+		<property name="name" value="知情同意  (IC)"></property>
+		<property name="moduleId" value="9A"></property>
+	</bean>
+
+	<bean id="EV00" class="com.zhb.bean.Category">
+		<property name="name" value="有效性评估（EV）"></property>
+		<property name="moduleId" value="9A"></property>
+	</bean>
+
+	<bean id="SRI0" class="com.zhb.bean.Category">
+		<property name="name" value="受试者权益(Subject Rights）"></property>
+		<property name="moduleId" value="9A"></property>
+	</bean>
+
+	<bean id="COM0" class="com.zhb.bean.Category">
+		<property name="name" value="方案/研究的依从性(Compliance）"></property>
+		<property name="moduleId" value="9A"></property>
+	</bean>
+
+	<bean id="SIT0" class="com.zhb.bean.Category">
+		<property name="name" value="研究中心的选择和管理（Site）"></property>
+		<property name="moduleId" value="9B"></property>
+	</bean>
+
+	<bean id="SMA0" class="com.zhb.bean.Category">
+		<property name="name" value="试验管理(Study Management）"></property>
+		<property name="moduleId" value="9B"></property>
+	</bean>
+
+	<bean id="CONT" class="com.zhb.bean.Category">
+		<property name="name" value="合同（Contract）"></property>
+		<property name="moduleId" value="9B"></property>
+	</bean>
+
+	<bean id="AE00" class="com.zhb.bean.Category">
+		<property name="name" value="AE/SAE（AE/SAE）"></property>
+		<property name="moduleId" value="9C"></property>
+	</bean>
+
+	<bean id="PCO0" class="com.zhb.bean.Category">
+		<property name="name" value="药物警戒（Pharmacovigilance）"></property>
+		<property name="moduleId" value="9C"></property>
+	</bean>
+
+	<bean id="DMB0" class="com.zhb.bean.Category">
+		<property name="name" value="数据管理与生物统计（DM&amp;Biometrics）"></property>
+		<property name="moduleId" value="9D"></property>
+	</bean>
+
+	<bean id="EDC0" class="com.zhb.bean.Category">
+		<property name="name" value="EDC系统、随机系统等（EDC&amp;IXRs）"></property>
+		<property name="moduleId" value="9E"></property>
+	</bean>
+
+	<bean id="OTH0" class="com.zhb.bean.Category">
+		<property name="name" value="其它（Other)"></property>
+		<property name="moduleId" value="9F"></property>
+	</bean>
+
+</beans>

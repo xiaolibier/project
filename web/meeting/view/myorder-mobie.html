@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<title>第三届临床研究质量学术研讨会-报名</title>
+	<style>
+		
+	</style>
+</head>
+<body class="common_body apply-mobie myorder-mobie">
+	<div class="mobie_div">
+		<!-- <h4 class="head_h4"><a href="javascript:;" class="backto gotoyiqixiu">大会介绍</a></h4> -->
+		<div class="banner_img_div"></div>
+		<h4 class="h4title1">第三届临床研究质量学术研讨会（暨2017中国临床研究质量年度报告发布会）</h4>
+		<div class="h4title2"><i class="hi1 type1"></i>2017年11月18-19日</div>
+		<div class="h4title2"><i class="hi1 type2"></i>北京.江西大酒店</div>
+		<div class="h4title2"><i class="hi1 type3"></i>北京经纬传奇医药科技有限公司</div>
+		<!--  -->
+		<div id="order_list_box"></div>
+		<!--  -->
+	</div>
+	<ul class="bottom_cmenu"><li class="cmenu mobieApply">参会报名</li><li class="cmenu active">我的订单</li></ul>
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common1.js"></script>
+
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("logintoken",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.totalElements = 0;//总数
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */		
+	
+	loadPage();//加载页面
+	$('.common_body').on('click','.mobieApply',mobieApplyFunc);//跳转到手机报名页
+/* **************************************** setTing ******************************************** */	
+	//加载页面
+	function loadPage(){
+		getmyorder();//获取订单列表
+		
+	}
+	
+	//跳转到手机报名页
+	function mobieApplyFunc(){
+		location.href = "apply-mobie.html";
+	}
+	
+	//获取订单列表
+	function getmyorder(){
+		var nohtml = ''
+			+'<h4 class="appl_title">订单信息</h4>'
+			+'<div class="noorder">'
+				+'<div><img src="../public/img/no.png" class="noimg" /></div>'
+				+'<p class="pp">您还没有相关的订单</p>'
+				+'<div><a class="reg_btn mobieApply">立即报名</a></div>'
+			+'</div>';
+		
+		var condi = {};
+		var url = Base.serverUrl + "conference/order/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || '';
+					var html = '';
+					for(var i=0,len=data.length;i<len;i++){
+						var di = data[i] || {};
+						var items = di.items || [];
+						var code = di.code || '';
+						var people = di.people || '';
+						var invoice = di.invoice || {};
+						var address = invoice.address || '';
+						var number = invoice.number || '';
+						var title = invoice.title || '';
+						var type = invoice.type || '';
+						var company = invoice.company || '';
+						var total = di.total || '';
+						var totalStr = di.totalStr || '';
+						
+						html+='<h4 class="appl_title">订单信息 '+code+'</h4>'
+							+'<div class="pdd">'
+									+'<span class="common_lable">报名人数：</span>'
+									+'<span class="context c1">'+people+'人</span>'
+								+'</div>'
+								+'<div class="pdd">'
+									+'<span class="common_lable">公司名称：</span>'
+									+'<span class="context c2">'+company+'</span>'
+								+'</div>'
+								+'<div class="pdd">'
+									+'<span class="common_lable">发票类型：</span>'
+									+'<span class="context c2">'+type+'</span>'
+								+'</div>';
+								if(type == '增值税普通发票'){
+								html+='<div class="pdd">'
+									+'<span class="common_lable">公司税号：</span>'
+									+'<span class="context c2">'+number+'</span>'
+								+'</div>'
+								+'<div class="pdd">'
+									+'<span class="common_lable">发票抬头：</span>'
+									+'<span class="context c2">'+title+'</span>'
+								+'</div>'
+								+'<div class="pdd">'
+									+'<span class="common_lable">发票邮寄：</span>'
+									+'<span class="context c2">'+address+'</span>'
+								+'</div>';
+								}
+								html+='<h4 class="h4titlebg"></h4>';
+							for(var j=0,lenj=items.length;j<lenj;j++){
+								var dj = items[j] || {};
+								var name = dj.name || '';
+								var phone = dj.phone || '';
+								var job = dj.job || '';
+								var email = dj.email || '';
+								var hotelPrice = dj.hotelPrice || '';
+								var hotelStart = dj.hotelStart || '';
+								var hotelEnd = dj.hotelEnd || '';
+								var hotelDay = dj.hotelDay || '';
+								var subForums = dj.subForums || '';
+								var hotel_str = '';
+								var _style = 'style="display:none;"';
+								var case1 = '',case2 = '',case3 = '',case4 = '';
+								if(hotelPrice == 0){hotel_str = '自理';}
+								else if(hotelPrice > 0){
+									hotel_str = hotelPrice+'元/天/豪华标间';
+									_style = '';
+								}
+								//判断显示论坛几
+								case1 = subForums.indexOf('1') > -1 ? 'display:inline-block;' : '';
+								case2 = subForums.indexOf('2') > -1 ? 'display:inline-block;' : '';
+								case3 = subForums.indexOf('3') > -1 ? 'display:inline-block;' : '';
+								case4 = subForums.indexOf('4') > -1 ? 'display:inline-block;' : '';
+								
+										html+='<div class="oneperson">'
+											+'<div class="pdd">'
+												+'<span style="position:relative;" class="common_lable color2"><i class="ll"></i>姓名：</span>'
+												+'<span class="context">'+name+'</span>'
+											+'</div>'
+											+'<div class="pdd">'
+												+'<span class="common_lable">手机号：</span>'
+												+'<span class="context">'+phone+'</span>'
+											+'</div>'
+											+'<div class="pdd">'
+												+'<span class="common_lable">职务：</span>'
+												+'<span class="context">'+job+'</span>'
+											+'</div>'
+											+'<div class="pdd">'
+												+'<span class="common_lable">邮箱：</span>'
+												+'<span class="context">'+email+'</span>'
+											+'</div>'
+											+'<div class="pdd">'
+												+'<span class="common_lable">酒店选择：</span>'
+												+'<span class="context">'+hotel_str+'</span>'
+											+'</div>'
+											if(hotelPrice > 0){
+												html+='<div class="pdd">'
+													+'<span class="common_lable">入住时间：</span>'
+													+'<span class="context">2017年11月'+hotelStart+'日</span>'
+												+'</div>'
+												+'<div class="pdd">'
+													+'<span class="common_lable">离开时间：</span>'
+													+'<span class="context">2017年11月'+hotelEnd+'日</span>'
+												+'</div>'
+												+'<div class="pdd">'
+													+'<span class="context">共计入住 '+hotelDay+' 天</span>'
+												+'</div>';
+											}
+											html+='<div class="pdd">'
+												+'<span class="common_lable">论坛选择：</span>'
+												+'<span style="display:none;'+case1+'" class="context c2">分论坛一：落实创新，全球同步——打造政府威信力</span>'
+												+'<span style="display:none;'+case2+'" class="context c2">分论坛二：真实科研，重视质量——建立机构公信力</span>'
+												+'<span style="display:none;'+case3+'" class="context c2">分论坛三：真实研发，保证质量——树立企业诚信力</span>'
+												+'<span style="display:none;'+case4+'" class="context c2">分论坛四：真实服务，兑现质量——确立服务忠信力</span>'
+											+'</div>';
+											if(j < lenj - 1)html+='<div class="bt_line type2"></div>';
+										html+='</div>';
+								
+							}
+							html+='<div class="payres">'
+								+'<div class="tt_show">总计： ¥ <span id="tttmoney">'+total+'</span></div>'
+								+'<div id="tttmoney_str" class="computer_show">'+totalStr+'</div>'
+							+'</div>';
+					}
+					$('#order_list_box').html(html);
+					if(data.length <= 0)$('#order_list_box').html(nohtml);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					Utils.alert(msg);
+					$('#order_list_box').html(nohtml);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			$('#order_list_box').html(nohtml);
+			}
+		});
+	}
+	
+
+	
+});
+</script>
+</html>

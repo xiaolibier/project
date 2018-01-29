@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli zhongxinguanli">
+	<!-- <h4 class="page_title">中心管理</h4> -->
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">选择省份</span>
+					<select id="province" name="province" onChange="changeComplexProvince(this.value, sub_array, 'city', 'town');" class="com_select com_select1"><option value="" disabled selected>选择省份</option></select>
+				</td>
+				<td>
+					<span class="sear_lable">选择市</span>
+					<select id="city" name="city" onChange="changeCity(this.value,'town','town');" class="com_select com_select2"><option value="" disabled selected>选择市</option></select>
+				</td>
+				<td>
+					<span class="sear_lable">选择县</span>
+					<select id="town" name="town" class="com_select com_select3"><option value="" disabled selected>选择县</option></select>
+				</td>
+				<td>
+					<span class="sear_lable">医院名称</span>
+					<input id="name" class="com_input com_input1" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td class="searBtnTd">
+					<a id="searchBtn" class="top_btn">搜索</a>
+					<a id="searchAll" style="margin-right:28px;" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		<!-- 中心：<span class="m_value">全部中心</span>&nbsp;&nbsp;&nbsp; -->
+		中心数：<span id="totalElements" class="m_value">226</span>
+		<a class="creat_forse" id="newCenter" >新增中心</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<!-- 列表输出 -->
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		</span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+
+<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+			<!-- 修改中心 -->
+			<div class="sbox xiugaizhongxin">
+				<h4 class="sbox_h4">中心管理</h4>
+				<div class="sbox_c"><span class="slable">机构代码</span><i class="star">*</i><input id="jigoudaima" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">医院名称</span><i class="star">*</i><input id="yiyuanmingcheng" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">机构类型</span><select id="jigouleixing" class="sbox_select"><option>医院</option><option>公司</option><option>院校</option></select></div>
+				<div class="sbox_c sbox_c1">
+					<span class="slable">省</span>
+					<select id="sheng" onChange="changeComplexProvince(this.value, sub_array, 'shiqu', 'quxian');" class="sbox_select"><option>请选择</option></select>
+					<span class="slable slable1">市</span>
+					<select id="shiqu" onChange="changeCity(this.value,'quxian','quxian');" class="sbox_select"><option>请选择</option></select>
+					<span class="slable slable1">区县</span>
+					<select id="quxian" name="quxian" class="sbox_select"><option>请选择</option></select>
+				</div>
+				<div class="sbox_c"><span class="slable">医院网站</span><input id="yiyuanwangzhan" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">医院地址</span><input id="yiyuandizhi" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">联系方式</span><input id="lianxifangshi" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">科室</span><input id="keshi" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">证书</span><input id="zhengshu" class="sbox_input" type="text"/></div>
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/libs/area/Area.js"></script>
+	<script type="text/javascript" src="../public/libs/area/AreaData_min.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/index.js"></script> -->
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	
+/* **************************************** lodding ******************************************** */	
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	//$('#menu_show_t .s0',parent.document).html('知识库');
+	$('#menu_show_t .s0',parent.document).html('中心管理').addClass('active');
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#newCenter').on('click',shownewCenterSbox);
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	reloadSbox();
+	tableListShow();//显示列表
+	//初始化 省 市 区
+	initComplexArea('province', 'city', 'town', area_array, sub_array, '0', '0', '0');
+	initComplexArea('sheng', 'shiqu', 'quxian', area_array, sub_array, '0', '0', '0');
+	
+	
+	
+	
+/* **************************************** setTing ******************************************** */
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	
+	//初始化弹窗
+	function reloadSbox(){
+		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		$('#noBtn').html('取消');
+		$('#yesBtn').off().show();
+		$('.xiugaizhongxin input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.xiugaizhongxin select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	//显示新建中心窗口
+	function shownewCenterSbox(){
+		reloadSbox();//初始化弹窗
+		$('.xiugaizhongxin .sbox_h4').html('添加中心');
+		showSbox('.xiugaizhongxin');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc('new')});
+	}
+	//新建中心
+	window.centerFunc = function(is,id){
+		
+		var is = is || '';
+		var id = id || '';
+		var jigoudaima = $('#jigoudaima').val() || '';
+		var yiyuanmingcheng = $('#yiyuanmingcheng').val() || '';
+		if(jigoudaima == ''){Utils.alert('机构代码不能为空！');return false;}
+		if(yiyuanmingcheng == ''){Utils.alert('医院名称不能为空！');return false;}
+		$('#yesBtn').off();
+		var jigouleixing = $('#jigouleixing option:selected').html() || '';
+		var sheng = ($('#sheng option:selected').html() || '').replace('请选择');
+		var shiqu = ($('#shiqu option:selected').html() || '').replace('请选择');
+		var quxian = ($('#quxian option:selected').html() || '').replace('请选择');
+		var yiyuanwangzhan = $('#yiyuanwangzhan').val() || '';
+		var yiyuandizhi = $('#yiyuandizhi').val() || '';
+		var lianxifangshi = $('#lianxifangshi').val() || '';
+		var keshi = $('#keshi').val() || '';
+		var zhengshu = $('#zhengshu').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.code = jigoudaima;
+		condi.name  = yiyuanmingcheng;
+		condi.type = jigouleixing;
+		condi.province = sheng;
+		condi.city = shiqu;
+		condi.town = quxian;
+		condi.website = yiyuanwangzhan;
+		condi.address = yiyuandizhi;
+		condi.contact = lianxifangshi;
+		condi.department = keshi;
+		condi.certificate = zhengshu;
+		var url = Base.serverUrl + "center/create";
+		if(is == 'change'){condi.id = id;url = Base.serverUrl + "center/update";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					if(is == 'change'){tips = '修改成功！';}
+					Utils.alert(tips);
+					tableListShow(2);//列表
+					closeSbox();//关闭弹窗
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+	 
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		var province = $('#province option:selected');
+		var city = $('#city option:selected');
+		var town = $('#town option:selected');
+		var province1 = (province.val() || '0') == '0' ? '' : (province.html() || '').replace("市","");
+		var city1 = (city.val() || '0') == '0' ? '' : (city.html() || '').replace("市","").replace("区","");
+		var town1 = (town.val() || '0') == '0' ? '' : (town.html() || '').replace("市","");
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		if(is == 1 || is == 'pa'){//搜索条件
+			condi.province = province1;
+			condi.city = city1;
+			condi.town = town1;
+			condi.name = $('#name').val() || '';
+			if(is != 'pa')g.loadPage = true;//开启分页
+		}else if(is == 2){//搜索全部
+			//初始化 省 市 区
+			$('#province').val('0');
+			$('#city').val('0');
+			$('#town').val('0');
+			$('.btn_div input').val('');//全部的时候 清空搜索项
+			g.loadPage = true;//开启分页
+		}
+		var url = Base.serverUrl + "center/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					$('#totalElements').html(totalElements);
+					var html = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:58px;">医院名称</th>'
+							+'<th style="min-width:58px;">机构代码</th>'
+							+'<th style="min-width:58px;">医院网站</th>'
+							+'<th style="min-width:58px;">医院地址</th>'
+							+'<th style="min-width:58px;">机构类型</th>'
+							+'<th style="min-width:58px;">证书编号</th>'
+							+'<th>科室</th>'
+							+'<th style="min-width:146px;">操作</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//机构编号
+						var name = d.name || '';//中心名称
+						var type = d.type || '';//类型
+						var website = d.website || '';//网站
+						var address = d.address || '';//地址
+						var department = d.department || '';//科室
+						var certificate = d.certificate || '';//证书编号
+						html+='<tr>'
+							+'<td>'+name+'</td>'
+							+'<td>'+code+'</td>'
+							+'<td>'+website+'</td>'
+							+'<td>'+address+'</td>'
+							+'<td>'+type+'</td>'
+							+'<td>'+certificate+'</td>'
+							+'<td>'+department+'</td>'
+							+'<td class="last">'
+								+'<a href="javascript:;" onclick="review(\''+id+'\')" class="cao_btn cao_btn1">查看</a>'
+								+'<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn2">修改</a>'
+								+'<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>'
+							+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//删除一项
+	window.deleteIt = function(id){
+		var id = id || '';
+		if(id == ''){Utils.alert('中心id不能为空！');return false;}
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "center/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('删除成功！');
+					tableListShow(2);//列表
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//修改
+	window.change = function(id){
+		showOrChange(id,'change');
+	}
+	//查看
+	window.review = function(id){
+		showOrChange(id,'review');
+	}
+	//查看或者修改的 公共方法
+	window.showOrChange = function(id,is){
+		var id = id || '';
+		var is = is || '';
+		if(id == ''){Utils.alert('中心id不能为空！');return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "center/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					
+					reloadSbox();//初始化弹窗
+					//赋值
+					$('#jigoudaima').val(d.code || '');
+					$('#yiyuanmingcheng').val(d.name || '');
+					$('#jigouleixing').val(d.type || '');
+					sval('#sheng',(d.province || ''));//给省市区赋值
+					sval('#shiqu',(d.city || ''));//给省市区赋值
+					sval('#quxian',(d.town || ''));//给省市区赋值
+					$('#yiyuanwangzhan').val(d.website || '');
+					$('#yiyuandizhi').val(d.address || '');
+					$('#lianxifangshi').val(d.contact || '');
+					$('#keshi').val(d.department || '');
+					$('#zhengshu').val(d.certificate || '');
+					//弹窗
+					var tips = '';//判断弹窗标题
+					
+					if(is == 'review'){//弹窗是查看
+						tips = '中心详情';
+						$('#yesBtn').off().hide();
+						$('#noBtn').html('关闭');
+						$('.xiugaizhongxin input').attr('readonly',true).addClass('readonly');//清空
+						$('.xiugaizhongxin select').attr('disabled',true).addClass('readonly');//清空
+					}else{//弹窗是修改
+						tips = '修改中心';
+						$('#yesBtn').off().on('click',function(){centerFunc('change',id)});
+					}
+					$('.xiugaizhongxin .sbox_h4').html(tips);
+					showSbox('.xiugaizhongxin');//显示弹窗
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//省市区 select赋值
+	window.sval = function(select,val){
+		var val = val || '';
+		var select = select || '';
+		if(val == '' || select == ''){return false;}
+		$(select + ' option').each(function(){
+			var t = $(this).html() || '';
+			var k = $(this).val() || '';
+			if(val == t){//此项为选中项
+				$(select).val(k);
+			}
+		});
+	}
+
+/* end */
+});
+
+</script>
+</html>

@@ -1,0 +1,44 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<bean id="系统管理员" class="com.zhb.bean.Role">
+		<property name="name" value="系统管理员"></property>
+		<property name="privilegeIds" value="SYSTEM_ADMIN,PRINT,CHECK,CLASSIFY"></property>
+	</bean>
+
+	<bean id="业务管理员" class="com.zhb.bean.Role">
+		<property name="name" value="业务管理员"></property>
+		<property name="privilegeIds" value="BUSINESS_ADMIN,PRINT,CHECK,CLASSIFY"></property>
+	</bean>
+
+	<bean id="打印员" class="com.zhb.bean.Role">
+		<property name="name" value="打印员"></property>
+		<property name="privilegeIds" value="PRINT"></property>
+	</bean>
+
+	<bean id="评审员" class="com.zhb.bean.Role">
+		<property name="name" value="评审员"></property>
+		<property name="privilegeIds" value="CHECK"></property>
+	</bean>
+
+	<bean id="分级员" class="com.zhb.bean.Role">
+		<property name="name" value="分级员"></property>
+		<property name="privilegeIds" value="CLASSIFY"></property>
+	</bean>
+</beans>

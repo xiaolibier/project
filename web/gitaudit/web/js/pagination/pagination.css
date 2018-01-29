@@ -1,0 +1,1097 @@
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+.alert-error h4 {
+  color: #b94a48;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container .page-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container .page-container .notice-container {
+    padding: 20px;
+  }
+  /*.container .detail-content {*/
+    /*padding: 20px;*/
+  /*}*/
+}
+@media (min-width: 992px) {
+  .container {
+    width: 1006px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container .page-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container .page-container .notice-container {
+    padding: 20px 15px;
+  }
+  /*.container .detail-content {*/
+    /*padding: 20px 15px;*/
+  /*}*/
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .container .page-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container .page-container .notice-container {
+    padding: 20px;
+  }
+  /*.container .detail-content {*/
+    /*padding: 20px;*/
+  /*}*/
+}
+.radio-inline + .radio-inline,
+.checkbox-inline + .checkbox-inline {
+  padding-left: 0px;
+  padding-right: 10px;
+  margin-left: 0px;
+}
+.checkbox-list > label.checkbox-inline:first-child {
+  padding-left: 0;
+  padding-right: 10px;
+}
+.radio-list > label.radio-inline:first-child {
+  padding-left: 0;
+  padding-right: 10px;
+  margin-left: 0px;
+}
+.radio-list .radio-inline {
+  margin-right: 10px;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+a:hover {
+  cursor: pointer;
+}
+.modal-dialog {
+  margin: 100px auto;
+}
+/*end custom*/
+/*bootstrap*/
+.dropdown-menu {
+  z-index: 2000;
+  font-family: "Microsoft Yahei", Arial, sans-serif;
+}
+.dropdown-menu li a {
+  color: #666;
+  font-family: "Microsoft Yahei", Arial, sans-serif;
+}
+.dropdown-menu li a:hover {
+  background-color: #ddd;
+}
+.dropdown-menu .active a {
+  background-color: #ddd;
+}
+.dropdown-menu .active a:hover {
+  background-color: #ddd;
+}
+.navbar {
+  margin-bottom: 0px;
+}
+.btn-small {
+  font-size: 12px;
+}
+.button-image {
+  margin-right: 4px;
+}
+.button-space {
+  margin-right: 6px;
+}
+.ie8 .col-md-12 {
+  width: 100%;
+  float: left;
+}
+.ie8 .col-md-11 {
+  width: 91.66666667%;
+  float: left;
+}
+.ie8 .col-md-10 {
+  width: 83.33333333%;
+  float: left;
+}
+.ie8 .col-md-9 {
+  width: 75%;
+  float: left;
+}
+.ie8 .col-md-8 {
+  width: 66.66666667%;
+  float: left;
+}
+.ie8 .col-md-7 {
+  width: 58.33333333%;
+  float: left;
+}
+.ie8 .col-md-6 {
+  width: 50%;
+  float: left;
+}
+.ie8 .col-md-5 {
+  width: 41.66666667%;
+  float: left;
+}
+.ie8 .col-md-4 {
+  width: 33.33333333%;
+  float: left;
+}
+.ie8 .col-md-3 {
+  width: 25%;
+  float: left;
+}
+.ie8 .col-md-2 {
+  width: 16.66666667%;
+  float: left;
+}
+.ie8 .col-md-1 {
+  width: 8.33333333%;
+  float: left;
+}
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  left: 0;
+  position: fixed !important;
+  right: 0;
+  z-index: 1030;
+}
+.mark-corrected .container-form-label {
+  color: #35AA47;
+}
+.mark-corrected .container-form-label .fold-line {
+  color: #35AA47;
+}
+.mark-corrected .form-control {
+  border-color: #35AA47;
+}
+.mark-corrected .form-control .select2-choice {
+  border-color: #35AA47;
+}
+.mark-corrected .input-group-btn .btn.default,
+.mark-corrected .input-group-btn .btn.default:hover,
+.mark-corrected .input-group-btn .btn.default:focus,
+.mark-corrected .input-group-btn .btn.default:active,
+.mark-corrected .input-group-btn .btn.default.active,
+.mark-corrected .input-group-btn .btn.default[disabled],
+.mark-corrected .input-group-btn .btn.default.disabled {
+  color: #fff;
+  background-color: #35AA47 !important;
+}
+.mark-modified .container-form-label {
+  color: #FFB848;
+}
+.mark-modified .container-form-label .fold-line {
+  color: #FFB848;
+}
+.mark-modified .form-control {
+  border-color: #FFB848;
+}
+.mark-modified .form-control .select2-choice {
+  border-color: #FFB848;
+}
+.mark-modified .input-group-btn .btn.default,
+.mark-modified .input-group-btn .btn.default:hover,
+.mark-modified .input-group-btn .btn.default:focus,
+.mark-modified .input-group-btn .btn.default:active,
+.mark-modified .input-group-btn .btn.default.active,
+.mark-modified .input-group-btn .btn.default[disabled],
+.mark-modified .input-group-btn .btn.default.disabled {
+  color: #fff;
+  background-color: #FFB848 !important;
+}
+.mark-error .container-form-label {
+  color: #E02222;
+}
+.mark-error .container-form-label .fold-line {
+  color: #E02222;
+}
+.mark-error .form-control {
+  border-color: #E02222;
+}
+.mark-error .form-control .select2-choice {
+  border-color: #E02222;
+}
+.mark-error .input-group-btn .btn.default,
+.mark-error .input-group-btn .btn.default:hover,
+.mark-error .input-group-btn .btn.default:focus,
+.mark-error .input-group-btn .btn.default:active,
+.mark-error .input-group-btn .btn.default.active,
+.mark-error .input-group-btn .btn.default[disabled],
+.mark-error .input-group-btn .btn.default.disabled {
+  color: #fff;
+  background-color: #E02222 !important;
+}
+/*
+    布局
+*/
+/*layout*/
+.layout {
+  width: 100%;
+}
+.layout-fixed {
+  width: 1170px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+body {
+  font-family: "Microsoft Yahei", Arial, sans-serif;
+  font-size: 14px;
+  color: #666;
+}
+p,
+span {
+  cursor: default;
+}
+p:hover,
+span:hover {
+  cursor: default;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Microsoft Yahei", Arial, sans-serif;
+}
+.inline {
+  padding-left: 0px;
+}
+/*
+    定义背景色
+*/
+.bg-fff {
+  background: #fff !important;
+}
+.bg-transparent {
+  background: transparent !important;
+}
+.bg-transparent tr:nth-child(2n+1) td,
+.bg-transparent tr:nth-child(2n+1) th {
+  background: transparent !important;
+}
+.bg-transparent:hover {
+  background: transparent !important;
+}
+/*
+    浮动样式
+*/
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.fn {
+  float: none;
+}
+/*
+    元素块级定义
+*/
+.dis-in-tab {
+  display: inline-table;
+}
+.dis-in-b {
+  display: inline-block;
+}
+.dis-b {
+  display: block !important;
+}
+.dis-i {
+  display: inline !important;
+}
+/*
+    定义图片、视频、图标的样式
+*/
+.tiles-img {
+  max-width: 106px;
+  max-height: 80px;
+}
+.tiles-video {
+  max-width: 106px;
+  max-height: 80px;
+}
+.tiles-ico {
+  max-width: 80px;
+  max-height: 80px;
+}
+.tiles-border {
+  border: 1px solid #fff;
+}
+/*
+    定义颜色
+*/
+a {
+  color: #45b5e9;
+  text-shadow: none !important;
+}
+a:hover {
+  text-decoration: none;
+  color: #1e80f2;
+}
+a:active {
+  text-decoration: none;
+  color: #1e80f2;
+}
+.color-999 {
+  color: #999 !important;
+}
+.color-ccc {
+  color: #ccc !important;
+}
+.color-ddd {
+  color: #ddd;
+}
+.color-fff {
+  color: #fff !important;
+}
+.color-danger {
+  color: #B94A48;
+}
+.color-success {
+  color: #468847;
+}
+.color-default {
+  color: #CCCCCC;
+}
+.color-info {
+  color: #27A9E3;
+}
+.color-warning {
+  color: #DBC056;
+}
+.color-orange {
+  color: #E15F00;
+}
+.color-black {
+  color: #000;
+}
+.icon-purple {
+  color: #852b99;
+}
+.icon-pink {
+  color: #d84e9b;
+}
+.icon-danger {
+  color: #B94A48;
+}
+.icon-success {
+  color: #468847;
+}
+.icon-info {
+  color: #27A9E3;
+}
+.icon-warning {
+  color: #DBC056;
+}
+.color-warning {
+  color: #DBC056 !important;
+}
+.color-success {
+  color: #468847 !important;
+}
+.color-danger {
+  color: #B94A48 !important;
+}
+.tag-pink {
+  background: #d9726d !important;
+}
+.tag-pink:hover {
+  background: #d85851 !important;
+}
+.tag-orange {
+  background: #d2a160 !important;
+}
+.tag-orange:hover {
+  background: #d29a50 !important;
+}
+.tag-green {
+  background: #98b65c !important;
+}
+.tag-green:hover {
+  color: #91b647 !important;
+}
+.tag-blue {
+  background: #70a2bf !important;
+}
+.tag-blue:hover {
+  color: #4e97c1 !important;
+}
+.tag-purple {
+  background: #bb8db6 !important;
+}
+.tag-purple:hover {
+  background: #bb79b4 !important;
+}
+/*
+    定义字体大小
+*/
+.font-12 {
+  font-size: 12px !important;
+}
+.font-14 {
+  font-size: 14px !important;
+}
+.font-16 {
+  font-size: 16px !important;
+}
+.font-18 {
+  font-size: 18px !important;
+}
+.font-20 {
+  font-size: 20px !important;
+}
+.font-22 {
+  font-size: 22px !important;
+}
+/*
+    定义表格边框
+*/
+.border-none {
+  border: 0;
+}
+.border {
+  border: 1px solid #ddd;
+}
+.dotted {
+  border-bottom: 1px dotted #ddd;
+}
+.table-resource {
+  border: 1px solid #ddd;
+  border-top: 0;
+}
+.table-resource thead tr th {
+  border-top: 0 !important;
+}
+.table-resource tbody tr td {
+  border-top: 0 !important;
+}
+.table-resource tfoot tr td {
+  border-top: 0px !important;
+}
+.table-radio .radio-inline {
+  padding-top: 0px;
+}
+.table .progress {
+  margin-bottom: 0px;
+}
+.table tbody .table-active-on td {
+  background-color: #dff0d8 !important;
+}
+.table tbody .table-active-on th {
+  background-color: #dff0d8 !important;
+}
+.table tbody .table-active-on:hover td {
+  background-color: #dff0d8 !important;
+}
+.table tbody .table-active-on:hover th {
+  background-color: #dff0d8 !important;
+}
+.table tbody .select td {
+  background-color: #d8f2fc !important;
+}
+.table tbody .select th {
+  background-color: #d8f2fc !important;
+}
+.table tbody .select:hover td {
+  background-color: #d8f2fc !important;
+}
+.table tbody .select:hover th {
+  background-color: #d8f2fc !important;
+}
+.table tbody .table-active td {
+  background-color: #d9edf7 !important;
+}
+.table tbody .table-active th {
+  background-color: #d9edf7 !important;
+}
+.table tbody .table-active:hover td {
+  background-color: #d9edf7 !important;
+}
+.table tbody .table-active:hover th {
+  background-color: #d9edf7 !important;
+}
+.table tbody .input-text .form-control {
+  border-color: transparent;
+  background: transparent;
+  height: 20px;
+  padding: 0 6px;
+}
+.table tbody .input-text .form-control:hover {
+  border-color: #999;
+  background: #fff;
+}
+.table tbody .input-text .form-control:focus {
+  border-color: #45b5e9;
+  background: #fff;
+}
+.table-change-height th {
+  height: 28px !important;
+  line-height: 28px !important;
+  padding: 4px 5px !important;
+}
+.table-change-height td {
+  height: 28px !important;
+  line-height: 28px !important;
+  padding: 4px 5px !important;
+}
+.table-change-height td .form-control {
+  height: 28px;
+  padding: 4px 6px;
+}
+.table-change-height td .bootstrap-select {
+  padding: 0px;
+}
+.table-change-height td .bootstrap-select button {
+  height: 28px;
+  padding: 4px 6px;
+}
+.table-select {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  position: relative !important;
+}
+.table-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  position: relative !important;
+}
+.border-right-none {
+  border-right: 0px;
+}
+.table-border-none {
+  border: 0px;
+}
+.table-border-none thead tr th {
+  border-top: 0px !important;
+}
+.table-border-none tbody tr td {
+  border-top: 0px !important;
+}
+.table-border-none tfoot tr td {
+  border-top: 0px !important;
+}
+.border-top-none {
+  border-top: 0px;
+}
+.table-border-ddd {
+  border: 1px solid #ddd;
+}
+.table-radius {
+  border-radius: 4px;
+}
+.border-left-ddd {
+  border-left: 1px solid #ddd !important;
+}
+.border-bottom-ddd {
+  border-bottom: 1px solid #DDD !important;
+}
+.border-top-ddd {
+  border-top: 1px solid #DDD !important;
+}
+.table-fixed-thead {
+  margin-bottom: 0px;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+.table-fixed-td {
+  width: 60px;
+}
+/*
+    定义按钮
+*/
+.btn-group .btn-none {
+  background: transparent !important;
+  padding: 0px !important;
+}
+.btn-group .btn-none:hover {
+  background: transparent !important;
+}
+.btn-group .btn-none:focus {
+  background: transparent !important;
+}
+/*
+    清除浮动
+*/
+.clear {
+  clear: both;
+}
+/*
+    定义背景色
+*/
+.bg-none {
+  background: transparent !important;
+}
+/*
+    定义元素溢出
+*/
+.over-auto {
+  overflow: auto;
+}
+.over-hide {
+  overflow: hidden;
+}
+/*
+    定义三角形
+*/
+.triangle {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #000000 transparent transparent;
+  border-image: none;
+  border-style: solid;
+  border-width: 4px;
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-top: 6px;
+  float: right;
+}
+.triangle-up {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: transparent transparent #000000;
+  border-image: none;
+  border-style: solid;
+  border-width: 4px;
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-top: 6px;
+  float: right;
+}
+/*
+    定义文字溢出
+*/
+.to {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+.to-english {
+  display: inline-block;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.fold-line {
+  display: inline-block;
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+.fold-break {
+  display: inline-block;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+td.fold-break {
+  display: block;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+td .fold-break {
+  display: block;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.width-50 {
+  width: 50px;
+}
+.width-70 {
+  width: 70px;
+}
+.width-80 {
+  width: 80px;
+}
+.width-90 {
+  width: 90px;
+}
+.width-100 {
+  width: 100px;
+}
+.width-120 {
+  width: 120px;
+}
+.width-150 {
+  width: 150px;
+}
+.width-200 {
+  width: 200px;
+}
+/*
+    定义margin值
+*/
+.margin-top-0 {
+  margin-top: 0px !important;
+}
+.margin-top-3 {
+  margin-top: 3px !important;
+}
+.margin-top-5 {
+  margin-top: 5px !important;
+}
+.margin-top-20 {
+  margin-top: 20px !important;
+}
+.margin-bottom-10 {
+  margin-bottom: 10px !important;
+}
+.margin-bottom-0 {
+  margin-bottom: 0px !important;
+}
+.margin-right-0 {
+  margin-right: 0px !important;
+}
+.margin-right-10 {
+  margin-right: 10px !important;
+}
+.margin-left-0 {
+  margin-left: 0px !important;
+}
+.margin-left-20 {
+  margin-left: 20px !important;
+}
+.margin-left-10 {
+  margin-left: 10px !important;
+}
+.margin-left-30 {
+  margin-left: 30px !important;
+}
+.margin-left-40 {
+  margin-left: 40px !important;
+}
+/*
+    padding值
+*/
+.padding-bottom-10 {
+  padding-bottom: 10px;
+}
+.padding-left-5 {
+  padding-left: 5px;
+}
+.padding-left-10 {
+  padding-left: 10px;
+}
+.padding-0 {
+  padding: 0 !important;
+}
+/*
+    水平位置
+*/
+.tc {
+  text-align: center !important;
+}
+.tl {
+  text-align: left !important;
+}
+.tr {
+  text-align: right !important;
+}
+/*
+    最小高度
+*/
+.min-height-500 {
+  min-height: 500px;
+}
+/*
+    定位
+*/
+.pr {
+  position: relative !important;
+}
+.pa {
+  position: absolute !important;
+}
+.pos-re {
+  position: relative !important;
+}
+.pos-ab {
+  position: absolute !important;
+}
+.pos-st {
+  position: static !important;
+}
+/*
+    鼠标指针
+*/
+.cursor-pointer {
+  cursor: pointer;
+}
+/*
+    下拉按钮
+*/
+.fa-default {
+  padding: 3px 0 2px 0px;
+}
+/*
+    下拉点位置问题
+*/
+.table .dropdown-table {
+  position: static;
+}
+.table .dropdown-table .dropdown-menu {
+  top: auto;
+  left: auto;
+  margin-top: 8px;
+}
+.table .dropdown.open .dropdown-toggle {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.table .dropdown-toggle {
+  color: #666;
+}
+/*
+    删除线
+*/
+.del-line {
+  background: url("../../images/line.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+  display: inline-block;
+  height: 36px;
+  left: 0;
+  margin-top: -10px;
+  position: absolute;
+  width: 100%;
+  padding-left: 0 !important;
+}
+/*
+    下横线
+*/
+.under-line {
+  text-decoration: underline;
+  cursor: pointer;
+}
+/*
+    表单
+*/
+div.radio {
+  margin-left: 0px;
+  margin-top: 0px;
+}
+.first-radio {
+  margin-left: 30px !important;
+}
+.first-checkbox {
+  margin-left: 30px !important;
+}
+.form-operation-btn {
+  position: relative;
+}
+.form-operation-btn i {
+  position: absolute;
+  top: 7px;
+  margin-left: 10px;
+  display: inline-block;
+  color: #ccc;
+}
+.form-operation-btn .fa-warning {
+  color: #b94a48;
+}
+.form-operation-btn .fa-info-circle {
+  top: 3px;
+  left: -9px;
+}
+/*
+    定义文本域
+*/
+.resize-none {
+  resize: none;
+}
+/*
+    表格字号重新定义
+*/
+.table-14 {
+  font-size: 14px;
+}
+/*
+    页码
+*/
+.main-page {
+  text-align: left;
+  clear: both;
+}
+.main-page .pagination {
+  margin: 0;
+  float: right;
+}
+.main-page .pagination li a,
+.main-page .pagination li span {
+  color: #666;
+  padding: 4px 10px 5px;
+  font-size: 12px;
+}
+.main-page .pagination .active a {
+  color: #45b5e9;
+}
+.main-page .pagination .active a:hover {
+  color: #45b5e9;
+}
+.main-page ul {
+  vertical-align: top;
+}
+.main-page p {
+  float: left;
+}
+.main-page .page-button {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 20px 0;
+  float: right;
+}
+.main-page .page-button .input-mini {
+  width: 20px;
+  float: left;
+  font-size: 12px;
+  line-height: normal;
+  color: #666;
+  padding: 4px 10px 5px;
+  height: 28px;
+}
+.main-page .page-button input {
+  margin-bottom: 0px;
+}
+.main-page .page-button .page-number,
+.main-page .page-button .page-text {
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  margin: 0 4px 0 8px;
+  width: auto;
+  background: none;
+  float: left;
+  font-size: 12px;
+}
+.main-page .page-button .page-text {
+  float: none;
+}
+.main-page .page-button .goto-page {
+  margin-top: 0px;
+  font-size: 12px;
+  color: #666;
+  padding: 4px 10px 5px;
+}
+.main-page .page-info {
+  float: none;
+  display: inline-block;
+  height: 27px;
+  line-height: 27px;
+  font-size: 12px;
+}
+.main-page .page-info .form-control .select2-choice {
+  border: 0px !important;
+  font-size: 12px;
+  padding: 0px;
+  height: 23px;
+}
+.main-page .page-info .form-control .select2-choice .select2-arrow {
+  border: 0px;
+  top: -3px;
+}
+.main-page .page-info .form-control .select2-choice .select2-chosen {
+  margin-right: 14px;
+}
+.main-page .page-info input[disabled] {
+  background-color: #fff !important;
+}
+.main-page .page-info .page-text {
+  display: inline-block;
+  float: left;
+  height: 27px;
+  line-height: 27px;
+  margin: 0 4px;
+  width: auto;
+  font-size: 12px;
+  background: none;
+}
+.main-page .page-info .btn-group .btn-default {
+  border-color: #fff;
+  padding: 6px 0;
+}
+.main-page .page-info .btn-group .btn-default:hover,
+.main-page .page-info .btn-group .btn-default:focus {
+  background: #fff;
+}
+.main-page .page-info .btn-group .dropdown-menu li {
+  text-align: left;
+}
+.main-page .page-info .page-size-select {
+  margin-bottom: 0px;
+  width: 52px;
+  height: 26px;
+  text-align: center;
+  float: left;
+  padding: 2px;
+  border: 1px solid #e5e5e5;
+}
+.main-page .page-info .page-size-select .selectpicker {
+  padding: 0;
+}
+.main-page .page-info .page-size-select .filter-option {
+  left: 3px;
+}
+.main-page .page-info .page-size-select .btn {
+  font-size: 12px;
+}
+.main-page .page-info .page-size-select .btn .caret {
+  top: 58%;
+}
+.main-page .page-info .page-size-select .btn-default:hover,
+.main-page .page-info .page-size-select .btn-default:focus,
+.main-page .page-info .page-size-select .btn-default:active {
+  background-color: #fff;
+}
+.page-info .btn-default:hover,
+.page-info .btn-default:focus,
+.page-info .btn-default:active,
+.page-info .btn-default.active,
+.page-info .open .dropdown-toggle.btn-default {
+  background-color: #fff;
+}
+.select2-drop-active {
+  border: 1px solid #ddd !important;
+}
+.select2-drop-active .select2-choice {
+  border: 0px;
+}
+.select2-drop-active .select2-results {
+  margin: 0px;
+  padding: 0px;
+}
+.select2-drop-active .select2-results .select2-result-label {
+  font-size: 12px;
+  color: #666;
+}

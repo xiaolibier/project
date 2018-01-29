@@ -1,0 +1,60 @@
+.queryList {
+  width: 100%;
+  margin-top: 18px;
+  border-right: 1px solid #95B8E7;
+}
+.queryList table {
+  table-layout: fixed;
+}
+.queryList table th,
+.queryList table td {
+  white-space: nowrap;
+}
+.queryList table#pageTab {
+  margin-top: 0px;
+}
+.queryList table tr.listTit {
+  background: url("../images/titBg.png") repeat-x left bottom;
+}
+.queryList table tr.listTit th {
+  height: 21px;
+  color: #000;
+  padding: 0 6px;
+  text-align: center;
+  border-right: 1px solid #B7BABC;
+  border-bottom: 1px solid #B7BABC;
+  font-weight: normal;
+}
+.queryList table tr.listTit td {
+  height: 21px;
+  color: #000;
+  padding: 0 7px;
+  text-align: center;
+}
+.queryList table td {
+  height: 26px;
+  text-align: center;
+  border-right: 1px solid #B7BABC;
+  padding: 0 6px;
+  border-bottom: 1px solid #B7BABC;
+  word-wrap: break-word;
+}
+.queryList table .grayBg {
+  background: #f7f7f7;
+}
+.queryList table .hoverBg {
+  background: #B2E1FF;
+}
+.queryList .lookBtn {
+  text-decoration: underline;
+  color: #1A6968;
+  margin: 0 4px;
+}
+.queryList {
+  width: 100%;
+  overflow-x: hidden;
+}
+.queryBox {
+  width: 900px;
+  margin: 0 auto;
+}

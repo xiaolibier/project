@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli xinjianxiangmu">
+	<!-- <h4 class="page_title">项目阶段报告概述</h4> -->
+	<div class="content_box1">
+		<div class="con_d"><span class="lable need">模板</span><i class="x">*</i><textarea id="content" class="common_textarea"></textarea></div>
+		
+		<div class="btns_div"><!-- <a back='项目管理.html' class="common_abtn goback type1">取消</a> --><a id="changeSave" href="javascript:;" class="common_abtn type2">保存</a></div>
+	</div>
+	
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/index.js"></script> -->
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//g.id = Utils.getQueryString("id") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.id = '';//存储当前概要的id
+	
+/* **************************************** lodding ******************************************** */		
+		
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	//$('#menu_show_t .s0',parent.document).html('知识库');
+	$('#menu_show_t .s0',parent.document).html('项目阶段报告概述').addClass('active');
+		$('#changeSave').on('click',saveFunc);
+	tableListShow();//获取内容
+	
+	
+/* **************************************** setTing ******************************************** */	
+	
+	//保存内容
+	function saveFunc(){
+		var content = $('#content').val() || '';
+		var id = g.id;
+		if(id == ''){Utils.alert('id不能为空！');return false;}
+		if(!confirm('确认要修改并保存吗？')){return false;}
+		var condi = {};
+		condi.content = content;
+		condi.id = id;
+		var url = Base.serverUrl + "static/stage/abstract/update";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('保存成功！');
+				}
+				else{
+					var msg = data.message || "保存失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//获取内容
+	function tableListShow(){
+		var condi = {};
+		var url = Base.serverUrl + "static/stage/abstract/get";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var content = data.content || '';
+					g.id = data.id || '';
+					$('#content').val(content);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+
+	
+
+});
+
+</script>
+</html>

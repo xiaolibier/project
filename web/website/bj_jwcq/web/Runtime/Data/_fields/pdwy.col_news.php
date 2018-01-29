@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'Col_ID', 1 => 'Col_Title', 2 => 'Col_Editor', 3 => 'Col_Source', 4 => 'Col_sPic', 5 => 'Col_Pic', 6 => 'Col_File', 7 => 'Col_Video', 8 => 'Col_Order', 9 => 'Col_ftitle', 10 => 'Col_Content', 11 => 'Col_Time', 12 => 'Col_State', 13 => 'Col_Top', 14 => 'Col_MenuID', 15 => 'Col_Hot', 16 => 'Col_ft', 17 => 'Col_New', 18 => 'Col_Click', 19 => 'Col_gnjj', 20 => 'Col_xh', 21 => 'Col_jszb', 22 => 'Col_Language', 23 => 'Col_Tel', 24 => 'Col_mj', 25 => 'Col_qy', 26 => 'Col_url', 27 => 'Col_proid', '_autoinc' => true, '_pk' => 'Col_ID', ); ?>

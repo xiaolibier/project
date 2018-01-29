@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	
+</head>
+<body class="xiangmuguanli jindujiankong">
+	<h4 style="font-size:14px;font-weight:600;" class="page_title">项目编号：<span id="proNum" class="proNum"></span></h4>
+	<ul id="jinduMenu" class="jinduMenu">
+		<li class="allTask active taskstatus1" val="">总任务 （<span class="ttNumber">0</span>） </li>
+		<li class="taskstatus2" val="稽查准备中任务">稽查准备中任务（<span class="ttNumber">0</span>）</li>
+		<li class="taskstatus3" val="稽查中任务">稽查中任务（<span class="ttNumber">0</span>） </li>
+		<li class="taskstatus4" val="稽查完成任务">稽查完成任务（<span class="ttNumber">0</span>）</li>
+	</ul>
+	<div id="tableList" class="jinduListDiv">
+		<!-- <div class="listOne">
+			<h4 class="listTT">
+				序号：<span class="span1">1</span>
+				任务编号：<span class="span1">3A-0058-17004-1</span>
+				中心：<span class="span1">华西医院／泌尿科</span>
+				稽查组长：<span class="span1">陈强</span>
+				<a class="right_do">任务完成<i class="ic"></i></a>
+			</h4>
+			<ul class="proListUl">
+				<li class="listLi first">
+					<span>2017.06.02</span><br/>
+					<span>12:32:23</span>/<span>王娜</span>
+					<div class="line_b"><i class="o"></i></div>
+					<span class="fontWeight">任务计划</span>
+				</li>
+				<li class="listLi">
+					<span>2017.06.02</span><br/>
+					<span>12:32:23</span>/<span>王娜</span>
+					<div class="line_b"><i class="o"></i></div>
+					<span class="fontWeight">模块填写中</span>
+				</li>
+			</ul>
+		</div> -->
+	</div>
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<!-- <script type="text/javascript" src="../public/js/index.js"></script> -->
+	
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.id = Utils.getQueryString("jianid") || Utils.offLineStore.get("jianid",false);//从项目管理传来 项目id
+	g.num = Utils.getQueryString("jiannum") || Utils.offLineStore.get("jiannum",false);//从项目管理传来 项目编号
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+
+	
+/* **************************************** lodding ******************************************** */		
+
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('项目管理').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '项目管理.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 进度监控').addClass('active');
+	$('#jinduMenu li').on('click',tableListShow);
+	load();//页面加载
+	tableListShow();//加载进度列表
+/* **************************************** setTing ******************************************** */	
+	
+	//定义列表项 收起展开
+	$('.jinduListDiv').on('click','.listTT',function(){
+		var _this = $(this) || {};
+		if(_this.find('.right_do').hasClass('down')){
+			_this.siblings('.proListUl').slideUp();
+			_this.find('.right_do').removeClass('down');
+		}else{
+			_this.siblings('.proListUl').slideDown();
+			_this.find('.right_do').addClass('down');
+		}
+	});
+	
+	//页面加载
+	function load(){
+		$('#proNum').html(g.num);
+	}
+	
+	//加载进度列表
+	function tableListShow(){
+		var _this = $(this) || '';
+		_this = _this == '' ? $('.allTask') : _this;
+		var ser = '';
+		if(_this != ''){
+			ser = _this.attr('val') || '';
+		}
+		_this.addClass('active').siblings('li').removeClass('active');
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = 1000;//每页显示行数
+		condi.status = ser;
+		condi.project_id = g.id;
+		var url = Base.serverUrl + "task/progress/view";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.results || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					//var totalElements = data.totalElements || 0;//总共中心数
+					//_this.find('.ttNumber').html(totalElements);
+					//var ttnum = con.length || 0;
+					//if(_this.find('.ttNumber').length <= 0){_this = $('.allTask') ;}
+					//_this.find('.ttNumber').html(ttnum);
+					var auditing = data.auditing || 0;
+					var completed = data.completed || 0;
+					var prepare = data.prepare || 0;
+					var total = data.total || 0;
+					$('.taskstatus1').find('.ttNumber').html(total);
+					$('.taskstatus2').find('.ttNumber').html(prepare);
+					$('.taskstatus3').find('.ttNumber').html(auditing);
+					$('.taskstatus4').find('.ttNumber').html(completed);
+					
+					var html = '';
+					html += '<table class="table1">';
+					
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';
+						var center_name = d.center_name || '';
+						var project_group_leader = d.project_group_leader || '';
+						var status = d.status || '';
+						var taskStatusList = d.taskStatusList || [];//进度状态列表
+						var xu = len - i;
+						html+='<div class="listOne">'
+								+'<h4 class="listTT">'
+									+'序号：<span style="min-width:18px" class="span1">'+xu+'</span>'
+									+'任务编号：<span style="min-width:110px" class="span1">'+code+'</span>'
+									+'中心：<span style="min-width:280px" class="span1">'+center_name+'</span>'
+									+'稽查组长：<span style="min-width:90px" class="span1">'+project_group_leader+'</span>'
+									+'<a href="javascript:;" class="right_do">'+status+'<i class="ic"></i></a>'
+								+'</h4>'
+								+'<ul style="display:none;" class="proListUl">';
+								for(var j=0,len2=taskStatusList.length;j<len2;j++){
+									var dd = taskStatusList[j] || {};
+									var id = dd.id || '';
+									var task_id = dd.task_id || '';
+									var task_status = dd.task_status || '';
+									var editor_id = dd.editor_id || '';
+									var editor = dd.editor || '';
+									var create_time1 = getDate((dd.create_time || ''),'2');
+									var create_time2 = getDate((dd.create_time || ''),'3');
+									var _used = dd._used || '';
+									var sst = '';
+									if(j == 0){sst = 'first';}
+									if(j == len2-1 && len2 > 1){sst = 'last';}
+									html+='<li class="listLi '+sst+'">'
+										+'<span>'+create_time1+'</span><br/>'
+										+'<span>'+create_time2+'</span>/<span>'+editor+'</span>'
+										+'<div class="line_b"><i class="o"></i></div>'
+										+'<span class="fontWeight">'+task_status+'</span>'
+									+'</li>';
+								}	
+								html+='</ul>'
+							+'</div>';
+					}	
+					$('#tableList').html(html);
+					
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					//Utils.alert(msg);
+					$('#tableList').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#tableList').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+});
+
+</script>
+</html>

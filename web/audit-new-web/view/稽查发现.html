@@ -1,0 +1,1833 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/pagination.css" />
+	<link rel="stylesheet" href="../public/css/common.css" />
+	<link rel="stylesheet" href="../public/btncss/normalize.css" />
+	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
+	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
+	<link rel="stylesheet" href="../public/btncss/buttons.css" />
+	<title></title>
+	<style>
+		.stip_box .sbox.xiugaizhongxin3,.stip_box .sbox.xiugaizhongxin2{width:677px;}
+		.stip_box .sbox.xiugaizhongxin3 .sbox_c,.stip_box .sbox.xiugaizhongxin2 .sbox_c{margin:0 40px 0 0px;}
+		.stip_box .sbox.xiugaizhongxin3 .slable,.stip_box .sbox.xiugaizhongxin2 .slable{width:19%;}
+		.stip_box .sbox.xiugaizhongxin3 textarea.sbox_input,.stip_box .sbox.xiugaizhongxin2 textarea.sbox_input{width:78%;}
+		.stip_box .sbox.xiugaizhongxin3 .sbox_select,.stip_box .sbox.xiugaizhongxin2 .sbox_select{width:78.5%;}
+		.stip_box .sbox.xiugaizhongxin3 .sbox_input,.stip_box .sbox.xiugaizhongxin2 .sbox_input{width:77%;}
+		.sbox .slable{width:25%;}
+		.sbox .sbox_input{width:71%;}
+		.sbox .sbox_select{width:72.5%;}
+		.sbox textarea.sbox_input{width:72%;}
+		.sbox .star{left:25%;}
+		.jichafaxian .jc_btn{position:absolute;bottom:4px;right:0;margin:0px 10px 0 0;border-radius:2px;font-size:12px;line-height:12px;color:#fff;padding:4px 11px;float:none;display:inline-block;}
+		.jichafaxian .jc_btn.last{margin-right:0px;}
+		.jichafaxian .jc_btn.type5{background-color:#9EA7B4;}
+	</style>
+</head>
+<body class="xiangmuguanli jichafaxian">
+	<!-- 项目成员 -->
+	<ul class="choiseDanwei choiseDanwei12">
+		<li>加载失败</li>
+	</ul>
+	<!-- 问题归纳2 -->
+	<ul style="width:498px;" class="choiseDanwei choiseDanwei110">
+		<li tip='' >加载失败</li>
+	</ul>
+	<!-- 问题归纳3 -->
+	<ul style="width:498px;" class="choiseDanwei choiseDanwei120">
+		<li tip='' >加载失败</li>
+	</ul>
+	<h4 class="mokuaifaxian">
+		<a id="mokuaiBtn" class="a">模块信息</a>
+		<a id="faxianBtn" class="a active">稽查发现</a>
+		<a id="binglijichaBtn" class="a">病例稽查</a>
+		<a href="javascript:;" id="backPage" style="display:none;" class="jc_btn type5 last">返回</a>
+	</h4>
+	<div class="btn_div">
+		<table class="search_table">
+			<tr>
+				<td>
+					<span class="sear_lable">任务编号</span>
+					<input id="renWuBianHao" readonly class="com_input com_input1 readonly" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">分级</span>
+					<select id="fenJi" class="com_select com_select2">
+						<option value="">选择分级</option>
+						<option value="严重问题">严重问题</option>
+						<option value="主要问题">主要问题</option>
+						<option value="一般问题">一般问题</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">模块名称</span>
+					<select id="moKuaiMingCheng" class="com_select com_select2"><option disabled selected>选择模块</option></select>
+				</td>
+				<td>
+					<span class="sear_lable">分类名称</span>
+					<select id="fenLeiMingCheng" class="com_select com_select2"><option disabled selected>选择分类</option></select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">问题归纳</span>
+					<select id="wenTiGuiNa" class="com_select com_select2"><option disabled selected></option></select>
+				</td>
+				<td>
+					<span class="sear_lable">项目成员</span>
+					<input id="xiangMuChengYuan" class="com_input com_input1" type="text" />
+				</td>
+				<td>
+					<span class="sear_lable">是否入报告</span>
+					<select id="ruBaoGao" class="com_select com_select2">
+						<option value="">全部</option>
+						<option value="是">是</option>
+						<option value="否">否</option>
+					</select>
+				</td>
+				<td>
+					<span class="sear_lable">受试者编号</span>
+					<input id="shouShiZheBianHao" class="com_input com_input1" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="sear_lable">排序方式</span>
+					<select id="paiXuFangShi" class="com_select com_select2">
+						<option value="">默认方式</option>
+						<option value="0">按创建时间升序</option>
+						<option value="1">按创建时间降序</option>
+					</select>	
+				</td>
+				<td>
+					<span class="sear_lable">总结会</span>
+					<select id="zongJieHui" class="com_select com_select2">
+						<option value="">全部</option>
+						<option value="是">是</option>
+						<option value="否">否</option>
+					</select>
+				</td>
+				<td>
+					
+				</td>
+				<td class="searBtnTd">
+					<a id="searchBtn" class="top_btn">搜索</a>
+					<a id="searchAll" class="top_btn type2">清空条件</a>
+				</td>
+			</tr>
+		</table>
+		<div class="sear_line"></div>
+	</div>
+	<div class="m_info">
+		<!-- 项目总数：<span id="totalElements" class="m_value">0</span> -->
+		<a class="daochuCommonBtn " id="daochu" >导出</a>
+		<a class="creat_forse" id="new_project" >新增稽查发现</a>
+	</div>
+	<div id="tableList" class="table_div">
+		<!-- <table class="table1">
+			<tr>
+				<th><div class="check_box"><i class="i"></i></div></th>
+				<th>序号</th>
+				<th>分级</th>
+				<th>分类</th>
+				<th>问题归纳</th>
+				<th>受试者编号</th>
+				<th>问题详情</th>
+				<th>是否入报告</th>
+				<th>创建人/创建时间</th>
+				<th>最近修改人/修改时间</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>2</td>
+				<td>严重问题</td>
+				<td>数据保护（Confidentiality）</td>
+				<td>问题1</td>
+				<td>058</td>
+				<td>123123123</td>
+				<td class="center"><div class="check_box baogao"><i class="i"></i></div></td>
+				<td>杨坤/2016-02-23 14:32:54</td>
+				<td>杨坤/2016-02-23 14:32:54</td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">编辑</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>2</td>
+				<td>严重问题</td>
+				<td>数据保护（Confidentiality）</td>
+				<td>问题1</td>
+				<td>058</td>
+				<td>123123123</td>
+				<td class="center"><div class="check_box baogao"><i class="i"></i></div></td>
+				<td>杨坤/2016-02-23 14:32:54</td>
+				<td>杨坤/2016-02-23 14:32:54</td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">编辑</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="check_box"><i class="i"></i></div></td>
+				<td>2</td>
+				<td>严重问题</td>
+				<td>数据保护（Confidentiality）</td>
+				<td>问题1</td>
+				<td>058</td>
+				<td>123123123</td>
+				<td class="center"><div class="check_box baogao"><i class="i"></i></div></td>
+				<td>杨坤/2016-02-23 14:32:54</td>
+				<td>杨坤/2016-02-23 14:32:54</td>
+				<td class="last">
+					<a class="cao_btn cao_btn1">编辑</a>
+					<a class="cao_btn cao_btn3">删除</a>
+				</td>
+			</tr>
+		</table> -->
+	</div>
+	<div class="pages">
+        <div id="Pagination"></div>
+        <div style="display:none;" class="searchPage">
+          <span style="display:none;" class="page-sum">共<strong class="allPage">1</strong>页</span>
+          <span class="page-sum">
+			<select class="com_select pagesShow">
+				<option value=10 >10条/页</option>
+				<option value=30 >30条/页</option>
+				<option value=50 >50条/页</option>
+			</select>
+		  </span>
+          <span class="page-go">跳转<input type="text">页</span>
+          <a href="javascript:;" class="page-btn gogo">GO</a>
+        </div>
+    </div>
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+		
+			<div class="sbox xiugaizhongxin xiugaizhongxin2">
+				<h4 class="sbox_h4">编辑发现</h4>
+				<div class="sbox_c"><span class="slable">入报告</span>
+					<i class="star"></i>
+					<div id="ruBaoGao2" style="margin-top: 10px; margin-left:5px;" class="check_box">
+					<i class="i"></i>
+					</div>
+				</div>
+				<div class="sbox_c"><span class="slable">受试者编号</span><i class="star"></i><input id="shouShiZheBianHao2" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">问题说明</span><i class="star"></i><textarea id="wenTiShuoMing2" style="height:95px;" class="sbox_input"></textarea></div>
+				<div class="sbox_c"><span class="slable">分级</span><i class="star"></i>
+					<select id="fenJi2" class="sbox_select">
+						<option value="">选择分级</option>
+						<option value="严重问题">严重问题</option>
+						<option value="主要问题">主要问题</option>
+						<option value="一般问题">一般问题</option>
+					</select>
+				</div>
+				<div class="sbox_c"><span class="slable">模块</span><i class="star"></i>
+					<select id="moKuai2" class="sbox_select">
+						<option value="">选择模块</option>
+					</select>
+				</div>
+				<div class="sbox_c"><span class="slable">分类</span><i class="star"></i>
+					<select id="fenLei2" class="sbox_select">
+						<option value="">选择分类</option>
+					</select>
+				</div>
+				<div class="sbox_c"><span class="slable">问题归纳</span><i class="star"></i>
+					<!-- <select id="wenTiGuiNa2" class="sbox_select">
+						<option value="">选择问题</option>
+					</select> -->
+					<input id="wenTiGuiNa2" placeholder="选择问题" class="sbox_input" type="text"/>
+				</div>
+				<div class="sbox_c"><span class="slable">备注</span><i class="star"></i><textarea id="beiZhu2" style="height:55px;" class="sbox_input"></textarea></div>
+				<div class="sbox_c"><span class="slable">创建人/创建时间</span><i class="star"></i><span id="ccinfo2" class="sbox_span"></span></div>
+				<div class="sbox_c"><span class="slable">最近修改人/修改时间</span><i class="star"></i><span id="xxinfo2" class="sbox_span"></span></div>
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+			
+			<!-- 新增发现 -->
+			<div class="sbox xiugaizhongxin xiugaizhongxin3">
+				<h4 class="sbox_h4">新增发现</h4>
+				<div class="sbox_c"><span class="slable">入报告</span>
+					<i class="star"></i>
+					<div id="ruBaoGao3" style="margin-top: 10px; margin-left:5px;" class="check_box">
+					<i class="i"></i>
+					</div>
+				</div>
+				<div class="sbox_c"><span class="slable">受试者编号</span>
+					<i class="star"></i>
+					<!-- <div class="check_x_content" style="display:inline-block;" ></div> -->
+					<!-- <input style="" id="" class="sbox_input xxInput" type="text" /> -->
+					<input style="" id="new_shoushizhe" class="sbox_input" type="text" />
+					<!-- <a href="javascript:;" class="check_x_ben luRu">录入</a> -->
+				</div>
+				<div class="shz_list">
+					<div class="sbox_c">
+						<span class="slable">问题说明</span>
+						<i class="star"></i>
+						<textarea id="wenTiShuoMing3" style="height:95px;" class="sbox_input"></textarea>
+					</div>
+				</div>
+				<div class="sbox_c"><span class="slable">分级</span><i class="star"></i>
+					<select id="fenJi3" class="sbox_select">
+						<option value="">选择分级</option>
+						<option value="严重问题">严重问题</option>
+						<option value="主要问题">主要问题</option>
+						<option value="一般问题">一般问题</option>
+					</select>
+				</div>
+				<div class="sbox_c"><span class="slable">模块</span><i class="star"></i>
+					<select id="moKuai3" class="sbox_select">
+						<option value="">选择模块</option>
+					</select>
+				</div>
+				<div class="sbox_c"><span class="slable">分类</span><i class="star"></i>
+					<select id="fenLei3" class="sbox_select">
+						<option value="">选择分类</option>
+					</select>
+				</div>
+				<div class="sbox_c"><span class="slable">问题归纳</span><i class="star"></i>
+					<!-- <select id="wenTiGuiNa3" class="sbox_select">
+						<option value=""></option>
+					</select> -->
+					<input id="wenTiGuiNa3" placeholder="选择问题" class="sbox_input" type="text"/>
+				</div>
+				<div class="sbox_c"><span class="slable">备注</span><i class="star"></i><textarea id="beiZhu3" style="height:55px;" class="sbox_input"></textarea></div>
+				<div class="sbox_c"><span class="slable">创建人/创建时间</span><i class="star"></i><span id="ccinfo3" class="sbox_span"></span></div>
+				<div class="sbox_c"><span class="slable">最近修改人/修改时间</span><i class="star"></i><span id="xxinfo3" class="sbox_span"></span></div>
+				<div class="sbox_btn_div" style="text-align:center;">
+					<a href="javascript:;" id="noBtn3" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn3" style="margin-left:25px;" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	
+	
+	
+	<div style="display:none;" info="导出table" id="exportExcel"></div>
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/libs/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../public/libs/excelTable.js"></script>
+</body>
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.rid = Utils.getQueryString("renjiid") || Utils.offLineStore.get("renjiid",false);//传值 从稽查任务传来 传任务id
+	g.reportid = Utils.getQueryString("reportid") || '';//报告id 从稽查报告传来
+	g.do = Utils.getQueryString("do") || '';//操作（dischange） 从稽查报告传来 判断是不是 报告修改发现
+	g.code = Utils.getQueryString("renjicode") || Utils.offLineStore.get("renjicode",false);//从稽查任务传来 从稽查模块url传来 任务code
+	g.task = Utils.getQueryString("task") || Utils.offLineStore.get("task",false);//传值 从稽查任务 到稽查模块 传来 传是否已经生成报告 1是已经生成
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 1000;//每页显示多少行
+	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.ids = [];//存储当前所有项目id及其状态
+	g.quanxuan = 0;
+	g.codeVal = {};//记录当前发现的受试者编号和相应的问题
+	g.baseObj = {};//存储基本信息对应的对象
+	
+/* **************************************** lodding ******************************************** */	
+			
+	$('#mokuaiBtn').on('click',function(){
+		parent.document.getElementById("iframeObj").src = '稽查模块.html';
+	});
+	//跳转到病例稽查
+	$('#binglijichaBtn').on('click',function(){
+		parent.document.location.href = 'home.html?page=binglijicha';
+	});
+	//加载顶部标题
+	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('稽查任务').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '稽查任务.html';
+	});
+	$('#menu_show_t .s1',parent.document).html(' > 稽查发现').addClass('active');
+
+		
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
+	$('#new_project').on('click',shownewCenterSbox3);
+	$('#tableList').on('click','.baogao',checkInReport);//入报告
+	$('#tableList').on('click','.biaoJi',checkMark);//标记
+	$('.xiugaizhongxin').on('click','.luRu',addShouShiZhe);//新增 受试者
+	$('.xiugaizhongxin .xxInput').blur(addShouShiZhe);//新增 受试者
+	$('.xiugaizhongxin').on('click','.check_x',deleteShouShiZhe);//删除 受试者
+	$('.xiugaizhongxin').on('blur','.valueText',saveShouShiZhe);//修改 受试者问题
+	
+	loadPage();//加载
+	setGetSearchInput('#wenTiGuiNa2','.choiseDanwei110');//定义可以搜索下拉的
+	setGetSearchInput('#wenTiGuiNa3','.choiseDanwei120');//定义可以搜索下拉的
+	
+	
+/* **************************************** setTing ******************************************** */	
+	
+	//setSearchRole('.choiseDanwei12','项目成员','li');//给项目经理 选框赋值
+	setSearchBuMen('.choiseDanwei12','稽查部','li');//给项目成员 选框赋值
+	setGetSearchInput('#xiangMuChengYuan','.choiseDanwei12');//定义可以搜索下拉的
+	
+	
+	//加载页面时
+	function loadPage(){
+		//判断是否生成报告 从稽查报告点过来的重新生成
+		if(g.do == 'dischange'){
+			//$('#new_project,#mokuaiBtn').remove();
+			$('#mokuaiBtn').remove();
+			$('#backPage').show().on('click',backpageto);//点击上面 返回
+		}
+		//报告已经生成 隐藏增删改查功能
+		if(g.task == '1' && g.do != 'dischange'){
+			$('#new_project,.cao_btn').remove();
+			$('.check_box.baogao').off();
+			$('#tableList').off('click','.baogao');
+			$('.xiangmuguanli').off('click','.check_box.baogao');
+		}
+		var code = g.code;
+		if(code == ''){Utils.alert("任务编号为空！");return false;}
+		$('#renWuBianHao').val(code);//填充搜索项
+		
+		tableListShow();//显示列表
+		getModelName();
+		getModelName2();//给搜索项 模块赋值
+		getFenlei();//获取最新的
+		getFenlei2();//给搜索项 分类赋值
+		getWenti2();//给搜索项 问题赋值
+	}
+	
+	//改变列表 问题说明为编辑状态
+	function changeFaXianFunc(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('获取对象失败！');return false;}
+		_this.attr('readonly',false);
+		_this.prop('readonly',false);
+		_this.removeAttr('readonly').addClass('active');
+		_this.on('blur',function(){changeShuoMingFunc(_this)});
+	}
+	
+	//只修改问题说明
+	function changeShuoMingFunc(obj){
+		var _this = obj || '';
+		if(_this == ''){Utils.alert('获取对象失败！');return false;}
+		var disID = _this.attr('disID') || '';
+		var _val = _this.val() || '';
+		_val = trim2(_val);
+		if(_val == ''){Utils.alert('发现内容不能为空！');return false;}
+		var condi = {};
+		condi.discoveryId = disID;
+		condi.content = _val;
+		var url = Base.serverUrl + "discovery/realTimeView/saveDiscoveryDetail";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('修改成功！');
+					_this.attr('readonly',true).removeClass('active');
+					tableListShow(1);//列表
+				}
+				else{
+					var msg = data.message || "修改失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	$('html').off('click','.stip_box .stip_content');//去掉点击周围关闭弹窗
+	//点击 返回页面
+	function backpageto(){
+		history.go(-1);
+		//location.href = 'home.html?page=renwu';
+	}
+	//重新生成报告 根据do参数 
+	function reMarkReport(){
+		if(g.do != 'dischange'){return false;}
+		var condi = {};
+		condi.reportId = g.reportid;
+		var url = Base.serverUrl + "task/report/update";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+		
+	
+	//显示新建窗口
+	function shownewCenterSbox3(){
+		reloadSbox();//初始化弹窗
+		$('.xiugaizhongxin3 .sbox_h4').html('新增发现');
+		showSbox('.xiugaizhongxin3');//显示弹窗
+		$('#yesBtn3').off().on('click',function(){addDiscovery()});
+	}
+	//显示修改窗口
+	function shownewCenterSbox(){
+		reloadSbox();//初始化弹窗
+		$('.xiugaizhongxin2 .sbox_h4').html('修改发现');
+		showSbox('.xiugaizhongxin2');//显示弹窗
+		var id = $('#yesBtn').attr('aid') || '';
+		$('#yesBtn').off().on('click',function(){
+			centerFunc(id);
+		});
+		$('#noBtn').off().on('click',function(){
+			closeSbox();
+			if(id != ''){unLockFaXian(id);}
+		});
+	}	
+	//初始化弹窗
+	function reloadSbox(){
+		var html='<div class="sbox_c">'
+					+'<span class="slable">问题说明</span>'
+					+' <i class="star"></i> '
+					+'<textarea id="wenTiShuoMing3" style="height:95px;" class="sbox_input"></textarea>'
+				+'</div>';
+		$('.choiseDanwei li').removeClass('active');//清空弹窗的选择项
+		$('.xiugaizhongxin input,.xiugaizhongxin textarea').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		$('#ccinfo').html('');
+		$('#xxinfo').html('');
+		$('#noBtn').html('取消');
+		$('#yesBtn').off().show();
+		$('.xiugaizhongxin').find('.check_x_content').html('').show();
+		$('.xiugaizhongxin').find('.shz_list').html(html).show();
+		$('.xiugaizhongxin').find('.check_box').removeClass('active');
+		$('.xiugaizhongxin input,.xiugaizhongxin textarea').removeAttr('readonly').removeClass('readonly');//清空
+		$('.xiugaizhongxin select').removeAttr('disabled').removeClass('readonly');//清空
+		g.codeVal = {};//清空受试者编号记录
+	}
+	//添加受试者编号
+	function addShouShiZhe(){
+		var _this = $('.xxInput') || '';
+		if(_this == ''){Utils.alert('录入对象无法获取！');return false;}
+		var obj = _this.val() || '';
+		if(obj == ''){Utils.alert('录入对象不能为空！');return false;}
+		if(obj in g.codeVal){Utils.alert('受试者编号'+obj+'已存在！');return false;}
+		var pobj = _this.parents('.sbox');
+		SetSSZ(pobj,obj);//添加受试者
+		_this.val('');//清空输入框
+	}
+	//删除受试者编号
+	function deleteShouShiZhe(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('无法删除！');return false;}
+		var obj = _this.find('span').html() || '';
+		if(obj == ''){Utils.alert('删除对象不能为空！');return false;}
+		var pobj = _this.parents('.sbox');
+		SetSSZ(pobj,obj,' ',1);//删除受试者
+	}
+	//修改受试者 问题发现
+	function saveShouShiZhe(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('找不到修改对象！');return false;}
+		var val = _this.val() || '';
+		var obj = _this.attr('obj') || '';
+		if(obj == ''){Utils.alert('受试者不能为空！');return false;}
+		var pobj = _this.parents('.sbox');
+		SetSSZ(pobj,obj,val);//修改受试者
+	}
+	//受试者公共方法
+	function SetSSZ(pobj,obj,val,del){
+		var pobj = pobj || '';
+		var obj = obj || '';
+		var val = val || '';
+		var del = del || '';//判断是不是删除
+		if(obj == '' || pobj == ''){return false;}
+		
+		//判断添加项时 当前为第一个 然后如果有值 把值传给第一个受试者
+		var value_first = '';
+		if(JSON.stringify(g.codeVal) == "{}"){
+			value_first = $('#wenTiShuoMing3').val() || '';
+			$('#wenTiShuoMing3').val('');//清空
+			if(value_first != ''){val = value_first;}
+		}
+		if(!del){g.codeVal[obj] = val;}//修改或添加
+		else{delete g.codeVal[obj];}//删除
+		var aaa = g.codeVal;
+		var html1 = '',html2 = '';
+		for(var item in aaa){
+			var value = aaa[item] || '';
+			html1+='<div class="check_x"><span>'+item+'</span><i class="xx"></i></div>';
+			html2+='<div class="sbox_c">'
+					+'<span class="slable">受试者编号<br>'+item+'</span>'
+					+' <i class="star"></i> '
+					+'<textarea obj="'+item+'" style="height:55px;" class="sbox_input valueText" >'+value+'</textarea>'
+				+'</div>';
+		}
+		if(html2 == ''){
+			html2+='<div class="sbox_c">'
+					+'<span class="slable">问题说明</span>'
+					+' <i class="star"></i> '
+					+'<textarea id="wenTiShuoMing3" style="height:95px;" class="sbox_input morenWenTi" ></textarea>'
+				+'</div>';
+		}
+		pobj.find('.check_x_content').html(html1);
+		pobj.find('.shz_list').html(html2);
+	}	
+	//添加稽查发现
+	function addDiscovery(){
+		var value_first = $('#wenTiShuoMing3').val() || '';
+		var objName = $('#new_shoushizhe').val() || '';
+		g.codeVal[objName] = value_first;//受试者编号及问题赋值
+		var pobj = '.xiugaizhongxin3 ';//新建发现窗口
+		var ruBaoGao = $(pobj+'#ruBaoGao3').hasClass('active') || false;//判断是否入报告
+		var morenWenTi = $(pobj+'#wenTiShuoMing3').val() || '';
+		var xuanZeFenJi = $(pobj+'#fenJi3').val() || '';
+		var xuanZeFenLei = $(pobj+'#fenLei3').val() || '';
+		var wentiGuiLei = $(pobj+'#wenTiGuiNa3').val() || '';//获取问题字符
+		var wentiGuiLei2 = $(pobj+'#wenTiGuiNa3').attr('tipid') || '';//获取问题id
+		var beiZhu = $(pobj+'#beiZhu3').val() || '';
+		var moduleid = $(pobj+'#moKuai3').find('option:selected').attr('mid') || '';//当前选择的模块id
+		//入报告
+		if(ruBaoGao && $.isEmptyObject(g.codeVal) && morenWenTi == ''){Utils.alert('问题说明不能为空！');return false;}
+		if(ruBaoGao && moduleid == '' || moduleid == ''){Utils.alert('模块不能为空！');return false;}
+		if(ruBaoGao && xuanZeFenJi == ''){Utils.alert('分级不能为空！');return false;}
+		if(ruBaoGao && xuanZeFenLei == ''){Utils.alert('分类不能为空！');return false;}
+		if(ruBaoGao && wentiGuiLei == ''){Utils.alert('问题归类不能为空！');return false;}
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.task_module_id = moduleid;
+		condi.inReport = ruBaoGao ? '是' : '否';
+		condi.grade = xuanZeFenJi;
+		condi.classify = xuanZeFenLei;
+		condi.problem = wentiGuiLei;
+		condi.problemDetails = JSON.stringify(g.codeVal);
+		condi.problemDescription  = '';//morenWenTi;
+		condi.remark  = beiZhu;
+		condi.problem_id  = wentiGuiLei2;
+		var url = Base.serverUrl + "discovery/add";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('新建成功！');
+					tableListShow(2);//列表
+					closeSbox();//关闭弹窗
+					if(g.do == 'dischange'){reMarkReport();}//重新生成报告 根据do参数
+				}
+				else{
+					var msg = data.message || "新建失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	
+	}
+	
+	//编辑的时候 加载数据
+	function editLoad(id){
+		var id = id || '';
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "discovery/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					$('#yesBtn').attr('aid',d.id);
+					shownewCenterSbox();//弹窗
+					if(d.in_report == '是'){
+						$('#ruBaoGao2').addClass('active');
+					}else{$('#ruBaoGao2').removeClass('active');}
+					//$('#moKuai').val(d.module_name || '');
+					$('#shouShiZheBianHao2').val(d.patient_code || '');
+					$('#fenJi2').val(d.grade || '');
+					//$('#fenLei2').val(d.classify || '');
+					//$('#wenTiGuiNa2').val(d.problem || '');
+					var module_name = d.module_name || '';
+					var classify = d.classify || '';
+					var problem = d.problem || '';
+					if(module_name != '')getModelName(module_name,'#moKuai2');
+					if(classify != '')getFenlei(module_name,classify,'#fenLei2');//加载 分类
+					//if(problem != ''){
+						getWenti(module_name,classify,problem,'.choiseDanwei110','li');
+						$('#wenTiGuiNa2').val(problem);
+					//}//加载 问题
+					$('#wenTiShuoMing2').val(d.problem_detail || '');
+					$('#beiZhu2').val(d.remark || '');	
+					var creator = d.creator || '';
+					var create_time = getDate(d.create_time || '');
+					var ccr = creator == '' || create_time == '' ? '' : creator+'/'+ create_time; 
+					var last_modifier = d.last_modifier || '';
+					var last_modify_time = getDate(d.last_modify_time || '');
+					var llr = last_modifier == '' || last_modify_time == '' ? '' : last_modifier+'/'+ last_modify_time; 
+					$('#ccinfo2').html(ccr);
+					$('#xxinfo2').html(llr);
+					
+					
+				}
+				else{
+					var msg = data.message || "加载失败！";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//修改发现
+	function centerFunc(id){
+	    var id = id || '';
+		var ruBaoGao = $('#ruBaoGao2').hasClass('active') || false;//判断是否入报告
+		var shouShiZheBianHao = $('#shouShiZheBianHao2').val() || '';
+		var wenTiShuoMing = $('#wenTiShuoMing2').val() || '';
+		var fenJi = $('#fenJi2').val() || '';
+		var moKuai = $('#moKuai2').val() || '';
+		var fenLei = $('#fenLei2').val() || '';
+		var wenTiGuiNa = $('#wenTiGuiNa2').val() || '';//获取问题字符
+		var wenTiGuiNa2 = $('#wenTiGuiNa2').attr('tipid') || '';//获取问题id
+		var beiZhu = $('#beiZhu2').val() || '';
+		var moduleid = $('#moKuai2').find('option:selected').attr('mid') || '';//当前选择的模块id
+		//入报告
+		//if(ruBaoGao && shouShiZheBianHao == ''){Utils.alert('受试者编号不能为空！');return false;}
+		if(ruBaoGao && wenTiShuoMing == ''){Utils.alert('问题说明不能为空！');return false;}
+		if(ruBaoGao && fenJi == ''){Utils.alert('分级不能为空！');return false;}
+		if(ruBaoGao && moKuai == ''){Utils.alert('模块不能为空！');return false;}
+		if(ruBaoGao && fenLei == ''){Utils.alert('分类不能为空！');return false;}
+		if(ruBaoGao && wenTiGuiNa == '' || ruBaoGao && wenTiGuiNa == '选择问题'){Utils.alert('问题归类不能为空！');return false;}
+		//if(ruBaoGao && beiZhu == ''){Utils.alert('备注不能为空！');return false;}
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.id = id;
+		condi.task_module_id = moduleid;
+		condi.inReport = ruBaoGao ? '是' : '否';
+		condi.patientCode = shouShiZheBianHao;
+		condi.grade = fenJi;
+		condi.classify = fenLei;
+		condi.problem = wenTiGuiNa;
+		condi.problemDescription  = wenTiShuoMing;
+		condi.remark  = beiZhu;
+		condi.problem_id  = wenTiGuiNa2;
+		var url = Base.serverUrl + "discovery/update";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '修改成功！';
+					Utils.alert(tips);
+					tableListShow(2);//列表
+					closeSbox();//关闭弹窗
+					reMarkReport();//重新生成报告 根据do参数
+				}
+				else{
+					var msg = data.message || "修改失败！";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//搜索条件 模块名称填充数据
+	function getModelName(moren,x){
+		var moren = moren || '';
+		var x = x || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		condi.task_id = g.rid;//根据任务id查询模块
+		condi.has_discovery = true;//屏蔽 项目简介 人员访谈
+		var url = Base.serverUrl + "task/modules";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data || [];
+					var html = '<option value="">选择模块</option>';
+					//var html2 = '<option value="">选择模块</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var name = d.module_name || '';//名称
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						html+='<option '+_select+' mid="'+id+'" name="'+name+'" value="'+name+'">'+name+'</option>';
+						//html2+='<option '+_select+' name="'+name+'" value="'+name+'">'+name+'</option>';
+					}	
+					if(x != ''){$(x).html(html);}
+					else{$('#moKuai3').html(html);}
+					//$('#moKuaiMingCheng').html(html);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//给搜索框 模块填充数据
+	function getModelName2(moren,x){
+		var moren = moren || '';
+		var x = x || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		condi.task_id = g.rid;//根据任务id查询模块
+		var url = Base.serverUrl + "task/moduleSearch";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data || [];
+					var html = '<option value="">选择模块</option>';
+					//var html2 = '<option value="">选择模块</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var name = con[i] || '';
+						if(name == '')continue;
+						//var id = d.id || '';
+						//var name = d.module_name || '';//名称
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						html+='<option '+_select+' mid="" name="'+name+'" value="'+name+'">'+name+'</option>';
+						//html2+='<option '+_select+' name="'+name+'" value="'+name+'">'+name+'</option>';
+					}	
+					if(x != ''){$(x).html(html);}
+					$('#moKuaiMingCheng').html(html);
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	//根据模块获取分类
+	$('#moKuaiMingCheng').change(function(){
+		var name1 = $(this).find('option:selected').attr('name') || '';
+		getFenlei2(name1,'','#fenLeiMingCheng');
+	});
+	//动态定义 根据分类获取 问题
+	$('#fenLeiMingCheng').change(function(){
+		var module_name1 = $(this).find('option:selected').attr('name1') || '';
+		var category_name = $(this).find('option:selected').attr('name') || '';
+		getWenti2(module_name1,category_name,'','#wenTiGuiNa');
+	}); 
+	//根据模块获取分类
+	$('#moKuai2').change(function(){
+		var name1 = $(this).find('option:selected').attr('name') || '';
+		getFenlei(name1,'','#fenLei2');
+	});
+	//动态定义 根据分类获取 问题
+	$('#fenLei2').change(function(){
+		var module_name1 = $(this).find('option:selected').attr('name1') || '';
+		var category_name = $(this).find('option:selected').attr('name') || '';
+		getWenti(module_name1,category_name,'','.choiseDanwei110','li');
+	}); 
+	//根据模块获取分类
+	$('#moKuai3').change(function(){
+		var name1 = $(this).find('option:selected').attr('name') || '';
+		getFenlei(name1,'','#fenLei3');
+	});
+	//动态定义 根据分类获取 问题
+	$('#fenLei3').change(function(){
+		var module_name2 = $(this).find('option:selected').attr('mname') || '';
+		var module_name1 = $(this).find('option:selected').attr('name1') || '';
+		var category_name = $(this).find('option:selected').attr('name') || '';
+		getWenti(module_name1,category_name,'','.choiseDanwei120','li');
+		getModelName(module_name2,'#moKuai3');
+	}); 
+	//加载分类
+	function getFenlei(name1,moren,x){
+		var name1 = name1 || '';
+		var moren = moren || '';
+		var x = x || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		condi.number = 1000;//每页显示行数
+		condi.module_name = name1;
+		var url = Base.serverUrl + "category/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.content || [];
+					//var html = '<option value="">选择分类</option>';
+					var html2 = '<option value="">选择分类</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || {};
+						var id = d.id || '';
+						var name = d.name || '';//名称
+						var module_name = d.module_name || '';//名称
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						//html+='<option '+_select+' name1="'+name1+'" name="'+name+'" value="'+name+'">'+name+'</option>';
+						html2+='<option '+_select+' mname="'+module_name+'" name1="'+name1+'" name="'+name+'" value="'+name+'">'+name+'</option>';
+					}	
+					if(x != ''){$(x).html(html2);}
+					else{$('#fenLei3').html(html2);}//新增窗口使用
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//搜索项 获取分类
+	function getFenlei2(name1,moren,x){
+		var name1 = name1 || '';
+		var moren = moren || '';
+		var x = x || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		condi.task_id = g.rid;
+		condi.module = name1;
+		var url = Base.serverUrl + "task/categorySearch";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data || [];
+					//var html = '<option value="">选择分类</option>';
+					var html2 = '<option value="">选择分类</option>';
+					for(var i=0,len=con.length;i<len;i++){
+						var name = con[i] || '';
+						if(name == '')continue;
+						//var id = d.id || '';
+						//var name = d.name || '';//名称
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						//html+='<option '+_select+' name1="'+name1+'" name="'+name+'" value="'+name+'">'+name+'</option>';
+						html2+='<option '+_select+' name1="'+name1+'" name="'+name+'" value="'+name+'">'+name+'</option>';
+					}	
+					if(x != ''){$(x).html(html2);}
+					else{$('#fenLeiMingCheng').html(html2);}//搜索项使用
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	function getWenti(module_name,category_name,moren,x,li){
+		var module_name = module_name || '';
+		var category_name = category_name || '';
+		var moren = moren || '';
+		var x = x || '';
+		var li = li || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		condi.module_name = module_name;
+		condi.category_name = category_name;
+		var url = Base.serverUrl + "problem/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.content || [];
+					var html = '';//'<li>选择问题</li>';
+					var html2 = '<option value="">选择问题</option>';
+					var html3 = '';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || {};
+						var id = d.id || '';
+						var name = d.name || '';//名称
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						var _select2 = (moren == name && name != '') ? 'active' : '';
+						html+='<li tip="'+id+'" class="'+_select2+'">'+name+'</li>';
+						html2+='<option '+_select+' wentiid="'+id+'" value="'+id+'">'+name+'</option>';
+						html3+='<option '+_select+' wentiid="'+id+'" value="'+id+'">'+name+'</option>';
+					}	
+					if(x != ''){
+						if(li == 'li'){$(x).html(html);}else{
+							$(x).html(html2);
+						}
+					}
+					else{$('#wenTiGuiNa3').html(html3);$('#wenTiGuiNa').html(html2);}//新增窗口使用
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//获取搜索项 问题归纳
+	function getWenti2(module_name,category_name,moren,x,li){
+		var module_name = module_name || '';
+		var category_name = category_name || '';
+		var moren = moren || '';
+		var x = x || '';
+		var li = li || '';
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		//condi.number = g.showPages;//每页显示行数
+		condi.task_id = g.rid;
+		condi.module = module_name;
+		condi.category = category_name;
+		var url = Base.serverUrl + "task/problemSearch";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			async:false,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data || [];
+					var html = '';//'<li>选择问题</li>';
+					var html2 = '<option value="">选择问题</option>';
+					var html3 = '';
+					for(var i=0,len=con.length;i<len;i++){
+						var name = con[i] || '';
+						//var id = d.id || '';
+						//var name = d.name || '';//名称
+						if(name == ''){continue;}
+						var _select = (moren == name && name != '') ? 'selected = "selected"' : '';
+						var _select2 = (moren == name && name != '') ? 'active' : '';
+						html+='<li tip="" class="'+_select2+'">'+name+'</li>';
+						html2+='<option '+_select+' wentiid="" value="">'+name+'</option>';
+						html3+='<option '+_select+' wentiid="" value="">'+name+'</option>';
+					}	
+					if(x != ''){
+						if(li == 'li'){$(x).html(html);}else{
+							$(x).html(html2);
+						}
+					}
+					else{$('#wenTiGuiNa').html(html2);}//新增窗口使用
+					
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	//获取项目所有id列表
+	function getids(){
+		var condi = {};
+		condi.number = 10000;//
+		condi.taskCode = g.renWuBianHao;//
+		condi.module = g.moKuaiMingCheng;
+		condi.grade = g.fenJi;
+		condi.classify = g.fenLeiMingCheng;
+		condi.problem = g.wenTiGuiNa;
+		condi.member = g.xiangMuChengYuan;
+		condi.inReport = g.ruBaoGao;
+		condi.patientCode = g.shouShiZheBianHao;
+		condi.direction = g.paiXuFangShi;
+		condi.marked = g.zongJieHui;
+		var url = Base.serverUrl + "discovery/search/ids";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					g.ids = [];
+					for(var i=0,len=d.length;i<len;i++){
+						var num = d[i] || '';
+						if(num != ''){
+							var zu = [num,0];
+							g.ids.push(zu);
+						}
+					}
+					//console.log(g.ids);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//设置获取当前选中的导出项 全选 全取消
+	function getSetIDS(id,sta){
+		var id = id || '';//id : all 全选 : no 全部取消
+		var sta = sta || '';
+		var res = '';
+		if(g.ids.length <= 0 ){return res;}
+		for(var i=0,len=g.ids.length;i<len;i++){
+			var d = g.ids[i] || '';
+			var num = d[0] || '';
+			var state = d[1] || 0;
+			//获取当前选中项
+			if(state == '1'){
+				if(res == ''){
+					res = num;
+				}else{
+					res = res + ',' + num;
+				}
+			}
+			//设置当前选中项
+			if(id != '' && sta != '' && id == num){
+				g.ids[i][1] = sta;
+			}
+			//全选
+			if(id == 'all' && sta == ''){
+				g.ids[i][1] = '1';
+			}
+			//全部取消
+			if(id == 'no' && sta == ''){
+				g.ids[i][1] = '0';
+			}
+		}
+		return res;
+	}				
+	//全选
+	function selAll(){
+		$('.xiangmuguanli').off('click','.check_box').on('click','.check_box',function(){
+			var _this = $(this) || {};
+			var _id = _this.attr('idx') || '';
+			if(_this.hasClass('active')){
+				_this.removeClass('active');
+				if(_id != ''){getSetIDS(_id,'0');}//取消选中当前项
+			}else{
+				_this.addClass('active');
+				if(_id != ''){getSetIDS(_id,'1');}//选中当前项
+			}
+		});
+		
+		$('.xiangmuguanli').off('click','.toAll').on('click','.toAll',function(){
+			//$(this).toggleClass('active');
+			if($(this).hasClass('active')){
+				$('.tocommon').addClass('active');
+				getSetIDS('all');//全选
+				g.quanxuan = 1;
+			}else{
+				$('.tocommon').removeClass('active');
+				getSetIDS('no');//全部取消
+				g.quanxuan = 0;
+			}
+		});
+		$('#daochu').on('click',toExcel);
+	}
+	
+	//导出excel
+	function toExcel(){
+		if(!$('.tocommon').hasClass('active')){Utils.alert('请选择需要导出的项目！');return false;}
+		exporttoexcel();//获取需要导出列表
+	}
+	
+	//获取需要导出的EXCEL列表
+	function exporttoexcel(){
+		var ids = getSetIDS();
+		var condi = {};
+		condi.ids = ids;//当前页
+		condi.number = 1000;//
+		var url = Base.serverUrl + "discovery/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var html = '';
+					var sstr = '';
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th style="min-width:30px;">序号</th>'
+							+'<th style="min-width:0px;">分级</th>'
+							+'<th style="min-width:0px;">分类</th>'
+							+'<th style="min-width:0px;">问题归纳</th>'
+							+'<th style="min-width:60px;">受试者编号</th>'
+							+'<th style="min-width:50px;">问题详情</th>'
+							+'<th style="min-width:0px;">备注</th>'
+							+'<th style="min-width:0px;">创建人/创建时间</th>'
+							+'<th style="min-width:0px;">最近修改人/修改时间</th>'
+						+'</tr>';
+					var con = data || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var xu = len - i;
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//
+						var grade = d.grade || '';//
+						var classify = d.classify || '';//
+						var problem = d.problem || '';//
+						var patient_code = d.patient_code || '';//
+						var problem_detail = d.problem_detail || '';//
+						var remark = d.remark || '';//
+						var creator = d.creator || '';//
+						var create_time = getDate(d.create_time || '');//
+						var mes1 = creator == '' || create_time == '' ? creator + create_time : creator + '/' + create_time ;
+						var last_modifier = d.last_modifier || '';//
+						var last_modify_time = getDate(d.last_modify_time || '');//
+						var mes2 = last_modifier == '' || last_modify_time == '' ? last_modifier + last_modify_time : last_modifier + '/' + last_modify_time ;
+						var status = d.status || '';//
+						var stra = '';	
+						html+='<tr>'
+							+'<td>'+xu+'</td>'
+							+'<td>'+grade+'</td>'
+							+'<td>'+classify+'</td>'
+							+'<td>'+problem+'</td>'
+							+'<td>'+patient_code+'</td>'
+							+'<td>'+problem_detail+'</td>'
+							+'<td>'+remark+'</td>'
+							+'<td>'+mes1+'</td>'
+							+'<td>'+mes2+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#exportExcel').html(html);
+					$('#daochu').ExportExcel('exportExcel');  //前面为控制按钮的id 例如 #btn，后面为table的id 例如 table(不加#)。
+				}
+				else{
+					var msg = data.message || "导出失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+		$('.searchPage').show();
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
+	 
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+		g.renWuBianHao = $('#renWuBianHao').val() || '';
+		g.moKuaiMingCheng = $('#moKuaiMingCheng').val() || '';
+		g.fenJi = $('#fenJi').val() || '';
+		g.fenLeiMingCheng = $('#fenLeiMingCheng').val() || '';
+		g.wenTiGuiNa = $('#wenTiGuiNa').find('option:selected').html() || '';//获取字符
+		g.wenTiGuiNa = g.wenTiGuiNa == '选择问题' ? '' : g.wenTiGuiNa ;
+		g.xiangMuChengYuan = $('#xiangMuChengYuan').val() || '';
+		g.ruBaoGao = $('#ruBaoGao').val() || '';
+		g.shouShiZheBianHao = $('#shouShiZheBianHao').val() || '';
+		g.paiXuFangShi = $('#paiXuFangShi').val() || '';
+		g.zongJieHui = $('#zongJieHui').val() || '';
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		condi.taskCode = g.renWuBianHao;//
+		if(is == 1 || is == 'pa'){//搜索条件
+			condi.module = g.moKuaiMingCheng;
+			condi.grade = g.fenJi;
+			condi.classify = g.fenLeiMingCheng;
+			condi.problem = g.wenTiGuiNa;
+			condi.member = g.xiangMuChengYuan;
+			condi.inReport = g.ruBaoGao;
+			condi.patientCode = g.shouShiZheBianHao;
+			condi.direction = g.paiXuFangShi;
+			condi.marked = g.zongJieHui;
+			getids();//查询当前筛选项下的所有ids
+			if(is != 'pa')g.loadPage = true;//开启分页
+		}else if(is == 2){//搜索全部
+			//$('#renWuBianHao').val('');
+			$('#yaoPinQiXieName').val('');
+			$('#moKuaiMingCheng').val('');
+			$('#fenJi').val('');
+			$('#fenLeiMingCheng').val('');
+			$('#wenTiGuiNa').val('');
+			$('#ruBaoGao').val('');
+			$('#shouShiZheBianHao').val('');
+			$('#paiXuFangShi').val('');
+			$('#zongJieHui').val('');
+			$('#xiangMuChengYuan').val('');//全部的时候 清空搜索项
+			getids();//查询当前筛选项下的所有ids
+			g.loadPage = true;//开启分页
+		}
+		var url = Base.serverUrl + "discovery/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总个数
+					//$('#totalElements').html(totalElements);
+					var html = '';
+					var sstr = '';
+					if(g.quanxuan == 1){sstr = 'active';}
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th class="padding_s"><div class="check_box toAll '+sstr+'"><i class="i"></i></div></th>'
+							+'<th style="min-width:30px;">序号</th>'
+							+'<th style="min-width:30px;">分级</th>'
+							+'<th style="min-width:30px;">分类</th>'
+							+'<th style="min-width:40px;">问题归纳</th>'
+							+'<th style="min-width:65px;">受试者编号</th>'
+							+'<th style="min-width:50px;">问题详情</th>'
+							+'<th style="min-width:65px;">是否入报告</th>'
+							//+'<th style="min-width:0px;">创建人/创建时间</th>'
+							//+'<th style="min-width:0px;">最近修改人/修改时间</th>'
+							+'<th style="min-width:30px;">标记</th>'
+							+'<th style="min-width:100px;">操作</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var xu = totalElements - g.nowPage*g.showPages - i;
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//
+						var grade = d.grade || '';//
+						var classify = d.classify || '';//
+						var problem = d.problem || '';//
+						var patient_code = d.patient_code || '';//
+						var problem_detail = d.problem_detail || '';//
+						var creator = d.creator || '';//
+						var create_time = getDate(d.create_time || '');//
+						var mes1 = creator == '' || create_time == '' ? creator + create_time : creator + '/' + create_time ;
+						var last_modifier = d.last_modifier || '';//
+						var last_modify_time = getDate(d.last_modify_time || '');//
+						var mes2 = last_modifier == '' || last_modify_time == '' ? last_modifier + last_modify_time : last_modifier + '/' + last_modify_time ;
+						var in_report = d.in_report || '';//
+						var _active = in_report == '是' ? 'active' : '' ;
+						var marked = d.marked || '';//
+						var _active2 = marked == '是' ? 'active' : '' ;
+						var stra = '';
+						//判断当前项是否选中
+						for(var j=0,len1=g.ids.length;j<len1;j++){
+							var ds = g.ids[j] || '';
+							var num1 = ds[0] || '';
+							var state11 = ds[1] || 0;
+							if(id == num1 && state11 == '1'){stra = 'active'}
+						}	
+						html+='<tr>'
+							+'<td class="padding_s"><div idx="'+id+'" class="check_box tocommon '+stra+'"><i class="i"></i></div></td>'
+							+'<td>'+xu+'</td>'
+							+'<td>'+grade+'</td>'
+							+'<td>'+classify+'</td>'
+							+'<td>'+problem+'</td>'
+							+'<td>'+patient_code+'</td>'
+							+'<td><textarea class="etd" readonly disid="'+id+'">'+problem_detail+'</textarea></td>'
+							+'<td class="center"><div aid="'+id+'" class="check_box baogao '+_active+'"><i class="i"></i></div></td>'
+							//+'<td>'+mes1+'</td>'
+							//+'<td>'+mes2+'</td>'
+							+'<td class="center"><div aid="'+id+'" class="check_box biaoJi '+_active2+'"><i class="i"></i></div></td>'
+							+'<td class="last">'
+								+'<a onclick="edit(\''+id+'\')" href="javascript:;" class="cao_btn cao_btn1">编辑</a>';
+							//if(g.do != 'dischange'){//从报告点过来的 不能删除
+								html+='<a onclick="deleteit(\''+id+'\')" href="javascript:;" class="cao_btn cao_btn3">删除</a>';
+							//}	
+							html+='</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					
+					//报告已经生成 隐藏增删改查功能
+					if(g.task == '1' && g.do != 'dischange'){
+						$('#new_project,.cao_btn').remove();
+						$('.check_box.baogao').removeClass('check_box').addClass('check_box2');
+						$('#tableList').off('click','.baogao');
+						$('.xiangmuguanli').off('click','.check_box');
+					}else{
+						$('#tableList .etd').dblclick(changeFaXianFunc);//列表 修改发现问题描述
+					}
+					selAll();//定义导出按钮
+					if(g.ids.length <= 0){getids();}
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					Utils.alert(msg);
+					$('#tableList').html('');
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#tableList').html('');
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//编辑发现
+	window.edit = function(id){
+		var id = id || '';
+		editLoad(id);//加载编辑数据
+	}
+	//删除发现
+	window.deleteit = function(id){
+		var id = id || '';
+		if(!confirm('确认删除吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "discovery/delete";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert('删除成功！');
+					tableListShow();
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+
+	}
+	//标记
+	function checkMark(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('对象不存在！');return false;}
+		var id = _this.attr('aid') || '';
+		var tips = _this.hasClass('active') ? '去除标记' : '标记' ;
+		//if(!confirm('确认'+tips+'吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		condi.marked = _this.hasClass('active') ? '否' : '是' ;
+		var url = Base.serverUrl + "discovery/marked";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert(tips+'成功！');
+				}
+				else{
+					var msg = data.message || "操作失败";
+					Utils.alert(msg);
+					//恢复复选框状态
+					if(_this.hasClass('active')){_this.removeClass('active')}
+					else{_this.addClass('active')}
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				//恢复复选框状态
+				if(_this.hasClass('active')){_this.removeClass('active')}
+				else{_this.addClass('active')}
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	//入报告
+	function checkInReport(){
+		var _this = $(this) || '';
+		if(_this == ''){Utils.alert('对象不存在！');return false;}
+		var id = _this.attr('aid') || '';
+		var tips = _this.hasClass('active') ? '退出报告' : '入报告' ;
+		if(!confirm('确认'+tips+'吗？')){return false;}
+		var condi = {};
+		condi.id = id;
+		condi.inReport = _this.hasClass('active') ? '否' : '是' ;
+		var url = Base.serverUrl + "discovery/changeState";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					Utils.alert(tips+'成功！');
+					reMarkReport();//重新生成报告 根据do参数
+				}
+				else{
+					var msg = data.message || "操作失败";
+					Utils.alert(msg);
+					//恢复复选框状态
+					if(_this.hasClass('active')){_this.removeClass('active')}
+					else{_this.addClass('active')}
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				//恢复复选框状态
+				if(_this.hasClass('active')){_this.removeClass('active')}
+				else{_this.addClass('active')}
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+
+	}
+	//加载时间控件
+	var start = {
+	  elem: '#start_time',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	var end = {
+	  elem: '#end_time',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(),
+	  max: '2099-06-16',
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	  }
+	};
+	laydate(start);
+	laydate(end);
+
+});
+
+</script>
+</html>

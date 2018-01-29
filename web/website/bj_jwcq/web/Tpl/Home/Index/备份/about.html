@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>北京经纬传奇医药科技有限公司--关于经纬</title>
+<link href="__PUBLIC__/css/style.css" type="text/css" rel="stylesheet">
+<link href="__PUBLIC__/css/top_bottom_Public.css" rel="stylesheet" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body class="bj">
+<!--header开始-->
+ <include file="Index:top" />
+<!--header结束-->
+
+<!--公司简介开始-->
+<section class="jianjie_center clear">
+  <include file="Index:leftabout" />
+  <div class="jianjie_center_right fr">
+    <div class="rt_top"><a>当前位置：</a><a href="{:U('index')}">首页</a> > <a href="{:U('about')}">关于经纬</a> > {$datas["Main_Name"]}</div>
+    <span><img src="__PUBLIC__/img/gimg.png"></span>
+    
+    <div class="jianjjie_center">
+    <ul>
+	
+	<volist name="colnews" id="vo">
+	
+		 <li>
+      <span><img src="__SYSWEB__/Uploads/{$vo.Col_Pic}"></span>
+      <span><i>{$vo.Col_Title}</i><br><h3><a>{$vo.Col_gnjj}</a></h3><font>{$vo.Col_Content|htmlspecialchars_decode|cutstr_html=240}</font></span>
+      </li>
+	</volist>
+	
+     
+	  
+	  
+     
+    </ul>
+    
+<div class="center_bott">
+<span>京经纬传奇成立于2009年1月，是中国第一家专业的第三方稽查代理公司。通过稽查、提供咨询和培训，确保参与临床试验的各个机构都能按照GCP（或ICH-GCP）、SOPs和相关政策法规要求实施Ⅰ、Ⅱ、Ⅲ、Ⅳ期临床试验。
+　　经纬传奇拥有一支强大的稽查和培训队伍，建立了临床试验稽查和培训的标准操作规程；构建了阵容强大的专家资源库，涵盖审评、注册、研发、科室、临床机构、实验室检查、数据统计、项目管理、投资及营销策划等领域，为您提供“一站式”咨询服务。</span>
+<span><img src="__PUBLIC__/img/bjtu.png"></span>
+</div>
+
+</div>
+</div>
+</section>
+
+<!--footer开始-->
+ <include file="Index:footer" />
+</div>
+<!--footeR结束-->
+</body>
+</html>
+<script type="text/javascript">$("#{$datas["Main_ID"]}").addClass('hover');$("#about").addClass('current');</script>

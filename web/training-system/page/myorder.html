@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="../public/css/common2.css" />
+	<title>经纬传奇培训系统-经纬课堂</title>
+	
+</head>
+<body class="usr_common_body">
+	<!-- 公共头部 -->
+	<div class="com_header"></div>
+	<!--  -->
+	<h4 class="zti_title type2">
+		<div class="ztt_content">
+			<a href="javascript:;" class="ztit_abtn active">所有订单</a>
+			<a href="javascript:;" class="ztit_abtn">待付款</a>
+			<a href="javascript:;" class="ztit_abtn">已付款</a>
+		</div>
+	</h4>
+	<div class="order_div">
+		<table class="order_table">
+			<tr class="or_title_th">
+				<th>
+					<div class="check_box"><i class="i"></i></div>
+					<a href="javascript:;" class="ortt_abtn">全选</a>
+					<a href="javascript:;" class="ortt_abtn ortt_abtn2">删除</a>
+					课程
+				</th>
+				<th>课程有效期</th>
+				<th>单价 (元)</th>
+				<th>优惠 (元)</th>
+				<th>小计 (元)</th>
+				<th>支付状态</th>
+			</tr>
+			<tr class="order_th">
+				<th>
+					<div class="check_box"><i class="i"></i></div>
+					<span class="size0">2018-12-23</span>订单号：327487190718
+				</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr class="order_td">
+				<td>
+					<div class="oder_img" style="background:url('../public/img/f1.jpg') no-repeat center center;background-size:cover;" ></div>
+					经纬传奇稽查部经纬课堂培训
+				</td>
+				<td>永久有效</td>
+				<td>798.00</td>
+				<td>限时优惠省380.00元</td>
+				<td class="colorstyle1">418.00</td>
+				<td class="lasttd">
+					未支付<br/>
+					<a href="javascript:;" class="cao_btn cao_btn1">立即支付</a>
+				</td>
+			</tr>
+			<tr class="null_tr"></tr>
+			<tr class="order_th">
+				<th>
+					<div class="check_box"><i class="i"></i></div>
+					<span class="size0">2018-12-23</span>订单号：327487190718
+				</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr class="order_td">
+				<td>
+					<div class="oder_img" style="background:url('../public/img/f1.jpg') no-repeat center center;background-size:cover;" ></div>
+					经纬传奇稽查部经纬课堂培训
+				</td>
+				<td>永久有效</td>
+				<td>798.00</td>
+				<td>限时优惠省380.00元</td>
+				<td class="colorstyle1">418.00</td>
+				<td class="lasttd">
+					已支付<br/>
+					<a href="javascript:;" class="cao_btn cao_btn2">查看详情</a>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+	</div>
+	
+	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/libs/json.js"></script>
+	<script type="text/javascript" src="../public/libs/base.js"></script>
+	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/utils.js"></script>
+	<script type="text/javascript" src="../public/js/common2.js"></script>
+	<script type="text/javascript" src="../public/js/common3.js"></script>
+	
+	
+	
+<script>
+$(function(){
+	var g = {};
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.page = Utils.getQueryString("page") || "";
+	g.httpTip = new Utils.httpTip({});
+	g.totalPage = 1;//存总页数
+	g.nowPage = 0;//存当前页 0 是第一页
+	g.showPages = 10;//每页显示多少行
+	
+/* **************************************** lodding ******************************************** */		
+	
+	//测试
+	$('.cao_btn1').on('click',function(){
+		location.href="order.html";
+	});
+	$('.cao_btn2').on('click',function(){
+		location.href="info.html";
+	});
+	
+	
+/* **************************************** setTing ******************************************** */	
+	
+
+	
+});	
+</script>
+</body>
+</html>

@@ -1,0 +1,1109 @@
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		  xmlns:util="http://www.springframework.org/schema/util"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:context="http://www.springframework.org/schema/context"
+		  xmlns:tx="http://www.springframework.org/schema/tx"
+		  xmlns:aop="http://www.springframework.org/schema/aop"
+		  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<bean id="有无" class="com.zhb.bean.LimitedWord">
+		<property name="name" value="有无"></property>
+		<property name="words">
+			<list>
+				<value>有</value>
+				<value>无</value>
+				<value>N/A</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="是否" class="com.zhb.bean.LimitedWord">
+		<property name="name" value="是否"></property>
+		<property name="words">
+			<list>
+				<value>是</value>
+				<value>否</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="报告类型枚举" class="com.zhb.bean.LimitedWord">
+		<property name="name" value="报告类型"></property>
+		<property name="words">
+			<list>
+				<value>首次报告</value>
+				<value>随访报告</value>
+				<value>总结报告</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="报告机构" class="com.zhb.bean.LimitedWord">
+		<property name="name" value="报告机构"></property>
+		<property name="words">
+			<list>
+				<value>国家局</value>
+				<value>省局</value>
+				<value>卫计委</value>
+				<value>本中心伦理</value>
+				<value>申办方</value>
+				<value>其它</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="药物名称" class="com.zhb.bean.Field">
+		<property name="name" value="药物名称"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="projectMedicine"></property>
+	</bean>
+
+	<bean id="试验药批号" class="com.zhb.bean.Field">
+		<property name="name" value="试验药批号"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="接收人" class="com.zhb.bean.Field">
+		<property name="name" value="接收人"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="药品管理员" class="com.zhb.bean.Field">
+		<property name="name" value="药品管理员"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="存放地点" class="com.zhb.bean.Field">
+		<property name="name" value="存放地点"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="冰箱/药柜编号" class="com.zhb.bean.Field">
+		<property name="name" value="冰箱/药柜编号"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="温湿度记录保存情况" class="com.zhb.bean.Field">
+		<property name="name" value="温湿度记录保存情况"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="交接日期" class="com.zhb.bean.Field">
+		<property name="name" value="交接日期"></property>
+		<property name="type" value="1"></property>
+	</bean>
+
+	<bean id="过渡日期" class="com.zhb.bean.Field">
+		<property name="name" value="过渡日期"></property>
+		<property name="type" value="1"></property>
+	</bean>
+
+	<bean id="回收日期" class="com.zhb.bean.Field">
+		<property name="name" value="回收日期"></property>
+		<property name="type" value="1"></property>
+	</bean>
+
+	<bean id="接收量" class="com.zhb.bean.Field">
+		<property name="name" value="接收量"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="使用量" class="com.zhb.bean.Field">
+		<property name="name" value="使用量"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="剩余量" class="com.zhb.bean.Field">
+		<property name="name" value="剩余量"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="返还量" class="com.zhb.bean.Field">
+		<property name="name" value="返还量"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="丢失量" class="com.zhb.bean.Field">
+		<property name="name" value="丢失量"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="销毁量" class="com.zhb.bean.Field">
+		<property name="name" value="销毁量"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="药物清点时间" class="com.zhb.bean.Field">
+		<property name="name" value="药物清点时间"></property>
+		<property name="type" value="1"></property>
+	</bean>
+
+	<bean id="研究用药物/器械" class="com.zhb.bean.Table">
+		<property name="name" value="研究用药物/器械"></property>
+		<property name="fields">
+			<list>
+				<ref bean="药物名称"/>
+				<ref bean="试验药批号"/>
+				<ref bean="接收人"/>
+				<ref bean="药品管理员"/>
+				<ref bean="存放地点"/>
+				<ref bean="冰箱/药柜编号"/>
+				<ref bean="温湿度记录保存情况"/>
+				<ref bean="交接日期"/>
+				<ref bean="过渡日期"/>
+				<ref bean="回收日期"/>
+				<ref bean="接收量"/>
+				<ref bean="使用量"/>
+				<ref bean="剩余量"/>
+				<ref bean="返还量"/>
+				<ref bean="丢失量"/>
+				<ref bean="销毁量"/>
+				<ref bean="药物清点时间"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="承担项目机构名称" class="com.zhb.bean.Field">
+		<property name="name" value="承担项目机构名称"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="centerName"></property>
+	</bean>
+
+	<bean id="机构负责人" class="com.zhb.bean.Field">
+		<property name="name" value="机构负责人"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="centerPrincipal"></property>
+	</bean>
+
+	<bean id="项目实施科室" class="com.zhb.bean.Field">
+		<property name="name" value="项目实施科室"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="centerOperateDepartment"></property>
+	</bean>
+
+	<bean id="主要研究者" class="com.zhb.bean.Field">
+		<property name="name" value="主要研究者"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="centerResearcher"></property>
+	</bean>
+
+	<bean id="试验题目" class="com.zhb.bean.Field">
+		<property name="name" value="试验题目"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="projectTitle"></property>
+	</bean>
+
+	<bean id="适应症" class="com.zhb.bean.Field">
+		<property name="name" value="适应症"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="projectDisease"></property>
+	</bean>
+
+	<bean id="注册申请机构" class="com.zhb.bean.Field">
+		<property name="name" value="注册申请机构"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="projectPrincipal"></property>
+	</bean>
+
+	<bean id="注册分类" class="com.zhb.bean.Field">
+		<property name="name" value="注册分类"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="projectRegisterCategory"></property>
+	</bean>
+
+	<bean id="稽查类型" class="com.zhb.bean.Field">
+		<property name="name" value="稽查类型"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="projectAuditType"></property>
+	</bean>
+
+	<bean id="监查员" class="com.zhb.bean.Field">
+		<property name="name" value="监查员"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="稽查开始时间" class="com.zhb.bean.Field">
+		<property name="name" value="稽查开始时间"></property>
+		<property name="type" value="1"></property>
+		<property name="nullable" value="false"></property>
+	</bean>
+
+	<bean id="稽查结束时间" class="com.zhb.bean.Field">
+		<property name="name" value="稽查结束时间"></property>
+		<property name="type" value="1"></property>
+		<property name="nullable" value="false"></property>
+	</bean>
+
+	<bean id="稽查组长" class="com.zhb.bean.Field">
+		<property name="name" value="稽查组长"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="centerLeader"></property>
+		<property name="readonly" value="true"></property>
+	</bean>
+
+	<bean id="稽查成员" class="com.zhb.bean.Field">
+		<property name="name" value="稽查成员"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="centerMembers"></property>
+		<property name="readonly" value="true"></property>
+	</bean>
+
+	<bean id="稽查陪同人员" class="com.zhb.bean.Field">
+		<property name="name" value="稽查陪同人员"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="稽查目的" class="com.zhb.bean.Field">
+		<property name="name" value="稽查目的"></property>
+		<property name="type" value="4"></property>
+		<property name="inheritFrom" value="projectPurpose"></property>
+	</bean>
+
+	<bean id="稽查范围" class="com.zhb.bean.Field">
+		<property name="name" value="稽查范围"></property>
+		<property name="type" value="4"></property>
+		<property name="inheritFrom" value="projectRange"></property>
+	</bean>
+
+	<bean id="稽查依据" class="com.zhb.bean.Field">
+		<property name="name" value="稽查依据"></property>
+		<property name="type" value="4"></property>
+		<property name="inheritFrom" value="projectFoundation"></property>
+	</bean>
+
+	<bean id="中心试验开展阶段" class="com.zhb.bean.Field">
+		<property name="name" value="中心试验开展阶段"></property>
+		<property name="type" value="0"></property>
+		<property name="inheritFrom" value="stageName"></property>
+		<property name="readonly" value="true"></property>
+	</bean>
+
+	<bean id="稽查例数" class="com.zhb.bean.Field">
+		<property name="name" value="稽查例数"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="受试者编号" class="com.zhb.bean.Field">
+		<property name="name" value="受试者编号"></property>
+		<property name="type" value="4"></property>
+	</bean>
+
+	<bean id="项目简介" class="com.zhb.bean.Table">
+		<property name="name" value="项目简介"></property>
+		<property name="inheritable" value="1"></property><!--表示字段内容有继承-->
+		<property name="fields">
+			<list>
+				<ref bean="承担项目机构名称"/>
+				<ref bean="机构负责人"/>
+				<ref bean="项目实施科室"/>
+				<ref bean="主要研究者"/>
+				<ref bean="试验题目"/>
+				<ref bean="药物名称"/>
+				<ref bean="适应症"/>
+				<ref bean="注册申请机构"/>
+				<ref bean="注册分类"/>
+				<ref bean="稽查类型"/>
+				<ref bean="监查员"/>
+				<ref bean="稽查开始时间"/>
+				<ref bean="稽查结束时间"/>
+				<ref bean="稽查组长"/>
+				<ref bean="稽查成员"/>
+				<ref bean="稽查陪同人员"/>
+				<ref bean="稽查目的"/>
+				<ref bean="稽查范围"/>
+				<ref bean="稽查依据"/>
+				<ref bean="中心试验开展阶段"/>
+				<ref bean="稽查例数"/>
+				<ref bean="受试者编号"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="研究角色" class="com.zhb.bean.Field">
+		<property name="name" value="研究角色"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="人员名称" class="com.zhb.bean.Field">
+		<property name="name" value="人员名称"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="访谈时间" class="com.zhb.bean.Field">
+		<property name="name" value="访谈时间"></property>
+		<property name="type" value="1"></property>
+	</bean>
+
+	<bean id="访谈地点" class="com.zhb.bean.Field">
+		<property name="name" value="访谈地点"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="Q&amp;A" class="com.zhb.bean.Field">
+		<property name="name" value="Q&amp;A"></property>
+		<property name="type" value="4"></property>
+	</bean>
+
+	<bean id="人员访谈" class="com.zhb.bean.Table">
+		<property name="name" value="人员访谈"></property>
+		<property name="fields">
+			<list>
+				<ref bean="研究角色"/>
+				<ref bean="人员名称"/>
+				<ref bean="访谈时间"/>
+				<ref bean="访谈地点"/>
+				<ref bean="Q&amp;A"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="所有文件存放地点" class="com.zhb.bean.Field">
+		<property name="name" value="所有文件存放地点"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="研究者手册（或及更新件）" class="com.zhb.bean.Field">
+		<property name="name" value="研究者手册（或及更新件）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="试验方案及其修正案（签名）" class="com.zhb.bean.Field">
+		<property name="name" value="试验方案及其修正案（签名）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="病例报告表（样表）（或及更新件）" class="com.zhb.bean.Field">
+		<property name="name" value="病例报告表（样表）（或及更新件）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="知情同意书（或及更新件）" class="com.zhb.bean.Field">
+		<property name="name" value="知情同意书（或及更新件）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="财务规定" class="com.zhb.bean.Field">
+		<property name="name" value="财务规定"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="多方协议（已签名）（研究者、申办者、合同研究组织）" class="com.zhb.bean.Field">
+		<property name="name" value="多方协议（已签名）（研究者、申办者、合同研究组织）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="伦理委员会审查批件" class="com.zhb.bean.Field">
+		<property name="name" value="伦理委员会审查批件"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="伦理委员会成员表" class="com.zhb.bean.Field">
+		<property name="name" value="伦理委员会成员表"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="临床试验申请表（申办方）" class="com.zhb.bean.Field">
+		<property name="name" value="临床试验申请表（申办方）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="临床前实验室资料（申办方）" class="com.zhb.bean.Field">
+		<property name="name" value="临床前实验室资料（申办方）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="CFDA临床研究批件" class="com.zhb.bean.Field">
+		<property name="name" value="CFDA临床研究批件"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="研究者资质（履历、相关文件及更新）" class="com.zhb.bean.Field">
+		<property name="name" value="研究者资质（履历、相关文件及更新）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="临床试验有关的实验室检测正常值范围及更新" class="com.zhb.bean.Field">
+		<property name="name" value="临床试验有关的实验室检测正常值范围及更新"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="医学或实验室操作的质控证明及设备型号" class="com.zhb.bean.Field">
+		<property name="name" value="医学或实验室操作的质控证明及设备型号"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="试验用药品的标签（申办方）" class="com.zhb.bean.Field">
+		<property name="name" value="试验用药品的标签（申办方）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="试验用药物及相关物资的运货单、交接单" class="com.zhb.bean.Field">
+		<property name="name" value="试验用药物及相关物资的运货单、交接单"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="药检证明或及更新件（试验药、对照药、安慰剂、新批号）" class="com.zhb.bean.Field">
+		<property name="name" value="药检证明或及更新件（试验药、对照药、安慰剂、新批号）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="设盲试验的破盲规程及应急信件（申办方）" class="com.zhb.bean.Field">
+		<property name="name" value="设盲试验的破盲规程及应急信件（申办方）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="总随机表（申办方）" class="com.zhb.bean.Field">
+		<property name="name" value="总随机表（申办方）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="监查访视报告（申办方）" class="com.zhb.bean.Field">
+		<property name="name" value="监查访视报告（申办方）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="招募广告（其它提供给受试者书面文件）" class="com.zhb.bean.Field">
+		<property name="name" value="招募广告（其它提供给受试者书面文件）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="保险和赔偿措施" class="com.zhb.bean.Field">
+		<property name="name" value="保险和赔偿措施"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="委托书（申办方对CRO／CRA）" class="com.zhb.bean.Field">
+		<property name="name" value="委托书（申办方对CRO／CRA）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="新研究者的履历" class="com.zhb.bean.Field">
+		<property name="name" value="新研究者的履历"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="研究者致申办者的SAE报告（如有）" class="com.zhb.bean.Field">
+		<property name="name" value="研究者致申办者的SAE报告（如有）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="申办者致CFDA、伦理委员会的SAE报告（如有）" class="com.zhb.bean.Field">
+		<property name="name" value="申办者致CFDA、伦理委员会的SAE报告（如有）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="中期或年度报告" class="com.zhb.bean.Field">
+		<property name="name" value="中期或年度报告"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="受试者鉴认代码表" class="com.zhb.bean.Field">
+		<property name="name" value="受试者鉴认代码表"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="受试者筛选与入选表" class="com.zhb.bean.Field">
+		<property name="name" value="受试者筛选与入选表"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="试验药物发放回收登记表" class="com.zhb.bean.Field">
+		<property name="name" value="试验药物发放回收登记表"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="研究者签名样张" class="com.zhb.bean.Field">
+		<property name="name" value="研究者签名样张"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="试验药物销毁证明" class="com.zhb.bean.Field">
+		<property name="name" value="试验药物销毁证明"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="完成试验受试者编码目录" class="com.zhb.bean.Field">
+		<property name="name" value="完成试验受试者编码目录"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="稽查证明件（申办方）" class="com.zhb.bean.Field">
+		<property name="name" value="稽查证明件（申办方）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="最终监查报告或关闭中心报告（申办方）" class="com.zhb.bean.Field">
+		<property name="name" value="最终监查报告或关闭中心报告（申办方）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="治疗分配与破盲证明（申办方）" class="com.zhb.bean.Field">
+		<property name="name" value="治疗分配与破盲证明（申办方）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="试验完成报告（致伦理委员会、CFDA）" class="com.zhb.bean.Field">
+		<property name="name" value="试验完成报告（致伦理委员会、CFDA）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="定稿并盖章签字的总结报告" class="com.zhb.bean.Field">
+		<property name="name" value="定稿并盖章签字的总结报告"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="Site启动会会议纪要、培训课件及参会者签名" class="com.zhb.bean.Field">
+		<property name="name" value="Site启动会会议纪要、培训课件及参会者签名"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="分工与研究者（PI）授权表" class="com.zhb.bean.Field">
+		<property name="name" value="分工与研究者（PI）授权表"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="企业资质（GMP、营业执照、生产许可证）" class="com.zhb.bean.Field">
+		<property name="name" value="企业资质（GMP、营业执照、生产许可证）"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="相关通讯记录" class="com.zhb.bean.Field">
+		<property name="name" value="相关通讯记录"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="数据答疑表" class="com.zhb.bean.Field">
+		<property name="name" value="数据答疑表"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="药品／生物样本储存温度记录" class="com.zhb.bean.Field">
+		<property name="name" value="药品／生物样本储存温度记录"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="试验药品处方" class="com.zhb.bean.Field">
+		<property name="name" value="试验药品处方"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="研究中心启动访视报告" class="com.zhb.bean.Field">
+		<property name="name" value="研究中心启动访视报告"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="预留字段1" class="com.zhb.bean.Field">
+		<property name="name" value="预留字段1"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="预留字段2" class="com.zhb.bean.Field">
+		<property name="name" value="预留字段2"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+  <bean id="预留字段3" class="com.zhb.bean.Field">
+		<property name="name" value="预留字段3"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="预留字段4" class="com.zhb.bean.Field">
+		<property name="name" value="预留字段4"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+  <bean id="预留字段5" class="com.zhb.bean.Field">
+		<property name="name" value="预留字段5"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="预留字段6" class="com.zhb.bean.Field">
+		<property name="name" value="预留字段6"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+  <bean id="预留字段7" class="com.zhb.bean.Field">
+		<property name="name" value="预留字段7"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="预留字段8" class="com.zhb.bean.Field">
+		<property name="name" value="预留字段8"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+  <bean id="预留字段9" class="com.zhb.bean.Field">
+		<property name="name" value="预留字段9"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="预留字段10" class="com.zhb.bean.Field">
+		<property name="name" value="预留字段10"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="基本文件" class="com.zhb.bean.Table">
+		<property name="name" value="基本文件"></property>
+		<property name="fields">
+			<list>
+				<ref bean="所有文件存放地点"/>
+				<ref bean="研究者手册（或及更新件）"/>
+				<ref bean="试验方案及其修正案（签名）"/>
+				<ref bean="病例报告表（样表）（或及更新件）"/>
+				<ref bean="知情同意书（或及更新件）"/>
+				<ref bean="财务规定"/>
+				<ref bean="多方协议（已签名）（研究者、申办者、合同研究组织）"/>
+				<ref bean="伦理委员会审查批件"/>
+				<ref bean="伦理委员会成员表"/>
+				<ref bean="临床试验申请表（申办方）"/>
+				<ref bean="临床前实验室资料（申办方）"/>
+				<ref bean="CFDA临床研究批件"/>
+				<ref bean="研究者资质（履历、相关文件及更新）"/>
+				<ref bean="临床试验有关的实验室检测正常值范围及更新"/>
+				<ref bean="医学或实验室操作的质控证明及设备型号"/>
+				<ref bean="试验用药品的标签（申办方）"/>
+				<ref bean="试验用药物及相关物资的运货单、交接单"/>
+				<ref bean="药检证明或及更新件（试验药、对照药、安慰剂、新批号）"/>
+				<ref bean="设盲试验的破盲规程及应急信件（申办方）"/>
+				<ref bean="总随机表（申办方）"/>
+				<ref bean="监查访视报告（申办方）"/>
+				<ref bean="招募广告（其它提供给受试者书面文件）"/>
+				<ref bean="保险和赔偿措施"/>
+				<ref bean="委托书（申办方对CRO／CRA）"/>
+				<ref bean="新研究者的履历"/>
+				<ref bean="研究者致申办者的SAE报告（如有）"/>
+				<ref bean="申办者致CFDA、伦理委员会的SAE报告（如有）"/>
+				<ref bean="中期或年度报告"/>
+				<ref bean="受试者鉴认代码表"/>
+				<ref bean="受试者筛选与入选表"/>
+				<ref bean="试验药物发放回收登记表"/>
+				<ref bean="研究者签名样张"/>
+				<ref bean="试验药物销毁证明"/>
+				<ref bean="完成试验受试者编码目录"/>
+				<ref bean="稽查证明件（申办方）"/>
+				<ref bean="最终监查报告或关闭中心报告（申办方）"/>
+				<ref bean="治疗分配与破盲证明（申办方）"/>
+				<ref bean="试验完成报告（致伦理委员会、CFDA）"/>
+				<ref bean="定稿并盖章签字的总结报告"/>
+				<ref bean="Site启动会会议纪要、培训课件及参会者签名"/>
+				<ref bean="分工与研究者（PI）授权表"/>
+				<ref bean="企业资质（GMP、营业执照、生产许可证）"/>
+				<ref bean="相关通讯记录"/>
+				<ref bean="数据答疑表"/>
+				<ref bean="药品／生物样本储存温度记录"/>
+				<ref bean="试验药品处方"/>
+				<ref bean="研究中心启动访视报告"/>
+				<ref bean="预留字段1"/>
+				<ref bean="预留字段2"/>
+				<ref bean="预留字段3"/>
+				<ref bean="预留字段4"/>
+				<ref bean="预留字段5"/>
+				<ref bean="预留字段6"/>
+				<ref bean="预留字段7"/>
+				<ref bean="预留字段8"/>
+				<ref bean="预留字段9"/>
+				<ref bean="预留字段10"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="完成溯源检查项" class="com.zhb.bean.Field">
+		<property name="name" value="完成溯源检查项"></property>
+		<property name="type" value="4"></property>
+	</bean>
+
+	<bean id="未完成溯源检查项" class="com.zhb.bean.Field">
+		<property name="name" value="未完成溯源检查项"></property>
+		<property name="type" value="4"></property>
+	</bean>
+
+	<bean id="无法溯源项" class="com.zhb.bean.Field">
+		<property name="name" value="无法溯源项"></property>
+		<property name="type" value="4"></property>
+	</bean>
+
+	<bean id="溯源地点" class="com.zhb.bean.Field">
+		<property name="name" value="溯源地点"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="完成溯源受试者编号" class="com.zhb.bean.Field">
+		<property name="name" value="完成溯源受试者编号"></property>
+		<property name="type" value="4"></property>
+	</bean>
+
+	<bean id="保存地点" class="com.zhb.bean.Field">
+		<property name="name" value="保存地点"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="存储冰箱号" class="com.zhb.bean.Field">
+		<property name="name" value="存储冰箱号"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="清点数量" class="com.zhb.bean.Field">
+		<property name="name" value="清点数量"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="清点时间" class="com.zhb.bean.Field">
+		<property name="name" value="清点时间"></property>
+		<property name="type" value="1"></property>
+	</bean>
+
+	<bean id="存储温度记录保存" class="com.zhb.bean.Field">
+		<property name="name" value="存储温度记录保存"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="有无"/>
+		</property>
+	</bean>
+
+	<bean id="生物样本/器械" class="com.zhb.bean.Table">
+		<property name="name" value="生物样本/器械"></property>
+		<property name="fields">
+			<list>
+				<ref bean="完成溯源检查项"/>
+				<ref bean="未完成溯源检查项"/>
+				<ref bean="无法溯源项"/>
+				<ref bean="溯源地点"/>
+				<ref bean="完成溯源受试者编号"/>
+				<ref bean="保存地点"/>
+				<ref bean="存储冰箱号"/>
+				<ref bean="清点数量"/>
+				<ref bean="清点时间"/>
+				<ref bean="存储温度记录保存"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="ICF签署份数" class="com.zhb.bean.Field">
+		<property name="name" value="ICF签署份数"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="筛选受试者例数" class="com.zhb.bean.Field">
+		<property name="name" value="筛选受试者例数"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="首例受试者ICF日期" class="com.zhb.bean.Field">
+		<property name="name" value="首例受试者ICF日期"></property>
+		<property name="type" value="1"></property>
+	</bean>
+
+	<bean id="筛选失败受试者例数" class="com.zhb.bean.Field">
+		<property name="name" value="筛选失败受试者例数"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="首例受试者入组时间" class="com.zhb.bean.Field">
+		<property name="name" value="首例受试者入组时间"></property>
+		<property name="type" value="1"></property>
+	</bean>
+
+	<bean id="筛选失败ICF份数" class="com.zhb.bean.Field">
+		<property name="name" value="筛选失败ICF份数"></property>
+		<property name="type" value="3"></property>
+	</bean>
+
+	<bean id="缺失ICF的药物编号" class="com.zhb.bean.Field">
+		<property name="name" value="缺失ICF的药物编号"></property>
+		<property name="type" value="4"></property>
+	</bean>
+
+	<bean id="知情同意执行地点" class="com.zhb.bean.Field">
+		<property name="name" value="知情同意执行地点"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="研究者职责" class="com.zhb.bean.Table">
+		<property name="name" value="研究者职责"></property>
+		<property name="fields">
+			<list>
+				<ref bean="ICF签署份数"/>
+				<ref bean="筛选受试者例数"/>
+				<ref bean="首例受试者ICF日期"/>
+				<ref bean="筛选失败受试者例数"/>
+				<ref bean="首例受试者入组时间"/>
+				<ref bean="筛选失败ICF份数"/>
+				<ref bean="缺失ICF的药物编号"/>
+				<ref bean="知情同意执行地点"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="发生SAE受试者编号" class="com.zhb.bean.Field">
+		<property name="name" value="发生SAE受试者编号"></property>
+		<property name="type" value="0"></property>
+	</bean>
+
+	<bean id="SAE发生研究者获知日期" class="com.zhb.bean.Field">
+		<property name="name" value="SAE发生研究者获知日期"></property>
+		<property name="type" value="1"></property>
+	</bean>
+
+	<bean id="是否揭盲" class="com.zhb.bean.Field">
+		<property name="name" value="是否揭盲"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="是否"/>
+		</property>
+	</bean>
+
+	<bean id="SAE报告日期" class="com.zhb.bean.Field">
+		<property name="name" value="SAE报告日期"></property>
+		<property name="type" value="1"></property>
+	</bean>
+
+	<bean id="报告类型" class="com.zhb.bean.Field">
+		<property name="name" value="报告类型"></property>
+		<property name="type" value="2"></property>
+		<property name="limitedWord">
+			<ref bean="报告类型枚举"/>
+		</property>
+	</bean>
+
+	<bean id="首次报告机构" class="com.zhb.bean.Field">
+		<property name="name" value="首次报告机构"></property>
+		<property name="type" value="5"></property>
+		<property name="limitedWord">
+			<ref bean="报告机构"/>
+		</property>
+	</bean>
+
+	<bean id="随访报告机构" class="com.zhb.bean.Field">
+		<property name="name" value="随访报告机构"></property>
+		<property name="type" value="5"></property>
+		<property name="limitedWord">
+			<ref bean="报告机构"/>
+		</property>
+	</bean>
+
+	<bean id="总结报告机构" class="com.zhb.bean.Field">
+		<property name="name" value="总结报告机构"></property>
+		<property name="type" value="5"></property>
+		<property name="limitedWord">
+			<ref bean="报告机构"/>
+		</property>
+	</bean>
+
+	<bean id="药物安全/警戒" class="com.zhb.bean.Table">
+		<property name="name" value="药物安全/警戒"></property>
+		<property name="fields">
+			<list>
+				<ref bean="发生SAE受试者编号"/>
+				<ref bean="SAE发生研究者获知日期"/>
+				<ref bean="是否揭盲"/>
+				<ref bean="SAE报告日期"/>
+				<ref bean="报告类型"/>
+				<ref bean="首次报告机构"/>
+				<ref bean="随访报告机构"/>
+				<ref bean="总结报告机构"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="问题" class="com.zhb.bean.Field">
+		<property name="name" value="问题"></property>
+		<property name="type" value="4"></property>
+	</bean>
+
+	<bean id="答复" class="com.zhb.bean.Field">
+		<property name="name" value="答复"></property>
+		<property name="type" value="4"></property>
+	</bean>
+
+	<bean id="稽查总结会议" class="com.zhb.bean.Table">
+		<property name="name" value="稽查总结会议"></property>
+		<property name="fields">
+			<list>
+				<ref bean="问题"/>
+				<ref bean="答复"/>
+			</list>
+		</property>
+	</bean>
+
+</beans>

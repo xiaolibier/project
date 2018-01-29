@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width"/>
+<title>北京经纬传奇医药科技有限公司--联系我们</title>
+<link href="__PUBLIC__/css/style.css" type="text/css" rel="stylesheet">
+<link href="__PUBLIC__/css/top_bottom_Public.css" rel="stylesheet" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+</head>
+<style>
+	html,body{min-width:1200px;}
+</style>
+<body class="bj">
+<!--header开始-->
+ <include file="Index:top" />
+<!--header结束-->
+ <div class="common_banner common_banner6">
+	<!-- <img class="cimg" src="/web/Tpl/Public/newImg/cimg.png"/> -->
+</div>
+<!--医学经理开始-->
+<section class="jianjie_center clear">
+ <include file="Index:leftcont" />
+  <div class="jianjie_center_right fr">
+    <!-- <div class="rt_top"><a>当前位置：</a><a href="{:U('index')}">首页</a> > <a href="{:U('contact')}">联系我们</a> > {$datas["Main_Name"]}</div> -->
+    <!-- <span><img src="__PUBLIC__/img/jie_tu.png"></span> -->
+   {$datas["Main_Content"]|htmlspecialchars_decode}
+</div>
+</section>
+
+<!--footer开始-->
+ <include file="Index:footer" />
+ <script src="__PUBLIC__/js/common.js" ></script>
+</div>
+<!--footeR结束-->
+</body>
+</html>
+<script type="text/javascript">$("#{$datas["Main_ID"]}").addClass('hover');$("#contact").addClass('current');</script>
