@@ -47,17 +47,36 @@ $(function(){
 		 form.ajaxSubmit(options); 
 	}
 
+
+	//定义图片上传交互
+	$('.xiangmuguanli').on('click','.head_img_spam .head_imgs',function(){
+		$(this).siblings('.hide_head_imgs,.head_img_bg').fadeIn();
+	});
+	$('.xiangmuguanli').on('click','.head_img_spam .hide_head_imgs,.head_img_spam .head_img_bg',function(){
+		$(this).fadeOut();
+		$(this).siblings('.hide_head_imgs,.head_img_bg').fadeOut();
+	});
+	//给图像赋值 
+	function setImgVal(aid,src){
+		var aid = aid || '';// #id 或者 .class
+		var src = src || '';
+		$(aid).attr('src',src);
+		$(aid).parents('.head_img_spam').addClass('active');
+		$(aid).siblings('.head_imgs,.hide_head_imgs').css({'background':'url('+src+') no-repeat center center','background-size':'contain'});
+	}
 	
 	
 	//获取七牛云上传的地址和凭证
 	//七牛云上传
-	setqiniu();
-	function setqiniu(){
+	//setqiniu();
+	function setqiniu(pas){
 		//var bid = bid || '';//上传按钮id 不带#
 		//var type = type || '';//资源类型 1课件资源 2或其他 其他资源
+		var pas = pas || '';
 		var condi = {};
-		condi.type = '课件资源';//type=课件资源：包括视频、音频、图片、pdf等 type=其他资源：获取碎片资源上传地址
-		var url = Base.serverUrl + "file/utils/getUploadUrl";
+		//condi.type = '课件资源';//type=课件资源：包括视频、音频、图片、pdf等 type=其他资源：获取碎片资源上传地址
+		var url = Base.serverUrl + "project/getUploadUrl";
+		if(pas == 1){url = Base.serverUrl + "auditor/getUploadUrl";}
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -97,9 +116,9 @@ $(function(){
 	}
 
 	//定义七牛云上传
-	function uploadToQiniu(bid,type){
+	function uploadToQiniu(bid){
 		var bid = bid || '';//上传按钮id 不带#
-		var type = type || '';//资源类型 1课件资源 2或其他 其他资源
+		//var type = type || '';//资源类型 1课件资源 2或其他 其他资源
 		 window.uploader = Qiniu.uploader({
 			disable_statistics_report: false,
 			runtimes: 'html5,flash,html4',// 上传模式，依次退化
@@ -108,6 +127,7 @@ $(function(){
 			//drop_element: 'container',// 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
 			max_file_size: '1000mb',// 最大文件体积限制
 			unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+			//save_key: false,
 			//flash_swf_url: 'bower_components/plupload/js/Moxie.swf',//引入flash，相对路径
 			dragdrop: true, // 开启可拖曳上传
 			chunk_size: '4mb',// 分块上传时，每块的体积
@@ -168,6 +188,9 @@ $(function(){
 					var res = JSON.parse(info.response);
 					var sourceLink = domain +"/"+ res.key; //获取上传成功后的文件的Url
 					$('#'+bid).attr('src',sourceLink);
+					$('#'+bid).siblings('.head_imgs').css({'background':'url('+sourceLink+') no-repeat center center','background-size':'contain'});
+					$('#'+bid).parents('.head_img_spam').addClass('active');
+					$('#'+bid).siblings('.hide_head_imgs').css({'background':'url('+sourceLink+') no-repeat center center','background-size':'contain'});
 					Utils.alert('上传成功！');
 			  },
 			  'Error': function(up, err, errTip) {//上传出错时，处理相关的事情

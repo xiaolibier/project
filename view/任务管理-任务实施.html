@@ -13,9 +13,10 @@
 	<style>
 		.check_box .i, .check_box2 .i{margin-right:5px;}
 		.xiangmujibenxinxi .lable{width:200px;}
+		.xiangmuguanli .pro_b{height:15px;line-height:15px;text-align:center;color:#666666;}
 	</style>
 </head>
-<body class="xiangmuguanli xiangmujibenxinxi">
+<body class="xiangmuguanli renwuguanli xiangmujibenxinxi">
 
 	<h4 class="mokuaifaxian">
 		<a id="renwubianji1" class="a active">任务实施</a>
@@ -23,41 +24,112 @@
 		<a id="renwubianji3" class="a">快递信息</a>
 		<!-- <a href="javascript:;" id="backPage" style="display:none;" class="jc_btn type5 last">返回</a> -->
 	</h4>
+	<div class="renwu_div">
+		<div>
+			任务状态：<span>已驳回</span>
+			<li class="pro_b"><i style="width:50%;" class="pro_w">1/3</i></li>
+			<a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">恢复任务</a>
+			<a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse type3">驳回任务</a>
+			<a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse type2">暂停任务</a>
+			<a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse type4">取消任务</a>
+		</div>
+		<div>驳回原因：<span>甲方资料寄错了，需要重新寄一次。</span></div>
+	</div>
 	<div class="content_box1">
-
-		<div class="con_d"><span class="lable need">任务名称</span><i class="x">*</i><input id="renwu_name" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">企业类型</span><i class="x">*</i><select id="company_type" class="common_select">
+		
+		<div class="con_d"><span class="lable need"><i class="list_xu">1</i></span><i class="x"></i>
+		<span class="vert">上传客户签字资料的扫描件</span></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="touxiangimg1" class="head_img_tips">重新上传</div>
+			</div>
+		</div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan">张宇晨</span>上传时间：<span class="shanchuanspan">2018/1/23  17:32:22</span></div>
+		<div class="con_d"><span class="lable need"><i class="list_xu">2</i></span><i class="x"></i>
+		<span class="vert">上传营业执照</span></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="touxiangimg2" class="head_img_tips">重新上传</div>
+			</div>
+		</div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan">张宇晨</span>上传时间：<span class="shanchuanspan">2018/1/23  17:32:22</span></div>
+		<div class="con_d"><span class="lable need"><i class="list_xu">3</i></span><i class="x"></i>
+		<span class="vert">上传刻章照片</span></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="touxiangimg3" class="head_img_tips">重新上传</div>
+			</div>
+		</div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan">张宇晨</span>上传时间：<span class="shanchuanspan">2018/1/23  17:32:22</span></div>
+		<div class="con_d"><span class="lable need"><i class="list_xu">4</i></span><i class="x"></i>
+		<span class="vert">上传印鉴卡照片</span></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="touxiangimg4" class="head_img_tips">重新上传</div>
+			</div>
+		</div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>银行卡号：<input id="yinjianyinhangkahao" class="common_input" type="text" /></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan">张宇晨</span>上传时间：<span class="shanchuanspan">2018/1/23  17:32:22</span></div>
+		<div class="con_d"><span class="lable need"><i class="list_xu">5</i></span><i class="x"></i>
+		<span class="vert">上传开户许可证，及银行卡口令照片</span></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="touxiangimg5" class="head_img_tips">重新上传</div>
+			</div>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="touxiangimg5" class="head_img_tips">重新上传</div>
+			</div>
+		</div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan">张宇晨</span>上传时间：<span class="shanchuanspan">2018/1/23  17:32:22</span></div>
+		<div class="con_d"><span class="lable need"><i class="list_xu">6</i></span><i class="x"></i>
+		<span class="vert">回寄身份证快递单号</span></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">快递单号：</span>
+		<input id="huijikuaididanhao" class="common_input" type="text" /><a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">确认</a></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan">张宇晨</span>上传时间：<span class="shanchuanspan">2018/1/23  17:32:22</span></div>
+		<div class="con_d"><span class="lable need"><i class="list_xu">7</i></span><i class="x"></i>
+		<span class="vert">税务办理</span></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">税务登记时间点：</span><input id="shuiwushuiwudengjishijian" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">税务企业类型：</span><select id="shuiwushuiwuqiyeleixing" class="common_select">
 				<option value="">请选择</option>
-				<option value="合伙企业">合伙企业</option>
-				<option value="有限公司">有限公司</option>
-				<option value="个体企业">个体企业</option>
-			</select>
-		</div>
-		<div class="con_d"><span class="lable need">园区</span><i class="x">*</i><select id="syuanqu" class="common_select">
+				<option value="小规模">小规模</option>
+				<option value="一般纳税人">一般纳税人</option>
+		</select></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">分公司是否独立核算：</span><select id="shuiwufengognsiduli" class="common_select">
 				<option value="">请选择</option>
-			</select>
-		</div>
-		<div class="con_d"><span class="lable need">注册地址段</span><i class="x">*</i><input id="zhucedizhiduan" placeholder="系统默认带出，可修改，要判重" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">注册资本</span><i class="x">*</i><input id="zhuceziben" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">法人姓名</span><i class="x">*</i><input id="farenxingming" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">法人身份证</span><i class="x">*</i><input id="farenshenfenzheng" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">上传身份证图片</span><i class="x">*</i><div id="touxiangimg" class="head_img_spam"><img class="head_imgs" src="../public/img/art.png"/><img class="hide_head_imgs" src="../public/img/art.png"/></div></div>
-		<div class="con_d"><span class="lable need">法人手机号</span><i class="x">*</i><input id="farenphone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">联系人姓名</span><i class="x">*</i><input id="lianxirenname" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">联系人电话</span><i class="x">*</i><input id="lianxirenphone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">财务负责人姓名</span><i class="x">*</i><input id="caiwufuzerenname" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">财务负责人身份证</span><i class="x">*</i><input id="caiwufuzerenidcard" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">上传身份证图片</span><i class="x">*</i><div id="touxiangimg" class="head_img_spam"><img class="head_imgs" src="../public/img/art.png"/><img class="hide_head_imgs" src="../public/img/art.png"/></div></div>
-		<div class="con_d"><span class="lable need">财务负责人手机号</span><i class="x">*</i><input id="caiwufuzerenphone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">身份证回寄地址、电话、接收人</span><i class="x">*</i><textarea id="sfdhjr" class="common_textarea"></textarea></div>
-		<div id="kezhangxinxi" class="con_d"><span class="lable need">刻章信息</span><i class="x">*</i>
-			<div class="check_box active"><i class="i"></i>公章（46）</div>
-			<div class="check_box active"><i class="i"></i>法人章（32）</div>
-			<div class="check_box"><i class="i"></i>财务章（32）</div>
-			<div class="check_box"><i class="i"></i>合同章（32）</div>
-			<div class="check_box"><i class="i"></i>发票章（32）</div><span style="color:#D0011B;">刻章费用总计<i>78</i></span>
-		</div>
-		<div class="con_d"><span class="lable need">发票信息</span><i class="x">*</i>
+				<option value="是">是</option>
+				<option value="否">否</option>
+		</select></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">财务负责人姓名：</span><input id="shuiwucaiwufuzerenname" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">财务负责人身份证号：</span><input id="shuiwucaiwuidcard" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">财务负责人手机号：</span><input id="shuiwucaiwuphone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">办税人姓名：</span><input id="shuiwubanshuirenname" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">办税人身份证号：</span><input id="shuiwubanshuirenidcard" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">办税人手机号：</span><input id="shuiwubanshuirenphone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i><span class="common_renwu_span">初次领票情况：</span>
 			<table class="fapiaotable">
 				<tr><th>发票类型</th><th>面额（万元）</th><th>张数（张）</th></tr>
 				<tr>
@@ -74,15 +146,57 @@
 					<td>专票纸质发票</td>
 					<td><select class="common_select fapiaojine3"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
 					<td><input class="common_input fapiaozhangshu3" type="text" /></td>
+					<td><a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">确认</a></td>
 				</tr>
 			</table>
 		</div>
-		<div class="con_d"><span class="lable need">客户快递单号</span><i class="x">*</i><input id="kehukuaidinumber" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">快递寄出时间</span><i class="x">*</i><input id="kuaidijichutime" class="common_input" type="text" />
-		<a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">确认寄出</a>
+		<div class="con_d"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan">张宇晨</span>上传时间：<span class="shanchuanspan">2018/1/23  17:32:22</span></div>
+		<div class="con_d"><span class="lable need"><i class="list_xu">8</i></span><i class="x"></i>
+		<span class="vert">购买税控盘、发票</span></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="touxiangimg8" class="head_img_tips">重新上传</div>
+			</div>
 		</div>
-		
-		<div id="new_create_btn" class="btns_div"><a back='项目管理.html' class="common_abtn goback type1">取消</a><a href="javascript:;" id="create_new_btn" class="common_abtn type2">创建</a></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>发票编号：<input id="yinjianyinhangkahao" class="common_input" type="text" /></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan">张宇晨</span>上传时间：<span class="shanchuanspan">2018/1/23  17:32:22</span></div>
+		<div class="con_d"><span class="lable need"><i class="list_xu">9</i></span><i class="x"></i>
+		<span class="vert">国地税三方协议</span></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="touxiangimg8" class="head_img_tips">重新上传</div>
+			</div>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="touxiangimg8" class="head_img_tips">重新上传</div>
+			</div>
+		</div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan">张宇晨</span>上传时间：<span class="shanchuanspan">2018/1/23  17:32:22</span></div>
+		<div class="con_d"><span class="lable need"><i class="list_xu">10</i></span><i class="x"></i>
+		<span class="vert">拍照清单上传及回寄单号</span></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="touxiangimg8" class="head_img_tips">重新上传</div>
+			</div>
+		</div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>回寄单号：<input id="yinjianyinhangkahao" class="common_input" type="text" /></div>
+		<div class="con_d type2"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan">张宇晨</span>上传时间：<span class="shanchuanspan">2018/1/23  17:32:22</span></div>
+
 	</div>
 
 	
