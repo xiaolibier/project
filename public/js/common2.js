@@ -24,7 +24,24 @@ $(function(){
 	
 	/*......................setting.......................................*/
 	
-
+	
+	//加载所有搜索项
+	function setCondi(condi,aid){
+		var aid = aid || '.btn_div';//input 容器
+		var condi = condi || '';
+		if(condi == ''){Utils.alert("condi对象不能为空！");return false;}
+		$(aid).find('input,select,textarea').each(function(){
+			var _v = $(this).val() || '';
+			var _n = $(this).attr('name') || '';
+			var _id = $(this).attr('id') || '';
+			if(_n == '' && _id == ''){Utils.alert("搜索项有没有name和id的项！");return false;}
+			else if(_n != ''){condi[_n] = _v;}
+			else if(_id != ''){condi[_id] = _v;}
+			
+		})
+		return condi;
+	}
+	
 	//利用后台接口 上传到七牛云
 	function uploadqiniu(form_id){
 		
@@ -60,9 +77,15 @@ $(function(){
 	function setImgVal(aid,src){
 		var aid = aid || '';// #id 或者 .class
 		var src = src || '';
-		$(aid).attr('src',src);
-		$(aid).parents('.head_img_spam').addClass('active');
-		$(aid).siblings('.head_imgs,.hide_head_imgs').css({'background':'url('+src+') no-repeat center center','background-size':'contain'});
+		if(src == ''){//清空
+			$(aid).removeAttr('src');
+			$(aid).parents('.head_img_spam').removeClass('active');
+			$(aid).siblings('.head_imgs,.hide_head_imgs').css({'background':'url("../public/img/add1.png") no-repeat center center','background-size':'contain'});
+		}else{
+			$(aid).attr('src',src);
+			$(aid).parents('.head_img_spam').addClass('active');
+			$(aid).siblings('.head_imgs,.hide_head_imgs').css({'background':'url('+src+') no-repeat center center','background-size':'contain'});
+		}	
 	}
 	
 	
@@ -1202,6 +1225,7 @@ $(function(){
 	window.uploadToQiniu = uploadToQiniu;
 	window.formatSeconds = formatSeconds;
 	window.uploadqiniu = uploadqiniu;
+	window.setCondi = setCondi;
 	window.getselected = getselected;//获取选择的人员
 });
 

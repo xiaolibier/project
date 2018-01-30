@@ -7,14 +7,8 @@
 	<meta content="yes" name="apple-mobile-web-app-capable">
 	<meta content="black" name="apple-mobile-web-app-status-bar-style">
 	<meta name="format-detection" content="telephone=no"/>
-	<!-- <link rel="stylesheet" href="../public/libs/bootstrap/bootstrap.min.css" /> -->
-	<!-- <link rel="stylesheet" href="../public/libs/bootstrap/bootstrap-select.css" /> -->
 	<link rel="stylesheet" href="../public/select2/css/select2.min.css" />
 	<link rel="stylesheet" href="../public/css/common.css" />
-	<link rel="stylesheet" href="../public/btncss/normalize.css" />
-	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
-	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
-	<link rel="stylesheet" href="../public/btncss/buttons.css" />
 	<title></title>
 	<style>
 		.check_box .i, .check_box2 .i{margin-right:5px;}
@@ -22,11 +16,14 @@
 	</style>
 </head>
 <body class="xiangmuguanli xiangmujibenxinxi">
-
+	<!-- 客户名称 -->
+	<ul class="choiseDanwei choiseDanwei4">
+		<li>加载失败</li>
+	</ul>
 	<h4 class="page_title">项目基本信息
-		<!-- <a href="javascript:;" id="editBtn" class="creat_forse">编辑</a>
+		<a href="javascript:;" id="editBtn" class="creat_forse">编辑</a>
 		<a href="javascript:;" style="display:none;" id="change_ok_btn" class="creat_forse">保存</a>
-		<a href="javascript:;" style="display:none;" id="change_no_btn" class="creat_forse type1">取消</a> -->
+		<a href="javascript:;" style="display:none;" id="change_no_btn" class="creat_forse type1">取消</a>
 	</h4>
 	<div class="content_box1">
 
@@ -100,18 +97,7 @@ $(function(){
 	$('#menu_show_t .s1',parent.document).html(' > 项目基本信息').addClass('active');
 	
 	$('#editBtn').on('click',editStatic);//进入编辑状态
-	$('#downloadit').on('click',downloaditFunc);//下载合同模板
 	$('#change_ok_btn').on('click',function(){changeOrCreateProject(1)});
-	$('.set_cancel').on('click',cancelPro);
-	$('.set_reset').on('click',resetPro);
-	$('.yiqishow').on('click',yiqiISShow);
-	//发布项目
-	$('#fabuAbtn').on('click',function(){
-		$('.xiangmufabuSbox input,.xiangmufabuSbox textarea').val('').removeClass('readonly').removeAttr('readonly');//清空弹窗
-		$('.xiangmufabuSbox select').val('');//清空弹窗
-		showSbox('.xiangmufabuSbox');//显示弹窗
-		$('#yesBtn').off().on('click',fabuAbtnFunc);
-	});
 	$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
 	getjichamokuai();//获取稽查模块
 	getShenBanFang();//加载申办方列表
@@ -119,29 +105,144 @@ $(function(){
 	
 /* **************************************** setTing ******************************************** */	
 	
-	//setSearchRole('.choiseDanwei102','项目经理','li');//给项目经理 选框赋值
-	setGetSearchInput('#project_manager_name','.choiseDanwei102');//定义可以搜索下拉的
-	setSearchBuMen('.choiseDanwei102','稽查部','li');//给项目成员 选框赋值
-	//setSearchRole('#xiangmuzhuli','协同项目经理','option','name');//给协同项目经理 选框赋值
-	setSearchBuMen('#xiangmuzhuli','稽查部','option','name');//给项目成员 选框赋值
-	//setSearchBuMen('#xiangmuzhuli2','稽查部','option','name');//给项目成员 选框赋值
-	//setSearchRole('.choiseDanwei10','协同项目经理','li');//给协同项目经理 选框赋值
-	//setGetSearchInput('#xiangmuzhuli','.choiseDanwei10');//定义可以搜索下拉的
-	setSearchRole('.choiseDanwei101','商务经理','li');//给商务经理 选框赋值
-	setGetSearchInput('#business_manager_name','.choiseDanwei101');//定义可以搜索下拉的
-	//setMoreSlide('#xiangmuzhuli','.choiseDanwei10');//定义可以多选
-	//定义控件
-	$("#xiangmuzhuli").select2({tags: true});
-	//$("#xiangmuzhuli2").select2({tags: true});
 	loadCheck();//判断编辑还是查看
-	is_show('.xiangMu_xiangMuFaBu');
+	//is_show('.xiangMu_xiangMuFaBu');
+	
+	//编辑状态
+	function editStatic(){
+		g.do = 'change';
+		loadCheck();
+	}
+	
+	//判断是编辑还是查看
+	function loadCheck(){
+		if(g.do == 'check'){//查看
+			$('input,textarea').attr('readonly',true).addClass('readonly');
+			$('select').attr('disabled',true).addClass('readonly');
+			$('#change_ok_btn').hide();//修改保存按钮
+			$('#change_no_btn').hide();//修改取消按钮
+			$('#editBtn').show();//编辑按钮
+			//$('.set_cancel').hide();//取消项目按钮
+			//$('.set_reset').hide();//恢复项目按钮
+			getProject();//获取项目信息
+			$('#new_create_btn').remove();
+			//定义选择分期 只能单选
+			$('.common_radio').off();
+			$('.xiangmuguanli').off('click','.common_radio');
+		}else if(g.do == 'change'){//修改
+			$('#editBtn').hide();//编辑按钮
+			$('#change_ok_btn').show();//修改保存按钮
+			$('#change_no_btn').show();//修改取消按钮
+			$('input,textarea').attr('readonly',false).removeClass('readonly');
+			$('select').attr('disabled',false).removeClass('readonly');
+			$('#new_create_btn').remove();
+			getProject();//获取项目信息
+			//定义选择分期 只能单选
+			$('.xiangmuguanli').off('click','.common_radio').on('click','.common_radio',function(){
+				$(this).addClass('active').siblings('.common_radio').removeClass('active');
+			});
+		}else if(g.do == 'new'){//新建
+			$('#new_create_btn').show();
+			$('.new_div_hide').remove();//编辑按钮
+			$('#editBtn').remove();
+			//定义选择分期 只能单选
+			$('.xiangmuguanli').off('click','.common_radio').on('click','.common_radio',function(){
+				$(this).addClass('active').siblings('.common_radio').removeClass('active');
+			});
+		}
+	}
 	
 	
-	//下载合同模板
-	function downloaditFunc(){
-		var url = Base.serverUrl + 'project/exportContact?id='+g.id;
-		window.open(url);
-		
+
+	//关闭弹窗
+	$(document).click(function(e){
+		$('.choiseDanwei').hide();
+		stopPropagation(e);
+	});
+	
+	//输入时搜索客户名称
+	$("#kehu_name").keyup(function(){
+		var _vth = $(this);
+		var _li = $('.choiseDanwei4 li');
+		var _val = _vth.val() || '';
+		if(_val == '' || _li.length <= 0){return false;}
+		_li.show();
+		_li.each(function(){//循环搜索
+			var _tt = $(this);
+			var _val2 = _tt.html() || '';
+			var _if = _val2.indexOf(_val);
+			if(_if <= -1){//不符合
+				_tt.hide();
+			}else{_tt.show();}
+		});
+	});
+	//选择申办方
+	$("#kehu_name").click(function(e){
+		var _is = $(this);
+		var xx = _is.offset().left || 0;
+        var yy = _is.offset().top || 0;
+		var _top = yy + _is.height() -9;
+        $('.choiseDanwei4 li').show();
+		$('.choiseDanwei').hide();
+		$('.choiseDanwei4').show().css({"left":xx,"top":_top});
+		$('.choiseDanwei4 li').on('click',function(e){
+			var _tis = $(this);
+			var _vdan= _tis.html() || '';
+			var _vtip= _tis.attr('tip') || '';
+			var sid= _tis.attr('sid') || '';
+			_is.val(_vdan);
+			_is.attr('sid',sid);
+			$('#sponsor_code').html(_vtip);
+			_tis.parents('.choiseDanwei').hide();
+			stopPropagation(e);
+		});
+		stopPropagation(e);
+    });
+	//获取客户名称列表
+	function getShenBanFang(){
+		var condi = {};
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "sponsor/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var data = data.content || [];
+					var html = '';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || [];
+						var id = d.id || '';
+						var name = d.name || '';
+						var code = d.code || '';
+						html += '<li sid="'+id+'" tip="'+code+'">'+name+'</li>';
+					}
+					$('.choiseDanwei4').html(html);
+				}
+				else{
+					var msg = data.message || "登录失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
 	}
 	
 	//发布项目经理职位 项目发布
@@ -245,236 +346,7 @@ $(function(){
 		g.do = 'check';
 		loadCheck();
 	});
-	//获取受托方信息
-	function shoutuofangShow(){
-		var condi = {};
-		var url = Base.serverUrl + "static/company/info/get";
-		//g.httpTip.show();
-		$.ajax({
-			url:url,
-			data:condi,
-			timeout: 30000, //超时时间设置，单位毫秒
-			type:"POST",
-			xhrFields: {
-				withCredentials: true
-			},
-			crossDomain: true,
-			dataType:'json',
-			context:this,
-			success: function(data){
-				var status = data.success || false;
-				if(status){
-					var d = data.result || [];
-					g.id = d.id || '';
-					$('#agent').val(d.name || '');
-					$('#agent_address').val(d.address || '');
-					$('#agent_contact').val(d.contact || '');
-					$('#agent_phone').val(d.phone || '');
-					$('#agent_wechat').val(d.wechat || '');
-					$('#agent_weburl').val(d.weburl || '');
-				}
-				else{
-					var msg = data.message || "获取失败";
-					//Utils.alert(msg);
-				}
-				//g.httpTip.hide();
-			},
-			error:function(data,status){
-				//g.httpTip.hide();
-				if(status=='timeout'){
-		　　　　　  //Utils.alert("超时");
-		　　　　}
-			}
-		});
-	}
 
-	//获取目的范围依据
-	function mudifanweiShow(){
-		var condi = {};
-		var url = Base.serverUrl + "static/target_scope_reference/get";
-		//g.httpTip.show();
-		$.ajax({
-			url:url,
-			data:condi,
-			timeout: 30000, //超时时间设置，单位毫秒
-			type:"POST",
-			xhrFields: {
-				withCredentials: true
-			},
-			crossDomain: true,
-			dataType:'json',
-			context:this,
-			success: function(data){
-				var status = data.success || false;
-				if(status){
-					var data = data.result || [];
-					var content1 = data.target || '';
-					var content2 = data.scope || '';
-					var content3 = data.reference || '';
-					$('#audit_aim').val(content1);
-					$('#audit_scope').val(content2);
-					$('#audit_reference').val(content3);
-					
-				}
-				else{
-					var msg = data.message || "获取失败";
-					//Utils.alert(msg);
-				}
-				//g.httpTip.hide();
-			},
-			error:function(data,status){
-				//g.httpTip.hide();
-				if(status=='timeout'){
-		　　　　　  //Utils.alert("超时");
-		　　　　}
-			}
-		});
-	}
-
-	//判断是否显示 中心实验室和检测单位
-	function yiqiISShow(){
-		if($('.yiqishow').hasClass('active')){
-			$('#yiqiShow').slideDown();
-		}else{
-			$('#yiqiShow').slideUp();
-		}
-	}
-	//取消项目
-	function cancelPro(){
-		if(!confirm('确认取消项目吗？')){return false;}
-		var condi = {};
-		condi.id = g.id;
-		var url = Base.serverUrl + "project/cancel";
-		//g.httpTip.show();
-		$.ajax({
-			url:url,
-			data:condi,
-			timeout: 30000, //超时时间设置，单位毫秒
-			type:"POST",
-			xhrFields: {
-				withCredentials: true
-			},
-			crossDomain: true,
-			dataType:'json',
-			context:this,
-			success: function(data){
-				var status = data.success || false;
-				if(status){
-					Utils.alert('取消成功！');
-					getProject();//获取项目信息
-				}
-				else{
-					var msg = data.message || "取消失败";
-					Utils.alert(msg);
-				}
-				//g.httpTip.hide();
-			},
-			error:function(data,status){
-				//g.httpTip.hide();
-				if(status=='timeout'){
-		　　　　　  Utils.alert("超时");
-		　　　　}
-			}
-		});
-	}
-	//恢复项目
-	function resetPro(){
-		if(!confirm('确认恢复项目吗？')){return false;}
-		//Utils.alert('正在开发中！');return false;
-		var condi = {};
-		condi.id = g.id;
-		var url = Base.serverUrl + "project/restore";
-		//g.httpTip.show();
-		$.ajax({
-			url:url,
-			data:condi,
-			timeout: 30000, //超时时间设置，单位毫秒
-			type:"POST",
-			xhrFields: {
-				withCredentials: true
-			},
-			crossDomain: true,
-			dataType:'json',
-			context:this,
-			success: function(data){
-				var status = data.success || false;
-				if(status){
-					Utils.alert('恢复成功！');
-					getProject();//获取项目信息
-				}
-				else{
-					var msg = data.message || "恢复失败";
-					Utils.alert(msg);
-				}
-				//g.httpTip.hide();
-			},
-			error:function(data,status){
-				//g.httpTip.hide();
-				if(status=='timeout'){
-		　　　　　  Utils.alert("超时");
-		　　　　}
-			}
-		});
-	}
-	//编辑状态
-	function editStatic(){
-		g.do = 'change';
-		loadCheck();
-	}
-	
-	//判断是编辑还是查看
-	function loadCheck(){
-		if(g.do == 'check'){//查看
-			$('input,textarea').attr('readonly',true).addClass('readonly');
-			$('select').attr('disabled',true).addClass('readonly');
-			$('#change_ok_btn').hide();//修改保存按钮
-			$('#change_no_btn').hide();//修改取消按钮
-			$('#editBtn').show();//编辑按钮
-			//$('.set_cancel').hide();//取消项目按钮
-			//$('.set_reset').hide();//恢复项目按钮
-			getProject();//获取项目信息
-			$('#new_create_btn').remove();
-			//定义选择分期 只能单选
-			$('.check_box').off();
-			$('.xiangmuguanli').off('click','.check_box');
-			$('.xiangmuguanli').off('click','#project_staging .check_box');
-		}else if(g.do == 'change'){//修改
-			$('#editBtn').hide();//编辑按钮
-			$('#change_ok_btn').show();//修改保存按钮
-			$('#change_no_btn').show();//修改取消按钮
-			//$('.set_cancel.active').show();//取消项目按钮
-			//$('.set_reset.active').show();//恢复项目按钮
-			$('.check_box').each(function(){//复选框
-				var _this = $(this) || {};
-				_this.off().on('click',function(){
-					if(_this.hasClass('active')){_this.removeClass('active');
-					}else{_this.addClass('active')}
-					//if(_this.hasClass('yiqishow')){yiqiISShow();}
-				});
-			});
-			$('input,textarea').attr('readonly',false).removeClass('readonly');
-			$('select').attr('disabled',false).removeClass('readonly');
-			$('.readonly1').off().attr('readonly',true).addClass('readonly');
-			$('#new_create_btn').remove();
-			getProject();//获取项目信息
-			//定义选择分期 只能单选
-			$('.xiangmuguanli').off('click','#project_staging .check_box').on('click','#project_staging .check_box',function(){
-				$(this).addClass('active').siblings('.check_box').removeClass('active');
-			});
-		}else if(g.do == 'new'){//新建
-			$('#new_create_btn').show();
-			$('#pronumhide').remove();//项目编号
-			$('.new_div_hide').remove();//编辑按钮
-			$('#editBtn').remove();
-			shoutuofangShow();//获取受托方信息
-			//定义选择分期 只能单选
-			$('.xiangmuguanli').off('click','#project_staging .check_box').on('click','#project_staging .check_box',function(){
-				$(this).addClass('active').siblings('.check_box').removeClass('active');
-			});
-		}
-	}
-	
-	
 	//修改保存项目信息
 	function changeOrCreateProject(is){
 		var is = is || '';//is 1 修改或保存 2 新建
@@ -733,7 +605,7 @@ $(function(){
 						$('.set_reset').hide();//恢复项目按钮
 					}
 					
-					//yiqiISShow();
+					
 					//loadCheck();
 				}
 				else{
@@ -751,96 +623,7 @@ $(function(){
 		});
 	}
 
-	//关闭弹窗
-	$(document).click(function(e){
-		$('.choiseDanwei').hide();
-		stopPropagation(e);
-	});
-	
-	//输入时搜索申办方
-	$("#sponsor_name").keyup(function(){
-		var _vth = $(this);
-		var _li = $('.choiseDanwei4 li');
-		var _val = _vth.val() || '';
-		if(_val == '' || _li.length <= 0){return false;}
-		_li.show();
-		_li.each(function(){//循环搜索
-			var _tt = $(this);
-			var _val2 = _tt.html() || '';
-			var _if = _val2.indexOf(_val);
-			if(_if <= -1){//不符合
-				_tt.hide();
-			}else{_tt.show();}
-		});
-	});
-	//选择申办方
-	$("#sponsor_name").click(function(e){
-		var _is = $(this);
-		var xx = _is.offset().left || 0;
-        var yy = _is.offset().top || 0;
-		var _top = yy + _is.height() -9;
-        $('.choiseDanwei4 li').show();
-		$('.choiseDanwei').hide();
-		$('.choiseDanwei4').show().css({"left":xx,"top":_top});
-		$('.choiseDanwei4 li').on('click',function(e){
-			var _tis = $(this);
-			var _vdan= _tis.html() || '';
-			var _vtip= _tis.attr('tip') || '';
-			var sid= _tis.attr('sid') || '';
-			_is.val(_vdan);
-			_is.attr('sid',sid);
-			$('#sponsor_code').html(_vtip);
-			_tis.parents('.choiseDanwei').hide();
-			stopPropagation(e);
-		});
-		stopPropagation(e);
-    });
-	//获取申办方列表
-	function getShenBanFang(){
-		var condi = {};
-		condi.number = 1000;//每页显示行数
-		var url = Base.serverUrl + "sponsor/search";
-		//g.httpTip.show();
-		$.ajax({
-			url:url,
-			data:condi,
-			timeout: 30000, //超时时间设置，单位毫秒
-			type:"POST",
-			xhrFields: {
-				withCredentials: true
-			},
-			crossDomain: true,
-			dataType:'json',
-			context:this,
-			success: function(data){
-				var status = data.success || false;
-				if(status){
-					var data = data.result || [];
-					var data = data.content || [];
-					var html = '';
-					for(var i=0,len=data.length;i<len;i++){
-						var d = data[i] || [];
-						var id = d.id || '';
-						var name = d.name || '';
-						var code = d.code || '';
-						html += '<li sid="'+id+'" tip="'+code+'">'+name+'</li>';
-					}
-					$('.choiseDanwei4').html(html);
-				}
-				else{
-					var msg = data.message || "登录失败";
-					Utils.alert(msg);
-				}
-				//g.httpTip.hide();
-			},
-			error:function(data,status){
-				//g.httpTip.hide();
-				if(status=='timeout'){
-		　　　　　  Utils.alert("超时");
-		　　　　}
-			}
-		});
-	}
+
 	//加载时间控件
 	var timeControl1 = {
 	  elem: '#experimental_program_date',

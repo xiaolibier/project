@@ -175,15 +175,16 @@ $(function(){
 	g.nowPage = 0;//存当前页 0 是第一页
 	g.showPages = 10;//每页显示多少行
 	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.ids = [];//存储当前所有项目id及其状态
+	g.quanxuan = 0;
 	
 /* **************************************** lodding ******************************************** */	
 	//加载顶部标题
 	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
 	//$('#menu_show_t .s0',parent.document).html('项目管理');
-	$('#menu_show_t .s0',parent.document).html('任务管理').addClass('active');
-	//$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
-	//$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
-	//$('#new_project').on('click',createNewProject);
+	$('#menu_show_t .s0',parent.document).html('操作记录').addClass('active');
+	$('#searchAll').on('click',function(){g.nowPage = 0;tableListShow(2)});
+	$('#searchBtn').on('click',function(){g.nowPage = 0;tableListShow(1)});
 	loadPage();
 	
 
@@ -191,8 +192,397 @@ $(function(){
 
 	//加载页面
 	function loadPage(){
-
+		saveOrClearCookie(3,'caozuojilu_');//加载搜索条件
+		tableListShow(1);//显示列表	
 	}
+
+
+	
+	//获取项目所有id列表
+	function getids(){
+		var condi = {};
+		condi.number = 10000;//
+		condi = setCondi(condi);//搜索项加载
+		var url = Base.serverUrl + "project/search/ids";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					g.ids = [];
+					for(var i=0,len=d.length;i<len;i++){
+						var num = d[i] || '';
+						if(num != ''){
+							var zu = [num,0];
+							g.ids.push(zu);
+						}
+					}
+					//console.log(g.ids);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	//设置获取当前选中的导出项 全选 全取消
+	function getSetIDS(id,sta){
+		var id = id || '';//id : all 全选 : no 全部取消
+		var sta = sta || '';
+		var res = '';
+		if(g.ids.length <= 0 ){return res;}
+		for(var i=0,len=g.ids.length;i<len;i++){
+			var d = g.ids[i] || '';
+			var num = d[0] || '';
+			var state = d[1] || 0;
+			//获取当前选中项
+			if(state == '1'){
+				if(res == ''){
+					res = num;
+				}else{
+					res = res + ',' + num;
+				}
+			}
+			//设置当前选中项
+			if(id != '' && sta != '' && id == num){
+				g.ids[i][1] = sta;
+			}
+			//全选
+			if(id == 'all' && sta == ''){
+				g.ids[i][1] = '1';
+			}
+			//全部取消
+			if(id == 'no' && sta == ''){
+				g.ids[i][1] = '0';
+			}
+		}
+		return res;
+	}				
+	//全选
+	function selAll(){
+		$('.xiangmuguanli').off('click','.check_box').on('click','.check_box',function(){
+			var _this = $(this) || {};
+			var _id = _this.attr('idx') || '';
+			if(_this.hasClass('active')){
+				_this.removeClass('active');
+				if(_id != ''){getSetIDS(_id,'0');}//取消选中当前项
+			}else{
+				_this.addClass('active');
+				if(_id != ''){getSetIDS(_id,'1');}//选中当前项
+			}
+		});
+		
+		$('.xiangmuguanli').off('click','.toAll').on('click','.toAll',function(){
+			//$(this).toggleClass('active');
+			if($(this).hasClass('active')){
+				$('.tocommon').addClass('active');
+				getSetIDS('all');//全选
+				g.quanxuan = 1;
+			}else{
+				$('.tocommon').removeClass('active');
+				getSetIDS('no');//全部取消
+				g.quanxuan = 0;
+			}
+		});
+		$('#daochu').off().on('click',toExcel);
+		$('#daochu2').off().on('click',toExcel2);
+	}
+
+	//导出excel
+	function toExcel(){
+		if(!$('.tocommon').hasClass('active')){Utils.alert('请选择需要导出的项目！');return false;}
+		/* var ids = '';
+		$('.tocommon').each(function(){
+			var _this = $(this) || {};
+			var idx = _this.attr('idx') || '';
+			if(_this.hasClass('active') && idx!= ''){
+				if(ids == ''){
+					ids = idx;
+				}else{
+					ids = ids + ',' + idx;
+				}
+			}
+		}); */
+		exporttoexcel();//获取需要导出的EXCEL列表
+		
+	}
+
+	//获取需要导出的EXCEL列表
+	function exporttoexcel(){
+		$('#daochu').off().on('click',function(){Utils.alert('请稍后！');});
+		var ids = getSetIDS();
+		var condi = {};
+		condi.ids = ids;//当前页
+		condi.number = 1000;//
+		var url = Base.serverUrl + "project/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					
+					var html = '';
+					html += '<table id="exportTable" class="table1">'
+						+'<tr>'
+							+'<th style="min-width:58px;">项目编号</th>'
+							+'<th style="min-width:125px;">项目药品/器械名称</th>'
+							+'<th style="min-width:62px;">申办方</th>'
+							+'<th style="min-width:62px;">项目类型</th>'
+							+'<th style="min-width:72px;">注册类型</th>'
+							+'<th style="min-width:58px;">适应症</th>'
+							+'<th style="min-width:130px;">项目分期</th>'
+							+'<th style="min-width:85px;">项目名称</th>'
+							+'<th style="min-width:58px;">稽查开始时间</th>'
+							<!-- +'<th style="min-width:265px;">稽查结束时间</th>' -->
+							+'<th style="min-width:265px;">项目结束时间</th>'
+							+'<th style="min-width:265px;">项目经理</th>'
+							+'<th style="min-width:265px;">商务经理</th>'
+							+'<th style="min-width:265px;">协同项目经理</th>'
+							+'<th style="min-width:265px;">状态</th>'
+						+'</tr>';
+					var con = data || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var name = d.name || '';//
+						var medicine = d.medicine || '';
+						var sponsor_name = d.sponsor_name || '';
+						var center_number = d.center_number || '';
+						var project_manager_name = d.project_manager_name || '';
+						var audit_start_time = getDate(d.audit_start_time || '');//稽查开始时间
+						var end_time = getDate(d.end_time || '');
+						var state = d.state || '';
+						var project_staging = d.project_staging || '';
+						var indication = d.indication || '';
+						var classification = d.classification || '';
+						var audit_type = d.audit_type || '';
+						var business_manager_name = d.business_manager_name || '';
+						var project_assist_manager = d.project_assist_manager || '';
+						html+='<tr>'
+							+'<td>'+code+'</td>'
+							+'<td>'+medicine+'</td>'
+							+'<td>'+sponsor_name+'</td>'
+							+'<td>'+audit_type+'</td>'
+							+'<td>'+classification+'</td>'
+							+'<td>'+indication+'</td>'
+							+'<td>'+project_staging+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td>'+audit_start_time+'</td>'
+							<!-- +'<td>'+create_time+'</td>' -->
+							+'<td>'+end_time+'</td>'
+							+'<td>'+project_manager_name+'</td>'
+							+'<td>'+business_manager_name+'</td>'
+							+'<td>'+project_assist_manager+'</td>'
+							+'<td>'+state+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#exportExcel').html(html);
+					$('#daochu').ExportExcel('exportExcel');//前面为控制按钮的id 例如 #btn，后面为table的id 例如 table(不加#)。
+					setTimeout(function(){$('#daochu').off().on('click',toExcel);},1000);
+				}
+				else{
+					var msg = data.message || "获取项目列表失败";
+					//Utils.alert(msg);
+					$('#daochu').off().on('click',toExcel);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#daochu').off().on('click',toExcel);
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+
+	//列表
+	function tableListShow(is){
+		var is = is || '';
+
+		var condi = {};
+		condi.page = g.nowPage;//当前页
+		condi.number = g.showPages;//每页显示行数
+		if(is == 1 || is == 'pa'){//搜索条件
+			condi = setCondi(condi);
+			getids();//查询当前筛选项下的所有ids
+			g.loadPage = true;//开启分页
+			saveOrClearCookie(2,'caozuojilu_');//存储搜索条件
+		}else if(is == 2){//搜索全部
+			$('.btn_div input,.btn_div select').val('');//全部的时候 清空搜索项
+			getids();//查询当前筛选项下的所有ids
+			g.loadPage = true;//开启分页
+			saveOrClearCookie(1,'caozuojilu_');//清空搜索条件
+		}
+		var url = Base.serverUrl + "project/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					g.totalPage = data.totalPages || 0;//总页数
+					var totalElements = data.totalElements || 0;//总共中心数
+					//$('#totalElements').html(totalElements);
+					var html = '';
+					var sstr = '';
+					if(g.quanxuan == 1){sstr = 'active';}
+					html += '<table class="table1">'
+						+'<tr>'
+							+'<th class="padding_s"><div class="check_box toAll '+sstr+'"><i class="i"></i></div></th>'
+							+'<th style="min-width:52px;">任务编号</th>'
+							+'<th style="min-width:52px;">任务名称</th>'
+							+'<th style="min-width:26px;">园区</th>'
+							+'<th style="min-width:65px;">园区负责人</th>'
+							+'<th style="min-width:52px;">所属管家</th>'
+							+'<th style="min-width:52px;">操作类型</th>'
+							+'<th style="min-width:52px;">操作位置</th>'
+							+'<th style="min-width:52px;">操作前</th>'
+							+'<th style="min-width:52px;">操作后</th>'
+							+'<th style="min-width:104px;">操作人/操作时间</th>'
+						+'</tr>';
+					var con = data.content || [];
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var create_time = getDate((d.create_time || ''),'2');
+						var stra = '';
+						//判断当前项是否选中
+						for(var j=0,len1=g.ids.length;j<len1;j++){
+							var ds = g.ids[j] || '';
+							var num1 = ds[0] || '';
+							var state11 = ds[1] || 0;
+							if(id == num1 && state11 == '1'){stra = 'active'}
+						}		
+						html+='<tr>'
+							+'<td class="padding_s"><div idx="'+id+'" class="check_box tocommon '+stra+'"><i class="i"></i></div></td>'
+							+'<td>'+code+'</td>'
+							+'<td>'+code+'</td>'
+							+'<td>'+code+'</td>'
+							+'<td>'+code+'</td>'
+							+'<td>'+code+'</td>'
+							+'<td>'+code+'</td>'
+							+'<td>'+code+'</td>'
+							+'<td>'+code+'</td>'
+							+'<td>'+code+'</td>'
+							+'<td>'+code+'</td>'
+						+'</tr>';
+					}	
+					 html+='</table>';
+					$('#tableList').html(html);
+					selAll();//定义导出按钮
+					if(g.ids.length <= 0){getids();}
+					//加载分页
+					if(g.loadPage){
+						setPages();//分页
+						if($('#Pagination').html() == ''){//判断是否显示分页跳转等
+							$('.pagesShow,.page-go,.gogo').hide();
+						}else{
+							$('.pagesShow,.page-go,.gogo').show();
+						}
+						g.loadPage = false;
+					}
+					
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	
+	
+	//设置每页显示多少行
+	$('.pagesShow').change(function(){
+		var num = $(this).val() || 10;
+		g.nowPage = 0;//回到第一页
+		g.showPages = num;
+		g.loadPage = true;//设置页面加载 配置分页
+		tableListShow();//显示列表
+	});
+	
+	$(".gogo").on("click",function(){
+    	var allPage = g.totalPage;
+    	//console.log(allPage);
+      var goPage = $(".page-go input").val() - 1; //跳转页数
+      if(goPage > -1 && goPage <= allPage){
+		g.nowPage = goPage;
+		tableListShow();//显示列表
+      }else {
+      	Utils.alert('超出范围!');
+      }
+      //清空用户跳转页数
+      //$(".page-go input").val("");
+    });
+	
+	//分页
+	function setPages(){
+		$("#Pagination").pagination(g.totalPage,{
+			callback: PageCallback, 
+			 prev_text: '<',             
+			 next_text: '>',
+			 current_page:g.nowPage
+		});
+		$('.allPage').html(g.totalPage);
+		$('.searchPage').show();
+	}
+	function PageCallback(index, jq){
+		  g.nowPage = index || 0;
+		  tableListShow('pa');//列表
+	 }
 
 	//加载时间控件
 	var start = {

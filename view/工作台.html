@@ -9,10 +9,6 @@
 	<meta name="format-detection" content="telephone=no"/>
 	<link rel="stylesheet" href="../public/select2/css/select2.min.css" />
 	<link rel="stylesheet" href="../public/css/common.css" />
-	<link rel="stylesheet" href="../public/btncss/normalize.css" />
-	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
-	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
-	<link rel="stylesheet" href="../public/btncss/buttons.css" />
 	<title></title>
 	
 </head>
@@ -132,15 +128,6 @@ $(function(){
 					$('.xiangmuSer').find('.ggul_one5 .ggo_span').html(completed.number || 0);
 					$('.xiangmuSer').find('.ggul_one6 .ggo_span').html(canceled.number || 0);
 					
-					//评审
-					var adopting = r.adopting || {};
-					var reviewed = r.reviewed || {};
-					var reviewing = r.reviewing || {};
-					var reviseAfterReview = r.reviseAfterReview || {};
-					$('.pingshenSer').find('.ggul_one1 .ggo_span').html(adopting.number || 0);
-					$('.pingshenSer').find('.ggul_one2 .ggo_span').html(reviewing.number || 0);
-					$('.pingshenSer').find('.ggul_one3 .ggo_span').html(reviseAfterReview.number || 0);
-					$('.pingshenSer').find('.ggul_one4 .ggo_span').html(reviewed.number || 0);
 					//任务
 					var canceled = t.canceled || {};
 					var commerceConfirmed = t.commerceConfirmed || {};
@@ -197,19 +184,9 @@ $(function(){
 		_this.click(function(){
 			var ser = _this.attr('ser') || '';
 			ser = encodeURI(encodeURI(ser));
-			parent.document.getElementById("iframeObj").src = '稽查任务.html?ser='+ser;
+			parent.document.getElementById("iframeObj").src = '任务管理.html?ser='+ser;
 		});
 	});
-	//单中心报告评审 跳转链接
-	$('.pingshenSer').find('.ggul_one').each(function(){
-		var _this = $(this) || {};
-		_this.click(function(){
-			var ser = _this.attr('ser') || '';
-			ser = encodeURI(encodeURI(ser));
-			parent.document.getElementById("iframeObj").src = '单中心报告评审.html?ser='+ser;
-		});
-	});
-	
 
 });
 
