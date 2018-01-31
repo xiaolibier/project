@@ -166,7 +166,7 @@ $(function(){
 	
 	//测试
 	$('.xiangmurenwu').on('click','#new_project,.cao_btn2',function(){
-		parent.document.getElementById("iframeObj").src = '任务基本信息.html';
+		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html';
 	});
 	
 	//加载顶部标题
@@ -178,7 +178,7 @@ $(function(){
 	$('#checkAllRenwu').on('click',checkAll);//查看已生成任务
 	$('#new_project').on('click',function(){
 		var _do = 'new';
-		parent.document.getElementById("iframeObj").src = '任务基本信息.html?do='+_do;
+		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?do='+_do;
 	});//新建任务
 	tableListShow();//显示列表
 	
@@ -299,7 +299,7 @@ $(function(){
 		var id = id || '';
 		var _do = 'change';
 		if(id == ''){Utils.alert('id不能为空！');return false;}
-		parent.document.getElementById("iframeObj").src = '任务基本信息.html?id='+id+'&do='+_do;
+		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?id='+id+'&do='+_do;
 	}
 
 	//删除一项

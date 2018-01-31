@@ -350,111 +350,8 @@ $(function(){
 	//修改保存项目信息
 	function changeOrCreateProject(is){
 		var is = is || '';//is 1 修改或保存 2 新建
-		var sponsor_name = $('#sponsor_name').val() || '';
-		var sponsor_code = $('#sponsor_code').html() || '';
-		var sponsor_id = $('#sponsor_name').attr('sid') || '';
-		var cro_name = $('#cro_name').val() || '';
-		var pro_number = $('#pro_number').val() || '';
-		var name = $('#name').val() || '';
-		var medicine = $('#medicine').val() || '';
-		var shiyantype = $('#shiyantype').val() || '';
-		var indication = $('#indication').val() || '';
-		var classification = $('#classification').val() || '';
-		var audit_type = $('#audit_type').val() || '';
-		var project_staging = setGetCheckValue('#project_staging');
-		var center_lab = $('#center_lab').val() || '';
-		var data_analysis_center = $('#data_analysis_center').val() || '';
-		var fanganbianhao_val = $('#fanganbianhao_val').val() || '';
-		var data_manager_center = $('#data_manager_center').val() || '';
-		//var test_institution = $('#test_institution').val() || '';
-		var experimental_program_version = $('#experimental_program_version').val() || '';
-		var experimental_program_date = $('#experimental_program_date').val() || '';
-		var sop_version = $('#sop_version').val() || '';
-		var sop_date = $('#sop_date').val() || '';
-		var start_up_letter = $('#start_up_letter').val() || '';
-		var agent = $('#agent').val() || '';
-		var agent_address = $('#agent_address').val() || '';
-		var agent_contact = $('#agent_contact').val() || '';
-		var agent_phone = $('#agent_phone').val() || '';
-		var agent_wechat = $('#agent_wechat').val() || '';
-		var agent_weburl = $('#agent_weburl').val() || '';
-		var business_manager_name = $('#business_manager_name').val() || '';
-		var project_manager_name = $('#project_manager_name').val() || '';
-		var beizhur = $('#beizhur').val() || '';
-		//var xiangmuzhuli = $('#xiangmuzhuli option:selected').text() || '';
-		var xiangmuzhuli = $('#xiangmuzhuli').val() || '';
-		//var xiangmuzhuli2 = $('#xiangmuzhuli2').val() || '';
-		var audit_aim = $('#audit_aim').val() || '';
-		var audit_scope = $('#audit_scope').val() || '';
-		var audit_reference = $('#audit_reference').val() || '';
-		var audit_module = setGetCheckValue('#audit_module');
-		//遍历找出不允许为空项 为空提示
-		var tips = '';
-		$('.con_d').each(function(){//循环所有框
-			var _t = $(this) || {};
-			var _o = _t.find('.x') || [];
-			if(tips != ''){return false;}//跳出循环
-			if(_t.css('display') == 'none'){return true;}//隐藏的 跳出本次循环
-			if(_o.length > 0){
-				_o.each(function(){//循环所有必填标志
-					var _ti = $(this) || {};
-					var _next = _ti.next().val() || '';
-					var _prev = _ti.prev().html() || '';
-					var tr = _ti.parents('.con_d').find('.check_box').hasClass('active') ? false : true;
-					if(_ti.html() != '' && _ti.next().hasClass('check_box') && tr){//复选框 查找是否有active 判断有没有选中的
-						tips = _prev;return false;//跳出循环 如果是复选框 查找是否有active 判断有没有选中的
-					}
-					if(_ti.html() != '' && _next == '' && !_ti.next().hasClass('check_box')){
-						tips = _prev;return false;//跳出循环
-					}
-				});
-			}
-		});
-		var xiangmuzhuli = xiangmuzhuli.length > 0 ? xiangmuzhuli.join(',') : xiangmuzhuli[0] || '';
-		//var xiangmuzhuli2 = xiangmuzhuli2.length > 0 ? xiangmuzhuli2.join(',') : xiangmuzhuli2[0] || '';
-		
-		if(tips != ''){Utils.alert(tips+'不能为空！');return false;}
 		var condi = {};
-		condi.sponsor_name = sponsor_name;
-		condi.sponsor_id = sponsor_id;
-		condi.sponsor_code = sponsor_code;
-		condi.cro_name = cro_name;
-		condi.code = pro_number;
-		condi.name = name;
-		condi.medicine = medicine;
-		condi.experimentalType = shiyantype;
-		condi.indication = indication;
-		condi.classification = classification;
-		condi.audit_type = audit_type;
-		condi.project_staging = project_staging;
-		condi.center_lab = center_lab;
-		condi.data_analysis_center = data_analysis_center;
-		condi.plan_code = fanganbianhao_val;
-		condi.data_manager_center = data_manager_center;
-		//condi.test_institution = test_institution;
-		condi.experimental_program_version = experimental_program_version;
-		condi.experimental_program_date = experimental_program_date;
-		condi.sop_version = sop_version;
-		condi.sop_date = sop_date;
-		condi.start_up_letter = start_up_letter;
-		condi.agent = agent;
-		condi.agent_address = agent_address;
-		condi.agent_contact = agent_contact;
-		condi.agent_phone = agent_phone;
-		condi.agent_wechat = agent_wechat;
-		condi.agent_weburl = agent_weburl;
-		condi.business_manager_name = business_manager_name;
-		condi.project_manager_name = project_manager_name;
-		condi.project_assist_manager = xiangmuzhuli;//项目助理
-		condi.remarks = beizhur;//
-		//condi.project_assist_manager2 = xiangmuzhuli2;//项目助理
-		if(is != '2'){//保存
-		condi.id = g.id;
-		condi.audit_aim = audit_aim;
-		condi.audit_scope = audit_scope;
-		condi.audit_reference = audit_reference;
-		condi.audit_module = audit_module;
-		}
+		condi = setInfoCondi(condi,'.content_box1');//传值和校验
 		var url = Base.serverUrl + "project/update";
 		if(is == '2'){url = Base.serverUrl + "project/create"}
 		$('#create_new_btn').off();
@@ -525,74 +422,12 @@ $(function(){
 					var d = data.result || [];
 					var id = d.id || '';
 					$('#sponsor_name').val(d.sponsor_name || '');
-					$('#sponsor_code').html(d.sponsor_code || '');
-					$('#cro_name').val(d.cro_name || '');
-					$('#pro_number').val(d.code || '');
-					$('#name').val(d.name || '');
-					$('#medicine').val(d.medicine || '');
-					$('#shiyantype').val(d.experimentalType || '');
-					$('#indication').val(d.indication || '');
-					$('#classification').val(d.classification || '');
-					$('#audit_type').val(d.audit_type || '');
+					
 					setGetCheckValue('#project_staging',(d.project_staging || ''));//项目分期
-					$('#center_lab').val(d.center_lab || '');
-					$('#data_analysis_center').val(d.data_analysis_center || '');
-					$('#fanganbianhao_val').val(d.plan_code || '');
-					$('#data_manager_center').val(d.data_manager_center || '');
-					//$('#test_institution').val(d.test_institution || '');
-					$('#experimental_program_version').val(d.experimental_program_version || '');
+					
 					var experimental_program_date = getDate((d.experimental_program_date || ''),'2');
 					$('#experimental_program_date').val(experimental_program_date);
-					$('#sop_version').val(d.sop_version || '');
-					var sop_date = getDate((d.sop_date || ''),'2');
-					$('#sop_date').val(sop_date);
-					$('#start_up_letter').val(d.start_up_letter || '');
-					$('#agent').val(d.agent || '');
-					$('#agent_address').val(d.agent_address || '');
-					$('#agent_contact').val(d.agent_contact || '');
-					$('#agent_phone').val(d.agent_phone || '');
-					$('#agent_wechat').val(d.agent_wechat || '');
-					$('#agent_weburl').val(d.agent_weburl || '');
-					$('#business_manager_name').val(d.business_manager_name || '');
-					$('#project_manager_name').val(d.project_manager_name || '');
-					//判断发布状态
-					var puStatus = d.publishStatus || '';//未发布、报名中、已结束
-					$('#fabuAbtn,#fabuing,#fabu_down').hide();
-					switch(puStatus){
-						case '未发布': $('#fabuAbtn').show();$('#project_manager_name').removeAttr('disabled').removeClass('red');break;
-						case '报名中': $('#fabuing').show();$('#project_manager_name').val('发布中').attr('disabled','disabled').addClass('red');break;
-						case '已结束': $('#fabu_down').show();$('#project_manager_name').removeAttr('disabled').removeClass('red');break;
-						default:break;
-					}
 					
-					$('#beizhur').val(d.remarks || '');
-					var ddas = d.project_assist_manager || '';
-					var xval = ddas.indexOf(',') > -1 ? ddas.split(',') : ddas;//项目助理的值
-					//var xval2 = d.project_assist_manager2.split(',') || '';//项目助理的值
-					$('#xiangmuzhuli').attr('disabled',false);
-					$('#xiangmuzhuli').val(xval);
-					setTimeout(function(){$('#xiangmuzhuli').val(xval).select2()},600);
-					
-					//$('#xiangmuzhuli2').attr('disabled',false);
-					//$('#xiangmuzhuli2').val(xval2).select2();
-					//console.log(xval);
-					if(g.do == 'check'){$('#xiangmuzhuli').attr('disabled',true);}
-					//valchoiseDanwei('.choiseDanwei10',xval);//公共方法 给项目助理弹窗赋值
-					var audit_aim = d.audit_aim || '';
-					var audit_scope = d.audit_scope || '';
-					var audit_reference = d.audit_reference || '';
-					if(audit_aim == '' && audit_scope == '' && audit_reference == ''){//判断有没有存储数据
-						mudifanweiShow();//获取目的范围依据
-					}else{
-						$('#audit_aim').val(audit_aim);
-						$('#audit_scope').val(audit_scope);
-						$('#audit_reference').val(audit_reference);
-					}
-					setGetCheckValue('#audit_module',(d.audit_module || ''));//稽查模块
-					var is_used = d.is_used || '';//判断是否 项目取消
-					var state = d.state || '';//项目状态
-					var usedStatic = is_used == 0 ? '项目已取消' : state;
-					$('#state').html(usedStatic);
 					//根据状态修改 项目取消按钮和项目恢复按钮
 					if(is_used == 0 && g.do == 'change'){	
 						$('.set_reset').show();//取消项目按钮

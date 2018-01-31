@@ -7,14 +7,8 @@
 	<meta content="yes" name="apple-mobile-web-app-capable">
 	<meta content="black" name="apple-mobile-web-app-status-bar-style">
 	<meta name="format-detection" content="telephone=no"/>
-	<!-- <link rel="stylesheet" href="../public/libs/bootstrap/bootstrap.min.css" /> -->
-	<!-- <link rel="stylesheet" href="../public/libs/bootstrap/bootstrap-select.css" /> -->
 	<link rel="stylesheet" href="../public/select2/css/select2.min.css" />
 	<link rel="stylesheet" href="../public/css/common.css" />
-	<link rel="stylesheet" href="../public/btncss/normalize.css" />
-	<link rel="stylesheet" href="../public/btncss/vicons-font.css" />
-	<!-- <link rel="stylesheet" href="../public/btncss/base.css" /> -->
-	<link rel="stylesheet" href="../public/btncss/buttons.css" />
 	<title></title>
 	<style>
 		.check_box .i, .check_box2 .i{margin-right:5px;}
@@ -99,6 +93,163 @@ $(function(){
 	});
 	$('#menu_show_t .s1',parent.document).html(' > 客户基本信息').addClass('active');
 	
+	$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
+/* **************************************** setTing ******************************************** */	
+	
+	loadCheck();//判断编辑还是查看
+
+	
+	//判断是编辑还是查看
+	function loadCheck(){
+	
+		if(g.do == 'change'){//修改
+			getProject();//获取项目信息
+		}else if(g.do == 'new'){//新建
+			
+		}
+	}
+	
+	//获取稽查模块
+	function getjichamokuai(){
+		var condi = {};
+		//condi.page = g.nowPage;//当前页
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "module/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var con = data.content || [];
+					var html = '';
+					for(var i=0,len=con.length;i<len;i++){
+						var d = con[i] || '';
+						var id = d.id || '';
+						var code = d.code || '';//编号
+						var name = d.name || '';//名称
+						var templet = d.templet || '';//模块的模板
+						html+='<div class="check_box active"><i class="i"></i>'+name+'</div>';
+					}
+					$('#audit_module').html(html);
+				}
+				else{
+					var msg = data.message || "获取失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	
+	//修改保存项目信息
+	function changeOrCreateProject(is){
+		var is = is || '';//is 1 修改或保存 2 新建
+		var condi = {};
+		condi = setInfoCondi(condi,'.content_box1');//传值和校验
+		var url = Base.serverUrl + "project1/update";
+		if(is == '2'){url = Base.serverUrl + "project1/create"}
+		$('#create_new_btn').off();
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					var tip = is != '2' ? '保存成功！' : '新建成功！' ;
+					Utils.alert(tip);
+					if(is == '2'){//新建项目
+						setTimeout(function(){
+							parent.document.getElementById("iframeObj").src = '项目任务.html';
+						},1000);
+					}
+				}
+				else{
+					var msg = data.message || "保存失败";
+					Utils.alert(msg);
+					$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}	
+	
+	//获取项目信息
+	function getProject(){
+		var condi = {};
+		condi.id = g.id;
+		var url = Base.serverUrl + "project/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					var id = d.id || '';
+					$('#sponsor_name').val(d.sponsor_name || '');
+					setGetCheckValue('#project_staging',(d.project_staging || ''));//项目分期
+					var sop_date = getDate((d.sop_date || ''),'2');
+					$('#sop_date').val(sop_date);
+
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
 
 	
 });

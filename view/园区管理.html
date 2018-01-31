@@ -166,12 +166,11 @@ $(function(){
 		condi.number = g.showPages;//每页显示行数
 		if(is == 1 || is == 'pa'){//搜索条件
 			condi = setCondi(condi);
-			getids();//查询当前筛选项下的所有ids
 			g.loadPage = true;//开启分页
 			saveOrClearCookie(2,'yuanquguanli_');//存储搜索条件
 		}else if(is == 2){//搜索全部
 			$('.btn_div input,.btn_div select').val('');//全部的时候 清空搜索项
-			getids();//查询当前筛选项下的所有ids
+
 			g.loadPage = true;//开启分页
 			saveOrClearCookie(1,'yuanquguanli_');//清空搜索条件
 		}

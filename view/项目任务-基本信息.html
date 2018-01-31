@@ -17,12 +17,6 @@
 </head>
 <body class="xiangmuguanli xiangmujibenxinxi">
 
-	<h4 class="mokuaifaxian">
-		<a id="renwubianji1" class="a">任务实施</a>
-		<a id="renwubianji2" class="a active">任务信息</a>
-		<a id="renwubianji3" class="a">快递信息</a>
-		<!-- <a href="javascript:;" id="backPage" style="display:none;" class="jc_btn type5 last">返回</a> -->
-	</h4>
 	<div class="content_box1">
 
 		<div class="con_d"><span class="lable need">任务名称</span><i class="x">*</i><input id="renwu_name" class="common_input" type="text" /></div>
@@ -35,19 +29,20 @@
 		</div>
 		<div class="con_d"><span class="lable need">园区</span><i class="x">*</i><select id="syuanqu" class="common_select">
 				<option value="">请选择</option>
+				<option value="园区1">园区1</option>
 			</select>
 		</div>
 		<div class="con_d"><span class="lable need">注册地址段</span><i class="x">*</i><input id="zhucedizhiduan" placeholder="系统默认带出，可修改，要判重" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">注册资本</span><i class="x">*</i><input id="zhuceziben" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">法人姓名</span><i class="x">*</i><input id="farenxingming" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">法人身份证</span><i class="x">*</i><input id="farenshenfenzheng" class="common_input" type="text" /></div>
-		<div class="con_d" name="farenidcard" ><span class="lable need">上传身份证图片</span><i class="x">*</i>
+		<div class="con_d" name="img1"><span class="lable need">上传身份证图片</span><i class="x">*</i>
 			<div class="head_img_spam">
 				<i info="放大图" class="hide_head_imgs"></i>
 				<div info="放大图背景" class="head_img_bg"></div>
 				<i info="原图" class="head_imgs"></i>
 				<div info="上传后提示背景" class="head_img_tips_bg"></div>
-				<div info="上传后提示" src="ceshi" id="touxiangimg2" class="head_img_tips">重新上传</div>
+				<div info="上传后提示" src="ceshi" id="touxiangimg1" class="head_img_tips">重新上传</div>
 			</div>
 		</div>
 		<div class="con_d"><span class="lable need">法人手机号</span><i class="x">*</i><input id="farenphone" class="common_input" type="text" /></div>
@@ -55,7 +50,7 @@
 		<div class="con_d"><span class="lable need">联系人电话</span><i class="x">*</i><input id="lianxirenphone" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">财务负责人姓名</span><i class="x">*</i><input id="caiwufuzerenname" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">财务负责人身份证</span><i class="x">*</i><input id="caiwufuzerenidcard" class="common_input" type="text" /></div>
-		<div class="con_d" name="caiwuidcard"><span class="lable need">上传身份证图片</span><i class="x">*</i>
+		<div class="con_d" name="img2" ><span class="lable need">上传身份证图片</span><i class="x">*</i>
 			<div class="head_img_spam">
 				<i info="放大图" class="hide_head_imgs"></i>
 				<div info="放大图背景" class="head_img_bg"></div>
@@ -98,7 +93,7 @@
 		<a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">确认寄出</a>
 		</div>
 		
-		<div id="new_create_btn" class="btns_div"><a back='任务管理.html' class="common_abtn goback type1">取消</a><a href="javascript:;" id="create_new_btn" class="common_abtn type2">创建</a></div>
+		<div id="new_create_btn" class="btns_div"><a back='项目任务.html' class="common_abtn goback type1">取消</a><a href="javascript:;" id="create_new_btn" class="common_abtn type2">创建</a></div>
 	</div>
 
 	
@@ -107,6 +102,7 @@
 	<script type="text/javascript" src="../public/libs/json.js"></script>
 	<script type="text/javascript" src="../public/libs/base.js"></script>
 	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/qiniu.min.js"></script>
 	<script type="text/javascript" src="../public/libs/utils.js"></script>
 	<script type="text/javascript" src="../public/js/common2.js"></script>
 	
@@ -126,27 +122,20 @@ $(function(){
 /* **************************************** lodding ******************************************** */	
 	//加载顶部标题
 	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
-	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('任务管理').off().on('click',function(){
-		parent.document.getElementById("iframeObj").src = '任务管理.html';
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('项目管理').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '项目管理.html';
 	});
-	$('#menu_show_t .s1',parent.document).html(' > 任务基本信息').addClass('active');
+	$('#menu_show_t .s1',parent.document).css('cursor','pointer').html(' > 项目任务').off().on('click',function(){
+		parent.document.getElementById("iframeObj").src = '项目任务.html';
+	});
+	$('#menu_show_t .s2',parent.document).html(' > 任务基本信息').addClass('active');
 	
 	$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
-
-	//测试
-	$('#renwubianji1').on('click',function(){
-		parent.document.getElementById("iframeObj").src = '任务管理-任务实施.html';
-	});
-	$('#renwubianji2').on('click',function(){
-		parent.document.getElementById("iframeObj").src = '任务管理-任务信息.html';
-	});
-	$('#renwubianji3').on('click',function(){
-		parent.document.getElementById("iframeObj").src = '任务管理-快递信息.html';
-	});
 	
 	setqiniu(1);//获取 七牛云上传token
 	//uploadToQiniu('touxiangimg1');//定义七牛云上传
 	//uploadToQiniu('touxiangimg2');//定义七牛云上传
+	
 /* **************************************** setTing ******************************************** */	
 	
 	loadCheck();//判断编辑还是查看
@@ -304,8 +293,6 @@ $(function(){
 		});
 	}
 
-	
-	
 	
 });
 

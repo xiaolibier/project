@@ -1219,11 +1219,6 @@ border-radius: 2px;display:inline-block;text-align:center;width:63px;height:24px
 .ecvc_progress_div .ecvc_progress{height:29px;border:1px solid #59BA73;border-radius:4px 0 0 4px;background: #59BA73;width:0%;}
 
 
-.xiangmuguanli .head_img_spam{display:inline-block;position:relative;min-width:90px;height:90px;vertical-align:top;}
-.xiangmuguanli .head_img_spam .head_imgs{transition:all .15s ease-in-out;left:0;top:0;display:inline-block;position:absolute;min-width:90px;height:90px;vertical-align:top;}
-.xiangmuguanli .head_img_spam .hide_head_imgs{left:50%;margin-left:-150px;margin-top:-150px;top:50%;display:inline-block;position:fixed;max-width:300px;height:300px;vertical-align:top;display:none;}
-.xiangmuguanli .head_img_spam:hover .hide_head_imgs{display:block;}
-
 .xiangmuguanli .fapiaotable{display:inline-block;vertical-align:top;}
 .xiangmuguanli .fapiaotable th{color:#495060;padding:4px;}
 .xiangmuguanli .fapiaotable td{color:#495060;padding:4px 15px;}
@@ -1236,7 +1231,8 @@ border-radius: 2px;display:inline-block;text-align:center;width:63px;height:24px
 .xiangmuguanli .head_img_spam .head_img_tips{cursor:pointer;height:100%;font-size:0;text-align:center;color:#ffffff;position:absolute;left:0;bottom:0;right:0;display:inline-block;width:100%;}
 .xiangmuguanli .head_img_spam .head_img_tips_bg{position:absolute;left:0;bottom:0;right:0;display:inline-block;width:100%;height:30px;background-color:#000000;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity: 0.5;display:none;}
 .xiangmuguanli .head_img_spam .hide_head_imgs{z-index:99;left:50%;margin-left:-200px;margin-top:-150px;top:50%;display:inline-block;position:fixed;width:400px;height:300px;vertical-align:top;background:url('../img/imgart.png') no-repeat center center;background-size:contain;display:none;}
-.xiangmuguanli .head_img_spam .head_img_bg{z-index:98;left:0;top:0;right:0;bottom:0;background-color:#000000;display:block;position:fixed;width:100%;height:100%;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity: 0.5;display:none;}
+.xiangmuguanli .head_img_spam .head_img_bg{z-index:98;left:0;top:0;right:0;bottom:0;background-color:#000000;display:block;position:fixed;width:100%;height:100%;
+filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity: 0.5;display:none;}
 .xiangmuguanli .head_img_spam.active .head_img_tips{display:block;font-size:12px;height:30px;line-height:30px;}
 .xiangmuguanli .head_img_spam.active .head_img_tips_bg{display:block;z-index:1;}
 .xiangmuguanli .head_img_spam.active .head_imgs{position:absolute;z-index:1;}
