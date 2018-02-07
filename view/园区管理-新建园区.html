@@ -19,39 +19,39 @@
 
 	<div class="content_box1">
 
-		<div class="con_d"><span class="lable need">园区名称</span><i class="x">*</i><input id="yuanqu_name" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">园区负责人</span><i class="x">*</i><select id="yuanqufuzeren" class="common_select">
-				<option value="">请选择</option>
+		<div class="con_d"><span class="lable need">园区名称</span><i class="x">*</i><input id="name" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">园区负责人</span><i class="x">*</i><select id="headerId" class="common_select">
+				<option value="1">请选择</option>
 			</select>
 		</div>
-		<div class="con_d"><span class="lable need">园区经办人</span><i class="x"></i><select id="yuanqujingbanren" class="common_select">
-				<option value="">请选择</option>
+		<div class="con_d"><span class="lable need">园区经办人</span><i class="x"></i><select id="agentId" class="common_select">
+				<option value="1">请选择</option>
 			</select>
 		</div>
-		<div class="con_d"><span class="lable need">启始注册地址段</span><i class="x">*</i><input id="qishizhucedizhiduan" placeholder="系统默认带出，可修改，要判重" class="common_input" type="text" /></div>
-		<div id="sfxycacard" class="con_d"><span class="lable need">是否需要CA证书</span><i class="x">*</i>
-			<div class="common_radio active" name="fapiaoxin"><i class="i"></i>是</div>
-			<div class="common_radio" name="fapiaoxin"><i class="i"></i>否</div>
+		<div class="con_d"><span class="lable need">启始注册地址段</span><i class="x">*</i><input id="regAddress" placeholder="系统默认带出，可修改，要判重" class="common_input" type="text" /></div>
+		<div id="needCA" class="con_d"><span class="lable need">是否需要CA证书</span><i class="x">*</i>
+			<div val=1 class="common_radio active" name="needCA"><i class="i"></i>是</div>
+			<div val=0 class="common_radio" name="needCA"><i class="i"></i>否</div>
 		</div>
-		<div class="con_d"><span class="lable need">CA证书金额</span><i class="x"></i><input id="cazhengshujine" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">税控盘费用</span><i class="x">*</i><input id="shuikongpanfeiyong" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">CA证书金额</span><i class="x"></i><input id="CAPrice" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">税控盘费用</span><i class="x">*</i><input id="taxPanelPrice" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">发票信息</span><i class="x">*</i>
 			<table class="fapiaotable">
 				<tr>
 					<td>增值税比例</td>
-					<td><input class="common_input shuifeibili1" type="text" />%</td>
+					<td><input id="VATRadio" class="common_input shuifeibili1" type="text" />%</td>
 				</tr>
 				<tr>
 					<td>附加税比例</td>
-					<td><input class="common_input shuifeibili2" type="text" />%</td>
+					<td><input id="AppendedRadio" class="common_input shuifeibili2" type="text" />%</td>
 				</tr>
 				<tr>
 					<td>企业所得税核定征收比例</td>
-					<td><input class="common_input shuifeibili3" type="text" />%</td>
+					<td><input id="BIdRadio" class="common_input shuifeibili3" type="text" />%</td>
 				</tr>
 				<tr>
 					<td>生产经营所得税核定征收比例</td>
-					<td><input class="common_input shuifeibili4" type="text" />%</td>
+					<td><input id="POIRadio" class="common_input shuifeibili4" type="text" />%</td>
 				</tr>
 				
 			</table>
@@ -61,43 +61,43 @@
 				<tr><th>发票类型</th><th>面额（万元）</th><th>张数（张）</th></tr>
 				<tr>
 					<td>普通电子发票</td>
-					<td><select class="common_select fapiaojine1"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
-					<td><input class="common_input fapiaozhangshu1" type="text" /></td>
+					<td><select id="eDenomination" class="common_select fapiaojine1"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
+					<td><input id="eNum" class="common_input fapiaozhangshu1" type="text" /></td>
 				</tr>
 				<tr>
 					<td>普通纸质发票</td>
-					<td><select class="common_select fapiaojine2"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
-					<td><input class="common_input fapiaozhangshu2" type="text" /></td>
+					<td><select id="paperDenomination" class="common_select fapiaojine2"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
+					<td><input id="paperNum" class="common_input fapiaozhangshu2" type="text" /></td>
 				</tr>
 				<tr>
 					<td>专票纸质发票</td>
-					<td><select class="common_select fapiaojine3"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
-					<td><input class="common_input fapiaozhangshu3" type="text" /></td>
+					<td><select id="specialDenomination" class="common_select fapiaojine3"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
+					<td><input id="specialNum" class="common_input fapiaozhangshu3" type="text" /></td>
 				</tr>
 			</table>
 		</div>
-		<div class="con_d"><span class="lable need">增票需要资料</span><i class="x"></i><textarea id="beizhur" class="common_textarea"></textarea></div>
+		<div class="con_d"><span class="lable need">增票需要资料</span><i class="x"></i><textarea id="VATInfo" class="common_textarea"></textarea></div>
 		<div class="con_d"><span class="lable need">公章费用信息</span><i class="x">*</i>
 			<table class="fapiaotable">
 				<tr>
 					<td>公章</td>
-					<td><input class="common_input gongzhangfei1" type="text" />元</td>
+					<td><input id="gongzhang" class="common_input gongzhangfei1" type="text" />元</td>
 				</tr>
 				<tr>
 					<td>法人章</td>
-					<td><input class="common_input gongzhangfei2" type="text" />元</td>
+					<td><input id="farenzhang" class="common_input gongzhangfei2" type="text" />元</td>
 				</tr>
 				<tr>
 					<td>财务章</td>
-					<td><input class="common_input gongzhangfei3" type="text" />元</td>
+					<td><input id="caiwuzhang" class="common_input gongzhangfei3" type="text" />元</td>
 				</tr>
 				<tr>
 					<td>合同章</td>
-					<td><input class="common_input gongzhangfei4" type="text" />元</td>
+					<td><input id="hetongzhang" class="common_input gongzhangfei4" type="text" />元</td>
 				</tr>
 				<tr>
 					<td>发票章</td>
-					<td><input class="common_input gongzhangfei5" type="text" />元</td>
+					<td><input id="fapiaozhang" class="common_input gongzhangfei5" type="text" />元</td>
 				</tr>
 			</table>
 		</div>
@@ -105,48 +105,48 @@
 			<table class="fapiaotable">
 				<tr>
 					<td>上传营业执照</td>
-					<td><input class="common_input banlishijiandian1" type="text" />天</td>
+					<td><input id="businessLicenseDay" class="common_input banlishijiandian1" type="text" />天</td>
 				</tr>
 				<tr>
 					<td>刻章完成</td>
-					<td><input class="common_input banlishijiandian2" type="text" />天</td>
+					<td><input id="engraveDay" class="common_input banlishijiandian2" type="text" />天</td>
 				</tr>
 				<tr>
 					<td>办理完成</td>
-					<td><input class="common_input banlishijiandian3" type="text" />天</td>
+					<td><input id="completedDay" class="common_input banlishijiandian3" type="text" />天</td>
 				</tr>
 			</table>
 		</div>
-		<div class="con_d"><span class="lable need">园区地址</span><i class="x"></i><input id="yuanqudizhi" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">所属街道</span><i class="x"></i><input id="suoshujiedao" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">所属工商局</span><i class="x"></i><input id="suoshugognshangju" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">国税分局</span><i class="x"></i><input id="guoshuifenju" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">国税专员联系人</span><i class="x"></i><input id="guoshuizhuanyuanlianxiren" class="common_input" type="text" />
-		<span class="lable need type2">电话</span><input id="guoshuilianxirendianhua" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">地税分局</span><i class="x"></i><input id="dishuifenju" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">地税专员联系人</span><i class="x"></i><input id="dishuizhuanyuanlianxiren" class="common_input" type="text" />
-		<span class="lable need type2">电话</span><input id="dishuizhuanyuanlianxirendianhua" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">小规模企业月报、季报情况</span><i class="x"></i><select id="yuanqujingbanren" class="common_select">
+		<div class="con_d"><span class="lable need">园区地址</span><i class="x"></i><input id="parkAddress" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">所属街道</span><i class="x"></i><input id="parkStreet" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">所属工商局</span><i class="x"></i><input id="ICI" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">国税分局</span><i class="x"></i><input id="STB" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">国税专员联系人</span><i class="x"></i><input id="STBContacts" class="common_input" type="text" />
+		<span class="lable need type2">电话</span><input id="STBPhone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">地税分局</span><i class="x"></i><input id="LTB" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">地税专员联系人</span><i class="x"></i><input id="LTBContacts" class="common_input" type="text" />
+		<span class="lable need type2">电话</span><input id="LTBPhone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">小规模企业月报、季报情况</span><i class="x"></i><select id="report" class="common_select">
 				<option value="">请选择</option>
 			</select>
 		</div>
-		<div class="con_d"><span class="lable need">地区税务编号</span><i class="x"></i><input id="diquyuiwubianhao" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">电子税务局网址</span><i class="x"></i><input id="dianzishuiwujuwangzhi" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">国税密码</span><i class="x"></i><input id="guoshuimima" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">地税密码</span><i class="x"></i><input id="dishuimima" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">税控保存地</span><i class="x"></i><input id="shuikongbaocundi" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">子公司名称</span><i class="x"></i><input id="zigognsimingcheng" class="common_input" type="text" />
-		<span class="lable need type2">结算公司名称</span><input id="jiesuangognsimingchegn" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">信用代码</span><i class="x"></i><input id="zxinyongdaima" class="common_input" type="text" />
-		<span class="lable need type2">信用代码</span><input id="jxinyongdaima" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">开户行</span><i class="x"></i><input id="zkaihuhang" class="common_input" type="text" />
-		<span class="lable need type2">开户行</span><input id="jkaihuhang" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">银行账号</span><i class="x"></i><input id="zyinhangzhanghao" class="common_input" type="text" />
-		<span class="lable need type2">银行账号</span><input id="jyinhangzhanghao" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">公司电话</span><i class="x"></i><input id="zgognsidianhua" class="common_input" type="text" />
-		<span class="lable need type2">公司电话</span><input id="jgognsidianhua" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">公司地址</span><i class="x"></i><input id="zgognsidizhi" class="common_input" type="text" />
-		<span class="lable need type2">公司地址</span><input id="jgognsidizhi" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">地区税务编号</span><i class="x"></i><input id="LTBCode" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">电子税务局网址</span><i class="x"></i><input id="ETBWeb" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">国税密码</span><i class="x"></i><input id="STBPassword" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">地税密码</span><i class="x"></i><input id="LTBPassword" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">税控保存地</span><i class="x"></i><input id="taxControlAddress" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">子公司名称</span><i class="x"></i><input id="subComName" class="common_input" type="text" />
+		<span class="lable need type2">结算公司名称</span><input id="clearingComName" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">信用代码</span><i class="x"></i><input id="subComCreditCode" class="common_input" type="text" />
+		<span class="lable need type2">信用代码</span><input id="clearingComCreditCode" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">开户行</span><i class="x"></i><input id="subComBank" class="common_input" type="text" />
+		<span class="lable need type2">开户行</span><input id="clearingComBank" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">银行账号</span><i class="x"></i><input id="subComAccount" class="common_input" type="text" />
+		<span class="lable need type2">银行账号</span><input id="clearingComAccount" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">公司电话</span><i class="x"></i><input id="subComPhone" class="common_input" type="text" />
+		<span class="lable need type2">公司电话</span><input id="clearingComPhone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">公司地址</span><i class="x"></i><input id="subComAddress" class="common_input" type="text" />
+		<span class="lable need type2">公司地址</span><input id="clearingComAddress" class="common_input" type="text" /></div>
 
 		<div id="new_create_btn" class="btns_div"><a back='园区管理.html' class="common_abtn goback type1">取消</a><a href="javascript:;" id="create_new_btn" class="common_abtn type2">创建</a></div>
 	</div>
@@ -181,9 +181,10 @@ $(function(){
 	});
 	$('#menu_show_t .s1',parent.document).html(' > 园区基本信息').addClass('active');
 	
-	$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
+	if(g.do == 'change'){$('#create_new_btn').on('click',function(){changeOrCreateProject(1)}).html('保存');}
+	else{$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});}
 	
-	setqiniu(1);//获取 七牛云上传token
+	//setqiniu(1);//获取 七牛云上传token
 	//uploadToQiniu('touxiangimg1');//定义七牛云上传
 	//uploadToQiniu('touxiangimg2');//定义七牛云上传
 
@@ -257,9 +258,10 @@ $(function(){
 	function changeOrCreateProject(is){
 		var is = is || '';//is 1 修改或保存 2 新建
 		var condi = {};
+		condi.id = g.id;
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
-		var url = Base.serverUrl + "project1/update";
-		if(is == '2'){url = Base.serverUrl + "project1/create"}
+		var url = Base.serverUrl + "park/update";
+		if(is == '2'){url = Base.serverUrl + "park/create"}
 		$('#create_new_btn').off();
 		//g.httpTip.show();
 		$.ajax({
@@ -281,20 +283,20 @@ $(function(){
 					Utils.alert(tip);
 					if(is == '2'){//新建项目
 						setTimeout(function(){
-							parent.document.getElementById("iframeObj").src = '项目任务.html';
+							parent.document.getElementById("iframeObj").src = '园区管理.html';
 						},1000);
 					}
 				}
 				else{
 					var msg = data.message || "保存失败";
 					Utils.alert(msg);
-					$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
+					$('#create_new_btn').on('click',function(){changeOrCreateProject(is)});
 				}
 				//g.httpTip.hide();
 			},
 			error:function(data,status){
 				//g.httpTip.hide();
-				$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
+				$('#create_new_btn').on('click',function(){changeOrCreateProject(is)});
 				if(status=='timeout'){
 		　　　　　  Utils.alert("超时");
 		　　　　}
@@ -306,7 +308,7 @@ $(function(){
 	function getProject(){
 		var condi = {};
 		condi.id = g.id;
-		var url = Base.serverUrl + "project/edit";
+		var url = Base.serverUrl + "park/edit";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -323,11 +325,7 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					var d = data.result || [];
-					var id = d.id || '';
-					$('#sponsor_name').val(d.sponsor_name || '');
-					setGetCheckValue('#project_staging',(d.project_staging || ''));//项目分期
-					var sop_date = getDate((d.sop_date || ''),'2');
-					$('#sop_date').val(sop_date);
+					setCondiVal(d,'.content_box1');//给输入框 赋值
 
 				}
 				else{

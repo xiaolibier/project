@@ -22,15 +22,15 @@
 			<tr>
 				<td>
 					<span class="sear_lable">姓名</span>
-					<input id="sname" class="com_input com_input1" type="text" />
+					<input id="name" class="com_input com_input1" type="text" />
 				</td>
 				<td>
 					<span class="sear_lable">电话</span>
-					<input id="sphone" class="com_input com_input2" type="text" />
+					<input id="phone" class="com_input com_input2" type="text" />
 				</td>
 				<td>
 					<span class="sear_lable">所属管家</span>
-					<input id="suoshuguanjia" class="com_input com_input2" type="text" />
+					<input id="housekeeper" class="com_input com_input2" type="text" />
 				</td>
 				<td class="searBtnTd">
 					<a id="searchBtn" class="top_btn xiangMu_xiangMuSouSuo">搜索</a>
@@ -136,6 +136,8 @@ $(function(){
 	g.nowPage = 0;//存当前页 0 是第一页
 	g.showPages = 10;//每页显示多少行
 	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.ids = [];//存储当前所有项目id及其状态
+	g.quanxuan = 0;
 	
 /* **************************************** lodding ******************************************** */	
 	//加载顶部标题
@@ -275,7 +277,6 @@ $(function(){
 			}
 		});
 		$('#daochu').off().on('click',toExcel);
-		$('#daochu2').off().on('click',toExcel2);
 	}
 
 	//导出excel
@@ -325,57 +326,41 @@ $(function(){
 					var html = '';
 					html += '<table id="exportTable" class="table1">'
 						+'<tr>'
-							+'<th style="min-width:58px;">项目编号</th>'
-							+'<th style="min-width:125px;">项目药品/器械名称</th>'
-							+'<th style="min-width:62px;">申办方</th>'
-							+'<th style="min-width:62px;">项目类型</th>'
-							+'<th style="min-width:72px;">注册类型</th>'
-							+'<th style="min-width:58px;">适应症</th>'
-							+'<th style="min-width:130px;">项目分期</th>'
-							+'<th style="min-width:85px;">项目名称</th>'
-							+'<th style="min-width:58px;">稽查开始时间</th>'
-							<!-- +'<th style="min-width:265px;">稽查结束时间</th>' -->
-							+'<th style="min-width:265px;">项目结束时间</th>'
-							+'<th style="min-width:265px;">项目经理</th>'
-							+'<th style="min-width:265px;">商务经理</th>'
-							+'<th style="min-width:265px;">协同项目经理</th>'
-							+'<th style="min-width:265px;">状态</th>'
+							+'<th style="min-width:26px;">编号</th>'
+							+'<th style="min-width:52px;">客户类型</th>'
+							+'<th style="min-width:52px;">客户名称</th>'
+							+'<th style="min-width:39px;">联系人</th>'
+							+'<th style="min-width:26px;">电话</th>'
+							+'<th style="min-width:52px;">发票信息</th>'
+							+'<th style="min-width:60px;">创建人/创建时间</th>'
+							+'<th style="min-width:52px;">所属管家</th>'
+							+'<th style="min-width:26px;">备注</th>'
 						+'</tr>';
 					var con = data || [];
 					for(var i=0,len=con.length;i<len;i++){
 						var d = con[i] || '';
 						var id = d.id || '';
 						var code = d.code || '';//编号
+						var type = d.type || '';//
 						var name = d.name || '';//
-						var medicine = d.medicine || '';
-						var sponsor_name = d.sponsor_name || '';
-						var center_number = d.center_number || '';
-						var project_manager_name = d.project_manager_name || '';
-						var audit_start_time = getDate(d.audit_start_time || '');//稽查开始时间
-						var end_time = getDate(d.end_time || '');
-						var state = d.state || '';
-						var project_staging = d.project_staging || '';
-						var indication = d.indication || '';
-						var classification = d.classification || '';
-						var audit_type = d.audit_type || '';
-						var business_manager_name = d.business_manager_name || '';
-						var project_assist_manager = d.project_assist_manager || '';
+						var phone = d.phone || '';//
+						var contacts = d.contacts || '';//
+						var invoiceInfo = d.invoiceInfo || '';//
+						var housekeeper = d.housekeeper || '';//
+						var creator = d.creatorName || '';//
+						var remark = d.remark || '';//
+						var create_time = getDate((d.create_time || ''),'2');
+						var ccstr = creator != '' & create_time != '' ? creator+'/'+create_time : creator+create_time;
 						html+='<tr>'
 							+'<td>'+code+'</td>'
-							+'<td>'+medicine+'</td>'
-							+'<td>'+sponsor_name+'</td>'
-							+'<td>'+audit_type+'</td>'
-							+'<td>'+classification+'</td>'
-							+'<td>'+indication+'</td>'
-							+'<td>'+project_staging+'</td>'
+							+'<td>'+type+'</td>'
 							+'<td>'+name+'</td>'
-							+'<td>'+audit_start_time+'</td>'
-							<!-- +'<td>'+create_time+'</td>' -->
-							+'<td>'+end_time+'</td>'
-							+'<td>'+project_manager_name+'</td>'
-							+'<td>'+business_manager_name+'</td>'
-							+'<td>'+project_assist_manager+'</td>'
-							+'<td>'+state+'</td>'
+							+'<td>'+contacts+'</td>'
+							+'<td>'+phone+'</td>'
+							+'<td>'+invoiceInfo+'</td>'
+							+'<td>'+ccstr+'</td>'
+							+'<td>'+housekeeper+'</td>'
+							+'<td>'+remark+'</td>'
 						+'</tr>';
 					}	
 					 html+='</table>';
@@ -457,7 +442,7 @@ $(function(){
 			g.loadPage = true;//开启分页
 			saveOrClearCookie(1,'kehuguanli_');//清空搜索条件
 		}
-		var url = Base.serverUrl + "project/search";
+		var url = Base.serverUrl + "customer/search";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -499,7 +484,16 @@ $(function(){
 						var d = con[i] || '';
 						var id = d.id || '';
 						var code = d.code || '';//编号
+						var type = d.type || '';//
+						var name = d.name || '';//
+						var phone = d.phone || '';//
+						var contacts = d.contacts || '';//
+						var invoiceInfo = d.invoiceInfo || '';//
+						var housekeeper = d.housekeeper || '';//
+						var creator = d.creatorName || '';//
+						var remark = d.remark || '';//
 						var create_time = getDate((d.create_time || ''),'2');
+						var ccstr = creator != '' & create_time != '' ? creator+'/'+create_time : creator+create_time;
 						var stra = '';
 						//判断当前项是否选中
 						for(var j=0,len1=g.ids.length;j<len1;j++){
@@ -511,14 +505,14 @@ $(function(){
 						html+='<tr>'
 							+'<td class="padding_s"><div idx="'+id+'" class="check_box tocommon '+stra+'"><i class="i"></i></div></td>'
 							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
+							+'<td>'+type+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td>'+contacts+'</td>'
+							+'<td>'+phone+'</td>'
+							+'<td>'+invoiceInfo+'</td>'
+							+'<td>'+ccstr+'</td>'
+							+'<td>'+housekeeper+'</td>'
+							+'<td>'+remark+'</td>'
 							+'<td class="last">'
 								+'<a href="javascript:;" onclick="review(\''+id+'\')" class="cao_btn cao_btn2">编辑</a>';
 								html+='<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>';
@@ -562,7 +556,7 @@ $(function(){
 		if(!confirm('确认删除吗？')){return false;}
 		var condi = {};
 		condi.id = id;
-		var url = Base.serverUrl + "project/delete";
+		var url = Base.serverUrl + "customer/delete";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -599,7 +593,7 @@ $(function(){
 	//编辑
 	window.review = function(id){
 		var id = id || '';
-		var _do = 'check';
+		var _do = 'change';
 		if(id == ''){Utils.alert('id不能为空！');return false;}
 		parent.document.getElementById("iframeObj").src = '客户管理-基本信息.html?id='+id+'&do='+_do;
 	}

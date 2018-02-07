@@ -46,10 +46,10 @@ $(function(){
 			if(_input.length > 0){//一般input
 				_input.each(function(m){//循环所有input 传值为name > id
 					var _this = $(this) || {};
-					var _t = _this.parents('.con_d') || {};//重新定义父对象 防止闭包
+					var _t1 = _this.parents('.con_d') || {};//重新定义父对象 防止闭包
 					//获取标题 用于提示信息
-					var _lable = _t.find('span.lable')[m] || '';
-					if(_lable == '' && m > 0){_lable = _t.find('span.lable')[0] || '';}//防止有两个input 一个lable
+					var _lable = _t1.find('span.lable')[m] || '';
+					if(_lable == '' && m > 0){_lable = _t1.find('span.lable')[0] || '';}//防止有两个input 一个lable
 					var tip_text = '第'+sk+'项能空！';//预定义一个值 防止lable为空
 					if(_lable != ''){tip_text = ($(_lable).html() || '') + '不能为空！';}//定义提示值
 					//var _val = _this.val() || '';
@@ -76,14 +76,14 @@ $(function(){
 					var _n = _radio.attr('name') || '';
 					var _value = condi[_n] || '';
 					if(_n == ''){tips = "第"+sk+"项搜索项有没有name！";console.log(tips);return true;}
-					_radio.each(function(){//遍历查找 name相同的
+					_t.find('.common_radio').each(function(){//遍历查找 name相同的
 						var _name = $(this).attr('name') || '';
-						var _val = _radio.attr('val') || '';
-						var _html = _radio.html() || '';
+						var _val = $(this).attr('val') || '';
+						var _html = $(this).html() || '';
 						var _text = _html.split('</i>')[1] || '';
-						var rval = _val == '' ? _val : _text;
-						_t.find('.common_radio[name="'+_name+'"]').removeClass('active');
-						if(_name == _n && name != '' && _value == rval && rval != ''){
+						var rval = _val != '' ? _val : _text;
+						if(_name == _n && _name != '' && _value == rval && rval != ''){
+							_t.find('.common_radio[name="'+_name+'"]').removeClass('active');
 							$(this).addClass('active');
 						}
 					});
@@ -100,7 +100,7 @@ $(function(){
 						var _val = _this.attr('val') || '';
 						var _html = _this.html() || '';
 						var _text = _html.split('</i>')[1] || '';
-						var rval = _val == '' ? _val : _text;
+						var rval = _val != '' ? _val : _text;
 						var is = $.inArray(rval, zu);
 						if(is <= -1){
 							_this.removeClass('active');
@@ -186,7 +186,7 @@ $(function(){
 					var _val = _radio.attr('val') || '';
 					var _html = _radio.html() || '';
 					var _text = _html.split('</i>')[1] || '';
-					var rval = _val == '' ? _val : _text;
+					var rval = _val != '' ? _val : _text;
 					if(feikong && (_radio == '' || rval == '')){tips = tip_text;return true;}//判断不为为空项 为空 跳出
 					var _n = _radio.attr('name') || '';
 					if(_n == ''){tips = "第"+sk+"项搜索项有没有name！";return true;}
