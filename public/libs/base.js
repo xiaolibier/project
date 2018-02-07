@@ -21,7 +21,7 @@
 
 	//请求服务地址
 	//var serverUrl = "http://www.partywo.com/";
-	var serverUrl = "http://192.168.1.20:8085/3audit-eschool/";//
+	var serverUrl = "http://192.168.1.20:8086/tax/";//
 	//var serverUrl = "http://192.168.1.234:8084/3audit/";//xihai
 	//var serverUrl = "http://192.168.1.181:8085/3audit/";//qiaorong
 	//var serverUrl = "http://api.3audit.cn/3audit/";

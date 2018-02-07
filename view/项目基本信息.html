@@ -351,6 +351,7 @@ $(function(){
 	function changeOrCreateProject(is){
 		var is = is || '';//is 1 修改或保存 2 新建
 		var condi = {};
+		condi.id = g.id ;
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
 		var url = Base.serverUrl + "project/update";
 		if(is == '2'){url = Base.serverUrl + "project/create"}

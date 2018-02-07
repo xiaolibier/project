@@ -25,6 +25,117 @@ $(function(){
 	/*......................setting.......................................*/
 	
 	
+	//基本信息页 批量赋值
+	function setCondiVal(condi,aid){
+		var aid = aid || 'body';//input 容器
+		var condi = condi || {};
+		if(condi == ''){Utils.alert("赋值对象不能为空！");return false;}
+		var tips = '';
+		$(aid).find('.con_d').each(function(sn){//循环所有框
+			var sk = sn + 1;
+			var _t = $(this) || {};
+			//获取 * 判断是否允许为空
+			//var x = '';
+			//if(_t.find('.x').length > 0){x = _t.find('.x').html() || '';}
+			//else if(_t.find('.star').length > 0){x = _t.find('.star').html() || '';}
+			//var feikong = x.indexOf('*') > -1 ? true : false;//判断非空
+			
+			var _input = _t.find('input,textarea,select') || [];
+			//if(tips != ''){return false;}//跳出循环
+			if(_t.css('display') == 'none'){return true;}//隐藏的 跳出本次循环
+			if(_input.length > 0){//一般input
+				_input.each(function(m){//循环所有input 传值为name > id
+					var _this = $(this) || {};
+					var _t = _this.parents('.con_d') || {};//重新定义父对象 防止闭包
+					//获取标题 用于提示信息
+					var _lable = _t.find('span.lable')[m] || '';
+					if(_lable == '' && m > 0){_lable = _t.find('span.lable')[0] || '';}//防止有两个input 一个lable
+					var tip_text = '第'+sk+'项能空！';//预定义一个值 防止lable为空
+					if(_lable != ''){tip_text = ($(_lable).html() || '') + '不能为空！';}//定义提示值
+					//var _val = _this.val() || '';
+					//if(feikong && _val == ''){tips = tip_text;return false;}//判断不为为空项 为空 跳出
+					//赋值
+					var _v = _this.val() || '';
+					var _n = _this.attr('name') || '';
+					var _id = _this.attr('id') || '';
+					if(_n == '' && _id == ''){tips = "第"+sk+"项搜索项有没有name和id！";console.log(tips);return true;}
+					else if(_n != ''){_this.val(condi[_n] || '');}
+					else if(_id != ''){_this.val(condi[_id] || '');}
+					
+				});
+			}else{//其他输入形式 比如 checkbox radio 图像上传等
+
+				//获取标题 用于提示信息
+				var _lable = _t.find('span.lable') || '';
+				var tip_text = '第'+sk+'项不能为空！';//预定义一个值 防止lable为空
+				if(_lable != ''){tip_text =  (_t.find('span.lable').html() || '') + '不能为空！';}
+				
+				
+				if(_t.find('.common_radio').length > 0){//radiobox 类型 传值名 radiobox 的name
+					var _radio = _t.find('.common_radio') || {};
+					var _n = _radio.attr('name') || '';
+					var _value = condi[_n] || '';
+					if(_n == ''){tips = "第"+sk+"项搜索项有没有name！";console.log(tips);return true;}
+					_radio.each(function(){//遍历查找 name相同的
+						var _name = $(this).attr('name') || '';
+						var _val = _radio.attr('val') || '';
+						var _html = _radio.html() || '';
+						var _text = _html.split('</i>')[1] || '';
+						var rval = _val == '' ? _val : _text;
+						_t.find('.common_radio[name="'+_name+'"]').removeClass('active');
+						if(_name == _n && name != '' && _value == rval && rval != ''){
+							$(this).addClass('active');
+						}
+					});
+					
+					
+				}else if(_t.find('.check_box').length > 0){//checkbox 类型 传值名 为con_d 的name
+					var _check = _t.find('.check_box') || {};
+					var _n = _t.attr('name') || '';
+					var _value = condi[_n] || '';
+					var zu = _value.indexOf(',') > -1 ? _value.split(',') || [] : _value[0] || [];
+					//if(zu.length <= 0){return false;}
+					_check.each(function(n){
+						var _this = $(this) || {};
+						var _val = _this.attr('val') || '';
+						var _html = _this.html() || '';
+						var _text = _html.split('</i>')[1] || '';
+						var rval = _val == '' ? _val : _text;
+						var is = $.inArray(rval, zu);
+						if(is <= -1){
+							_this.removeClass('active');
+						}else{
+							_this.addClass('active');
+						}
+					});
+					
+					
+				}else if(_t.find('.head_img_tips').length > 0){//图片上传 类型 传值名 con_d 的name
+					var _imgobj = _t.find('.head_img_tips') || {};
+					var _n = _t.attr('name') || '';
+					var _value = condi[_n] || '';
+					var zu = _value.indexOf(',') > -1 ? _value.split(',') || [] : _value[0] || [];
+					_imgobj.each(function(n){
+						var _this = $(this);
+						var src = zu[n] || '';
+						if(src == ''){//清空
+							_this.removeAttr('src');
+							_this.parents('.head_img_spam').removeClass('active');
+							_this.siblings('.head_imgs,.hide_head_imgs').css({'background':'url("../public/img/add1.png") no-repeat center center','background-size':'contain'});
+						}else{
+							_this.attr('src',src);
+							_this.parents('.head_img_spam').addClass('active');
+							_this.siblings('.head_imgs,.hide_head_imgs').css({'background':'url('+src+') no-repeat center center','background-size':'contain'});
+						}	
+					});
+					
+				}
+				
+			}
+		});
+	}
+	
+	
 	//基本信息页 批量获取值
 	function setInfoCondi(condi,aid){
 		var aid = aid || 'body';//input 容器
@@ -117,6 +228,22 @@ $(function(){
 		if(tips != ''){Utils.alert(tips);return false;}
 		return condi;
 	}
+	
+	//给图像赋值 
+	function setImgVal(aid,src){
+		var aid = aid || '';// #id 或者 .class
+		var src = src || '';
+		if(src == ''){//清空
+			$(aid).removeAttr('src');
+			$(aid).parents('.head_img_spam').removeClass('active');
+			$(aid).siblings('.head_imgs,.hide_head_imgs').css({'background':'url("../public/img/add1.png") no-repeat center center','background-size':'contain'});
+		}else{
+			$(aid).attr('src',src);
+			$(aid).parents('.head_img_spam').addClass('active');
+			$(aid).siblings('.head_imgs,.hide_head_imgs').css({'background':'url('+src+') no-repeat center center','background-size':'contain'});
+		}	
+	}
+	
 	
 	//加载所有搜索项
 	function setCondi(condi,aid){
@@ -1319,8 +1446,10 @@ $(function(){
 	window.formatSeconds = formatSeconds;
 	window.uploadqiniu = uploadqiniu;
 	window.setCondi = setCondi;
+	window.setCondiVal = setCondiVal;
 	window.setInfoCondi = setInfoCondi;
 	window.setqiniu = setqiniu;
+	window.setImgVal = setImgVal;
 	window.getselected = getselected;//获取选择的人员
 });
 

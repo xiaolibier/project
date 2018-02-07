@@ -271,11 +271,7 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					var d = data.result || [];
-					var id = d.id || '';
-					$('#sponsor_name').val(d.sponsor_name || '');
-					setGetCheckValue('#project_staging',(d.project_staging || ''));//项目分期
-					var sop_date = getDate((d.sop_date || ''),'2');
-					$('#sop_date').val(sop_date);
+					setCondiVal(d,'.content_box1');//给输入框 赋值
 
 				}
 				else{
