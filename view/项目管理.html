@@ -22,29 +22,29 @@
 			<tr>
 				<td>
 					<span class="sear_lable">项目编号</span>
-					<input id="projectNum" class="com_input com_input1" type="text" />
+					<input id="code" class="com_input com_input1" type="text" />
 				</td>
 				<td>
 					<span class="sear_lable">个人/企业客户名称</span>
-					<input id="porsennamecode" class="com_input com_input2" type="text" />
+					<input id="customer" class="com_input com_input2" type="text" />
 				</td>
 				<td>
 					<span class="sear_lable">联系人/电话</span>
-					<input id="namephone" class="com_input com_input2" type="text" />
+					<input id="phone" class="com_input com_input2" type="text" />
 				</td>
 				<td>
 					<span class="sear_lable">所属管家</span>
-					<input id="suoshuguanjia" class="com_input com_input2" type="text" />
+					<input id="housekeeper" class="com_input com_input2" type="text" />
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<span class="sear_lable">发票状态</span>
-					<select id="fapiaozhuangtai" class="com_select com_select2">
+					<select id="invoiceStatus" class="com_select com_select2">
 						<option value="">请选择</option>
 						<option value="未开票">未开票</option>
 						<option value="已开票">已开票</option>
-						<option value="已寄出">已寄出</option>
+						<option value="不用填">不用填</option>
 					</select>
 				</td>
 				<td>
@@ -70,8 +70,8 @@
 		<a class="daochuCommonBtn" id="daochu" >导出</a>
 		<a class="creat_forse" id="new_project" >新建项目</a>
 	</div>
-	<div id="tableList1" class="table_div">
-		<table class="table1">
+	<div id="tableList" class="table_div">
+		<!-- <table class="table1">
 			<tr>
 				<th><div class="check_box"><i class="i"></i></div></th>
 				<th style="min-width:52px;">项目编号</th>
@@ -144,7 +144,7 @@
 					<a class="cao_btn cao_btn3">删除</a>
 				</td>
 			</tr>
-		</table>
+		</table> -->
 	</div>
 	<div class="pages">
         <div id="Pagination"></div>
@@ -338,7 +338,6 @@ $(function(){
 			}
 		});
 		$('#daochu').off().on('click',toExcel);
-		$('#daochu2').off().on('click',toExcel2);
 	}
 
 	//导出excel
@@ -564,7 +563,18 @@ $(function(){
 						var d = con[i] || '';
 						var id = d.id || '';
 						var code = d.code || '';//编号
-						var create_time = getDate((d.create_time || ''),'2');
+						var customerName = d.customerName || '';//
+						var customerType = d.customerType || '';//
+						var contractType = d.contractType || '';//
+						var contractAmount = d.contractAmount || '';//
+						var contacts = d.contacts || '';//
+						var phone = d.phone || '';//
+						var invoiceStatus = d.invoiceStatus || '';//
+						var progress = d.progress || '';//
+						var housekeeper = d.housekeeper || '';//
+						var creatorName = d.creatorName || '';//
+						var createTime = getDate((d.createTime || ''),'2');
+						var ccstr = creatorName != '' && createTime != '' ? creatorName+'/'+createTime : creatorName+createTime ;
 						var stra = '';
 						//判断当前项是否选中
 						for(var j=0,len1=g.ids.length;j<len1;j++){
@@ -576,20 +586,20 @@ $(function(){
 						html+='<tr>'
 							+'<td class="padding_s"><div idx="'+id+'" class="check_box tocommon '+stra+'"><i class="i"></i></div></td>'
 							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
+							+'<td>'+customerName+'</td>'
+							+'<td>'+customerType+'</td>'
+							+'<td>'+contractType+'</td>'
+							+'<td>'+contractAmount+'</td>'
+							+'<td>'+contacts+'</td>'
+							+'<td>'+phone+'</td>'
+							+'<td>'+invoiceStatus+'</td>'
+							+'<td>'+progress+'</td>'
+							+'<td>'+ccstr+'</td>'
+							+'<td>'+housekeeper+'</td>'
 							+'<td class="last">'
 								+'<a href="javascript:;" onclick="review(\''+id+'\')" class="cao_btn cao_btn1">信息</a>';
 								html+='<a href="javascript:;" onclick="checkRenwu(\''+id+'\',\''+code+'\')" class="cao_btn cao_btn4">任务</a>';
-								if(state == '项目准备中')html+='<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>';
+								html+='<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>';
 							html+='</td>'
 						+'</tr>';
 					}	
