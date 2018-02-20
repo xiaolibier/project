@@ -93,6 +93,32 @@
           <a href="javascript:;" class="page-btn gogo">GO</a>
         </div>
     </div>
+
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+			
+			<div class="sbox xiugaizhongxin">
+				<h4 class="sbox_h4">快递信息</h4>
+				<div class="sbox_c"><span class="slable">编号</span><i class="star"></i><input id="code" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">快递原因</span><i class="star">*</i><input id="reason" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">快递物品</span><i class="star">*</i><input id="goods" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">发件人</span><i class="star">*</i><input id="sendName" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">发件信息</span><i class="star">*</i><input id="sendInfo" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">收件人</span><i class="star">*</i><input id="receiver" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">收件信息</span><i class="star">*</i><input id="receiverInfo" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">客户快递单号</span><i class="star">*</i><input id="expressNum" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">备注</span><i class="star">*</i><textarea id="remark" style="height:35px;" class="sbox_input"></textarea></div>
+				<div class="sbox_btn_div">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
 	
 	<div style="display:none;" info="导出table" id="exportExcel"></div>
 	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
@@ -123,13 +149,13 @@ $(function(){
 /* **************************************** lodding ******************************************** */	
 	//加载顶部标题
 	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
-	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('任务管理').off().on('click',function(){
+	$('#menu_show_t .s0',parent.document).css('cursor','pointer').html('落地任务管理').off().on('click',function(){
 		parent.document.getElementById("iframeObj").src = '任务管理.html';
 	});
 	$('#menu_show_t .s1',parent.document).html(' > 快递信息').addClass('active');
 	$('#daochu').off().on('click',toExcel);
 	loadPage();
-	
+	$('#newCenter').on('click',function(){shownewCenterSbox('new')});
 	
 	//测试
 	$('#renwubianji1').on('click',function(){
@@ -151,7 +177,90 @@ $(function(){
 		tableListShow();//显示列表
 	}
 
-	
+	//初始化弹窗
+	function reloadSbox(){
+		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		$('#noBtn').html('取消');
+		$('#yesBtn').off().show();
+		$('.xiugaizhongxin input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.xiugaizhongxin select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	//显示新建窗口
+	function shownewCenterSbox(){
+		reloadSbox();//初始化弹窗
+		$('.xiugaizhongxin .sbox_h4').html('添加银行');
+		showSbox('.xiugaizhongxin');//显示弹窗
+		$('#yesBtn').off().on('click',function(){centerFunc('new')});
+	}
+	//新建
+	window.centerFunc = function(is,id){
+		var is = is || '';
+		var id = id || '';
+		var reason = $('#reason').val() || '';
+		var goods = $('#goods').val() || '';
+		var sendName = $('#sendName').val() || '';
+		var sendInfo = $('#sendInfo').val() || '';
+		var receiver = $('#receiver').val() || '';
+		var receiverInfo = $('#receiverInfo').val() || '';
+		var expressNum = $('#expressNum').val() || '';
+		if(reason == ''){Utils.alert('快递原因不能为空！');return false;}
+		if(goods == ''){Utils.alert('快递物品不能为空！');return false;}
+		if(sendName == ''){Utils.alert('发件人不能为空！');return false;}
+		if(sendInfo == ''){Utils.alert('发件信息不能为空！');return false;}
+		if(receiver == ''){Utils.alert('收件人不能为空！');return false;}
+		if(receiverInfo == ''){Utils.alert('收件信息不能为空！');return false;}
+		if(expressNum == ''){Utils.alert('客户快递单号不能为空！');return false;}
+		//if(remark == ''){Utils.alert('备注不能为空！');return false;}
+		$('#yesBtn').off();
+		var condi = {};
+		condi.reason  = reason;
+		condi.goods  = goods;
+		condi.sendName  = sendName;
+		condi.sendInfo  = sendInfo;
+		condi.receiver  = receiver;
+		condi.receiverInfo  = receiverInfo;
+		condi.expressNum  = expressNum;
+		condi.remark  = remark;
+		var url = Base.serverUrl + "express/create";
+		if(is == 'change'){condi.id = id;url = Base.serverUrl + "express/update";}
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					if(is == 'change'){tips = '修改成功！';}
+					Utils.alert(tips);
+					tableListShow(2);//列表
+					closeSbox();//关闭弹窗
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					Utils.alert(msg);
+				}
+				$('#yesBtn').off().on('click',function(){centerFunc(is)});
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#yesBtn').off().on('click',function(){centerFunc(is)});
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	 
 		
 	//获取项目所有id列表
 	function getids(){

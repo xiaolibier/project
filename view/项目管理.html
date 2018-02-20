@@ -202,12 +202,12 @@ $(function(){
 	
 	
 	//测试
-	$('.cao_btn2').on('click',function(){
+	/*$('.cao_btn2').on('click',function(){
 		parent.document.getElementById("iframeObj").src = '项目任务.html';
 	});
 	$('.cao_btn1').on('click',function(){
 		parent.document.getElementById("iframeObj").src = '项目基本信息.html';
-	});
+	});*/
 	
 	
 	
@@ -387,57 +387,48 @@ $(function(){
 					var html = '';
 					html += '<table id="exportTable" class="table1">'
 						+'<tr>'
-							+'<th style="min-width:58px;">项目编号</th>'
-							+'<th style="min-width:125px;">项目药品/器械名称</th>'
-							+'<th style="min-width:62px;">申办方</th>'
-							+'<th style="min-width:62px;">项目类型</th>'
-							+'<th style="min-width:72px;">注册类型</th>'
-							+'<th style="min-width:58px;">适应症</th>'
-							+'<th style="min-width:130px;">项目分期</th>'
-							+'<th style="min-width:85px;">项目名称</th>'
-							+'<th style="min-width:58px;">稽查开始时间</th>'
-							<!-- +'<th style="min-width:265px;">稽查结束时间</th>' -->
-							+'<th style="min-width:265px;">项目结束时间</th>'
-							+'<th style="min-width:265px;">项目经理</th>'
-							+'<th style="min-width:265px;">商务经理</th>'
-							+'<th style="min-width:265px;">协同项目经理</th>'
-							+'<th style="min-width:265px;">状态</th>'
+							+'<th style="min-width:52px;">项目编号</th>'
+							+'<th style="min-width:112px;">个人/企业客户名称</th>'
+							+'<th style="min-width:52px;">客户类型</th>'
+							+'<th style="min-width:52px;">合同类型</th>'
+							+'<th style="min-width:52px;">合同金额</th>'
+							+'<th style="min-width:45px;">联系人</th>'
+							+'<th style="min-width:30px;">电话</th>'
+							+'<th style="min-width:52px;">发票状态</th>'
+							+'<th style="min-width:52px;">项目进度</th>'
+							+'<th style="min-width:60px;">创建人/创建时间</th>'
+							+'<th style="min-width:52px;">所属管家</th>'
 						+'</tr>';
 					var con = data || [];
 					for(var i=0,len=con.length;i<len;i++){
 						var d = con[i] || '';
 						var id = d.id || '';
 						var code = d.code || '';//编号
-						var name = d.name || '';//
-						var medicine = d.medicine || '';
-						var sponsor_name = d.sponsor_name || '';
-						var center_number = d.center_number || '';
-						var project_manager_name = d.project_manager_name || '';
-						var audit_start_time = getDate(d.audit_start_time || '');//稽查开始时间
-						var end_time = getDate(d.end_time || '');
-						var state = d.state || '';
-						var project_staging = d.project_staging || '';
-						var indication = d.indication || '';
-						var classification = d.classification || '';
-						var audit_type = d.audit_type || '';
-						var business_manager_name = d.business_manager_name || '';
-						var project_assist_manager = d.project_assist_manager || '';
+						var customerName = d.customerName || '';//
+						var customerType = d.customerType || '';//
+						var contractType = d.contractType || '';//
+						var contractAmount = d.contractAmount || '';//
+						var contacts = d.contacts || '';//
+						var phone = d.phone || '';//
+						var invoiceStatus = d.invoiceStatus || '';//
+						var progress = d.progress || '';//
+						var housekeeper = d.housekeeper || '';//
+						var creatorName = d.creatorName || '';//
+						var createTime = getDate((d.createTime || ''),'2');
+						var ccstr = creatorName != '' && createTime != '' ? creatorName+'/'+createTime : creatorName+createTime ;
+						var stra = '';
 						html+='<tr>'
 							+'<td>'+code+'</td>'
-							+'<td>'+medicine+'</td>'
-							+'<td>'+sponsor_name+'</td>'
-							+'<td>'+audit_type+'</td>'
-							+'<td>'+classification+'</td>'
-							+'<td>'+indication+'</td>'
-							+'<td>'+project_staging+'</td>'
-							+'<td>'+name+'</td>'
-							+'<td>'+audit_start_time+'</td>'
-							<!-- +'<td>'+create_time+'</td>' -->
-							+'<td>'+end_time+'</td>'
-							+'<td>'+project_manager_name+'</td>'
-							+'<td>'+business_manager_name+'</td>'
-							+'<td>'+project_assist_manager+'</td>'
-							+'<td>'+state+'</td>'
+							+'<td>'+customerName+'</td>'
+							+'<td>'+customerType+'</td>'
+							+'<td>'+contractType+'</td>'
+							+'<td>'+contractAmount+'</td>'
+							+'<td>'+contacts+'</td>'
+							+'<td>'+phone+'</td>'
+							+'<td>'+invoiceStatus+'</td>'
+							+'<td>'+progress+'</td>'
+							+'<td>'+ccstr+'</td>'
+							+'<td>'+housekeeper+'</td>'
 						+'</tr>';
 					}	
 					 html+='</table>';

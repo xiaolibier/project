@@ -17,7 +17,11 @@
 </head>
 <body class="xiangmuguanli xiangmujibenxinxi">
 	<!-- 客户名称 -->
-	<ul class="choiseDanwei choiseDanwei4">
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei4">
+		<li>加载失败</li>
+	</ul>
+	<!-- 管家列表 -->
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei5">
 		<li>加载失败</li>
 	</ul>
 	<h4 class="page_title">项目基本信息
@@ -29,41 +33,57 @@
 
 		<div class="con_d"><span class="lable need">项目编号</span><i class="x">*</i><input id="code" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">合同类型</span><i class="x">*</i><select id="contractType" class="common_select">
-				<option value="1">请选择</option>
+				<option value="">请选择</option>
+				<option value="咨询合同">咨询合同</option>
+				<option value="办理合同">办理合同</option>
+				<option value="入驻合同">入驻合同</option>
 			</select>
 		</div>
 		<div class="con_d"><span class="lable need">客户名称</span><i class="x">*</i>
 			<input id="customerName" class="common_input common_inputr readonly1" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-			联系人：<span id="lianxiren">0068</span>&nbsp;&nbsp;&nbsp;&nbsp;
-			联系电话：<span id="dianhua">0068</span>
+			联系人：<span id="lianxiren"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			联系电话：<span id="dianhua"></span>
 		</div>
-		<div class="con_d"><span class="lable need">所属管家</span><i class="x">*</i><select id="housekeeper" class="common_select">
-				<option value="1">请选择</option>
-			</select>
-		</div>
+		<div class="con_d"><span class="lable need">所属管家</span><i class="x">*</i><input id="housekeeper" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">合同金额</span><i class="x"></i><input id="contractAmount" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">开票金额</span><i class="x"></i><input id="invoiceAmount" class="common_input" placeholder="（开票后填写，填写后发票状态为已开票）" type="text" /></div>
 		<div class="con_d"><span class="lable need">品目</span><i class="x">*</i><select id="itemType" class="common_select">
-				<option value="1">请选择</option>
+				<option value="">请选择</option>
+				<option value="现代服务">现代服务</option>
+				<option value="文化创意服务">文化创意服务</option>
+				<option value="会议会展服务">会议会展服务</option>
+				<option value="设计服务">设计服务</option>
+				<option value="广告服务">广告服务</option>
+				<option value="研发和技术服务">研发和技术服务</option>
+				<option value="技术咨询服务">技术咨询服务</option>
+				<option value="软件服务">软件服务</option>
+				<option value="信息系统服务">信息系统服务</option>
+				<option value="咨询服务">咨询服务</option>
+				<option value="技术咨询服务">技术咨询服务</option>
+				<option value="商务辅助服务">商务辅助服务</option>
+				<option value="企业管理服务">企业管理服务</option>
+				<option value="经济代理服务">经济代理服务</option>
+				<option value="人力资源外包服务">人力资源外包服务</option>
+				<option value="人力资源服务">人力资源服务</option>
+				<option value="租赁服务">租赁服务</option>
 			</select>
 		</div>
 		<div class="con_d"><span class="lable need">备注</span><i class="x"></i><textarea id="invoiceRemark" class="common_textarea"></textarea></div>
 		<div id="invoiceInfo" name="invoiceInfo" class="con_d"><span class="lable need">发票信息</span><i class="x"></i>
-			<div class="common_radio" name="invoiceInfo"><i class="i"></i>未填写</div>
-			<div class="common_radio" name="invoiceInfo"><i class="i"></i>已填写</div>
-			<div class="common_radio" name="invoiceInfo"><i class="i"></i>已寄出不用填</div>
+			<div class="common_radio putongradio active" name="invoiceInfo"><i class="i"></i>普通发票</div>
+			<div class="common_radio zengzhiradio" name="invoiceInfo"><i class="i"></i>增值税发票</div>
 		</div>
 		<div class="con_d"><span class="lable need">开票名称</span><i class="x"></i><input id="invoiceName" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">税号</span><i class="x"></i><input id="invoiceTaxPayerId" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">开户银行</span><i class="x"></i><input id="invoiceBank" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">银行账户</span><i class="x"></i><input id="invoiceBankAccount" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">单位地址</span><i class="x"></i><input id="invoiceCompanyAddress" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">电话号码</span><i class="x"></i><input id="invoiceCompanyPhone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">邮寄地址</span><i class="x"></i><input id="invoiceMailingAddress" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">收件人</span><i class="x"></i><input id="invoiceReceiver" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">电话</span><i class="x"></i><input id="invoiceReceiverPhone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">物流单号</span><i class="x"></i><input id="expressNum" class="common_input" placeholder="（物流单号不为空表示发票已寄）" type="text" /></div>
-		<div class="con_d"><span class="lable need">合同简介</span><i class="x">*</i><textarea id="contractAbstract" style="height:500px;" class="common_textarea"></textarea></div>
+		<div class="con_d pu_hide"><span class="lable need">开户银行</span><i class="x"></i><input id="invoiceBank" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">银行账户</span><i class="x"></i><input id="invoiceBankAccount" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">单位地址</span><i class="x"></i><input id="invoiceCompanyAddress" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">电话号码</span><i class="x"></i><input id="invoiceCompanyPhone" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">邮寄地址</span><i class="x"></i><input id="invoiceMailingAddress" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">收件人</span><i class="x"></i><input id="invoiceReceiver" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">电话</span><i class="x"></i><input id="invoiceReceiverPhone" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">物流单号</span><i class="x"></i><input id="expressNum" class="common_input" placeholder="（物流单号不为空表示发票已寄）" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">合同简介</span><i class="x">*</i><textarea id="contractAbstract" style="height:500px;" class="common_textarea"></textarea></div>
 		<div id="new_create_btn" class="btns_div"><a back='项目管理.html' class="common_abtn goback type1">取消</a><a href="javascript:;" id="create_new_btn" class="common_abtn type2">创建</a></div>
 	</div>
 
@@ -100,11 +120,13 @@ $(function(){
 	$('#editBtn').on('click',editStatic);//进入编辑状态
 	$('#change_ok_btn').on('click',function(){changeOrCreateProject(1)});
 	$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
-	getjichamokuai();//获取稽查模块
-	getShenBanFang();//加载申办方列表
+	getShenBanFang();//获取客户名称列表
 	
+	setSearchRole('.choiseDanwei5','管家','li');//给商务经理 选框赋值
+	setGetSearchInput('#housekeeper','.choiseDanwei5');//定义可以搜索下拉的
 	
 /* **************************************** setTing ******************************************** */	
+	
 	
 	loadCheck();//判断编辑还是查看
 	//is_show('.xiangMu_xiangMuFaBu');
@@ -144,16 +166,30 @@ $(function(){
 			});
 		}else if(g.do == 'new'){//新建
 			$('#new_create_btn').show();
-			$('.new_div_hide').remove();//编辑按钮
+			$('.new_div_hide,#editBtn').remove();//编辑按钮
 			$('#editBtn').remove();
 			//定义选择分期 只能单选
 			$('.xiangmuguanli').off('click','.common_radio').on('click','.common_radio',function(){
 				$(this).addClass('active').siblings('.common_radio').removeClass('active');
 			});
+			pzcompare();//判断是选择的普通发票还是增值税发票
 		}
 	}
 	
-	
+	//判断是选择的普通发票还是增值税发票
+	$('#invoiceInfo').find('.common_radio').on('click',function(){
+		$(this).addClass('active').siblings('.common_radio').removeClass('active');
+		pzcompare();
+	})
+	function pzcompare(){
+		var is = $('.zengzhiradio').hasClass('active');
+		var is2 = $('.putongradio').hasClass('active');
+		if(is && !is2){
+			$('.pu_hide').show();
+		}else{
+			$('.pu_hide').hide();
+		}
+	}
 
 	//关闭弹窗
 	$(document).click(function(e){
@@ -191,8 +227,10 @@ $(function(){
 			var _vdan= _tis.html() || '';
 			var _vtip= _tis.attr('tip') || '';
 			var phone= _tis.attr('phone') || '';
+			var contacts= _tis.attr('contacts') || '';
 			_is.val(_vdan);
-			$('#lianxiren').html(_vtip);
+			_is.attr('tip',_vtip);
+			$('#lianxiren').html(contacts);
 			$('#dianhua').html(phone);
 			_tis.parents('.choiseDanwei').hide();
 			stopPropagation(e);
@@ -227,7 +265,8 @@ $(function(){
 						var id = d.id || '';
 						var name = d.name || '';
 						var contacts = d.contacts || '';
-						html += '<li phone="'+phone+'" tip="'+contacts+'">'+name+'</li>';
+						var phone = d.phone || '';
+						html += '<li phone="'+phone+'" contacts="'+contacts+'"  tip="'+id+'">'+name+'</li>';
 					}
 					$('.choiseDanwei4').html(html);
 				}
@@ -258,11 +297,13 @@ $(function(){
 		var is = is || '';//is 1 修改或保存 2 新建
 		var lianxiren = $('#lianxiren').html() || '';
 		var dianhua = $('#dianhua').html() || '';
+		var customerid = $('#customerName').attr('tip') || '';
 		var condi = {};
 		condi.id = g.id ;
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
 		condi.contacts = lianxiren;
 		condi.phone = dianhua;
+		condi.customerId = customerid;
 		var url = Base.serverUrl + "project/update";
 		if(is == '2'){url = Base.serverUrl + "project/create"}
 		$('#create_new_btn').off();
@@ -332,7 +373,10 @@ $(function(){
 				if(status){
 					var d = data.result || [];
 					setCondiVal(d,'.content_box1');//给输入框 赋值	
-
+					$('#lianxiren').html(d.contacts || '');
+					$('#dianhua').html(d.phone || '');
+					$('#customerName').val(d.customer || '').attr('tip',d.customerId || '');
+					pzcompare();//判断是选择的普通发票还是增值税发票					
 				}
 				else{
 					var msg = data.message || "获取项目信息失败";

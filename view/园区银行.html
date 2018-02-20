@@ -26,8 +26,8 @@
 	<div class="m_info">
 		<a class="creat_forse" style="float:none;" id="newCenter" >添加银行</a>
 	</div>
-	<div id="tableList1" class="table_div">
-		<table class="table1">
+	<div id="tableList" class="table_div">
+		<!-- <table class="table1">
 			<tr>
 				<th style="min-width:26px;">编号</th>
 				<th style="min-width:65px;">开户行名称</th>
@@ -82,7 +82,7 @@
 					<a class="cao_btn cao_btn3">删除</a>
 				</td>
 			</tr>
-		</table>
+		</table> -->
 	</div>
 	<!-- <div class="pages">
         <div id="Pagination"></div>
@@ -107,15 +107,15 @@
 			
 			<div class="sbox xiugaizhongxin">
 				<h4 class="sbox_h4">银行信息</h4>
-				<div class="sbox_c"><span class="slable">编号</span><i class="star">*</i><input id="code" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">编号</span><i class="star"></i><input id="code" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">开户行名称</span><i class="star">*</i><input id="name" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">电话</span><i class="star">*</i><input id="phone" class="sbox_input" type="text"/></div>
-				<div class="sbox_c"><span class="slable">U盾数量</span><i class="star">*</i><input id="uNumber" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">U盾数量</span><i class="star">*</i><input id="unumber" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">初始密码</span><i class="star">*</i><input id="initPassword" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">公对公和公对私转账限额</span><i class="star">*</i><input id="pta" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">开户费</span><i class="star">*</i><input id="openFee" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">密码器费用</span><i class="star">*</i><input id="cipherFee" class="sbox_input" type="text"/></div>
-				<div class="sbox_c"><span class="slable">网银U盾费用</span><i class="star">*</i><input id="uFee" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">网银U盾费用</span><i class="star">*</i><input id="ufee" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">网银年费</span><i class="star">*</i><input id="onlineBankFee" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">账户年费</span><i class="star">*</i><input id="accountFee" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">短信提示年费</span><i class="star">*</i><input id="smsFee" class="sbox_input" type="text"/></div>
@@ -188,17 +188,17 @@ $(function(){
 		var code = $('#code').val() || '';
 		var name = $('#name').val() || '';
 		var phone = $('#phone').val() || '';
-		var uNumber = $('#uNumber').val() || '';
+		var uNumber = $('#unumber').val() || '';
 		var initPassword = $('#initPassword').val() || '';
 		var pta = $('#pta').val() || '';
 		var openFee = $('#openFee').val() || '';
 		var cipherFee = $('#cipherFee').val() || '';
-		var uFee = $('#uFee').val() || '';
+		var uFee = $('#ufee').val() || '';
 		var onlineBankFee = $('#onlineBankFee').val() || '';
 		var accountFee = $('#accountFee').val() || '';
 		var smsFee = $('#smsFee').val() || '';
 		var remark = $('#remark').val() || '';
-		if(code == ''){Utils.alert('编号不能为空！');return false;}
+		//if(code == ''){Utils.alert('编号不能为空！');return false;}
 		if(name == ''){Utils.alert('银行名称不能为空！');return false;}
 		if(phone == ''){Utils.alert('银行电话不能为空！');return false;}
 		if(uNumber == ''){Utils.alert('U盾数量不能为空！');return false;}
@@ -311,7 +311,7 @@ $(function(){
 							+'<th style="min-width:26px;">备注</th>'
 							+'<th style="min-width:152px;">操作</th>'
 						+'</tr>';
-					var con = data.content || [];
+					var con = data || [];
 					for(var i=0,len=con.length;i<len;i++){
 						var xu = len - i;
 						var d = con[i] || '';
@@ -319,12 +319,12 @@ $(function(){
 						var code = d.code || '';
 						var name = d.name || '';
 						var phone = d.phone || '';
-						var uNumber = d.uNumber || '';
+						var uNumber = d.unumber || '';
 						var initPassword = d.initPassword || '';
 						var openFee = d.openFee || '';
 						var pta = d.pta || '';
 						var cipherFee = d.cipherFee || '';
-						var uFee = d.uFee || '';
+						var uFee = d.ufee || '';
 						var onlineBankFee = d.onlineBankFee || '';
 						var accountFee = d.accountFee || '';
 						var smsFee = d.smsFee || '';
@@ -413,12 +413,12 @@ $(function(){
 					$('#code').val(d.code || '');
 					$('#name').val(d.name || '');
 					$('#phone').val(d.phone || '');
-					$('#uNumber').val(d.uNumber || '');
+					$('#uNumber').val(d.unumber || '');
 					$('#initPassword').val(d.initPassword || '');
 					$('#pta').val(d.pta || '');
 					$('#openFee').val(d.openFee || '');
 					$('#cipherFee').val(d.cipherFee || '');
-					$('#uFee').val(d.uFee || '');
+					$('#uFee').val(d.ufee || '');
 					$('#onlineBankFee').val(d.onlineBankFee || '');
 					$('#accountFee').val(d.accountFee || '');
 					$('#smsFee').val(d.smsFee || '');

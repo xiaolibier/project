@@ -32,6 +32,9 @@
 					<span class="sear_lable">企业类型</span>
 					<select id="companyType" class="com_select com_select2">
 						<option value="">请选择</option>
+						<option value="合伙企业">合伙企业</option>
+						<option value="有限公司">有限公司</option>
+						<option value="个体企业">个体企业</option>
 					</select>
 				</td>
 				<td>
@@ -56,25 +59,25 @@
 				</td>
 				<td>
 					<span class="sear_lable">创建时间</span>
-					<input class="com_input com_input3"  id="createTime" placeholder="起" type="text" />
+					<input class="com_input com_input3"  id="createTimeStart" placeholder="起" type="text" />
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<span class="sear_lable">创建时间</span>
-					<input class="com_input com_input4" id="end_time1" placeholder="止" type="text" />
+					<input class="com_input com_input4" id="createTimeEnd" placeholder="止" type="text" />
 				</td>
 				<td>
 					<span class="sear_lable">接单时间</span>
-					<input class="com_input com_input3"  id="acceptTime" placeholder="起" type="text" />
+					<input class="com_input com_input3"  id="acceptTimeStart" placeholder="起" type="text" />
 				</td>
 				<td>
 					<span class="sear_lable">接单时间</span>
-					<input class="com_input com_input4" id="end_time2" placeholder="止" type="text" />
+					<input class="com_input com_input4" id="acceptTimeTimeEnd" placeholder="止" type="text" />
 				</td>
 				<td>
 					<span class="sear_lable">创建人</span>
-					<input id="creator" class="com_input com_input2" type="text" />
+					<input id="creatorName" class="com_input com_input2" type="text" />
 				</td>
 			</tr>
 			<tr>
@@ -300,6 +303,7 @@ $(function(){
 /* **************************************** setTing ******************************************** */	
 	//加载页面
 	function loadPage(){
+		getyuanqulist();//获取 搜索项 园区列表
 		if(g.ser != ''){//判断从工作台传搜索项过来
 			$('#xiangmuzhuangtai').val(g.ser);
 			tableListShow(1);//显示列表
@@ -308,7 +312,53 @@ $(function(){
 			tableListShow(1);//显示列表
 		}
 	}
-
+	
+	//获取 搜索项 园区列表
+	function getyuanqulist(){
+		var condi = {};
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "park/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var data = data.content || [];
+					var html = '<option value="">请选择</option>';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || [];
+						var id = d.id || '';
+						var name = d.name || '';
+						html += '<option value="'+name+'">'+name+'</option>';
+					}
+					$('#parkName').html(html);
+				}
+				else{
+					var msg = data.message || "失败";
+					//Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
 	
 	//获取项目所有id列表
 	function getids(){

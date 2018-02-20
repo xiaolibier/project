@@ -852,8 +852,8 @@ $(function(){
 		var huoqu = huoqu || '';
 		var condi = {};
 		condi.number = 1000;//每页显示行数
-		condi.roleName = role;
-		var url = Base.serverUrl + "user/getUserByRoleName";
+		condi.position = role;
+		var url = Base.serverUrl + "user/getUserByPosition";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,

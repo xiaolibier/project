@@ -16,42 +16,43 @@
 	</style>
 </head>
 <body class="xiangmuguanli xiangmujibenxinxi">
-
+	<!-- 园区负责人 -->
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei4">
+		<li>加载失败</li>
+	</ul>
+	<!-- 园区经办人 -->
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei5">
+		<li>加载失败</li>
+	</ul>
 	<div class="content_box1">
 
 		<div class="con_d"><span class="lable need">园区名称</span><i class="x">*</i><input id="name" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">园区负责人</span><i class="x">*</i><select id="headerId" class="common_select">
-				<option value="1">请选择</option>
-			</select>
-		</div>
-		<div class="con_d"><span class="lable need">园区经办人</span><i class="x"></i><select id="agentId" class="common_select">
-				<option value="1">请选择</option>
-			</select>
-		</div>
+		<div class="con_d"><span class="lable need">园区负责人</span><i class="x">*</i><input id="header" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">园区经办人</span><i class="x"></i><input id="agent" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">启始注册地址段</span><i class="x">*</i><input id="regAddress" placeholder="系统默认带出，可修改，要判重" class="common_input" type="text" /></div>
 		<div id="needCA" class="con_d"><span class="lable need">是否需要CA证书</span><i class="x">*</i>
-			<div val=1 class="common_radio active" name="needCA"><i class="i"></i>是</div>
-			<div val=0 class="common_radio" name="needCA"><i class="i"></i>否</div>
+			<div val='是' class="common_radio active" name="needCA"><i class="i"></i>是</div>
+			<div val='否' class="common_radio" name="needCA"><i class="i"></i>否</div>
 		</div>
-		<div class="con_d"><span class="lable need">CA证书金额</span><i class="x"></i><input id="CAPrice" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">CA证书金额</span><i class="x"></i><input id="caPrice" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">税控盘费用</span><i class="x">*</i><input id="taxPanelPrice" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">发票信息</span><i class="x">*</i>
 			<table class="fapiaotable">
 				<tr>
 					<td>增值税比例</td>
-					<td><input id="VATRadio" class="common_input shuifeibili1" type="text" />%</td>
+					<td><input id="vatRadio" class="common_input shuifeibili1" type="text" />%</td>
 				</tr>
 				<tr>
 					<td>附加税比例</td>
-					<td><input id="AppendedRadio" class="common_input shuifeibili2" type="text" />%</td>
+					<td><input id="appendedRadio" class="common_input shuifeibili2" type="text" />%</td>
 				</tr>
 				<tr>
 					<td>企业所得税核定征收比例</td>
-					<td><input id="BIdRadio" class="common_input shuifeibili3" type="text" />%</td>
+					<td><input id="bidRadio" class="common_input shuifeibili3" type="text" />%</td>
 				</tr>
 				<tr>
 					<td>生产经营所得税核定征收比例</td>
-					<td><input id="POIRadio" class="common_input shuifeibili4" type="text" />%</td>
+					<td><input id="poiRadio" class="common_input shuifeibili4" type="text" />%</td>
 				</tr>
 				
 			</table>
@@ -76,7 +77,7 @@
 				</tr>
 			</table>
 		</div>
-		<div class="con_d"><span class="lable need">增票需要资料</span><i class="x"></i><textarea id="VATInfo" class="common_textarea"></textarea></div>
+		<div class="con_d"><span class="lable need">增票需要资料</span><i class="x"></i><textarea id="vatInfo" class="common_textarea"></textarea></div>
 		<div class="con_d"><span class="lable need">公章费用信息</span><i class="x">*</i>
 			<table class="fapiaotable">
 				<tr>
@@ -119,21 +120,23 @@
 		</div>
 		<div class="con_d"><span class="lable need">园区地址</span><i class="x"></i><input id="parkAddress" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">所属街道</span><i class="x"></i><input id="parkStreet" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">所属工商局</span><i class="x"></i><input id="ICI" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">国税分局</span><i class="x"></i><input id="STB" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">国税专员联系人</span><i class="x"></i><input id="STBContacts" class="common_input" type="text" />
-		<span class="lable need type2">电话</span><input id="STBPhone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">地税分局</span><i class="x"></i><input id="LTB" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">地税专员联系人</span><i class="x"></i><input id="LTBContacts" class="common_input" type="text" />
-		<span class="lable need type2">电话</span><input id="LTBPhone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">所属工商局</span><i class="x"></i><input id="ici" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">国税分局</span><i class="x"></i><input id="stb" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">国税专员联系人</span><i class="x"></i><input id="stbContacts" class="common_input" type="text" />
+		<span class="lable need type2">电话</span><input id="stbPhone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">地税分局</span><i class="x"></i><input id="ltb" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">地税专员联系人</span><i class="x"></i><input id="ltbContacts" class="common_input" type="text" />
+		<span class="lable need type2">电话</span><input id="ltbPhone" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">小规模企业月报、季报情况</span><i class="x"></i><select id="report" class="common_select">
 				<option value="">请选择</option>
+				<option value="月报">月报</option>
+				<option value="季报">季报</option>
 			</select>
 		</div>
-		<div class="con_d"><span class="lable need">地区税务编号</span><i class="x"></i><input id="LTBCode" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">电子税务局网址</span><i class="x"></i><input id="ETBWeb" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">国税密码</span><i class="x"></i><input id="STBPassword" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">地税密码</span><i class="x"></i><input id="LTBPassword" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">地区税务编号</span><i class="x"></i><input id="ltbCode" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">电子税务局网址</span><i class="x"></i><input id="etbWeb" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">国税密码</span><i class="x"></i><input id="stbPassword" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">地税密码</span><i class="x"></i><input id="ltbPassword" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">税控保存地</span><i class="x"></i><input id="taxControlAddress" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">子公司名称</span><i class="x"></i><input id="subComName" class="common_input" type="text" />
 		<span class="lable need type2">结算公司名称</span><input id="clearingComName" class="common_input" type="text" /></div>
@@ -187,7 +190,11 @@ $(function(){
 	//setqiniu(1);//获取 七牛云上传token
 	//uploadToQiniu('touxiangimg1');//定义七牛云上传
 	//uploadToQiniu('touxiangimg2');//定义七牛云上传
-
+	
+	setSearchRole('.choiseDanwei4','','li');//给商务经理 选框赋值
+	setGetSearchInput('#header','.choiseDanwei4');//定义可以搜索下拉的
+	setSearchRole('.choiseDanwei5','','li');//给商务经理 选框赋值
+	setGetSearchInput('#agent','.choiseDanwei5');//定义可以搜索下拉的
 	
 /* **************************************** setTing ******************************************** */	
 	
@@ -256,10 +263,14 @@ $(function(){
 	
 	//修改保存项目信息
 	function changeOrCreateProject(is){
+		var headerid = $('#header').attr('tipid') || '';
+		var agentid = $('#agent').attr('tipid') || '';
 		var is = is || '';//is 1 修改或保存 2 新建
 		var condi = {};
 		condi.id = g.id;
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
+		condi.headerId = headerid;
+		condi.agentId = agentid;
 		var url = Base.serverUrl + "park/update";
 		if(is == '2'){url = Base.serverUrl + "park/create"}
 		$('#create_new_btn').off();
@@ -326,7 +337,8 @@ $(function(){
 				if(status){
 					var d = data.result || [];
 					setCondiVal(d,'.content_box1');//给输入框 赋值
-
+					$('#header').attr('tipid',d.headerId || '');
+					$('#agent').attr('tipid',d.agentId || '');
 				}
 				else{
 					var msg = data.message || "获取项目信息失败";

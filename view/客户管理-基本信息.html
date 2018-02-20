@@ -16,7 +16,10 @@
 	</style>
 </head>
 <body class="xiangmuguanli xiangmujibenxinxi">
-
+	<!-- 管家列表 -->
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei5">
+		<li>加载失败</li>
+	</ul>
 	<h4 class="page_title">客户基本信息
 		<!-- <a href="javascript:;" id="editBtn" class="creat_forse">编辑</a>
 		<a href="javascript:;" style="display:none;" id="change_ok_btn" class="creat_forse">保存</a>
@@ -24,12 +27,11 @@
 	</h4>
 	<div class="content_box1">
 
-		<div class="con_d"><span class="lable need">所属管家</span><i class="x">*</i><select id="housekeeper" class="common_select">
-				<option value="1">请选择</option>
-			</select>
-		</div>
+		<div class="con_d"><span class="lable need">所属管家</span><i class="x">*</i><input id="housekeeper" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">客户类型</span><i class="x">*</i><select id="type" class="common_select">
-				<option value="1">请选择</option>
+				<option value="">请选择</option>
+				<option value="个人客户">个人客户</option>
+				<option value="企业客户">企业客户</option>
 			</select>
 		</div>
 		<div class="con_d"><span class="lable need">客户名称</span><i class="x">*</i>
@@ -40,26 +42,27 @@
 		</div>
 		<div class="con_d"><span class="lable need">联系人</span><i class="x"></i><input id="contacts" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">电话</span><i class="x"></i><input id="phone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">证件类型</span><i class="x">*</i><select id="IDType" class="common_select">
-				<option value="1">请选择</option>
+		<div class="con_d"><span class="lable need">证件类型</span><i class="x">*</i><select id="idType" class="common_select">
+				<option value="">请选择</option>
+				<option value="身份证">身份证</option>
 			</select>
 		</div>
-		<div class="con_d"><span class="lable need">证件号码</span><i class="x"></i><input id="IDNum" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">证件号码</span><i class="x"></i><input id="idNum" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">地址</span><i class="x"></i><input id="address" class="common_input" type="text" /></div>
 		<div id="invoiceType" class="con_d"><span class="lable need">发票信息</span><i class="x"></i>
-			<div class="common_radio" name="invoiceType"><i class="i"></i>普通发票</div>
-			<div class="common_radio" name="invoiceType"><i class="i"></i>增值税发票</div>
+			<div class="common_radio putongradio active" name="invoiceType"><i class="i"></i>普通发票</div>
+			<div class="common_radio zengzhiradio" name="invoiceType"><i class="i"></i>增值税发票</div>
 		</div>
 		<div class="con_d"><span class="lable need">名称</span><i class="x"></i><input id="invoiceName" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">税号</span><i class="x"></i><input id="invoiceTaxPayerId" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">开户银行</span><i class="x"></i><input id="invoiceBank" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">银行账户</span><i class="x"></i><input id="invoiceBankAccount" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">单位地址</span><i class="x"></i><input id="invoiceCompanyAddress" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">电话号码</span><i class="x"></i><input id="invoiceCompanyPhone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">邮寄地址</span><i class="x"></i><input id="invoiceMailingAddress" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">收件人</span><i class="x"></i><input id="invoiceReceiver" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">电话</span><i class="x"></i><input id="invoiceReceiverPhone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">备注</span><i class="x">*</i><textarea id="remark" style="height:50px;" class="common_textarea"></textarea></div>
+		<div class="con_d pu_hide"><span class="lable need">开户银行</span><i class="x"></i><input id="invoiceBank" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">银行账户</span><i class="x"></i><input id="invoiceBankAccount" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">单位地址</span><i class="x"></i><input id="invoiceCompanyAddress" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">电话号码</span><i class="x"></i><input id="invoiceCompanyPhone" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">邮寄地址</span><i class="x"></i><input id="invoiceMailingAddress" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">收件人</span><i class="x"></i><input id="invoiceReceiver" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">电话</span><i class="x"></i><input id="invoiceReceiverPhone" class="common_input" type="text" /></div>
+		<div class="con_d pu_hide"><span class="lable need">备注</span><i class="x">*</i><textarea id="remark" style="height:50px;" class="common_textarea"></textarea></div>
 		<div id="new_create_btn" class="btns_div"><a back='客户管理.html' class="common_abtn goback type1">取消</a><a href="javascript:;" id="create_new_btn" class="common_abtn type2">创建</a></div>
 	</div>
 
@@ -96,7 +99,8 @@ $(function(){
 	if(g.do == 'change'){$('#create_new_btn').on('click',function(){changeOrCreateProject(1)}).html('保存');}
 	else{$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});}
 /* **************************************** setTing ******************************************** */	
-	
+	setSearchRole('.choiseDanwei5','管家','li');//给商务经理 选框赋值
+	setGetSearchInput('#housekeeper','.choiseDanwei5');//定义可以搜索下拉的
 	loadCheck();//判断编辑还是查看
 
 	
@@ -106,7 +110,22 @@ $(function(){
 		if(g.do == 'change'){//修改
 			getProject();//获取项目信息
 		}else if(g.do == 'new'){//新建
-			
+			pzcompare();//判断是选择的普通发票还是增值税发票
+		}
+	}
+	
+	//判断是选择的普通发票还是增值税发票
+	$('#invoiceType').find('.common_radio').on('click',function(){
+		$(this).addClass('active').siblings('.common_radio').removeClass('active');
+		pzcompare();
+	})
+	function pzcompare(){
+		var is = $('.zengzhiradio').hasClass('active');
+		var is2 = $('.putongradio').hasClass('active');
+		if(is && !is2){
+			$('.pu_hide').show();
+		}else{
+			$('.pu_hide').hide();
 		}
 	}
 	
@@ -232,7 +251,7 @@ $(function(){
 				if(status){
 					var d = data.result || [];
 					setCondiVal(d,'.content_box1');//给输入框 赋值
-
+					pzcompare();//判断是选择的普通发票还是增值税发票
 				}
 				else{
 					var msg = data.message || "获取项目信息失败";
