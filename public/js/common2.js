@@ -709,7 +709,7 @@ $(function(){
 		$('.search_table tr:nth-child(2),.search_table tr:nth-child(3),.search_table tr:nth-child(4)').slideToggle(300);
 		
 	});
-	//loadAjax();
+	loadAjax();
 	//判断用户有没有登录 判断ajax请求返回参数
 	function loadAjax(){
 		$(document).ajaxComplete(function(e, xhr, settings){

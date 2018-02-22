@@ -36,20 +36,20 @@
 <body class="">
 	<div class="login_box">
 		<div style="position:relative;">
-			<div class="audit_div"><img class="ldd1" src="../public/img/audit.png"/></div>
+			<!-- <div class="audit_div"><img class="ldd1" src="../public/img/audit.png"/></div> -->
 			<div style="margin-bottom:20px;" class="lb_co"><input id="login_usr" class="userName lb_input" placeholder="手机号" type="text" /></div>
 			<div class="lb_co"><input id="login_pass" class="passWord lb_input" placeholder="密码" type="password" /></div>
 			<div class="lb_co font">
 				<!-- <div class="check_box"><i class="i"></i>&nbsp;下次自动登录</div> -->
-				<a href="findpass.html" class="findPass">忘记密码了？</a>
+				<!-- <a href="findpass.html" class="findPass">忘记密码了？</a> -->
 			</div>
 			<div class="lb_btn "><a href="javascript:;" id="loginBtn" class="login_btn">登&nbsp;&nbsp;&nbsp;&nbsp;录</a></div>
 			<div class="line"></div>
 			<div class="lb_btn"><a href="javascript:;" id="weixinLogin" class="login_btn2"><i class="ii"></i>&nbsp;微信登录</a></div>
-			<div class="btom">还没有账号？ <a href="reg.html" class="reg_url">立即注册 ></a></div>
+			<!-- <div class="btom">还没有账号？ <a href="reg.html" class="reg_url">立即注册 ></a></div> -->
 		</div>
 	</div>
-	<div class="footerText">copyright 2009-2017 北京经纬传奇医药科技有限公司 版权所有.京ICP备14047540号-4</div>
+	<!-- <div class="footerText">copyright 2009-2017 北京经纬传奇医药科技有限公司 版权所有.京ICP备14047540号-4</div> -->
 	
 <!-- 弹出层 -->
 <div class="stip_bg"></div>
@@ -60,7 +60,7 @@
 	<script type="text/javascript" src="../public/libs/base.js"></script>
 	<script type="text/javascript" src="../public/libs/layer.js"></script>
 	<script type="text/javascript" src="../public/libs/utils.js"></script>
-	<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<script src="http://rescdn.qqmail.com/node/ww/wwopenmng/js/sso/wwLogin-1.0.0.js"></script>
 	<script type="text/javascript" src="../public/js/common2.js"></script>
 </body>
 <script>
@@ -85,16 +85,14 @@ $(function(){
 	//加载页面
 	function loadPage(){
 		//加载微信二维码
-		var obj = new WxLogin({
-			  id:"login_container", 
-			  appid: "wxb9b0badbc053646e", 
-			  scope: "snsapi_login", 
-			  redirect_uri: Base.http4,
-			  style: "white",
-			  href: "",
-			  state:"pc",
-			  response_type:"code"
-			});
+		var obj = new WwLogin({
+			"id" : "login_container",  
+			"appid" : "wwa308b56a17b06041",
+			"agentid" : "1000003",
+			"redirect_uri" :"http%3a%2f%2fvip.jieshui.xin%2ftax%2flogin%2fcpweixin",
+			"state" : "cpweixin",
+			"href" : "",
+		});
 	}
 	
 	
