@@ -208,7 +208,7 @@ $(function(){
 						if(type == '菜单' && name == '数据统计'){continue;}//过滤菜单数据统计
 						if(type == '菜单' && name == '任务墙'){continue;}//过滤菜单
 						if(name == '稽查任务'){//判断加载稽查任务页面
-							lstr += ' JiChaRenWuBtn ';
+							lstr += ' JiChaRenWuBtn '; 
 							if(g.page == 'renwu'){lstr += ' active ';$('#iframeObj').attr('src',value);}
 							if(g.page == 'jichamokuai'){lstr += ' active ';$('#iframeObj').attr('src','稽查模块.html');}
 							if(g.page == 'jichafaxian'){lstr += ' active ';$('#iframeObj').attr('src','稽查发现.html');}
