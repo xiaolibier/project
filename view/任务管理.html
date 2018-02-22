@@ -705,6 +705,7 @@ $(function(){
 						var progress = d.progress || '';//
 						var status = d.status || '';//
 						var remark = d.remark || '';//
+						var onPauseReason = d.onPauseReason || '';//
 						var createTime = getDate((d.createTime || ''),'2');
 						var acceptTime = getDate((d.acceptTime || ''),'2');
 						var ccstr = creator != '' && createTime != '' ? creator+'/'+createTime : creator+createTime;
@@ -729,7 +730,7 @@ $(function(){
 							+'<td>'+acceptTime+'</td>'
 							+'<td>'+progress+'</td>'
 							+'<td>'+status+'</td>'
-							+'<td>?</td>'
+							+'<td>'+onPauseReason+'</td>'
 							+'<td>'+remark+'</td>'
 							+'<td class="last">'
 								+'<a href="javascript:;" onclick="review(\''+id+'\')" class="cao_btn cao_btn1">编辑</a>';
@@ -812,14 +813,14 @@ $(function(){
 	window.review = function(id){
 		var id = id || '';
 		if(id == ''){Utils.alert('id不能为空！');return false;}
-		Utils.offLineStore.set("rid",id,false);//传值 到项目任务 传项目id
-		parent.document.getElementById("iframeObj").src = '任务管理-任务实施.html?rid='+id;
+		Utils.offLineStore.set("renid",id,false);//传值 到项目任务 传项目id
+		parent.document.getElementById("iframeObj").src = '任务管理-任务实施.html?renid='+id;
 	}
 	
 
 	//加载时间控件
 	var start = {
-	  elem: '#start_time1',
+	  elem: '#createTimeStart',
 	  format: 'YYYY-MM-DD',
 	  //min: laydate.now(), //设定最小日期为当前日期
 	  max: '2099-06-16', //最大日期
@@ -831,7 +832,7 @@ $(function(){
 	  }
 	};
 	var end = {
-	  elem: '#end_time1',
+	  elem: '#createTimeEnd',
 	  format: 'YYYY-MM-DD',
 	  //min: laydate.now(),
 	  max: '2099-06-16',
@@ -843,7 +844,7 @@ $(function(){
 	};
 	//加载时间控件
 	var start2 = {
-	  elem: '#start_time2',
+	  elem: '#acceptTimeStart',
 	  format: 'YYYY-MM-DD',
 	  //min: laydate.now(), //设定最小日期为当前日期
 	  max: '2099-06-16', //最大日期
@@ -855,7 +856,7 @@ $(function(){
 	  }
 	};
 	var end2 = {
-	  elem: '#end_time2',
+	  elem: '#acceptTimeTimeEnd',
 	  format: 'YYYY-MM-DD',
 	  //min: laydate.now(),
 	  max: '2099-06-16',

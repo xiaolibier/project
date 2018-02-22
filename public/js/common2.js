@@ -43,7 +43,7 @@ $(function(){
 			var _input = _t.find('input,textarea,select') || [];
 			//if(tips != ''){return false;}//跳出循环
 			if(_t.css('display') == 'none'){return true;}//隐藏的 跳出本次循环
-			if(_input.length > 0){//一般input
+			if(_input.length > 0 && _input.attr('type') != 'file'){//一般input
 				_input.each(function(m){//循环所有input 传值为name > id
 					var _this = $(this) || {};
 					var _t1 = _this.parents('.con_d') || {};//重新定义父对象 防止闭包
@@ -113,8 +113,10 @@ $(function(){
 				}else if(_t.find('.head_img_tips').length > 0){//图片上传 类型 传值名 con_d 的name
 					var _imgobj = _t.find('.head_img_tips') || {};
 					var _n = _t.attr('name') || '';
+					var _nk = _imgobj.attr('id') || '';
+					_n = _n == '' ? _nk : _n ;
 					var _value = condi[_n] || '';
-					var zu = _value.indexOf(',') > -1 ? _value.split(',') || [] : _value[0] || [];
+					var zu = _value.indexOf(',') > -1 ? _value.split(',') || [] : _value.split(' ') || [];
 					_imgobj.each(function(n){
 						var _this = $(this);
 						var src = zu[n] || '';
@@ -122,7 +124,7 @@ $(function(){
 							_this.removeAttr('src');
 							_this.parents('.head_img_spam').removeClass('active');
 							_this.siblings('.head_imgs,.hide_head_imgs').css({'background':'url("../public/img/add1.png") no-repeat center center','background-size':'contain'});
-						}else{
+						}else if(src.indexOf('http') > -1){
 							_this.attr('src',src);
 							_this.parents('.head_img_spam').addClass('active');
 							_this.siblings('.head_imgs,.hide_head_imgs').css({'background':'url('+src+') no-repeat center center','background-size':'contain'});
@@ -145,6 +147,7 @@ $(function(){
 		$(aid).find('.con_d').each(function(sn){//循环所有框
 			var sk = sn + 1;
 			var _t = $(this) || {};
+			if(_t.hasClass('no_con_d')){return true;}//跳过
 			//获取 * 判断是否允许为空
 			var x = '';
 			if(_t.find('.x').length > 0){x = _t.find('.x').html() || '';}
@@ -154,7 +157,7 @@ $(function(){
 			var _input = _t.find('input,textarea,select') || [];
 			if(tips != ''){return false;}//跳出循环
 			if(_t.css('display') == 'none'){return true;}//隐藏的 跳出本次循环
-			if(_input.length > 0){//一般input
+			if(_input.length > 0 && _input.attr('type') != 'file'){//一般input
 				_input.each(function(m){//循环所有input 传值为name > id
 					var _this = $(this) || {};
 					var _t = _this.parents('.con_d') || {};//重新定义父对象 防止闭包
@@ -219,12 +222,15 @@ $(function(){
 					});
 					if(feikong && _src == ''){tips = tip_text;return true;}//判断不为为空项 为空 跳出
 					var _n = _t.attr('name') || '';
-					if(_n == ''){tips = "第"+sk+"项搜索项有没有name！";return true;}
+					var _nk = _imgobj.attr('id') || '';
+					_n = _n == '' ? _nk : _n;
+					if(_n == '' && _nk == ''){tips = "第"+sk+"项搜索项有没有name！";return true;}
 					else{condi[_n] = _src;}
 				}
 				
 			}
 		});
+		
 		if(tips != ''){Utils.alert(tips);return false;}
 		return condi;
 	}
@@ -311,14 +317,14 @@ $(function(){
 	
 	//获取七牛云上传的地址和凭证
 	//七牛云上传
-	//setqiniu();
+	setqiniu();
 	function setqiniu(pas){
 		//var bid = bid || '';//上传按钮id 不带#
 		//var type = type || '';//资源类型 1课件资源 2或其他 其他资源
 		var pas = pas || '';
 		var condi = {};
 		//condi.type = '课件资源';//type=课件资源：包括视频、音频、图片、pdf等 type=其他资源：获取碎片资源上传地址
-		var url = Base.serverUrl + "project/getUploadUrl";
+		var url = Base.serverUrl + "file/qiniu/getUploadUrl";
 		if(pas == 1){url = Base.serverUrl + "auditor/getUploadUrl";}
 		//g.httpTip.show();
 		$.ajax({
@@ -429,7 +435,7 @@ $(function(){
 					$('.ecvc_progress_div').remove();
 					var domain = up.getOption('domain');
 					var res = JSON.parse(info.response);
-					var sourceLink = domain +"/"+ res.key; //获取上传成功后的文件的Url
+					var sourceLink = 'http://'+domain +"/"+ res.key; //获取上传成功后的文件的Url
 					$('#'+bid).attr('src',sourceLink);
 					$('#'+bid).siblings('.head_imgs').css({'background':'url('+sourceLink+') no-repeat center center','background-size':'contain'});
 					$('#'+bid).parents('.head_img_spam').addClass('active');

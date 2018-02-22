@@ -22,7 +22,7 @@
 		<a class="creat_forse" style="float:none;" id="new_project" >添加任务</a>
 	</div>
 	<div id="tableList" class="table_div">
-		<table class="table1">
+		<!-- <table class="table1">
 			<tr>
 				<th style="min-width:52px;">任务编号</th>
 				<th style="min-width:52px;">任务名称</th>
@@ -121,7 +121,7 @@
 				</td>
 			</tr>
 			
-		</table>
+		</table> -->
 	</div>
 	<!-- <div class="pages">
         <div id="Pagination"></div>
@@ -165,9 +165,9 @@ $(function(){
 /* **************************************** lodding ******************************************** */		
 	
 	//测试
-	$('.xiangmurenwu').on('click','#new_project,.cao_btn2',function(){
+	/*$('.xiangmurenwu').on('click','#new_project,.cao_btn2',function(){
 		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html';
-	});
+	});*/
 	
 	//加载顶部标题
 	$('#menu_show_t .ss',parent.document).removeClass('active').html('');
@@ -176,7 +176,7 @@ $(function(){
 	});
 	$('#menu_show_t .s1',parent.document).html(' > 项目任务').addClass('active');
 	$('#checkAllRenwu').on('click',checkAll);//查看已生成任务
-	$('#new_project').on('click',function(){
+	$('.xiangmuguanli').on('click','#new_project,.addnew',function(){
 		var _do = 'new';
 		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?do='+_do;
 	});//新建任务
@@ -197,11 +197,11 @@ $(function(){
 	function tableListShow(is){
 		var is = is || '';
 		var condi = {};
-		condi.project_id = g.id;
+		condi.projectId = g.id;
 		//condi.is_task = '';
 		condi.page = g.nowPage;//当前页
 		condi.number = 1000;//g.showPages;//每页显示行数
-		var url = Base.serverUrl + "task/find";
+		var url = Base.serverUrl + "landingTask/searchByProject";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -217,11 +217,11 @@ $(function(){
 			success: function(data){
 				var status = data.success || false;
 				if(status){
-					var data = data.result || [];
+					var data = data.result || '';
 					g.totalPage = data.totalPages || 0;//总页数
 					var totalElements = data.totalElements || 0;//总共中心数
 					//$('#totalElements').html(totalElements);
-					if(totalElements == 0){//中心任务为空时
+					if(data == ''){//中心任务为空时
 						$('.m_info').hide(0);
 						var pg = '<a class="addnew"><img style="width:503px; margin-left:181px;" src="../public/img/pnpg1.png"/></a>';
 						$('.xiangmurenwu').append(pg);
@@ -244,23 +244,33 @@ $(function(){
 							+'<th style="min-width:26px;">状态</th>'
 							+'<th style="min-width:152px;">操作</th>'
 						+'</tr>';
-					var con = data.content || [];
+					var con = data || [];
 					for(var i=0,len=con.length;i<len;i++){
 						var xu = len - i;
 						var d = con[i] || '';
 						var id = d.id || '';
 						var code = d.code || '';
-						var task_plan_start_time = getDate((d.task_plan_start_time || ''),'2');
+						var name = d.name || '';
+						var companyType = d.companyType || '';
+						var legalPersonName = d.legalPersonName || '';
+						var legalPersonPhone = d.legalPersonPhone || '';
+						var regAddress = d.regAddress || '';
+						var creator = d.creator || '';
+						var totalzhang = d.totalzhang || '';
+						var status = d.status || '';
+						var createTime = getDate((d.createTime || ''),'2');
+						var cct = creator != '' && createTime != '' ? creator+'/'+createTime : creator+createTime ;
+						
 						html+='<tr>'
 							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
+							+'<td>'+name+'</td>'
+							+'<td>'+companyType+'</td>'
+							+'<td>'+legalPersonName+'</td>'
+							+'<td>'+legalPersonPhone+'</td>'
+							+'<td>'+regAddress+'</td>'
+							+'<td>'+totalzhang+'</td>'
+							+'<td>'+cct+'</td>'
+							+'<td>'+status+'</td>'
 							+'<td class="last">';
 								html+='<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn1">编辑</a>';
 							    html+='<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>';

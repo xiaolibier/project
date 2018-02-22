@@ -19,11 +19,11 @@
 			<div class="ggmenu ggmenu2">
 				<div class="left_pannel">
 					<div class="pannel color3"><img class="pannel_img" style="width:34%;" src="../public/img/1.png" /></div>
-					<div class="ggul_one ggul_one1 first" ser="待认领"><span class="ggo_span">0</span><span class="ggo_span2">我的项目</span></div>
+					<div class="ggul_one ggul_one1 first" sr="项目管理.html"><span class="ggo_span">0</span><span class="ggo_span2">我的项目</span></div>
 				</div>
 				<div class="left_pannel">
 					<div class="pannel color3"><img class="pannel_img" style="width:47%;margin-top:43px;" src="../public/img/5.png" /></div>
-					<div class="ggul_one ggul_one2 first" ser="评审中"><span class="ggo_span">0</span><span class="ggo_span2">我的任务</span></div>
+					<div class="ggul_one ggul_one2 first" sr="客户管理.html"><span class="ggo_span">0</span><span class="ggo_span2">我的客户</span></div>
 				</div>
 			</div>
 		</div>
@@ -123,10 +123,6 @@ $(function(){
 					var total = p.total || {};
 					$('.xiangmuSer').find('.ggul_one1 .ggo_span').html(total.number || 0);
 					$('.xiangmuSer').find('.ggul_one2 .ggo_span').html(prepare.number || 0);
-					$('.xiangmuSer').find('.ggul_one3 .ggo_span').html(ongoing.number || 0);
-					$('.xiangmuSer').find('.ggul_one4 .ggo_span').html(following.number || 0);
-					$('.xiangmuSer').find('.ggul_one5 .ggo_span').html(completed.number || 0);
-					$('.xiangmuSer').find('.ggul_one6 .ggo_span').html(canceled.number || 0);
 					
 					//任务
 					var canceled = t.canceled || {};
@@ -174,8 +170,9 @@ $(function(){
 		var _this = $(this) || {};
 		_this.click(function(){
 			var ser = _this.attr('ser') || '';
+			var src = _this.attr('sr') || '';
 			ser = encodeURI(encodeURI(ser));
-			parent.document.getElementById("iframeObj").src = '项目管理.html?ser='+ser;
+			parent.document.getElementById("iframeObj").src = src+'?ser='+ser;
 		});
 	});
 	//稽查任务 跳转链接

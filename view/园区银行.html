@@ -213,6 +213,7 @@ $(function(){
 		if(remark == ''){Utils.alert('备注不能为空！');return false;}
 		$('#yesBtn').off();
 		var condi = {};
+		condi.parkId  = g.id;
 		condi.code  = code;
 		condi.name  = name;
 		condi.phone  = phone;

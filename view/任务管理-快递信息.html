@@ -29,7 +29,7 @@
 		<a class="creat_forse" id="new_project" >新建快递</a>
 	</div>
 	<div id="tableList" class="table_div">
-		<table class="table1">
+		<!-- <table class="table1">
 			<tr>
 				<th><div class="check_box"><i class="i"></i></div></th>
 				<th style="min-width:26px;">编号</th>
@@ -76,7 +76,7 @@
 					<a class="cao_btn cao_btn2">编辑</a>
 				</td>
 			</tr>
-		</table>
+		</table> -->
 	</div>
 	<div class="pages">
         <div id="Pagination"></div>
@@ -101,7 +101,7 @@
 			
 			<div class="sbox xiugaizhongxin">
 				<h4 class="sbox_h4">快递信息</h4>
-				<div class="sbox_c"><span class="slable">编号</span><i class="star"></i><input id="code" class="sbox_input" type="text"/></div>
+				<!-- <div class="sbox_c"><span class="slable">编号</span><i class="star"></i><input id="code" class="sbox_input" type="text"/></div> -->
 				<div class="sbox_c"><span class="slable">快递原因</span><i class="star">*</i><input id="reason" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">快递物品</span><i class="star">*</i><input id="goods" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">发件人</span><i class="star">*</i><input id="sendName" class="sbox_input" type="text"/></div>
@@ -140,11 +140,14 @@ $(function(){
 	var g = {};
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.ser = Utils.getQueryString("ser") || "";//从工作台获取搜索项
+	g.id = Utils.getQueryString("id") || "";//获取项目id
 	g.httpTip = new Utils.httpTip({});
 	g.totalPage = 1;//存总页数
 	g.nowPage = 0;//存当前页 0 是第一页
 	g.showPages = 10;//每页显示多少行
 	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.ids = [];//存储当前所有项目id及其状态
+	g.quanxuan = 0;
 	
 /* **************************************** lodding ******************************************** */	
 	//加载顶部标题
@@ -155,17 +158,17 @@ $(function(){
 	$('#menu_show_t .s1',parent.document).html(' > 快递信息').addClass('active');
 	$('#daochu').off().on('click',toExcel);
 	loadPage();
-	$('#newCenter').on('click',function(){shownewCenterSbox('new')});
+	$('#new_project').on('click',function(){shownewCenterSbox('new')});
 	
 	//测试
 	$('#renwubianji1').on('click',function(){
-		parent.document.getElementById("iframeObj").src = '任务管理-任务实施.html';
+		parent.document.getElementById("iframeObj").src = '任务管理-任务实施.html?id='+g.id;
 	});
 	$('#renwubianji2').on('click',function(){
-		parent.document.getElementById("iframeObj").src = '任务管理-任务信息.html';
+		parent.document.getElementById("iframeObj").src = '任务管理-任务信息.html?id='+g.id;
 	});
 	$('#renwubianji3').on('click',function(){
-		parent.document.getElementById("iframeObj").src = '任务管理-快递信息.html';
+		parent.document.getElementById("iframeObj").src = '任务管理-快递信息.html?id='+g.id;
 	});
 	
 	
@@ -179,7 +182,7 @@ $(function(){
 
 	//初始化弹窗
 	function reloadSbox(){
-		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin input,.xiugaizhongxin textarea').val('');//清空弹窗
 		$('.xiugaizhongxin select').val('');//清空弹窗
 		$('#noBtn').html('取消');
 		$('#yesBtn').off().show();
@@ -204,6 +207,7 @@ $(function(){
 		var receiver = $('#receiver').val() || '';
 		var receiverInfo = $('#receiverInfo').val() || '';
 		var expressNum = $('#expressNum').val() || '';
+		var remark = $('#remark').val() || '';
 		if(reason == ''){Utils.alert('快递原因不能为空！');return false;}
 		if(goods == ''){Utils.alert('快递物品不能为空！');return false;}
 		if(sendName == ''){Utils.alert('发件人不能为空！');return false;}
@@ -214,6 +218,7 @@ $(function(){
 		//if(remark == ''){Utils.alert('备注不能为空！');return false;}
 		$('#yesBtn').off();
 		var condi = {};
+		condi.taskId  = g.id;
 		condi.reason  = reason;
 		condi.goods  = goods;
 		condi.sendName  = sendName;
@@ -267,7 +272,7 @@ $(function(){
 		var condi = {};
 		condi.number = 10000;//
 		//condi = setCondi(condi);
-		var url = Base.serverUrl + "project/search/ids";
+		var url = Base.serverUrl + "express/search/ids";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -397,7 +402,7 @@ $(function(){
 		var condi = {};
 		condi.ids = ids;//当前页
 		condi.number = 1000;//
-		var url = Base.serverUrl + "project/search";
+		var url = Base.serverUrl + "express/search";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -498,11 +503,11 @@ $(function(){
 	function tableListShow(is){
 		var is = is || '';
 		var condi = {};
-		condi.project_id = g.id;
+		condi.taskId = g.id;
 		//condi.is_task = '';
 		condi.page = g.nowPage;//当前页
 		condi.number = 1000;//g.showPages;//每页显示行数
-		var url = Base.serverUrl + "task/find";
+		var url = Base.serverUrl + "express/getLandingTaskExpress";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -518,18 +523,9 @@ $(function(){
 			success: function(data){
 				var status = data.success || false;
 				if(status){
-					var data = data.result || [];
+					var data = data.result || '';
 					g.totalPage = data.totalPages || 0;//总页数
 					var totalElements = data.totalElements || 0;//总共中心数
-					//$('#totalElements').html(totalElements);
-					if(totalElements == 0){//中心任务为空时
-						$('.m_info').hide(0);
-						var pg = '<a class="addnew"><img style="width:503px; margin-left:181px;" src="../public/img/pnpg1.png"/></a>';
-						$('.xiangmurenwu').append(pg);
-						return false;
-					}else{
-						$('.m_info').show(0);
-					}
 					var html = '';
 					var sstr = '';
 					html += '<table class="table1">'
@@ -547,13 +543,21 @@ $(function(){
 							+'<th style="min-width:26px;">备注</th>'
 							+'<th style="min-width:152px;">操作</th>'
 						+'</tr>';
-					var con = data.content || [];
+					var con = data || [];
 					for(var i=0,len=con.length;i<len;i++){
 						var xu = len - i;
 						var d = con[i] || '';
 						var id = d.id || '';
-						var code = d.code || '';
-						var task_plan_start_time = getDate((d.task_plan_start_time || ''),'2');
+						var reason = d.reason || '';
+						var goods = d.goods || '';
+						var sendName = d.sendName || '';
+						var sendInfo = d.sendInfo || '';
+						var receiver = d.receiver || '';
+						var receiverInfo = d.receiverInfo || '';
+						var expressNum = d.expressNum || '';
+						var remark = d.remark || '';
+						var createTime = getDate((d.createTime || ''),'2');
+						var stra = '';
 						//判断当前项是否选中
 						for(var j=0,len1=g.ids.length;j<len1;j++){
 							var ds = g.ids[j] || '';
@@ -563,16 +567,16 @@ $(function(){
 						}		
 						html+='<tr>'
 							+'<td class="padding_s"><div idx="'+id+'" class="check_box tocommon '+stra+'"><i class="i"></i></div></td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
-							+'<td>'+code+'</td>'
+							+'<td>'+xu+'</td>'
+							+'<td>'+reason+'</td>'
+							+'<td>'+goods+'</td>'
+							+'<td>'+createTime+'</td>'
+							+'<td>'+sendName+'</td>'
+							+'<td>'+sendInfo+'</td>'
+							+'<td>'+receiver+'</td>'
+							+'<td>'+receiverInfo+'</td>'
+							+'<td>'+expressNum+'</td>'
+							+'<td>'+remark+'</td>'
 							+'<td class="last">';
 								html+='<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn1">编辑</a>';
 							    //html+='<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>';
@@ -606,12 +610,66 @@ $(function(){
 			}
 		});
 	}
-	//编辑
+	//查看
 	window.change = function(id){
+		showOrChange(id,'change');
+	}
+	//查看或者修改的 公共方法
+	window.showOrChange = function(id,is){
 		var id = id || '';
-		var _do = 'change';
+		var is = is || '';
 		if(id == ''){Utils.alert('id不能为空！');return false;}
-		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?id='+id+'&do='+_do;
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "express/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					
+					reloadSbox();//初始化弹窗
+					//赋值
+					$('#reason').val(d.reason || '');
+					$('#goods').val(d.goods || '');
+					$('#sendName').val(d.sendName || '');
+					$('#sendInfo').val(d.sendInfo || '');
+					$('#receiver').val(d.receiver || '');
+					$('#receiverInfo').val(d.receiverInfo || '');
+					$('#expressNum').val(d.expressNum || '');
+					$('#remark').val(d.remark || '');
+					
+					//弹窗
+					var tips = '';//判断弹窗标题
+					tips = '快递信息';
+					$('#yesBtn').off().on('click',function(){centerFunc('change',d.id || '')});
+					$('.xiugaizhongxin .sbox_h4').html(tips);
+					showSbox('.xiugaizhongxin');//显示弹窗
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
 	}
 
 	//删除一项
@@ -621,7 +679,7 @@ $(function(){
 		if(!confirm('确认删除吗？')){return false;}
 		var condi = {};
 		condi.id = id;
-		var url = Base.serverUrl + "task/delete";
+		var url = Base.serverUrl + "express/delete";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,

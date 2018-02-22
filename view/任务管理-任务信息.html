@@ -25,80 +25,81 @@
 	</h4>
 	<div class="content_box1">
 
-		<div class="con_d"><span class="lable need">任务名称</span><i class="x">*</i><input id="renwu_name" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">企业类型</span><i class="x">*</i><select id="company_type" class="common_select">
+		<div class="con_d"><span class="lable need">任务名称</span><i class="x">*</i><input id="name" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">企业类型</span><i class="x">*</i><select id="companyType" class="common_select">
 				<option value="">请选择</option>
 				<option value="合伙企业">合伙企业</option>
 				<option value="有限公司">有限公司</option>
 				<option value="个体企业">个体企业</option>
 			</select>
 		</div>
-		<div class="con_d"><span class="lable need">园区</span><i class="x">*</i><select id="syuanqu" class="common_select">
+		<div class="con_d"><span class="lable need">园区</span><i class="x">*</i><select id="parkName" class="common_select">
 				<option value="">请选择</option>
 			</select>
 		</div>
-		<div class="con_d"><span class="lable need">注册地址段</span><i class="x">*</i><input id="zhucedizhiduan" placeholder="系统默认带出，可修改，要判重" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">注册资本</span><i class="x">*</i><input id="zhuceziben" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">法人姓名</span><i class="x">*</i><input id="farenxingming" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">法人身份证</span><i class="x">*</i><input id="farenshenfenzheng" class="common_input" type="text" /></div>
-		<div class="con_d" name="farenidcard" ><span class="lable need">上传身份证图片</span><i class="x">*</i>
+		<div class="con_d"><span class="lable need">注册地址段</span><i class="x">*</i><input id="regAddress" placeholder="系统默认带出，可修改，要判重" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">注册资本</span><i class="x">*</i><input id="regAmountCapital" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">法人姓名</span><i class="x">*</i><input id="legalPersonName" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">法人身份证</span><i class="x">*</i><input id="legalPersonIDCard" class="common_input" type="text" /></div>
+		<div class="con_d" ><span class="lable need">上传身份证图片</span><i class="x">*</i>
 			<div class="head_img_spam">
 				<i info="放大图" class="hide_head_imgs"></i>
 				<div info="放大图背景" class="head_img_bg"></div>
 				<i info="原图" class="head_imgs"></i>
 				<div info="上传后提示背景" class="head_img_tips_bg"></div>
-				<div info="上传后提示" src="ceshi" id="touxiangimg2" class="head_img_tips">重新上传</div>
+				<div info="上传后提示" id="legalPersonIDCardPic1" class="head_img_tips">重新上传</div>
 			</div>
 		</div>
-		<div class="con_d"><span class="lable need">法人手机号</span><i class="x">*</i><input id="farenphone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">联系人姓名</span><i class="x">*</i><input id="lianxirenname" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">联系人电话</span><i class="x">*</i><input id="lianxirenphone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">财务负责人姓名</span><i class="x">*</i><input id="caiwufuzerenname" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">财务负责人身份证</span><i class="x">*</i><input id="caiwufuzerenidcard" class="common_input" type="text" /></div>
-		<div class="con_d" name="caiwuidcard"><span class="lable need">上传身份证图片</span><i class="x">*</i>
+		<div class="con_d"><span class="lable need">法人手机号</span><i class="x">*</i><input id="legalPersonPhone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">联系人姓名</span><i class="x">*</i><input id="contactsName" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">联系人电话</span><i class="x">*</i><input id="contactsPhone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">财务负责人姓名</span><i class="x">*</i><input id="financialOfficer" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">财务负责人身份证</span><i class="x">*</i><input id="financialOfficerIDCard" class="common_input" type="text" /></div>
+		<div class="con_d" ><span class="lable need">上传身份证图片</span><i class="x">*</i>
 			<div class="head_img_spam">
 				<i info="放大图" class="hide_head_imgs"></i>
 				<div info="放大图背景" class="head_img_bg"></div>
 				<i info="原图" class="head_imgs"></i>
 				<div info="上传后提示背景" class="head_img_tips_bg"></div>
-				<div info="上传后提示" src="ceshi" id="touxiangimg2" class="head_img_tips">重新上传</div>
+				<div info="上传后提示" id="financialOfficerIDCardPic1" class="head_img_tips">重新上传</div>
 			</div>
 		</div>
-		<div class="con_d"><span class="lable need">财务负责人手机号</span><i class="x">*</i><input id="caiwufuzerenphone" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">身份证回寄地址、电话、接收人</span><i class="x">*</i><textarea id="sfdhjr" class="common_textarea"></textarea></div>
-		<div id="kezhangxinxi" name="kezhang" class="con_d"><span class="lable need">刻章信息</span><i class="x">*</i>
-			<div class="check_box active"><i class="i"></i>公章（46）</div>
-			<div class="check_box active"><i class="i"></i>法人章（32）</div>
-			<div class="check_box"><i class="i"></i>财务章（32）</div>
-			<div class="check_box"><i class="i"></i>合同章（32）</div>
-			<div class="check_box"><i class="i"></i>发票章（32）</div><span style="color:#D0011B;">刻章费用总计<i>78</i></span>
+		<div class="con_d"><span class="lable need">财务负责人手机号</span><i class="x">*</i><input id="financialOfficerPhone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">身份证回寄地址、电话、接收人</span><i class="x">*</i><textarea id="idCardMailAddress" class="common_textarea"></textarea></div>
+		<div class="con_d no_con_d kezhangdivc"><span class="lable need">刻章信息</span><i class="x"></i>
+			<div id="gongzhang" val=46 class="check_box"><i class="i"></i>公章（46）</div>
+			<div id="farenzhang" val=32 class="check_box"><i class="i"></i>法人章（32）</div>
+			<div id="caiwuzhang" val=32 class="check_box"><i class="i"></i>财务章（32）</div>
+			<div id="hetongzhang" val=32 class="check_box"><i class="i"></i>合同章（32）</div>
+			<div id="fapiaozhang" val=32 class="check_box"><i class="i"></i>发票章（32）</div>
+			<span style="color:#D0011B;">刻章费用总计<i id="totalzhang">0</i></span>
 		</div>
 		<div class="con_d"><span class="lable need">发票信息</span><i class="x">*</i>
 			<table class="fapiaotable">
 				<tr><th>发票类型</th><th>面额（万元）</th><th>张数（张）</th></tr>
 				<tr>
 					<td>普通电子发票</td>
-					<td><select id="fapiaojine1" class="common_select fapiaojine1"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
-					<td><input id="fapiaozhangshu1" class="common_input fapiaozhangshu1" type="text" /></td>
+					<td><select id="elecDenomination" class="common_select fapiaojine1"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
+					<td><input id="elecNum" class="common_input fapiaozhangshu1" type="text" /></td>
 				</tr>
 				<tr>
 					<td>普通纸质发票</td>
-					<td><select id="fapiaojine2" class="common_select fapiaojine2"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
-					<td><input id="fapiaozhangshu2" class="common_input fapiaozhangshu2" type="text" /></td>
+					<td><select id="paperDenomination" class="common_select fapiaojine2"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
+					<td><input id="paperNum" class="common_input fapiaozhangshu2" type="text" /></td>
 				</tr>
 				<tr>
 					<td>专票纸质发票</td>
-					<td><select id="fapiaojine3" class="common_select fapiaojine3"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
-					<td><input id="fapiaozhangshu3" class="common_input fapiaozhangshu3" type="text" /></td>
+					<td><select id="special_denomination" class="common_select fapiaojine3"><option value="1">1</option><option value="10">10</option><option value="100">100</option></select></td>
+					<td><input id="specialNum" class="common_input fapiaozhangshu3" type="text" /></td>
 				</tr>
 			</table>
 		</div>
-		<div class="con_d"><span class="lable need">客户快递单号</span><i class="x">*</i><input id="kehukuaidinumber" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">快递寄出时间</span><i class="x">*</i><input id="kuaidijichutime" class="common_input" type="text" />
+		<div class="con_d no_con_d"><span class="lable need">客户快递单号</span><i class="x">*</i><input id="expressNum" class="common_input" type="text" /></div>
+		<div class="con_d no_con_d"><span class="lable need">快递寄出时间</span><i class="x">*</i><input id="expressTime" class="common_input" type="text" />
 		<a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">确认寄出</a>
 		</div>
 		
-		<div id="new_create_btn" class="btns_div"><a back='任务管理.html' class="common_abtn goback type1">取消</a><a href="javascript:;" id="create_new_btn" class="common_abtn type2">创建</a></div>
+		<div class="btns_div"><a href="javascript:;" id="create_new_btn" class="common_abtn type2">保存</a></div>
 	</div>
 
 	
@@ -107,6 +108,7 @@
 	<script type="text/javascript" src="../public/libs/json.js"></script>
 	<script type="text/javascript" src="../public/libs/base.js"></script>
 	<script type="text/javascript" src="../public/libs/layer.js"></script>
+	<script type="text/javascript" src="../public/libs/qiniu.min.js"></script>
 	<script type="text/javascript" src="../public/libs/utils.js"></script>
 	<script type="text/javascript" src="../public/js/common2.js"></script>
 	
@@ -122,6 +124,8 @@ $(function(){
 	g.nowPage = 0;//存当前页 0 是第一页
 	g.showPages = 10;//每页显示多少行
 	g.loadPage = true;//判断页面刚加载一次 定义分页的地方用
+	g.ids = [];//存储当前所有项目id及其状态
+	g.quanxuan = 0;
 	
 /* **************************************** lodding ******************************************** */	
 	//加载顶部标题
@@ -131,22 +135,21 @@ $(function(){
 	});
 	$('#menu_show_t .s1',parent.document).html(' > 任务基本信息').addClass('active');
 	
-	$('#create_new_btn').on('click',function(){changeOrCreateProject(2)});
+	$('#create_new_btn').on('click',function(){changeOrCreateProject(1)});
 
 	//测试
 	$('#renwubianji1').on('click',function(){
-		parent.document.getElementById("iframeObj").src = '任务管理-任务实施.html';
+		parent.document.getElementById("iframeObj").src = '任务管理-任务实施.html?id='+g.id;
 	});
 	$('#renwubianji2').on('click',function(){
-		parent.document.getElementById("iframeObj").src = '任务管理-任务信息.html';
+		parent.document.getElementById("iframeObj").src = '任务管理-任务信息.html?id='+g.id;
 	});
 	$('#renwubianji3').on('click',function(){
-		parent.document.getElementById("iframeObj").src = '任务管理-快递信息.html';
+		parent.document.getElementById("iframeObj").src = '任务管理-快递信息.html?id='+g.id;
 	});
-	
-	setqiniu(1);//获取 七牛云上传token
-	//uploadToQiniu('touxiangimg1');//定义七牛云上传
-	//uploadToQiniu('touxiangimg2');//定义七牛云上传
+	$('#jichuabtn').on('click',jichuabtnFunc);//确认寄出
+	uploadToQiniu('legalPersonIDCardPic1');//定义七牛云上传
+	uploadToQiniu('financialOfficerIDCardPic1');//定义七牛云上传
 /* **************************************** setTing ******************************************** */	
 	
 	loadCheck();//判断编辑还是查看
@@ -154,20 +157,78 @@ $(function(){
 	
 	//判断是编辑还是查看
 	function loadCheck(){
-	
-		if(g.do == 'change'){//修改
+		getyuanqulist();//获取 园区列表
+		setTimeout(function(){
 			getProject();//获取项目信息
-		}else if(g.do == 'new'){//新建
-			
-		}
+		},300);
 	}
 	
-	//获取稽查模块
-	function getjichamokuai(){
+	$('.kezhangdivc').find('.check_box').on('click',function(){
+		setTimeout(function(){
+			compareMoney();//计算刻章费用
+		},100);
+	})
+	//计算刻章费用
+	function compareMoney(){
+		var tmoney = 0;
+		$('.kezhangdivc').find('.check_box').each(function(){
+			var val = parseInt($(this).attr('val') || '0');
+			if($(this).hasClass('active')){tmoney += val;}
+		});
+		$('#totalzhang').html(tmoney);
+	}
+	
+	//确认寄出
+	function jichuabtnFunc(){
+		
+		if(!confirm('确认寄出吗？')){return false;}
+		var expressNum = $('#expressNum').val() || '';
+		var expressTime = $('#expressTime').val() || '';
+		if(expressNum == ''){Utils.alert('客户快递单号不能为空！');return false;}
+		if(expressTime == ''){Utils.alert('快递寄出时间不能为空！');return false;}
 		var condi = {};
-		//condi.page = g.nowPage;//当前页
+		condi.id = g.id;
+		condi.expressNum = expressNum;
+		condi.expressTime = expressTime;
+		var url = Base.serverUrl + "landingTask/send/off";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('寄出成功！');
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	//获取 园区列表
+	function getyuanqulist(){
+		var condi = {};
 		condi.number = 1000;//每页显示行数
-		var url = Base.serverUrl + "module/search";
+		var url = Base.serverUrl + "park/search";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -184,20 +245,18 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					var data = data.result || [];
-					var con = data.content || [];
-					var html = '';
-					for(var i=0,len=con.length;i<len;i++){
-						var d = con[i] || '';
+					var data = data.content || [];
+					var html = '<option value="">请选择</option>';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || [];
 						var id = d.id || '';
-						var code = d.code || '';//编号
-						var name = d.name || '';//名称
-						var templet = d.templet || '';//模块的模板
-						html+='<div class="check_box active"><i class="i"></i>'+name+'</div>';
+						var name = d.name || '';
+						html += '<option value="'+name+'">'+name+'</option>';
 					}
-					$('#audit_module').html(html);
+					$('#parkName').html(html);
 				}
 				else{
-					var msg = data.message || "获取失败";
+					var msg = data.message || "失败";
 					//Utils.alert(msg);
 				}
 				//g.httpTip.hide();
@@ -205,20 +264,33 @@ $(function(){
 			error:function(data,status){
 				//g.httpTip.hide();
 				if(status=='timeout'){
-		　　　　　  //Utils.alert("超时");
+		　　　　　  Utils.alert("超时");
 		　　　　}
 			}
 		});
 	}
-
 	
+
 	//修改保存项目信息
 	function changeOrCreateProject(is){
 		var is = is || '';//is 1 修改或保存 2 新建
+		var gongzhang = $('#gongzhang').hasClass('active') ? $('#gongzhang').attr('val') || '' : '';
+		var farenzhang = $('#farenzhang').hasClass('active') ? $('#farenzhang').attr('val') || '' : '';
+		var caiwuzhang = $('#caiwuzhang').hasClass('active') ? $('#caiwuzhang').attr('val') || '' : '';
+		var hetongzhang = $('#hetongzhang').hasClass('active') ? $('#hetongzhang').attr('val') || '' : '';
+		var fapiaozhang = $('#fapiaozhang').hasClass('active') ? $('#fapiaozhang').attr('val') || '' : '';
+		var totalzhang = $('#totalzhang').html() || '';
 		var condi = {};
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
-		var url = Base.serverUrl + "project1/update";
-		if(is == '2'){url = Base.serverUrl + "project1/create"}
+		condi.id = g.id;
+		condi.gongzhang = gongzhang;
+		condi.farenzhang = farenzhang;
+		condi.caiwuzhang = caiwuzhang;
+		condi.hetongzhang = hetongzhang;
+		condi.fapiaozhang = fapiaozhang;
+		condi.totalzhang = totalzhang;
+		var url = Base.serverUrl + "landingTask/update";
+		//if(is == '2'){url = Base.serverUrl + "landingTask/create"}
 		$('#create_new_btn').off();
 		//g.httpTip.show();
 		$.ajax({
@@ -265,7 +337,7 @@ $(function(){
 	function getProject(){
 		var condi = {};
 		condi.id = g.id;
-		var url = Base.serverUrl + "project/edit";
+		var url = Base.serverUrl + "landingTask/edit";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -282,11 +354,19 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					var d = data.result || [];
-					var id = d.id || '';
-					$('#sponsor_name').val(d.sponsor_name || '');
-					setGetCheckValue('#project_staging',(d.project_staging || ''));//项目分期
-					var sop_date = getDate((d.sop_date || ''),'2');
-					$('#sop_date').val(sop_date);
+					setCondiVal(d,'.content_box1');//给输入框 赋值
+					var gongzhang = d.gongzhang || '';
+					var farenzhang = d.farenzhang || '';
+					var caiwuzhang = d.caiwuzhang || '';
+					var hetongzhang = d.hetongzhang || '';
+					var fapiaozhang = d.fapiaozhang || '';
+					if(gongzhang != ''){$('#gongzhang').addClass('active');}
+					if(farenzhang != ''){$('#farenzhang').addClass('active');}
+					if(caiwuzhang != ''){$('#caiwuzhang').addClass('active');}
+					if(hetongzhang != ''){$('#hetongzhang').addClass('active');}
+					if(fapiaozhang != ''){$('#fapiaozhang').addClass('active');}
+					
+					compareMoney();//计算刻章费用
 
 				}
 				else{
@@ -304,7 +384,20 @@ $(function(){
 		});
 	}
 
-	
+	//加载时间控件
+	var timeControl1 = {
+	  elem: '#expressTime',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
+	laydate(timeControl1);	
 	
 	
 });
