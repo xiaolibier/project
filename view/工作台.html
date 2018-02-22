@@ -87,14 +87,14 @@ $(function(){
 		//is_show('.xiangmuSer');
 		//is_show('.jichaSer');
 		//is_show('.pingshenSer');
-		//getWorkData();//获取工作台数据
+		getWorkData();//获取工作台数据
 		//$('.jichaSer').remove();
 	}
 	//获取工作台数据
 	function getWorkData(){
 		var condi = {};
 		
-		var url = Base.serverUrl + "user/workStation/list";
+		var url = Base.serverUrl + "workStation/list";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -110,43 +110,21 @@ $(function(){
 			success: function(data){
 				var status = data.success || false;
 				if(status){
-					var data = data.result || [];
-					var p = data.project || {};
-					var r = data.review || {};
-					var t = data.task || {};
+					var d = data.result || [];
 					//项目
-					var canceled = p.canceled || {};
-					var completed = p.completed || {};
-					var following = p.following || {};
-					var ongoing = p.ongoing || {};
-					var prepare = p.prepare || {};
-					var total = p.total || {};
-					$('.xiangmuSer').find('.ggul_one1 .ggo_span').html(total.number || 0);
-					$('.xiangmuSer').find('.ggul_one2 .ggo_span').html(prepare.number || 0);
+					$('.xiangmuSer').find('.ggul_one1 .ggo_span').html(d.Project || 0);
+					$('.xiangmuSer').find('.ggul_one2 .ggo_span').html(d.Customer || 0);
 					
 					//任务
-					var canceled = t.canceled || {};
-					var commerceConfirmed = t.commerceConfirmed || {};
-					var commerceReject = t.commerceReject || {};
-					var completed = t.completed || {};
-					var firstReportEdit = t.firstReportEdit || {};
-					var managerEdit = t.managerEdit || {};
-					var moduleFilling = t.moduleFilling || {};
-					var reviewing = t.reviewing || {};
-					var reviseAfterReview = t.reviseAfterReview || {};
-					var submitReview = t.submitReview || {};
-					var total = t.total || {};
-					$('.jichaSer').find('.ggul_one1 .ggo_span').html(total.number || 0);
-					$('.jichaSer').find('.ggul_one2 .ggo_span').html(moduleFilling.number || 0);
-					$('.jichaSer').find('.ggul_one3 .ggo_span').html(firstReportEdit.number || 0);
-					$('.jichaSer').find('.ggul_one4 .ggo_span').html(managerEdit.number || 0);
-					$('.jichaSer').find('.ggul_one5 .ggo_span').html(submitReview.number || 0);
-					$('.jichaSer').find('.ggul_one6 .ggo_span').html(reviewing.number || 0);
-					$('.jichaSer').find('.ggul_one7 .ggo_span').html(reviseAfterReview.number || 0);
-					$('.jichaSer').find('.ggul_one8 .ggo_span').html(commerceConfirmed.number || 0);
-					$('.jichaSer').find('.ggul_one9 .ggo_span').html(commerceReject.number || 0);
-					$('.jichaSer').find('.ggul_one10 .ggo_span').html(completed.number || 0);
-					$('.jichaSer').find('.ggul_one11 .ggo_span').html(canceled.number || 0);
+					$('.jichaSer').find('.ggul_one1 .ggo_span').html(d.LandingTask || 0);
+					$('.jichaSer').find('.ggul_one2 .ggo_span').html(d['未交接'] || 0);
+					$('.jichaSer').find('.ggul_one3 .ggo_span').html(d['资料寄出'] || 0);
+					$('.jichaSer').find('.ggul_one4 .ggo_span').html(d['开始办理'] || 0);
+					$('.jichaSer').find('.ggul_one5 .ggo_span').html(d['办理完成'] || 0);
+					$('.jichaSer').find('.ggul_one6 .ggo_span').html(d['已回寄'] || 0);
+					$('.jichaSer').find('.ggul_one7 .ggo_span').html(d['暂停中'] || 0);
+					$('.jichaSer').find('.ggul_one8 .ggo_span').html(d['已驳回'] || 0);
+					$('.jichaSer').find('.ggul_one9 .ggo_span').html(d['已取消'] || 0);
 					
 				}
 				else{
