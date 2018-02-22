@@ -182,9 +182,11 @@ $(function(){
 	//修改保存项目信息
 	function changeOrCreateProject(is){
 		var is = is || '';//is 1 修改或保存 2 新建
+		var housekeeperId = $('#housekeeper').attr('tipid') || '';
 		var condi = {};
 		condi.id = g.id;
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
+		condi.housekeeperId = housekeeperId;
 		var url = Base.serverUrl + "customer/update";
 		if(is == '2'){url = Base.serverUrl + "customer/create"}
 		$('#create_new_btn').off();
@@ -251,6 +253,7 @@ $(function(){
 				if(status){
 					var d = data.result || [];
 					setCondiVal(d,'.content_box1');//给输入框 赋值
+					$('#housekeeper').attr('tipid',d.housekeeperId);
 					pzcompare();//判断是选择的普通发票还是增值税发票
 				}
 				else{
