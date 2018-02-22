@@ -117,7 +117,7 @@ $(function(){
 	$('#unbindWeixin').on('click',unbindWeixinFunc);
 	//getAllMenu();//获取所有菜单
 	//loadWork();//加载工作台
-	//getUserInfoFunc();//获取用户信息
+	getUserInfoFunc();//获取用户信息
 	
 	
 /* **************************************** setTing ******************************************** */	
@@ -172,7 +172,7 @@ $(function(){
 					Utils.offLineStore.set("usernamestr",name1,false);//权限存储
 					$('.usr_head').attr('style',_style);
 					if(hasLogin == 0){//判断用户没有修改密码 提示修改
-						if(confirm('系统检测到您还未修改过密码，请修改密码！')){location.href = "changepass.html";}
+						//if(confirm('系统检测到您还未修改过密码，请修改密码！')){location.href = "changepass.html";}
 					}
 					//geterweima(uid);//加载绑定微信二维码
 					var bindWechat = data.isBindWechat || '';
