@@ -178,7 +178,7 @@ $(function(){
 	$('#checkAllRenwu').on('click',checkAll);//查看已生成任务
 	$('.xiangmuguanli').on('click','#new_project,.addnew',function(){
 		var _do = 'new';
-		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?do='+_do;
+		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?id='+g.id+'&do='+_do;
 	});//新建任务
 	tableListShow();//显示列表
 	

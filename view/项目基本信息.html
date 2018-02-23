@@ -298,12 +298,14 @@ $(function(){
 		var lianxiren = $('#lianxiren').html() || '';
 		var dianhua = $('#dianhua').html() || '';
 		var customerid = $('#customerName').attr('tip') || '';
+		var housekeeperId = $('#housekeeper').attr('tipid') || '';
 		var condi = {};
 		condi.id = g.id ;
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
 		condi.contacts = lianxiren;
 		condi.phone = dianhua;
 		condi.customerId = customerid;
+		condi.housekeeperId = housekeeperId;
 		var url = Base.serverUrl + "project/update";
 		if(is == '2'){url = Base.serverUrl + "project/create"}
 		$('#create_new_btn').off();
@@ -376,6 +378,7 @@ $(function(){
 					$('#lianxiren').html(d.contacts || '');
 					$('#dianhua').html(d.phone || '');
 					$('#customerName').val(d.customer || '').attr('tip',d.customerId || '');
+					$('#housekeeper').attr('tip',d.housekeeperId || '');
 					pzcompare();//判断是选择的普通发票还是增值税发票					
 				}
 				else{

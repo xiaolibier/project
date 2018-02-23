@@ -34,6 +34,7 @@ $(function(){
 		$(aid).find('.con_d').each(function(sn){//循环所有框
 			var sk = sn + 1;
 			var _t = $(this) || {};
+			if(_t.hasClass('no_con_d')){return true;}//跳过
 			//获取 * 判断是否允许为空
 			//var x = '';
 			//if(_t.find('.x').length > 0){x = _t.find('.x').html() || '';}

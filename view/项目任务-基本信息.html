@@ -241,7 +241,8 @@ $(function(){
 						var d = data[i] || [];
 						var id = d.id || '';
 						var name = d.name || '';
-						html += '<option value="'+name+'">'+name+'</option>';
+						var regAddress = d.regAddress || '';
+						html += '<option onclick="setress(\''+regAddress+'\')" value="'+name+'">'+name+'</option>';
 					}
 					$('#parkName').html(html);
 				}
@@ -259,7 +260,11 @@ $(function(){
 			}
 		});
 	}
-	
+	//注册地址段赋值
+	window.setress = function(regAddress){
+		var regAddress = regAddress || '';
+		$('#regAddress').val(regAddress);
+	}
 
 	
 	//修改保存项目信息
@@ -273,6 +278,7 @@ $(function(){
 		var totalzhang = $('#totalzhang').html() || '';
 		var condi = {};
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
+		condi.projectId = g.id;
 		condi.gongzhang = gongzhang;
 		condi.farenzhang = farenzhang;
 		condi.caiwuzhang = caiwuzhang;
