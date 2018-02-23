@@ -26,12 +26,13 @@ $(function(){
 	
 	
 	//基本信息页 批量赋值
-	function setCondiVal(condi,aid){
+	function setCondiVal(condi,aid,con){
 		var aid = aid || 'body';//input 容器
+		var con = con || '.con_d';//每一项
 		var condi = condi || {};
 		if(condi == ''){Utils.alert("赋值对象不能为空！");return false;}
 		var tips = '';
-		$(aid).find('.con_d').each(function(sn){//循环所有框
+		$(aid).find(con).each(function(sn){//循环所有框
 			var sk = sn + 1;
 			var _t = $(this) || {};
 			if(_t.hasClass('no_con_d')){return true;}//跳过
@@ -47,7 +48,7 @@ $(function(){
 			if(_input.length > 0 && _input.attr('type') != 'file'){//一般input
 				_input.each(function(m){//循环所有input 传值为name > id
 					var _this = $(this) || {};
-					var _t1 = _this.parents('.con_d') || {};//重新定义父对象 防止闭包
+					var _t1 = _this.parents(con) || {};//重新定义父对象 防止闭包
 					//获取标题 用于提示信息
 					var _lable = _t1.find('span.lable')[m] || '';
 					if(_lable == '' && m > 0){_lable = _t1.find('span.lable')[0] || '';}//防止有两个input 一个lable
@@ -140,12 +141,13 @@ $(function(){
 	
 	
 	//基本信息页 批量获取值
-	function setInfoCondi(condi,aid){
+	function setInfoCondi(condi,aid,con){
 		var aid = aid || 'body';//input 容器
+		var con = con || '.con_d';//每一项
 		var condi = condi || {};
 		//if(condi == ''){Utils.alert("condi对象不能为空！");return false;}
 		var tips = '';
-		$(aid).find('.con_d').each(function(sn){//循环所有框
+		$(aid).find(con).each(function(sn){//循环所有框
 			var sk = sn + 1;
 			var _t = $(this) || {};
 			if(_t.hasClass('no_con_d')){return true;}//跳过
@@ -161,7 +163,7 @@ $(function(){
 			if(_input.length > 0 && _input.attr('type') != 'file'){//一般input
 				_input.each(function(m){//循环所有input 传值为name > id
 					var _this = $(this) || {};
-					var _t = _this.parents('.con_d') || {};//重新定义父对象 防止闭包
+					var _t = _this.parents(con) || {};//重新定义父对象 防止闭包
 					//获取标题 用于提示信息
 					var _lable = _t.find('span.lable')[m] || '';
 					if(_lable == '' && m > 0){_lable = _t.find('span.lable')[0] || '';}//防止有两个input 一个lable

@@ -107,7 +107,7 @@
 			
 			<div class="sbox xiugaizhongxin">
 				<h4 class="sbox_h4">银行信息</h4>
-				<div class="sbox_c"><span class="slable">编号</span><i class="star"></i><input id="code" class="sbox_input" type="text"/></div>
+				<!-- <div class="sbox_c"><span class="slable">编号</span><i class="star"></i><input id="code" class="sbox_input" type="text"/></div> -->
 				<div class="sbox_c"><span class="slable">开户行名称</span><i class="star">*</i><input id="name" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">电话</span><i class="star">*</i><input id="phone" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">U盾数量</span><i class="star">*</i><input id="unumber" class="sbox_input" type="text"/></div>
@@ -185,7 +185,7 @@ $(function(){
 	window.centerFunc = function(is,id){
 		var is = is || '';
 		var id = id || '';
-		var code = $('#code').val() || '';
+		//var code = $('#code').val() || '';
 		var name = $('#name').val() || '';
 		var phone = $('#phone').val() || '';
 		var uNumber = $('#unumber').val() || '';
@@ -214,7 +214,7 @@ $(function(){
 		$('#yesBtn').off();
 		var condi = {};
 		condi.parkId  = g.id;
-		condi.code  = code;
+		//condi.code  = code;
 		condi.name  = name;
 		condi.phone  = phone;
 		condi.uNumber  = uNumber;
@@ -411,7 +411,7 @@ $(function(){
 					
 					reloadSbox();//初始化弹窗
 					//赋值
-					$('#code').val(d.code || '');
+					//$('#code').val(d.code || '');
 					$('#name').val(d.name || '');
 					$('#phone').val(d.phone || '');
 					$('#uNumber').val(d.unumber || '');

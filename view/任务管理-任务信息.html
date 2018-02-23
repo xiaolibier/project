@@ -37,11 +37,11 @@
 				<option value="">请选择</option>
 			</select>
 		</div>
-		<div class="con_d"><span class="lable need">注册地址段</span><i class="x">*</i><input id="regAddress" placeholder="系统默认带出，可修改，要判重" class="common_input" type="text" /></div>
+		<div class="con_d con2"><span class="lable need">注册地址段</span><i class="x">*</i><input id="regAddress" placeholder="系统默认带出，可修改，要判重" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">注册资本</span><i class="x">*</i><input id="regAmountCapital" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">法人姓名</span><i class="x">*</i><input id="legalPersonName" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">法人身份证</span><i class="x">*</i><input id="legalPersonIDCard" class="common_input" type="text" /></div>
-		<div class="con_d" ><span class="lable need">上传身份证图片</span><i class="x">*</i>
+		<div class="con_d" ><span class="lable need">上传身份证图片<br>(正反面)</span><i class="x">*</i>
 			<div class="head_img_spam">
 				<i info="放大图" class="hide_head_imgs"></i>
 				<div info="放大图背景" class="head_img_bg"></div>
@@ -49,13 +49,20 @@
 				<div info="上传后提示背景" class="head_img_tips_bg"></div>
 				<div info="上传后提示" id="legalPersonIDCardPic1" class="head_img_tips">重新上传</div>
 			</div>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="legalPersonIDCardPic2" class="head_img_tips">重新上传</div>
+			</div>
 		</div>
 		<div class="con_d"><span class="lable need">法人手机号</span><i class="x">*</i><input id="legalPersonPhone" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">联系人姓名</span><i class="x">*</i><input id="contactsName" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">联系人电话</span><i class="x">*</i><input id="contactsPhone" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">财务负责人姓名</span><i class="x">*</i><input id="financialOfficer" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">财务负责人身份证</span><i class="x">*</i><input id="financialOfficerIDCard" class="common_input" type="text" /></div>
-		<div class="con_d" ><span class="lable need">上传身份证图片</span><i class="x">*</i>
+		<div class="con_d" ><span class="lable need">上传身份证图片<br>(正反面)</span><i class="x">*</i>
 			<div class="head_img_spam">
 				<i info="放大图" class="hide_head_imgs"></i>
 				<div info="放大图背景" class="head_img_bg"></div>
@@ -63,18 +70,25 @@
 				<div info="上传后提示背景" class="head_img_tips_bg"></div>
 				<div info="上传后提示" id="financialOfficerIDCardPic1" class="head_img_tips">重新上传</div>
 			</div>
+			<div class="head_img_spam">
+				<i info="放大图" class="hide_head_imgs"></i>
+				<div info="放大图背景" class="head_img_bg"></div>
+				<i info="原图" class="head_imgs"></i>
+				<div info="上传后提示背景" class="head_img_tips_bg"></div>
+				<div info="上传后提示" id="financialOfficerIDCardPic2" class="head_img_tips">重新上传</div>
+			</div>
 		</div>
 		<div class="con_d"><span class="lable need">财务负责人手机号</span><i class="x">*</i><input id="financialOfficerPhone" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">身份证回寄地址、电话、接收人</span><i class="x">*</i><textarea id="idCardMailAddress" class="common_textarea"></textarea></div>
 		<div class="con_d no_con_d kezhangdivc"><span class="lable need">刻章信息</span><i class="x"></i>
-			<div id="gongzhang" val=46 class="check_box"><i class="i"></i>公章（46）</div>
-			<div id="farenzhang" val=32 class="check_box"><i class="i"></i>法人章（32）</div>
-			<div id="caiwuzhang" val=32 class="check_box"><i class="i"></i>财务章（32）</div>
-			<div id="hetongzhang" val=32 class="check_box"><i class="i"></i>合同章（32）</div>
-			<div id="fapiaozhang" val=32 class="check_box"><i class="i"></i>发票章（32）</div>
+			<div id="gongzhang" val=46 class="check_box active"><i class="i"></i>公章（<span>46</span>）</div>
+			<div id="farenzhang" val=32 class="check_box active"><i class="i"></i>法人章（<span>32</span>）</div>
+			<div id="caiwuzhang" val=32 class="check_box"><i class="i"></i>财务章（<span>32</span>）</div>
+			<div id="hetongzhang" val=32 class="check_box"><i class="i"></i>合同章（<span>32</span>）</div>
+			<div id="fapiaozhang" val=32 class="check_box"><i class="i"></i>发票章（<span>32</span>）</div>
 			<span style="color:#D0011B;">刻章费用总计<i id="totalzhang">0</i></span>
 		</div>
-		<div class="con_d"><span class="lable need">发票信息</span><i class="x">*</i>
+		<div class="con_d con2"><span class="lable need">首次领取发票信息</span><i class="x">*</i>
 			<table class="fapiaotable">
 				<tr><th>发票类型</th><th>面额（万元）</th><th>张数（张）</th></tr>
 				<tr>
@@ -94,8 +108,8 @@
 				</tr>
 			</table>
 		</div>
-		<div class="con_d no_con_d"><span class="lable need">客户快递单号</span><i class="x">*</i><input id="expressNum" class="common_input" type="text" /></div>
-		<div class="con_d no_con_d"><span class="lable need">快递寄出时间</span><i class="x">*</i><input id="expressTime" class="common_input" type="text" />
+		<div class="con_d no_con_d creat_hide"><span class="lable need">客户快递单号</span><i class="x">*</i><input id="expressNum" class="common_input" type="text" /></div>
+		<div class="con_d no_con_d creat_hide"><span class="lable need">快递寄出时间</span><i class="x">*</i><input id="expressTime" class="common_input" type="text" />
 		<a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">确认寄出</a>
 		</div>
 		
@@ -149,7 +163,9 @@ $(function(){
 	});
 	$('#jichuabtn').on('click',jichuabtnFunc);//确认寄出
 	uploadToQiniu('legalPersonIDCardPic1');//定义七牛云上传
+	uploadToQiniu('legalPersonIDCardPic2');//定义七牛云上传
 	uploadToQiniu('financialOfficerIDCardPic1');//定义七牛云上传
+	uploadToQiniu('financialOfficerIDCardPic2');//定义七牛云上传
 /* **************************************** setTing ******************************************** */	
 	
 	loadCheck();//判断编辑还是查看
@@ -158,6 +174,7 @@ $(function(){
 	//判断是编辑还是查看
 	function loadCheck(){
 		getyuanqulist();//获取 园区列表
+		$('.creat_hide').show();//显示寄出
 		setTimeout(function(){
 			getProject();//获取项目信息
 		},300);
@@ -251,7 +268,8 @@ $(function(){
 						var d = data[i] || [];
 						var id = d.id || '';
 						var name = d.name || '';
-						html += '<option value="'+name+'">'+name+'</option>';
+						var regAddress = d.regAddress || '';
+						html += '<option onclick="setress(\''+id+'\')" value="'+name+'">'+name+'</option>';
 					}
 					$('#parkName').html(html);
 				}
@@ -269,7 +287,55 @@ $(function(){
 			}
 		});
 	}
-	
+	//注册地址段赋值
+	window.setress = function(id){
+		var id = id || '';
+		var condi = {};
+		condi.id = id;
+		var url = Base.serverUrl + "park/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					setCondiVal(d,'.content_box1','.con2');//给输入框 赋值
+					$('#special_denomination').val(d.specialDenomination || '');
+					$('#gongzhang').attr('val',d.gongzhang || '').find('span').html(d.gongzhang || '');
+					$('#farenzhang').attr('val',d.farenzhang || '').find('span').html(d.farenzhang || '');
+					$('#caiwuzhang').attr('val',d.caiwuzhang || '').find('span').html(d.caiwuzhang || '');
+					$('#hetongzhang').attr('val',d.hetongzhang || '').find('span').html(d.hetongzhang || '');
+					$('#fapiaozhang').attr('val',d.fapiaozhang || '').find('span').html(d.fapiaozhang || '');
+					compareMoney();//计算刻章费用
+					
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+		
+		
+	}
+
 
 	//修改保存项目信息
 	function changeOrCreateProject(is){
@@ -282,6 +348,7 @@ $(function(){
 		var totalzhang = $('#totalzhang').html() || '';
 		var condi = {};
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
+		condi.projectId = g.id;
 		condi.id = g.id;
 		condi.gongzhang = gongzhang;
 		condi.farenzhang = farenzhang;
