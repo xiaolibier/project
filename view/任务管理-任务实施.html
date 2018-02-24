@@ -530,7 +530,7 @@ $(function(){
 			var breson = $('#breson').val() || '';
 			var condi = {};
 			condi.id = g.id;
-			condi.reson = breson;
+			condi.rejectReason = breson;
 			var url = Base.serverUrl + "landingTask/reject";
 			//g.httpTip.show();
 			$.ajax({

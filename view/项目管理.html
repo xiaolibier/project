@@ -689,9 +689,9 @@ $(function(){
 		var id = id || '';
 		var code = code || '';
 		if(id == ''){Utils.alert('id不能为空！');return false;}
-		Utils.offLineStore.set("rid",id,false);//传值 到项目任务 传项目id
+		Utils.offLineStore.set("xid",id,false);//传值 到项目任务 传项目id
 		Utils.offLineStore.set("rcode",code,false);//传值 到项目任务 传项目id
-		parent.document.getElementById("iframeObj").src = '项目任务.html?rid='+id+'&rcode'+code;
+		parent.document.getElementById("iframeObj").src = '项目任务.html?xid='+id+'&rcode'+code;
 	}
 
 	//加载时间控件

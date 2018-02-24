@@ -154,7 +154,7 @@
 $(function(){
 	var g = {};
 	g.login_token = Utils.offLineStore.get("token",false) || "";
-	g.id = Utils.getQueryString("rid") || Utils.offLineStore.get("rid",false);//从项目管理传来 项目id
+	g.id = Utils.getQueryString("xid") || Utils.offLineStore.get("xid",false);//从项目管理传来 项目id
 	g.rcode = Utils.getQueryString("rcode") || Utils.offLineStore.get("rcode",false);//从项目管理传来 项目code
 	g.httpTip = new Utils.httpTip({});
 	g.totalPage = 1;//存总页数
@@ -178,7 +178,7 @@ $(function(){
 	$('#checkAllRenwu').on('click',checkAll);//查看已生成任务
 	$('.xiangmuguanli').on('click','#new_project,.addnew',function(){
 		var _do = 'new';
-		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?tid='+g.id+'&do='+_do;
+		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?xid='+g.id+'&do='+_do;
 	});//新建任务
 	tableListShow();//显示列表
 	
@@ -311,7 +311,7 @@ $(function(){
 		var pid = pid || '';
 		var _do = 'change';
 		if(id == ''){Utils.alert('id不能为空！');return false;}
-		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?tid='+id+'&do='+_do+'&id='+pid;
+		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?id='+id+'&do='+_do+'&xid='+pid;
 	}
 
 	//删除一项

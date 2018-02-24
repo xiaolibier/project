@@ -125,8 +125,8 @@
 $(function(){
 	var g = {};
 	g.login_token = Utils.offLineStore.get("token",false) || "";
-	g.id = Utils.getQueryString("id") || "";//获取项目id
-	g.tid = Utils.getQueryString("tid") || "";//获取任务id
+	g.id = Utils.getQueryString("id") || "";//获取任务id
+	g.xid = Utils.getQueryString("xid") || Utils.offLineStore.get("xid",false);//获取项目id
 	g.do = Utils.getQueryString("do") || "";//获取操作 是查看（check）还是修改（change）新建 （new）
 	g.httpTip = new Utils.httpTip({});
 	g.totalPage = 1;//存总页数
@@ -350,8 +350,7 @@ $(function(){
 		var expressTime = $('#expressTime').val() || '';
 		var condi = {};
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
-		condi.projectId = g.id;
-		condi.id = g.tid;
+		condi.projectId = g.xid;
 		condi.zhang = zhang;
 		condi.zhangState = zhangState;
 		condi.totalzhang = totalzhang;
@@ -359,6 +358,7 @@ $(function(){
 		condi.expressTime = expressTime;
 		condi.parkId = parkId;
 		var url = Base.serverUrl + "landingTask/update";
+		if(is == '1'){condi.id = g.id;}
 		if(is == '2'){url = Base.serverUrl + "landingTask/create"}
 		$('#create_new_btn').off();
 		//g.httpTip.show();
@@ -406,7 +406,7 @@ $(function(){
 	//获取项目信息
 	function getProject(){
 		var condi = {};
-		condi.id = g.tid;
+		condi.id = g.id;
 		var url = Base.serverUrl + "landingTask/edit";
 		//g.httpTip.show();
 		$.ajax({
