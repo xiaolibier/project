@@ -236,6 +236,24 @@
 		</div>
 	</div>
 
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+			
+			<div class="sbox xiugaizhongxin">
+				<h4 class="sbox_h4">驳回原因</h4>
+				<div class="sbox_c"><span class="slable">原因</span><i class="star">*</i><textarea id="breson" style="height:35px;" class="sbox_input"></textarea></div>
+				<div class="sbox_btn_div">
+					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	
 	
 	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
 	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
@@ -507,38 +525,45 @@ $(function(){
 	//驳回任务
 	$('#abtn_bohui').on('click',function(){
 		if(!confirm('确认驳回任务吗？')){return false;}
-		var condi = {};
-		condi.id = g.id;
-		var url = Base.serverUrl + "landingTask/reject";
-		//g.httpTip.show();
-		$.ajax({
-			url:url,
-			data:condi,
-			timeout: 30000, //超时时间设置，单位毫秒
-			type:"POST",
-			xhrFields: {
-				withCredentials: true
-			},
-			crossDomain: true,
-			dataType:'json',
-			context:this,
-			success: function(data){
-				var status = data.success || false;
-				if(status){
-					Utils.alert('驳回成功！');
+		showSbox('.xiugaizhongxin');//显示弹窗
+		$('#yesBtn').off().on('click',function(){
+			var breson = $('#breson').val() || '';
+			var condi = {};
+			condi.id = g.id;
+			condi.reson = breson;
+			var url = Base.serverUrl + "landingTask/reject";
+			//g.httpTip.show();
+			$.ajax({
+				url:url,
+				data:condi,
+				timeout: 30000, //超时时间设置，单位毫秒
+				type:"POST",
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				dataType:'json',
+				context:this,
+				success: function(data){
+					var status = data.success || false;
+					if(status){
+						Utils.alert('驳回成功！');
+						closeSbox();//关闭弹窗
+						getModule();//获取所有模块
+					}
+					else{
+						var msg = data.message || "失败";
+						Utils.alert(msg);
+					}
+					//g.httpTip.hide();
+				},
+				error:function(data,status){
+					//g.httpTip.hide();
+					if(status=='timeout'){
+			　　　　　  Utils.alert("超时");
+			　　　　}
 				}
-				else{
-					var msg = data.message || "失败";
-					Utils.alert(msg);
-				}
-				//g.httpTip.hide();
-			},
-			error:function(data,status){
-				//g.httpTip.hide();
-				if(status=='timeout'){
-		　　　　　  Utils.alert("超时");
-		　　　　}
-			}
+			});
 		});
 	});
 	
