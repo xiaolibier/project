@@ -374,8 +374,10 @@ $(function(){
 						var id = dd.id || '';
 						var title = dd.title || '';
 						var agent = dd.agent || '';
+						var taxRegistration = getDate((dd.taxRegistration || ''),'2');
 						var uploadTime = getDate(dd.uploadTime || '');
 						setCondiVal(dd,'.mdiv'+n);//赋值
+						if($(this).find('#taxRegistration').length > 0){$(this).find('#taxRegistration').val(taxRegistration);}
 						$(this).find('.jingspan').html(agent);
 						$(this).find('.shanchuanspan').html(uploadTime);
 						if(agent != ''){$(this).find('.sucess_dui').addClass('show');}else{$(this).find('.sucess_dui').removeClass('show');}
