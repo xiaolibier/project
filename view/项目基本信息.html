@@ -123,11 +123,15 @@ $(function(){
 	getShenBanFang();//获取客户名称列表
 	
 	setSearchRole('.choiseDanwei5','管家','li');//给商务经理 选框赋值
-	setGetSearchInput('#housekeeper','.choiseDanwei5');//定义可以搜索下拉的
+	
 	
 /* **************************************** setTing ******************************************** */	
 	
-	
+	//判断是选择的普通发票还是增值税发票
+	$('#invoiceInfo').find('.common_radio').on('click',function(){
+		$(this).addClass('active').siblings('.common_radio').removeClass('active');
+		pzcompare();
+	})
 	loadCheck();//判断编辑还是查看
 	//is_show('.xiangMu_xiangMuFaBu');
 	
@@ -149,6 +153,8 @@ $(function(){
 			//$('.set_reset').hide();//恢复项目按钮
 			getProject();//获取项目信息
 			$('#new_create_btn').remove();
+			$('#housekeeper').off();
+			$("#customerName").off();
 			//定义选择分期 只能单选
 			$('.common_radio').off();
 			$('.xiangmuguanli').off('click','.common_radio');
@@ -160,9 +166,12 @@ $(function(){
 			$('select').attr('disabled',false).removeClass('readonly');
 			$('#new_create_btn').remove();
 			getProject();//获取项目信息
+			setGetSearchInput('#housekeeper','.choiseDanwei5');//定义可以搜索下拉的
+			setClickCus();//定义选择客户下拉
 			//定义选择分期 只能单选
 			$('.xiangmuguanli').off('click','.common_radio').on('click','.common_radio',function(){
 				$(this).addClass('active').siblings('.common_radio').removeClass('active');
+				pzcompare();//判断是选择的普通发票还是增值税发票
 			});
 		}else if(g.do == 'new'){//新建
 			$('#new_create_btn').show();
@@ -171,17 +180,15 @@ $(function(){
 			//定义选择分期 只能单选
 			$('.xiangmuguanli').off('click','.common_radio').on('click','.common_radio',function(){
 				$(this).addClass('active').siblings('.common_radio').removeClass('active');
+				pzcompare();//判断是选择的普通发票还是增值税发票
 			});
-			pzcompare();//判断是选择的普通发票还是增值税发票
+			setGetSearchInput('#housekeeper','.choiseDanwei5');//定义可以搜索下拉的
+			setClickCus();//定义选择客户下拉
 			$('#contractType').val('办理合同');//默认值
+			pzcompare();//判断是选择的普通发票还是增值税发票
 		}
 	}
 	
-	//判断是选择的普通发票还是增值税发票
-	$('#invoiceInfo').find('.common_radio').on('click',function(){
-		$(this).addClass('active').siblings('.common_radio').removeClass('active');
-		pzcompare();
-	})
 	function pzcompare(){
 		var is = $('.zengzhiradio').hasClass('active');
 		var is2 = $('.putongradio').hasClass('active');
@@ -214,7 +221,10 @@ $(function(){
 			}else{_tt.show();}
 		});
 	});
+	
+	
 	//选择申办方
+	function setClickCus(){
 	$("#customerName").click(function(e){
 		var _is = $(this);
 		var xx = _is.offset().left || 0;
@@ -238,6 +248,8 @@ $(function(){
 		});
 		stopPropagation(e);
     });
+	}
+	
 	//获取客户名称列表
 	function getShenBanFang(){
 		var condi = {};
@@ -378,7 +390,7 @@ $(function(){
 					setCondiVal(d,'.content_box1');//给输入框 赋值	
 					$('#lianxiren').html(d.contacts || '');
 					$('#dianhua').html(d.phone || '');
-					$('#customerName').val(d.customer || '').attr('tip',d.customerId || '');
+					$('#customerName').val(d.customerName || '').attr('tip',d.customerId || '');
 					$('#housekeeper').attr('tip',d.housekeeperId || '');
 					pzcompare();//判断是选择的普通发票还是增值税发票					
 				}

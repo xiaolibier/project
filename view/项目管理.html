@@ -231,7 +231,17 @@ $(function(){
 		parent.document.getElementById("iframeObj").src = '项目基本信息.html?do='+_do;
 	}	
 	
-	
+	//加载进度条
+	function subSomething(){
+		if(document.readyState == 'complete'){//页面加载完成
+			$('.xiangmuguanli .pro_w').each(function(){
+				var _this = $(this) || {};
+				var _w1 = _this.parents('td').find('.pro_t').html() || '';
+				var _w = _w1 == '' ? '0%' : parseInt(100*_w1.split('/')[0]/_w1.split('/')[1])+'%';
+				_this.animate({'width':_w},'slow');
+			});
+		}
+	}
 	//获取项目所有id列表
 	function getids(){
 		var condi = {};
@@ -584,7 +594,7 @@ $(function(){
 							+'<td>'+contacts+'</td>'
 							+'<td>'+phone+'</td>'
 							+'<td>'+invoiceStatus+'</td>'
-							+'<td>'+progress+'</td>'
+							+'<td style="line-height:20px;"><span class="pro_t">'+progress+'</span><br><li class="pro_b"><i class="pro_w"></i></li></td>'
 							+'<td>'+ccstr+'</td>'
 							+'<td>'+housekeeper+'</td>'
 							+'<td class="last">'
@@ -597,6 +607,7 @@ $(function(){
 					 html+='</table>';
 					$('#tableList').html(html);
 					selAll();//定义导出按钮
+					subSomething();//加载进度条
 					if(g.ids.length <= 0){getids();}
 					//加载分页
 					if(g.loadPage){

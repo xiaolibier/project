@@ -126,6 +126,7 @@ $(function(){
 	var g = {};
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.id = Utils.getQueryString("id") || "";//获取项目id
+	g.tid = Utils.getQueryString("tid") || "";//获取任务id
 	g.do = Utils.getQueryString("do") || "";//获取操作 是查看（check）还是修改（change）新建 （new）
 	g.httpTip = new Utils.httpTip({});
 	g.totalPage = 1;//存总页数
@@ -163,7 +164,10 @@ $(function(){
 		getyuanqulist();//获取 园区列表
 		if(g.do == 'change'){//修改
 			$('.creat_hide').show();//显示寄出
-			getProject();//获取项目信息
+			setTimeout(function(){
+				getProject();//获取项目信息
+			},200);
+			
 			$('#create_new_btn').on('click',function(){changeOrCreateProject(1)});
 		}else if(g.do == 'new'){//新建
 			compareMoney();//计算刻章费用
@@ -281,6 +285,7 @@ $(function(){
 	//注册地址段赋值
 	window.setress = function(id){
 		var id = id || '';
+		$('#parkName').attr('tipid',id);
 		var condi = {};
 		condi.id = id;
 		var url = Base.serverUrl + "park/edit";
@@ -330,23 +335,30 @@ $(function(){
 	//修改保存项目信息
 	function changeOrCreateProject(is){
 		var is = is || '';//is 1 修改或保存 2 新建
-		var gongzhang = $('#gongzhang').hasClass('active') ? $('#gongzhang').attr('val') || '' : '';
-		var farenzhang = $('#farenzhang').hasClass('active') ? $('#farenzhang').attr('val') || '' : '';
-		var caiwuzhang = $('#caiwuzhang').hasClass('active') ? $('#caiwuzhang').attr('val') || '' : '';
-		var hetongzhang = $('#hetongzhang').hasClass('active') ? $('#hetongzhang').attr('val') || '' : '';
-		var fapiaozhang = $('#fapiaozhang').hasClass('active') ? $('#fapiaozhang').attr('val') || '' : '';
+		
+		var zhang = '' ,zhangState = '';
+		$('.kezhangdivc').find('.check_box').each(function(){
+			var _active = $(this).hasClass('active') ? 'active' : '';
+			var _val = $(this).attr('val') || '';
+			zhang = zhang == '' ? _val : zhang +','+ _val;
+			zhangState = zhangState == '' ? _active : zhangState +','+ _active;
+		});
+		
 		var totalzhang = $('#totalzhang').html() || '';
+		var parkId = $('#parkName').attr('tipid') || '';
+		var expressNum = $('#expressNum').val() || '';
+		var expressTime = $('#expressTime').val() || '';
 		var condi = {};
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
 		condi.projectId = g.id;
-		condi.gongzhang = gongzhang;
-		condi.farenzhang = farenzhang;
-		condi.caiwuzhang = caiwuzhang;
-		condi.hetongzhang = hetongzhang;
-		condi.fapiaozhang = fapiaozhang;
+		condi.id = g.tid;
+		condi.zhang = zhang;
+		condi.zhangState = zhangState;
 		condi.totalzhang = totalzhang;
+		condi.expressNum = expressNum;
+		condi.expressTime = expressTime;
+		condi.parkId = parkId;
 		var url = Base.serverUrl + "landingTask/update";
-		if(is == '1'){condi.id = g.id;}
 		if(is == '2'){url = Base.serverUrl + "landingTask/create"}
 		$('#create_new_btn').off();
 		//g.httpTip.show();
@@ -394,7 +406,7 @@ $(function(){
 	//获取项目信息
 	function getProject(){
 		var condi = {};
-		condi.id = g.id;
+		condi.id = g.tid;
 		var url = Base.serverUrl + "landingTask/edit";
 		//g.httpTip.show();
 		$.ajax({
@@ -413,17 +425,22 @@ $(function(){
 				if(status){
 					var d = data.result || [];
 					setCondiVal(d,'.content_box1');//给输入框 赋值
-					var gongzhang = d.gongzhang || '';
-					var farenzhang = d.farenzhang || '';
-					var caiwuzhang = d.caiwuzhang || '';
-					var hetongzhang = d.hetongzhang || '';
-					var fapiaozhang = d.fapiaozhang || '';
-					if(gongzhang != ''){$('#gongzhang').addClass('active');}
-					if(farenzhang != ''){$('#farenzhang').addClass('active');}
-					if(caiwuzhang != ''){$('#caiwuzhang').addClass('active');}
-					if(hetongzhang != ''){$('#hetongzhang').addClass('active');}
-					if(fapiaozhang != ''){$('#fapiaozhang').addClass('active');}
+					$('#parkName').attr('tipid',d.parkId || '');
 					
+					var zhang = d.zhang || '';
+					var zhangState = d.zhangState || '';
+					var zarray = zhang.split(',') || [];
+					var szarray = zhangState.split(',') || [];
+					//刻章
+					$('.kezhangdivc').find('.check_box').each(function(n){
+						var _active = szarray[n] || '';
+						var _val = zarray[n] || '';
+						if(_active == ''){$(this).removeClass('active');}
+						else{$(this).addClass('active');}
+						$(this).attr('val',_val).find('span').html(_val);
+					});
+					$('#expressNum').val(d.expressNum || '');
+					$('#expressTime').val(d.expressTime || '');
 					compareMoney();//计算刻章费用
 				}
 				else{

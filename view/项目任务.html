@@ -178,7 +178,7 @@ $(function(){
 	$('#checkAllRenwu').on('click',checkAll);//查看已生成任务
 	$('.xiangmuguanli').on('click','#new_project,.addnew',function(){
 		var _do = 'new';
-		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?id='+g.id+'&do='+_do;
+		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?tid='+g.id+'&do='+_do;
 	});//新建任务
 	tableListShow();//显示列表
 	
@@ -249,6 +249,7 @@ $(function(){
 						var xu = len - i;
 						var d = con[i] || '';
 						var id = d.id || '';
+						var pid = d.projectId || '';
 						var code = d.code || '';
 						var name = d.name || '';
 						var companyType = d.companyType || '';
@@ -272,7 +273,7 @@ $(function(){
 							+'<td>'+cct+'</td>'
 							+'<td>'+status+'</td>'
 							+'<td class="last">';
-								html+='<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn1">编辑</a>';
+								html+='<a href="javascript:;" onclick="change(\''+id+'\',\''+pid+'\')" class="cao_btn cao_btn1">编辑</a>';
 							    html+='<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn3">删除</a>';
 							html+='</td>'
 						+'</tr>';
@@ -305,11 +306,12 @@ $(function(){
 		});
 	}
 	//编辑
-	window.change = function(id){
+	window.change = function(id,pid){
 		var id = id || '';
+		var pid = pid || '';
 		var _do = 'change';
 		if(id == ''){Utils.alert('id不能为空！');return false;}
-		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?id='+id+'&do='+_do;
+		parent.document.getElementById("iframeObj").src = '项目任务-基本信息.html?tid='+id+'&do='+_do+'&id='+pid;
 	}
 
 	//删除一项
@@ -319,7 +321,7 @@ $(function(){
 		if(!confirm('确认删除吗？')){return false;}
 		var condi = {};
 		condi.id = id;
-		var url = Base.serverUrl + "task/delete";
+		var url = Base.serverUrl + "landingTask/delete";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,

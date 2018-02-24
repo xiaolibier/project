@@ -113,7 +113,7 @@
 		<a href="javascript:;" id="jichuabtn" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">确认寄出</a>
 		</div>
 		
-		<div class="btns_div"><a href="javascript:;" id="create_new_btn" class="common_abtn type2">保存</a></div>
+		<div class="btns_div"><a href="javascript:;" id="create_new_btn" class="common_abtn type2 renwuguanli_xiugaixinxi">保存</a></div>
 	</div>
 
 	
@@ -162,14 +162,11 @@ $(function(){
 		parent.document.getElementById("iframeObj").src = '任务管理-快递信息.html?id='+g.id;
 	});
 	$('#jichuabtn').on('click',jichuabtnFunc);//确认寄出
-	uploadToQiniu('legalPersonIDCardPic1');//定义七牛云上传
-	uploadToQiniu('legalPersonIDCardPic2');//定义七牛云上传
-	uploadToQiniu('financialOfficerIDCardPic1');//定义七牛云上传
-	uploadToQiniu('financialOfficerIDCardPic2');//定义七牛云上传
+	
 /* **************************************** setTing ******************************************** */	
 	
 	loadCheck();//判断编辑还是查看
-
+	is_show('.renwuguanli_xiugaixinxi');
 	
 	//判断是编辑还是查看
 	function loadCheck(){
@@ -178,6 +175,10 @@ $(function(){
 		setTimeout(function(){
 			getProject();//获取项目信息
 		},300);
+		uploadToQiniu('legalPersonIDCardPic1');//定义七牛云上传
+		uploadToQiniu('legalPersonIDCardPic2');//定义七牛云上传
+		uploadToQiniu('financialOfficerIDCardPic1');//定义七牛云上传
+		uploadToQiniu('financialOfficerIDCardPic2');//定义七牛云上传
 	}
 	
 	$('.kezhangdivc').find('.check_box').on('click',function(){
@@ -223,7 +224,8 @@ $(function(){
 			success: function(data){
 				var status = data.success || false;
 				if(status){
-					Utils.alert('寄出成功！');
+					var msg = data.message || "寄出成功！";
+					Utils.alert(msg);
 				}
 				else{
 					var msg = data.message || "失败";
@@ -290,6 +292,7 @@ $(function(){
 	//注册地址段赋值
 	window.setress = function(id){
 		var id = id || '';
+		$('#parkName').attr('tipid',id);
 		var condi = {};
 		condi.id = id;
 		var url = Base.serverUrl + "park/edit";
@@ -340,22 +343,28 @@ $(function(){
 	//修改保存项目信息
 	function changeOrCreateProject(is){
 		var is = is || '';//is 1 修改或保存 2 新建
-		var gongzhang = $('#gongzhang').hasClass('active') ? $('#gongzhang').attr('val') || '' : '';
-		var farenzhang = $('#farenzhang').hasClass('active') ? $('#farenzhang').attr('val') || '' : '';
-		var caiwuzhang = $('#caiwuzhang').hasClass('active') ? $('#caiwuzhang').attr('val') || '' : '';
-		var hetongzhang = $('#hetongzhang').hasClass('active') ? $('#hetongzhang').attr('val') || '' : '';
-		var fapiaozhang = $('#fapiaozhang').hasClass('active') ? $('#fapiaozhang').attr('val') || '' : '';
+		
+		var zhang = '' ,zhangState = '';
+		$('.kezhangdivc').find('.check_box').each(function(){
+			var _active = $(this).hasClass('active') ? 'active' : '';
+			var _val = $(this).attr('val') || '';
+			zhang = zhang == '' ? _val : zhang +','+ _val;
+			zhangState = zhangState == '' ? _active : zhangState +','+ _active;
+		});
 		var totalzhang = $('#totalzhang').html() || '';
+		var parkId = $('#parkName').attr('tipid') || '';
+		var expressNum = $('#expressNum').val() || '';
+		var expressTime = $('#expressTime').val() || '';
 		var condi = {};
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
-		condi.projectId = g.id;
+		//condi.projectId = g.id;
 		condi.id = g.id;
-		condi.gongzhang = gongzhang;
-		condi.farenzhang = farenzhang;
-		condi.caiwuzhang = caiwuzhang;
-		condi.hetongzhang = hetongzhang;
-		condi.fapiaozhang = fapiaozhang;
+		condi.zhang = zhang;
+		condi.zhangState = zhangState;
 		condi.totalzhang = totalzhang;
+		condi.expressNum = expressNum;
+		condi.expressTime = expressTime;
+		condi.parkId = parkId;
 		var url = Base.serverUrl + "landingTask/update";
 		//if(is == '2'){url = Base.serverUrl + "landingTask/create"}
 		$('#create_new_btn').off();
@@ -422,17 +431,21 @@ $(function(){
 				if(status){
 					var d = data.result || [];
 					setCondiVal(d,'.content_box1');//给输入框 赋值
-					var gongzhang = d.gongzhang || '';
-					var farenzhang = d.farenzhang || '';
-					var caiwuzhang = d.caiwuzhang || '';
-					var hetongzhang = d.hetongzhang || '';
-					var fapiaozhang = d.fapiaozhang || '';
-					if(gongzhang != ''){$('#gongzhang').addClass('active');}
-					if(farenzhang != ''){$('#farenzhang').addClass('active');}
-					if(caiwuzhang != ''){$('#caiwuzhang').addClass('active');}
-					if(hetongzhang != ''){$('#hetongzhang').addClass('active');}
-					if(fapiaozhang != ''){$('#fapiaozhang').addClass('active');}
-					
+					$('#parkName').attr('tipid',d.parkId || '');
+					var zhang = d.zhang || '';
+					var zhangState = d.zhangState || '';
+					var zarray = zhang.split(',') || [];
+					var szarray = zhangState.split(',') || [];
+					//刻章
+					$('.kezhangdivc').find('.check_box').each(function(n){
+						var _active = szarray[n] || '';
+						var _val = zarray[n] || '';
+						if(_active == ''){$(this).removeClass('active');}
+						else{$(this).addClass('active');}
+						$(this).attr('val',_val).find('span').html(_val);
+					});
+					$('#expressNum').val(d.expressNum || '');
+					$('#expressTime').val(d.expressTime || '');
 					compareMoney();//计算刻章费用
 
 				}

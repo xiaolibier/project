@@ -279,16 +279,7 @@ $(function(){
 		parent.document.getElementById("iframeObj").src = '任务管理-快递信息.html?id='+g.id;
 	});
 	
-	uploadToQiniu('customerSign');//定义七牛云上传
-	uploadToQiniu('businessLicense');//定义七牛云上传
-	uploadToQiniu('sealPic');//定义七牛云上传
-	uploadToQiniu('signatureCardPic');//定义七牛云上传
-	uploadToQiniu('accountLicencePic');//定义七牛云上传
-	uploadToQiniu('bankCardPasswordPic');//定义七牛云上传
-	uploadToQiniu('taxPanelInvoicePic');//定义七牛云上传
-	uploadToQiniu('threePartyPic1');//定义七牛云上传
-	uploadToQiniu('threePartyPic2');//定义七牛云上传
-	uploadToQiniu('attachment');//定义七牛云上传
+	
 	
 /* **************************************** setTing ******************************************** */	
 	
@@ -298,16 +289,27 @@ $(function(){
 	//判断是编辑还是查看
 	function loadCheck(){
 		setTimeout(function(){//等待七牛云加载
-			getModule();//获取所有模块id
+			getModule();//获取所有模块
 		},500);
 		
 		getyuanqulist();//获取 园区列表
 		getProject();//获取项目信息
+		
+		uploadToQiniu('customerSign');//定义七牛云上传
+		uploadToQiniu('businessLicense');//定义七牛云上传
+		uploadToQiniu('sealPic');//定义七牛云上传
+		uploadToQiniu('signatureCardPic');//定义七牛云上传
+		uploadToQiniu('accountLicencePic');//定义七牛云上传
+		uploadToQiniu('bankCardPasswordPic');//定义七牛云上传
+		uploadToQiniu('taxPanelInvoicePic');//定义七牛云上传
+		uploadToQiniu('threePartyPic1');//定义七牛云上传
+		uploadToQiniu('threePartyPic2');//定义七牛云上传
+		uploadToQiniu('attachment');//定义七牛云上传
 	}
 	
 	//获取所有模块id
-	function getModule(){
-		
+	function getModule(is){
+		var is = is || '';
 		var condi = {};
 		condi.id = g.id;
 		var url = Base.serverUrl + "landingTask/module/edit";
@@ -357,8 +359,8 @@ $(function(){
 						$(this).find('.jingspan').html(agent);
 						$(this).find('.shanchuanspan').html(uploadTime);
 						//定义确认按钮 更新
-						if($(this).find('.creat_forse').length > 0){
-							$(this).find('.creat_forse').on('click',function(){
+						if($(this).find('.creat_forse').length > 0 && is == ''){
+							$(this).find('.creat_forse').off().on('click',function(){
 								var condi = {};
 								condi = setInfoCondi(condi,'.mdiv'+n);
 								uploadModules(condi,id,title);//修改模块
@@ -408,6 +410,7 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					Utils.alert('修改成功！');
+					getModule(1);//获取所有模块
 				}
 				else{
 					var msg = data.message || "失败";
