@@ -140,7 +140,7 @@ $(function(){
 	var g = {};
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.ser = Utils.getQueryString("ser") || "";//从工作台获取搜索项
-	g.id = Utils.getQueryString("id") || "";//获取项目id
+	g.id = Utils.getQueryString("id") || Utils.offLineStore.get("renid",false);//获取id
 	g.httpTip = new Utils.httpTip({});
 	g.totalPage = 1;//存总页数
 	g.nowPage = 0;//存当前页 0 是第一页

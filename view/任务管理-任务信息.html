@@ -131,7 +131,7 @@
 $(function(){
 	var g = {};
 	g.login_token = Utils.offLineStore.get("token",false) || "";
-	g.id = Utils.getQueryString("id") || "";//获取项目id
+	g.id = Utils.getQueryString("id") || Utils.offLineStore.get("renid",false);//获取id
 	g.do = Utils.getQueryString("do") || "";//获取操作 是查看（check）还是修改（change）新建 （new）
 	g.httpTip = new Utils.httpTip({});
 	g.totalPage = 1;//存总页数
