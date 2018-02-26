@@ -30,12 +30,14 @@
 		<div>
 			任务状态：<span id="tsktext"></span>
 			<li class="pro_b"><i style="width:0%;" id="tskpro" class="pro_w"></i></li>
+			<a href="javascript:;" id="abtn_start" style="float:none;margin-left:12px;vertical-align:middle;display:none;" class="creat_forse">开始办理</a>
 			<a href="javascript:;" id="abtn_huifu" style="float:none;margin-left:12px;vertical-align:middle;display:none;" class="creat_forse">恢复任务</a>
 			<a href="javascript:;" id="abtn_bohui" style="float:none;margin-left:12px;vertical-align:middle;display:none;" class="creat_forse type3">驳回任务</a>
 			<a href="javascript:;" id="abtn_zanting" style="float:none;margin-left:12px;vertical-align:middle;display:none;" class="creat_forse type2">暂停任务</a>
 			<a href="javascript:;" id="abtn_quxiao" style="float:none;margin-left:12px;vertical-align:middle;display:none;" class="creat_forse type4">取消任务</a>
 		</div>
-		<div class="bohui_reson" style="display:none;" >驳回原因：<span ></span></div>
+		<div class="bohui_reson resonSpan" style="display:none;" >驳回原因：<span ></span></div>
+		<div class="zanting_reson resonSpan" style="display:none;" >暂停原因：<span ></span></div>
 	</div>
 	<div class="content_box1">
 		<div class="module_div mdiv1">
@@ -243,12 +245,20 @@
 	<div info="弹窗容器" class="stip_box">
 		<div class="stip_content">
 			
-			<div class="sbox xiugaizhongxin">
+			<div class="sbox xiugaizhongxin bohuiSbox">
 				<h4 class="sbox_h4">驳回原因</h4>
 				<div class="sbox_c"><span class="slable">原因</span><i class="star">*</i><textarea id="breson" style="height:35px;" class="sbox_input"></textarea></div>
 				<div class="sbox_btn_div">
 					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
 					<a id="yesBtn" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+			<div class="sbox xiugaizhongxin zantingSbox">
+				<h4 class="sbox_h4">暂停原因</h4>
+				<div class="sbox_c"><span class="slable">原因</span><i class="star">*</i><textarea id="breson2" style="height:35px;" class="sbox_input"></textarea></div>
+				<div class="sbox_btn_div">
+					<a href="javascript:;" id="noBtn2" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn2" href="javascript:;" class="sbox_btn btn2">确认</a>
 				</div>
 			</div>
 
@@ -315,16 +325,22 @@ $(function(){
 		getyuanqulist();//获取 园区列表
 		getProject();//获取项目信息
 		
-		uploadToQiniu('customerSign');//定义七牛云上传
-		uploadToQiniu('businessLicense');//定义七牛云上传
-		uploadToQiniu('sealPic');//定义七牛云上传
-		uploadToQiniu('signatureCardPic');//定义七牛云上传
-		uploadToQiniu('accountLicencePic');//定义七牛云上传
-		uploadToQiniu('bankCardPasswordPic');//定义七牛云上传
-		uploadToQiniu('taxPanelInvoicePic');//定义七牛云上传
-		uploadToQiniu('threePartyPic1');//定义七牛云上传
-		uploadToQiniu('threePartyPic2');//定义七牛云上传
-		uploadToQiniu('attachment');//定义七牛云上传
+		setTimeout(function(){//等待七牛云加载
+			uploadToQiniu('customerSign');//定义七牛云上传
+			uploadToQiniu('businessLicense');//定义七牛云上传
+			uploadToQiniu('sealPic');//定义七牛云上传
+			uploadToQiniu('signatureCardPic');//定义七牛云上传
+			uploadToQiniu('accountLicencePic');//定义七牛云上传
+			uploadToQiniu('bankCardPasswordPic');//定义七牛云上传
+			uploadToQiniu('taxPanelInvoicePic');//定义七牛云上传
+			uploadToQiniu('threePartyPic1');//定义七牛云上传
+			uploadToQiniu('threePartyPic2');//定义七牛云上传
+			uploadToQiniu('attachment');//定义七牛云上传
+			
+		},500);
+		
+		/*var upbtn = ['customerSign','businessLicense','sealPic','signatureCardPic','accountLicencePic','bankCardPasswordPic','taxPanelInvoicePic','threePartyPic1','threePartyPic2','attachment'];
+		uploadToQiniu(upbtn);*/
 	}
 	
 	//获取所有模块id
@@ -350,24 +366,28 @@ $(function(){
 				if(status){
 					var d = data.result || {};
 					var progress = d.progress || '';
-					var status = d.status || '';
-					var onPause = d.onPause || '';
+					var sta = d.status || '';
+					var onPause = d.onPause || '';//是否暂停 暂停、正常
+					sta = onPause == '暂停' ? '暂停' : sta ;//判断是暂停状态 改变显示
+					var rejectReason = d.rejectReason || '';
+					var onPauseReason = d.onPauseReason || '';
 					var modules = d.modules || [];
-					//分数转百分比
-					var str=Number(progress*100).toFixed(1);
-					str+="%";
-					$('#tsktext').html(status);
-					$('#tskpro').html(progress).css('width',str);
-					if(status == '开始办理'){
-						$('#abtn_huifu,#abtn_bohui,#abtn_zanting,#abtn_quxiao').remove();
-					}else if(status == '资料寄出'){
-						$('#abtn_huifu').remove();
-						$('#abtn_bohui,#abtn_zanting,#abtn_quxiao').show();
-					}else if(status == '已驳回'){
+					$('#tsktext').html(sta);
+					$('#tskpro').html(progress);
+					subSomething();
+					$('.renwu_div .creat_forse').hide();
+					$('.resonSpan').hide();
+					if(sta == '资料寄出'){
+						$('#abtn_start,#abtn_bohui').show();
+					}else if(sta == '开始办理'){
+						$('#abtn_bohui,#abtn_zanting').show();
+					}else if(sta == '已驳回'){
+						$('.bohui_reson').show().find('span').html(rejectReason);
+					}else if(sta == '暂停'){
 						$('#abtn_huifu').show();
-						$('#abtn_bohui,#abtn_zanting,#abtn_quxiao').remove();
-						$('.bohui_reson').show().find('span').html(onPause);
+						$('.zanting_reson').show().find('span').html(onPauseReason);
 					}
+					
 					$('.content_box1').find('.module_div').each(function(i){
 						var n = i + 1;
 						var dd = modules[i] || {};
@@ -407,6 +427,18 @@ $(function(){
 		　　　　}
 			}
 		});
+	}
+	
+	//加载进度条
+	function subSomething(){
+		//if(document.readyState == 'complete'){//页面加载完成
+			$('.xiangmuguanli .pro_w').each(function(){
+				var _this = $(this) || {};
+				var _w1 = $('#tskpro').html() || '';
+				var _w = _w1 == '' ? '0%' : parseInt(100*_w1.split('/')[0]/_w1.split('/')[1])+'%';
+				_this.animate({'width':_w},'slow');
+			});
+		//}
 	}
 	
 	//修改模块
@@ -450,7 +482,45 @@ $(function(){
 		});
 	}
 		
-	
+	//开始办理
+	$('#abtn_start').on('click',function(){
+		if(!confirm('确认开始办理吗？')){return false;}
+		var condi = {};
+		condi.id = g.id;
+		var url = Base.serverUrl + "landingTask/start";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					Utils.alert('开启成功！');
+					getModule();//获取所有模块
+				}
+				else{
+					var msg = data.message || "失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	});
+		
 	//取消任务
 	$('#abtn_quxiao').on('click',function(){
 		if(!confirm('确认取消任务吗？')){return false;}
@@ -473,6 +543,7 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					Utils.alert('取消成功！');
+					getModule();//获取所有模块
 				}
 				else{
 					var msg = data.message || "失败";
@@ -489,48 +560,56 @@ $(function(){
 		});
 	});
 	
+
 	//暂停任务
 	$('#abtn_zanting').on('click',function(){
 		if(!confirm('确认暂停任务吗？')){return false;}
-		var condi = {};
-		condi.id = g.id;
-		var url = Base.serverUrl + "landingTask/pause";
-		//g.httpTip.show();
-		$.ajax({
-			url:url,
-			data:condi,
-			timeout: 30000, //超时时间设置，单位毫秒
-			type:"POST",
-			xhrFields: {
-				withCredentials: true
-			},
-			crossDomain: true,
-			dataType:'json',
-			context:this,
-			success: function(data){
-				var status = data.success || false;
-				if(status){
-					Utils.alert('暂停成功！');
+		showSbox('.zantingSbox');//显示弹窗
+		$('#yesBtn2').off().on('click',function(){
+			var breson = $('#breson2').val() || '';
+			var condi = {};
+			condi.id = g.id;
+			condi.onPauseReason = breson;
+			var url = Base.serverUrl + "landingTask/pause";
+			//g.httpTip.show();
+			$.ajax({
+				url:url,
+				data:condi,
+				timeout: 30000, //超时时间设置，单位毫秒
+				type:"POST",
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				dataType:'json',
+				context:this,
+				success: function(data){
+					var status = data.success || false;
+					if(status){
+						Utils.alert('暂停成功！');
+						closeSbox();//关闭弹窗
+						getModule();//获取所有模块
+					}
+					else{
+						var msg = data.message || "失败";
+						Utils.alert(msg);
+					}
+					//g.httpTip.hide();
+				},
+				error:function(data,status){
+					//g.httpTip.hide();
+					if(status=='timeout'){
+			　　　　　  Utils.alert("超时");
+			　　　　}
 				}
-				else{
-					var msg = data.message || "失败";
-					Utils.alert(msg);
-				}
-				//g.httpTip.hide();
-			},
-			error:function(data,status){
-				//g.httpTip.hide();
-				if(status=='timeout'){
-		　　　　　  Utils.alert("超时");
-		　　　　}
-			}
+			});
 		});
 	});
 	
 	//驳回任务
 	$('#abtn_bohui').on('click',function(){
 		if(!confirm('确认驳回任务吗？')){return false;}
-		showSbox('.xiugaizhongxin');//显示弹窗
+		showSbox('.bohuiSbox');//显示弹窗
 		$('#yesBtn').off().on('click',function(){
 			var breson = $('#breson').val() || '';
 			var condi = {};
@@ -572,6 +651,8 @@ $(function(){
 		});
 	});
 	
+	
+	
 	//恢复任务
 	$('#abtn_huifu').on('click',function(){
 		if(!confirm('确认恢复任务吗？')){return false;}
@@ -594,6 +675,7 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					Utils.alert('恢复成功！');
+					getModule();//获取所有模块
 				}
 				else{
 					var msg = data.message || "失败";
@@ -655,6 +737,7 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					Utils.alert('寄出成功！');
+					getModule();//获取所有模块
 				}
 				else{
 					var msg = data.message || "失败";

@@ -271,7 +271,7 @@ $(function(){
 						var id = d.id || '';
 						var name = d.name || '';
 						var regAddress = d.regAddress || '';
-						html += '<option onclick="setress(\''+id+'\')" value="'+name+'">'+name+'</option>';
+						html += '<option aid="'+id+'" value="'+name+'">'+name+'</option>';
 					}
 					$('#parkName').html(html);
 				}
@@ -290,8 +290,8 @@ $(function(){
 		});
 	}
 	//注册地址段赋值
-	window.setress = function(id){
-		var id = id || '';
+	$('#parkName').change(function(){
+		var id = $("#parkName").find("option:selected").attr('aid') || '';
 		$('#parkName').attr('tipid',id);
 		var condi = {};
 		condi.id = id;
@@ -320,7 +320,6 @@ $(function(){
 					$('#hetongzhang').attr('val',d.hetongzhang || '').find('span').html(d.hetongzhang || '');
 					$('#fapiaozhang').attr('val',d.fapiaozhang || '').find('span').html(d.fapiaozhang || '');
 					compareMoney();//计算刻章费用
-					
 				}
 				else{
 					var msg = data.message || "获取项目信息失败";
@@ -335,10 +334,9 @@ $(function(){
 		　　　　}
 			}
 		});
-		
-		
-	}
+	});
 
+	
 
 	//修改保存项目信息
 	function changeOrCreateProject(is){
