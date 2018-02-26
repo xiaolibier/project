@@ -233,7 +233,6 @@ $(function(){
 				
 			}
 		});
-		
 		if(tips != ''){Utils.alert(tips);return false;}
 		return condi;
 	}

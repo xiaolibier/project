@@ -61,11 +61,11 @@ transform:rotate(270deg);
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;}
-.left_menu .mm.active{background-color:#59BA73;}
+.left_menu .mm.active{background-color:#59BA73;color:#ffffff;}
 .left_menu .c1{padding-left:39px;font-size:13px;}
 .left_menu .c1.has{background:url('../img/m_2.png') no-repeat 127px center;background-size:auto 11%;background-color:#495060;}
 .left_menu .c1.down.has{background:url('../img/m_1.png') no-repeat 127px center;background-size:auto 11%;background-color:#495060;}
-.left_menu .c2{padding-left:39px;font-size:12px;background-color:#363E4F;display:none;}
+.left_menu .c2{padding-left:64px;font-size:12px;background-color:#363E4F;display:none;}
 .left_menu .c2.active{background-color:#59BA73;color:#ffffff;}
 .left_menu .c2.has{background:url('../img/s_to.png') no-repeat 16px center;background-size:auto 25%;background-color:#495060;}
 .left_menu .c2.down.has{background:url('../img/s_do.png') no-repeat 16px center;background-size:auto 23%;background-color:#495060;}

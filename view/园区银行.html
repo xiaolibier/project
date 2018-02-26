@@ -119,7 +119,7 @@
 				<div class="sbox_c"><span class="slable">网银年费</span><i class="star">*</i><input id="onlineBankFee" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">账户年费</span><i class="star">*</i><input id="accountFee" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">短信提示年费</span><i class="star">*</i><input id="smsFee" class="sbox_input" type="text"/></div>
-				<div class="sbox_c"><span class="slable">备注</span><i class="star">*</i><textarea id="remark" style="height:35px;" class="sbox_input"></textarea></div>
+				<div class="sbox_c"><span class="slable">备注</span><i class="star"></i><textarea id="remark" style="height:35px;" class="sbox_input"></textarea></div>
 				<div class="sbox_btn_div">
 					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
 					<a id="yesBtn" href="javascript:;" class="sbox_btn btn2">确认</a>
@@ -167,7 +167,7 @@ $(function(){
 	
 	//初始化弹窗
 	function reloadSbox(){
-		$('.xiugaizhongxin input').val('');//清空弹窗
+		$('.xiugaizhongxin input,.xiugaizhongxin textarea').val('');//清空弹窗
 		$('.xiugaizhongxin select').val('');//清空弹窗
 		$('#noBtn').html('取消');
 		$('#yesBtn').off().show();
@@ -210,7 +210,7 @@ $(function(){
 		if(onlineBankFee == ''){Utils.alert('网银年费不能为空！');return false;}
 		if(accountFee == ''){Utils.alert('账户年费不能为空！');return false;}
 		if(smsFee == ''){Utils.alert('短信提示年费不能为空！');return false;}
-		if(remark == ''){Utils.alert('备注不能为空！');return false;}
+		//if(remark == ''){Utils.alert('备注不能为空！');return false;}
 		$('#yesBtn').off();
 		var condi = {};
 		condi.parkId  = g.id;

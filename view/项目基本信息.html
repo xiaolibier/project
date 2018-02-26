@@ -83,7 +83,7 @@
 		<div class="con_d"><span class="lable need">收件人</span><i class="x"></i><input id="invoiceReceiver" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">电话</span><i class="x"></i><input id="invoiceReceiverPhone" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">物流单号</span><i class="x"></i><input id="expressNum" class="common_input" placeholder="（物流单号不为空表示发票已寄）" type="text" /></div>
-		<div class="con_d"><span class="lable need">合同简介</span><i class="x">*</i><textarea id="contractAbstract" style="height:500px;" class="common_textarea"></textarea></div>
+		<div class="con_d"><span class="lable need">合同简介</span><i class="x"></i><textarea id="contractAbstract" style="height:500px;" class="common_textarea"></textarea></div>
 		<div id="new_create_btn" class="btns_div"><a back='项目管理.html' class="common_abtn goback type1">取消</a><a href="javascript:;" id="create_new_btn" class="common_abtn type2">创建</a></div>
 	</div>
 
@@ -315,6 +315,7 @@ $(function(){
 		var condi = {};
 		condi.id = g.id ;
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
+		if(condi == false){return false;}
 		condi.contacts = lianxiren;
 		condi.phone = dianhua;
 		condi.customerId = customerid;

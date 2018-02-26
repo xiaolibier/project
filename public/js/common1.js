@@ -102,11 +102,12 @@ $(function(){
 		if(!_this){return false;}
 		if(_this.hasClass('shou')){//展开操作
 			$('.logo_div').animate({'width':'13%'},'slow','swing',function(){
-				$('.logo_div').css({"background":"url('../public/img/logo.png') no-repeat scroll 32% center / auto 60%","background-color":"#495060"});
+				//$('.logo_div').css({"background":"url('../public/img/logo.png') no-repeat scroll 32% center / auto 60%","background-color":"#495060"});
 			});
 			$('#common_menu').animate({'left':'0'},'slow');
 			$('.frame_div').animate({'left':'13%'},'slow');
 			$('#menu_show_t').animate({'width':'86%'},'slow');
+			$('.sltext').fadeIn(400);
 			
 		}else{//收起操作
 			$('.logo_div').animate({'width':'30px'},'slow','swing',function(){
@@ -117,6 +118,7 @@ $(function(){
 			var _w = $(window).width() - 45;
 			$('#menu_show_t').animate({'width':_w+'px'},'slow');
 			$('.frame_div').animate({'left':'0%'},'slow');
+			$('.sltext').fadeOut(200);
 		}
 		_this.toggleClass('shou');
 	}

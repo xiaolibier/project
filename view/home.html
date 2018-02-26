@@ -11,11 +11,13 @@
 	<title>节税管家</title>
 	<style>
 		.header .logo_div{background:#495060;}
+		.sltext{color:#ffffff;font-weight:600;display:inline-block;margin-top:10px;margin-right:25px;}
 	</style>
 </head>
 <body class="">
 	<div info="公共头部" class="header">
 		<div class="logo_div">
+			<span class="sltext">节税管家</span>
 			<a id="slideLmenu" class="slideLmenu"><img class="go_img" src="../public/img/s_io.png"></a>
 		</div>
 		<div id="menu_show_t" class="header_title">
@@ -40,13 +42,13 @@
 	</div>
 	<div info="左侧菜单" id="common_menu" class="left_menu">
 		<div id="scrollbarList" class="scrollbar">
-		<div id="0" url="工作台.html" class="mm c1"><span class="text_c">工作台</span></div>
+		<!-- <div id="0" url="工作台.html" class="mm c1"><span class="text_c">工作台</span></div>
 		<div id="1" class="mm c1"><span class="text_c">项目管理</span></div>
 		<div id="11" pid="1" url="项目管理.html" class="mm c2"><span class="text_c">项目管理</span></div>
 		<div id="2" class="mm c1"><span class="text_c">任务管理</span></div>
 		<div id="21" pid="2" url="任务管理.html" class="mm c2"><span class="text_c">落地任务管理</span></div>
-		<!-- <div id="22" pid="2" url="任务进度管理.html" class="mm c2"><span class="text_c">落地任务进度管理</span></div> -->
-		<!-- <div id="23" pid="2" url="操作记录.html" class="mm c2"><span class="text_c">落地任务操作记录</span></div> -->
+		<div id="22" pid="2" url="任务进度管理.html" class="mm c2"><span class="text_c">落地任务进度管理</span></div>
+		<div id="23" pid="2" url="操作记录.html" class="mm c2"><span class="text_c">落地任务操作记录</span></div>
 		<div id="3" class="mm c1"><span class="text_c">信息库</span></div>
 		<div id="31" pid="3" url="园区管理.html" class="mm c2"><span class="text_c">园区管理</span></div>
 		<div id="32" pid="3" url="客户管理.html" class="mm c2"><span class="text_c">客户管理</span></div>
@@ -54,7 +56,7 @@
 		<div id="41" pid="4" url="用户管理.html" class="mm c2"><span class="text_c">用户管理</span></div>
 		<div id="42" pid="4" url="部门管理.html" class="mm c2"><span class="text_c">部门管理</span></div>
 		<div id="43" pid="4" url="角色管理.html" class="mm c2"><span class="text_c">角色管理</span></div>
-		<div id="44" pid="4" url="权限管理.html" class="mm c2"><span class="text_c">权限管理</span></div>
+		<div id="44" pid="4" url="权限管理.html" class="mm c2"><span class="text_c">权限管理</span></div> -->
 		</div>
 	</div>
 	<div class="frame_div">
@@ -226,8 +228,8 @@ $(function(){
 						}
 						
 						var icostr = level == 1 ? '<i class="left_ico type'+isa+'"></i>' : '';
-						//html+='<div id="'+id+'" pid="'+pid+'" url="'+value+'" class="mm '+lstr+'">'+icostr+'<span class="text_c">'+name+'</span></div>';	
-						html+='<div id="'+id+'" pid="'+pid+'" url="'+value+'" class="mm '+lstr+'"><span class="text_c">'+name+'</span></div>';	
+						html+='<div id="'+id+'" pid="'+pid+'" url="'+value+'" class="mm '+lstr+'">'+icostr+'<span class="text_c">'+name+'</span></div>';	
+						//html+='<div id="'+id+'" pid="'+pid+'" url="'+value+'" class="mm '+lstr+'"><span class="text_c">'+name+'</span></div>';	
 					}
 					Utils.offLineStore.set("serTT",g.serTT,false);//权限存储
 					$('#scrollbarList').html(html);

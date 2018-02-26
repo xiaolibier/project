@@ -294,12 +294,11 @@ $(function(){
 		var agentIds = $('#agents').val() || '';
 		var agents = $('#agents option:selected').text() || '';
 		var agentIds = agentIds.length > 0 ? agentIds.join(',') : agentIds[0] || '';
-		console.log(agents);
-		console.log(agentIds);
 		var is = is || '';//is 1 修改或保存 2 新建
 		var condi = {};
 		condi.id = g.id;
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
+		if(condi == false){return false;}
 		condi.headerId = headerid;
 		condi.agentId = agentid;
 		condi.agents = agents;

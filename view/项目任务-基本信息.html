@@ -348,6 +348,7 @@ $(function(){
 		var expressTime = $('#expressTime').val() || '';
 		var condi = {};
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
+		if(condi == false){return false;}
 		condi.projectId = g.xid;
 		condi.zhang = zhang;
 		condi.zhangState = zhangState;
