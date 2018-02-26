@@ -319,12 +319,13 @@ $(function(){
 	
 	//判断是编辑还是查看
 	function loadCheck(){
+		
 		setTimeout(function(){//等待七牛云加载
 			getModule();//获取所有模块
 		},500);
 		
 		getyuanqulist();//获取 园区列表
-		getProject();//获取项目信息
+		//getProject();//获取项目信息
 		
 		setTimeout(function(){//等待七牛云加载
 			uploadToQiniu('customerSign');//定义七牛云上传
@@ -343,6 +344,48 @@ $(function(){
 		/*var upbtn = ['customerSign','businessLicense','sealPic','signatureCardPic','accountLicencePic','bankCardPasswordPic','taxPanelInvoicePic','threePartyPic1','threePartyPic2','attachment'];
 		uploadToQiniu(upbtn);*/
 	}
+	
+	//带出票信息
+	function getfapiao(){
+		
+		var condi = {};
+		condi.id = g.id;
+		var url = Base.serverUrl + "landingTask/edit";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || [];
+					setCondiVal(d,'.fapiaotable','td');//给输入框 赋值
+					$('#specialDenomination').val(d.special_denomination || '');
+				}
+				else{
+					var msg = data.message || "获取项目信息失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	
 	
 	//获取所有模块id
 	function getModule(is){
@@ -407,13 +450,15 @@ $(function(){
 							$(this).find('.creat_forse').off().on('click',function(){
 								var condi = {};
 								condi = setInfoCondi(condi,'.mdiv'+n);
+								if(condi == false){return false;}
 								uploadModules(condi,id,title);//修改模块
 							});
 						}
 						
 					});
 					
-					
+					var val = $('.fapiaotable input,.fapiaotable textarea').val() || '';
+					if(val == '')getfapiao();//带出票信息
 				}
 				else{
 					var msg = data.message || "失败";
@@ -899,6 +944,8 @@ $(function(){
 					if(fapiaozhang != ''){$('#fapiaozhang').addClass('active');}
 					
 					compareMoney();//计算刻章费用
+					var val = $('.fapiaotable input,.fapiaotable textarea').val() || '';
+					getfapiao();//带出票信息
 
 				}
 				else{
