@@ -139,9 +139,8 @@ $(function(){
 				if(status){
 					var data = data.result || '';
 					var username = data.username || '';
-					var userid = data.userid || '';
-					if(userid != ''){Utils.offLineStore.set("token",userid,false);}//存储用户登录
-					if(userid != ''){Utils.offLineStore.set("usrid",userid,false);}//存储用户登录
+					var userid = data.userid || '110120';
+					Utils.offLineStore.set("token",userid,false);//存储用户登录
 					Utils.alert('登录成功！');
 					setTimeout(function(){
 						location.href = "home.html";
