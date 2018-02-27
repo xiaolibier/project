@@ -16,6 +16,13 @@
 	</style>
 </head>
 <body class="xiangmuguanli updownbody">
+	<!-- 客户名称 -->
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei4">
+		<li>加载失败</li>
+	</ul>
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei5">
+		<li>加载失败</li>
+	</ul>
 	<h4 class="mokuaifaxian">
 		<a id="renwubianji1" class="a">任务实施</a>
 		<a id="renwubianji2" class="a">任务信息</a>
@@ -177,9 +184,143 @@ $(function(){
 
 	//加载页面
 	function loadPage(){
+		getShenBanFang();//获取客户名称列表
 		tableListShow();//显示列表
 	}
 
+		
+	//输入时搜索客户名称
+	$("#receiver").keyup(function(){
+		var _vth = $(this);
+		var _li = $('.choiseDanwei4 li');
+		var _val = _vth.val() || '';
+		if(_val == '' || _li.length <= 0){return false;}
+		_li.show();
+		_li.each(function(){//循环搜索
+			var _tt = $(this);
+			var _val2 = _tt.html() || '';
+			var _if = _val2.indexOf(_val);
+			if(_if <= -1){//不符合
+				_tt.hide();
+			}else{_tt.show();}
+		});
+	});
+	//输入时搜索客户名称
+	$("#sendName").keyup(function(){
+		var _vth = $(this);
+		var _li = $('.choiseDanwei5 li');
+		var _val = _vth.val() || '';
+		if(_val == '' || _li.length <= 0){return false;}
+		_li.show();
+		_li.each(function(){//循环搜索
+			var _tt = $(this);
+			var _val2 = _tt.html() || '';
+			var _if = _val2.indexOf(_val);
+			if(_if <= -1){//不符合
+				_tt.hide();
+			}else{_tt.show();}
+		});
+	});
+	
+	
+	//选择客户
+	$("#sendName").click(function(e){
+		var _is = $(this);
+		var xx = _is.offset().left || 0;
+        var yy = _is.offset().top || 0;
+		var _top = yy + _is.height() -9;
+        $('.choiseDanwei5 li').show();
+		$('.choiseDanwei').hide();
+		$('.choiseDanwei5').show().css({"left":xx,"top":_top});
+		$('.choiseDanwei5 li').on('click',function(e){
+			var _tis = $(this);
+			var _vdan= _tis.html() || '';
+			var _vtip= _tis.attr('tip') || '';
+			var str= _tis.attr('str') || '';
+			_is.val(_vdan);
+			_is.attr('tip',_vtip);
+			$('#sendInfo').val(str);
+			_tis.parents('.choiseDanwei').hide();
+			stopPropagation(e);
+		});
+		stopPropagation(e);
+    });
+	$("#receiver").click(function(e){
+		var _is = $(this);
+		var xx = _is.offset().left || 0;
+        var yy = _is.offset().top || 0;
+		var _top = yy + _is.height() -9;
+        $('.choiseDanwei4 li').show();
+		$('.choiseDanwei').hide();
+		$('.choiseDanwei4').show().css({"left":xx,"top":_top});
+		$('.choiseDanwei4 li').on('click',function(e){
+			var _tis = $(this);
+			var _vdan= _tis.html() || '';
+			var _vtip= _tis.attr('tip') || '';
+			var str= _tis.attr('str') || '';
+			_is.val(_vdan);
+			_is.attr('tip',_vtip);
+			$('#receiverInfo').val(str);
+			_tis.parents('.choiseDanwei').hide();
+			stopPropagation(e);
+		});
+		stopPropagation(e);
+    });
+	
+	
+	//获取客户名称列表
+	function getShenBanFang(){
+		var condi = {};
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "customer/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var data = data.content || [];
+					var html = '';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || [];
+						var id = d.id || '';
+						var name = d.name || '';
+						var invoiceMailingAddress = d.invoiceMailingAddress || '';//邮寄地址
+						var invoiceReceiverPhone = d.invoiceReceiverPhone || '';//收件人电话
+						var invoiceReceiver = d.invoiceReceiver || '';//收件人
+						var iiistr = '邮寄地址:'+invoiceMailingAddress+';'+'收件人:'+invoiceReceiver+';'+'收件人电话:'+invoiceReceiverPhone+';';
+						html += '<li str="'+iiistr+'"  tip="'+id+'">'+name+'</li>';
+					}
+					$('.choiseDanwei4').html(html);
+					$('.choiseDanwei5').html(html);
+				}
+				else{
+					var msg = data.message || "登录失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
+	
 	//初始化弹窗
 	function reloadSbox(){
 		$('.xiugaizhongxin input,.xiugaizhongxin textarea').val('');//清空弹窗
@@ -192,7 +333,7 @@ $(function(){
 	//显示新建窗口
 	function shownewCenterSbox(){
 		reloadSbox();//初始化弹窗
-		$('.xiugaizhongxin .sbox_h4').html('添加银行');
+		//$('.xiugaizhongxin .sbox_h4').html('添加银行');
 		showSbox('.xiugaizhongxin');//显示弹窗
 		$('#yesBtn').off().on('click',function(){centerFunc('new')});
 	}

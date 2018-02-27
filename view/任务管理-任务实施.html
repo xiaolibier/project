@@ -450,7 +450,12 @@ $(function(){
 							$(this).find('.creat_forse').off().on('click',function(){
 								var condi = {};
 								condi = setInfoCondi(condi,'.mdiv'+n);
-								if(condi == false){return false;}
+								var _null = true;
+								for(var child in condi){
+									var child_it = condi[child] || '';
+									if(child_it != ''){_null = false;break;}
+								}
+								if(_null){Utils.alert('上传信息不能全部为空！');return false;}
 								uploadModules(condi,id,title);//修改模块
 							});
 						}

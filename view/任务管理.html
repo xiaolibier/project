@@ -82,7 +82,16 @@
 			</tr>
 			<tr>
 				<td>
-					
+					<span class="sear_lable">任务状态</span>
+					<select id="status" class="com_select com_select2">
+						<option value="">请选择</option>
+						<option value="未启动">未启动</option>
+						<option value="资料寄出">资料寄出</option>
+						<option value="开始办理">开始办理</option>
+						<option value="已驳回">已驳回</option>
+						<option value="办理完成">办理完成</option>
+						<option value="已回寄">已回寄</option>
+					</select>
 				</td>
 				<td>
 					
@@ -278,6 +287,7 @@ $(function(){
 	var g = {};
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.ser = Utils.getQueryString("ser") || "";//从工作台获取搜索项
+	if(g.ser != ''){g.ser = decodeURI(g.ser)}
 	g.httpTip = new Utils.httpTip({});
 	g.totalPage = 1;//存总页数
 	g.nowPage = 0;//存当前页 0 是第一页
@@ -305,7 +315,7 @@ $(function(){
 	function loadPage(){
 		getyuanqulist();//获取 搜索项 园区列表
 		if(g.ser != ''){//判断从工作台传搜索项过来
-			$('#xiangmuzhuangtai').val(g.ser);
+			$('#status').val(g.ser);
 			tableListShow(1);//显示列表
 		}else{
 			saveOrClearCookie(3,'renwuguanli_');//加载搜索条件
