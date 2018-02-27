@@ -177,14 +177,15 @@ $(function(){
 		setTimeout(function(){
 			getProject();//获取项目信息
 		},300);
-		uploadToQiniu('legalPersonIDCardPic1');//定义七牛云上传
-		uploadToQiniu('legalPersonIDCardPic2');//定义七牛云上传
-		uploadToQiniu('financialOfficerIDCardPic1');//定义七牛云上传
-		uploadToQiniu('financialOfficerIDCardPic2');//定义七牛云上传
+		//uploadToQiniu('legalPersonIDCardPic1');//定义七牛云上传
+		//uploadToQiniu('legalPersonIDCardPic2');//定义七牛云上传
+		//uploadToQiniu('financialOfficerIDCardPic1');//定义七牛云上传
+		//uploadToQiniu('financialOfficerIDCardPic2');//定义七牛云上传
 		
 	}
 	
 	$('.kezhangdivc').find('.check_box').on('click',function(){
+		return false;//不可点击
 		setTimeout(function(){
 			compareMoney();//计算刻章费用
 		},100);
