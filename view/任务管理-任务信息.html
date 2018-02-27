@@ -170,6 +170,8 @@ $(function(){
 	
 	//判断是编辑还是查看
 	function loadCheck(){
+		$('input,textarea').attr('readonly',true).addClass('readonly');
+		$('select').attr('disabled',true).addClass('readonly');
 		getyuanqulist();//获取 园区列表
 		$('.creat_hide').show();//显示寄出
 		setTimeout(function(){
@@ -179,6 +181,7 @@ $(function(){
 		uploadToQiniu('legalPersonIDCardPic2');//定义七牛云上传
 		uploadToQiniu('financialOfficerIDCardPic1');//定义七牛云上传
 		uploadToQiniu('financialOfficerIDCardPic2');//定义七牛云上传
+		
 	}
 	
 	$('.kezhangdivc').find('.check_box').on('click',function(){
