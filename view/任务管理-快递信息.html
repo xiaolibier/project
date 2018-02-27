@@ -116,7 +116,7 @@
 				<div class="sbox_c"><span class="slable">收件人</span><i class="star">*</i><input id="receiver" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">收件信息</span><i class="star">*</i><input id="receiverInfo" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">客户快递单号</span><i class="star">*</i><input id="expressNum" class="sbox_input" type="text"/></div>
-				<div class="sbox_c"><span class="slable">备注</span><i class="star">*</i><textarea id="remark" style="height:35px;" class="sbox_input"></textarea></div>
+				<div class="sbox_c"><span class="slable">备注</span><i class="star"></i><textarea id="remark" style="height:35px;" class="sbox_input"></textarea></div>
 				<div class="sbox_btn_div">
 					<a href="javascript:;" id="noBtn" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
 					<a id="yesBtn" href="javascript:;" class="sbox_btn btn2">确认</a>
@@ -341,33 +341,11 @@ $(function(){
 	window.centerFunc = function(is,id){
 		var is = is || '';
 		var id = id || '';
-		var reason = $('#reason').val() || '';
-		var goods = $('#goods').val() || '';
-		var sendName = $('#sendName').val() || '';
-		var sendInfo = $('#sendInfo').val() || '';
-		var receiver = $('#receiver').val() || '';
-		var receiverInfo = $('#receiverInfo').val() || '';
-		var expressNum = $('#expressNum').val() || '';
-		var remark = $('#remark').val() || '';
-		if(reason == ''){Utils.alert('快递原因不能为空！');return false;}
-		if(goods == ''){Utils.alert('快递物品不能为空！');return false;}
-		if(sendName == ''){Utils.alert('发件人不能为空！');return false;}
-		if(sendInfo == ''){Utils.alert('发件信息不能为空！');return false;}
-		if(receiver == ''){Utils.alert('收件人不能为空！');return false;}
-		if(receiverInfo == ''){Utils.alert('收件信息不能为空！');return false;}
-		if(expressNum == ''){Utils.alert('客户快递单号不能为空！');return false;}
-		//if(remark == ''){Utils.alert('备注不能为空！');return false;}
 		$('#yesBtn').off();
 		var condi = {};
 		condi.taskId  = g.id;
-		condi.reason  = reason;
-		condi.goods  = goods;
-		condi.sendName  = sendName;
-		condi.sendInfo  = sendInfo;
-		condi.receiver  = receiver;
-		condi.receiverInfo  = receiverInfo;
-		condi.expressNum  = expressNum;
-		condi.remark  = remark;
+		condi = setInfoCondi(condi,'.xiugaizhongxin','.sbox_c');
+		if(condi == false){return false;}
 		var url = Base.serverUrl + "express/create";
 		if(is == 'change'){condi.id = id;url = Base.serverUrl + "express/update";}
 		//g.httpTip.show();
@@ -782,14 +760,7 @@ $(function(){
 					
 					reloadSbox();//初始化弹窗
 					//赋值
-					$('#reason').val(d.reason || '');
-					$('#goods').val(d.goods || '');
-					$('#sendName').val(d.sendName || '');
-					$('#sendInfo').val(d.sendInfo || '');
-					$('#receiver').val(d.receiver || '');
-					$('#receiverInfo').val(d.receiverInfo || '');
-					$('#expressNum').val(d.expressNum || '');
-					$('#remark').val(d.remark || '');
+					setCondiVal(d,'.xiugaizhongxin','.sbox_c');
 					
 					//弹窗
 					var tips = '';//判断弹窗标题

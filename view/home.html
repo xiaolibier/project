@@ -171,7 +171,7 @@ $(function(){
 					var icons = data.icons || '';
 					var wechatHeadImgUrl = data.wechatHeadImgUrl || '';
 					var hasLogin = data.hasLogin || '';//判断用户是否修改过密码
-					var _style = 'background:url('+wechatHeadImgUrl+') no-repeat center center;background-size:contain;';
+					var _style = 'background:url('+icons+') no-repeat center center;background-size:contain;';
 					$('.usr_name').html(name1);
 					Utils.offLineStore.set("usernamestr",name1,false);//权限存储
 					$('.usr_head').attr('style',_style);

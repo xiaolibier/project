@@ -44,7 +44,7 @@
 	<div class="m_info">
 		<!-- 项目总数：<span id="totalElements" class="m_value">0</span> -->
 		<a class="daochuCommonBtn" id="daochu" >导出</a>
-		<a class="creat_forse" id="new_project" >新增客户</a>
+		<a class="creat_forse kehuguanli_xinzengkehu" id="new_project" >新增客户</a>
 	</div>
 	<div id="tableList" class="table_div">
 		<!-- <table class="table1">
@@ -162,6 +162,7 @@ $(function(){
 	function loadPage(){
 		saveOrClearCookie(3,'kehuguanli_');//加载搜索条件
 		tableListShow(1);//显示列表
+		is_show('.kehuguanli_xinzengkehu');
 	}
 
 	

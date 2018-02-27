@@ -46,7 +46,7 @@
 	</div>
 	<div class="m_info">
 		<!-- 项目总数：<span id="totalElements" class="m_value">0</span> -->
-		<a class="creat_forse" id="new_project" >新增园区</a>
+		<a class="creat_forse yuanquguanli_xinjianyuanqu" id="new_project" >新增园区</a>
 	</div>
 	<div id="tableList" class="table_div">
 		<!-- <table class="table1">
@@ -147,6 +147,7 @@ $(function(){
 	function loadPage(){
 		saveOrClearCookie(3,'yuanquguanli_');//加载搜索条件
 		tableListShow(1);//显示列表
+		is_show('.yuanquguanli_xinjianyuanqu');
 	}
 
 	

@@ -16,7 +16,13 @@
 	</style>
 </head>
 <body class="xiangmuguanli xiangmujibenxinxi">
-
+<!-- 客户名称 -->
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei4">
+		<li>加载失败</li>
+	</ul>
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei5">
+		<li>加载失败</li>
+	</ul>
 	<div class="content_box1">
 
 		<div class="con_d"><span class="lable need">任务名称</span><i class="x">*</i><input id="name" class="common_input" type="text" /></div>
@@ -110,6 +116,31 @@
 		<div id="new_create_btn" class="btns_div"><a back='项目任务.html' class="common_abtn goback type1">取消</a><a href="javascript:;" id="create_new_btn" class="common_abtn type2">确认</a></div>
 	</div>
 
+	<!-- 弹窗 -->
+	<div info="弹窗背景" class="stip_bg"></div>
+	<div info="弹窗容器" class="stip_box">
+		<div class="stip_content">
+			
+			<div class="sbox xiugaizhongxin kuaidiSbox">
+				<h4 class="sbox_h4">快递信息</h4>
+				<!-- <div class="sbox_c"><span class="slable">编号</span><i class="star"></i><input id="code" class="sbox_input" type="text"/></div> -->
+				<div class="sbox_c"><span class="slable">快递原因</span><i class="star">*</i><input id="reason" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">快递物品</span><i class="star">*</i><input id="goods" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">发件人</span><i class="star">*</i><input id="sendName" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">发件信息</span><i class="star">*</i><input id="sendInfo" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">收件人</span><i class="star">*</i><input id="receiver" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">收件信息</span><i class="star">*</i><input id="receiverInfo" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">客户快递单号</span><i class="star">*</i><input id="expressNum" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">备注</span><i class="star"></i><textarea id="remark" style="height:35px;" class="sbox_input"></textarea></div>
+				<div class="sbox_btn_div">
+					<a href="javascript:;" id="noBtn3" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
+					<a id="yesBtn3" href="javascript:;" class="sbox_btn btn2">确认</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
 	
 	<script type="text/javascript" src="../public/libs/jquery.min.js"></script>
 	<script type="text/javascript" src="../public/laydate/laydate.js"></script>
@@ -148,7 +179,7 @@ $(function(){
 	$('#menu_show_t .s2',parent.document).html(' > 任务基本信息').addClass('active');
 	
 	
-	$('#jichuabtn').on('click',jichuabtnFunc);//确认寄出
+	$('#jichuabtn').on('click',getSboxedit);//确认寄出
 	
 	uploadToQiniu('legalPersonIDCardPic1');//定义七牛云上传
 	uploadToQiniu('legalPersonIDCardPic2');//定义七牛云上传
@@ -161,6 +192,7 @@ $(function(){
 	
 	//判断是编辑还是查看
 	function loadCheck(){
+		getShenBanFang();//获取客户名称列表
 		getyuanqulist();//获取 园区列表
 		if(g.do == 'change'){//修改
 			$('.creat_hide').show();//显示寄出
@@ -180,6 +212,118 @@ $(function(){
 			compareMoney();//计算刻章费用
 		},100);
 	})
+	
+	//初始化弹窗
+	function reloadSbox(){
+		$('.xiugaizhongxin input,.xiugaizhongxin textarea').val('');//清空弹窗
+		$('.xiugaizhongxin select').val('');//清空弹窗
+		$('#noBtn').html('取消');
+		$('#yesBtn').off().show();
+		$('.xiugaizhongxin input').removeAttr('readonly').removeClass('readonly');//清空
+		$('.xiugaizhongxin select').removeAttr('disabled').removeClass('readonly');//清空
+	}	
+	//加载弹窗信息
+	function getSboxedit(is){
+		if(!confirm('确认寄出吗？')){return false;}
+		var expressNum = $('#expressNum').val() || '';
+		var expressTime = $('#expressTime').val() || '';
+		if(expressNum == ''){Utils.alert('客户快递单号不能为空！');return false;}
+		if(expressTime == ''){Utils.alert('快递寄出时间不能为空！');return false;}
+		var is = is || '';
+		var condi = {};
+		condi.id = g.id;
+		condi.expressNum = expressNum;
+		condi.expressTime = expressTime;
+		var url = Base.serverUrl + "landingTask/send/off/before";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					
+					reloadSbox();//初始化弹窗
+					//赋值
+					setCondiVal(d,'.xiugaizhongxin','.sbox_c');
+					
+					//弹窗
+					var tips = '';//判断弹窗标题
+					tips = '快递信息';
+					$('#yesBtn3').off().on('click',function(){centerFunc('change',d.id || '')});
+					$('.xiugaizhongxin .sbox_h4').html(tips);
+					showSbox('.xiugaizhongxin');//显示弹窗
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+
+	//新建
+	window.centerFunc = function(is,id){
+		var is = is || '';
+		var id = id || '';
+		$('#yesBtn3').off();
+		var condi = {};
+		condi.taskId  = g.id;
+		condi = setInfoCondi(condi,'.xiugaizhongxin','.sbox_c');
+		if(condi == false){return false;}
+		var url = Base.serverUrl + "express/create";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var tips = '新增成功！';
+					Utils.alert(tips);
+					closeSbox();//关闭弹窗
+					jichuabtnFunc();//确认寄出
+				}
+				else{
+					var msg = data.message || "获取信息失败";
+					Utils.alert(msg);
+				}
+				$('#yesBtn3').off().on('click',function(){centerFunc(is)});
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				$('#yesBtn3').off().on('click',function(){centerFunc(is)});
+				if(status=='timeout'){
+		　　　　　  //Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	 
 	//计算刻章费用
 	function compareMoney(){
 		var tmoney = 0;
@@ -192,12 +336,9 @@ $(function(){
 	
 	//确认寄出
 	function jichuabtnFunc(){
-		
-		if(!confirm('确认寄出吗？')){return false;}
+
 		var expressNum = $('#expressNum').val() || '';
 		var expressTime = $('#expressTime').val() || '';
-		if(expressNum == ''){Utils.alert('客户快递单号不能为空！');return false;}
-		if(expressTime == ''){Utils.alert('快递寄出时间不能为空！');return false;}
 		var condi = {};
 		condi.id = g.id;
 		condi.expressNum = expressNum;
@@ -457,6 +598,139 @@ $(function(){
 			}
 		});
 	}
+	
+			
+	//输入时搜索客户名称
+	$("#receiver").keyup(function(){
+		var _vth = $(this);
+		var _li = $('.choiseDanwei4 li');
+		var _val = _vth.val() || '';
+		if(_val == '' || _li.length <= 0){return false;}
+		_li.show();
+		_li.each(function(){//循环搜索
+			var _tt = $(this);
+			var _val2 = _tt.html() || '';
+			var _if = _val2.indexOf(_val);
+			if(_if <= -1){//不符合
+				_tt.hide();
+			}else{_tt.show();}
+		});
+	});
+	//输入时搜索客户名称
+	$("#sendName").keyup(function(){
+		var _vth = $(this);
+		var _li = $('.choiseDanwei5 li');
+		var _val = _vth.val() || '';
+		if(_val == '' || _li.length <= 0){return false;}
+		_li.show();
+		_li.each(function(){//循环搜索
+			var _tt = $(this);
+			var _val2 = _tt.html() || '';
+			var _if = _val2.indexOf(_val);
+			if(_if <= -1){//不符合
+				_tt.hide();
+			}else{_tt.show();}
+		});
+	});
+	
+	
+	//选择客户
+	$("#sendName").click(function(e){
+		var _is = $(this);
+		var xx = _is.offset().left || 0;
+        var yy = _is.offset().top || 0;
+		var _top = yy + _is.height() -9;
+        $('.choiseDanwei5 li').show();
+		$('.choiseDanwei').hide();
+		$('.choiseDanwei5').show().css({"left":xx,"top":_top});
+		$('.choiseDanwei5 li').on('click',function(e){
+			var _tis = $(this);
+			var _vdan= _tis.html() || '';
+			var _vtip= _tis.attr('tip') || '';
+			var str= _tis.attr('str') || '';
+			_is.val(_vdan);
+			_is.attr('tip',_vtip);
+			$('#sendInfo').val(str);
+			_tis.parents('.choiseDanwei').hide();
+			stopPropagation(e);
+		});
+		stopPropagation(e);
+    });
+	$("#receiver").click(function(e){
+		var _is = $(this);
+		var xx = _is.offset().left || 0;
+        var yy = _is.offset().top || 0;
+		var _top = yy + _is.height() -9;
+        $('.choiseDanwei4 li').show();
+		$('.choiseDanwei').hide();
+		$('.choiseDanwei4').show().css({"left":xx,"top":_top});
+		$('.choiseDanwei4 li').on('click',function(e){
+			var _tis = $(this);
+			var _vdan= _tis.html() || '';
+			var _vtip= _tis.attr('tip') || '';
+			var str= _tis.attr('str') || '';
+			_is.val(_vdan);
+			_is.attr('tip',_vtip);
+			$('#receiverInfo').val(str);
+			_tis.parents('.choiseDanwei').hide();
+			stopPropagation(e);
+		});
+		stopPropagation(e);
+    });
+	
+	
+	//获取客户名称列表
+	function getShenBanFang(){
+		var condi = {};
+		condi.number = 1000;//每页显示行数
+		var url = Base.serverUrl + "customer/search";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"POST",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var data = data.result || [];
+					var data = data.content || [];
+					var html = '';
+					for(var i=0,len=data.length;i<len;i++){
+						var d = data[i] || [];
+						var id = d.id || '';
+						var name = d.name || '';
+						var invoiceMailingAddress = d.invoiceMailingAddress || '';//邮寄地址
+						var invoiceReceiverPhone = d.invoiceReceiverPhone || '';//收件人电话
+						var invoiceReceiver = d.invoiceReceiver || '';//收件人
+						var iiistr = '邮寄地址:'+invoiceMailingAddress+';'+'收件人:'+invoiceReceiver+';'+'收件人电话:'+invoiceReceiverPhone+';';
+						html += '<li str="'+iiistr+'"  tip="'+id+'">'+name+'</li>';
+					}
+					$('.choiseDanwei4').html(html);
+					$('.choiseDanwei5').html(html);
+				}
+				else{
+					var msg = data.message || "登录失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
+	}
+	
+	
 	//加载时间控件
 	var timeControl1 = {
 	  elem: '#expressTime',

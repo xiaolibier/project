@@ -166,6 +166,7 @@
 					</select>
 				</div>	
 				<div class="sbox_c"><span class="slable">账号</span><i class="star"></i><input id="youxiangEmail" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">快递地址</span><i class="star"></i><input id="suozaidi" class="sbox_input" type="text"/></div>
 				<!-- <div class="sbox_c"><span class="slable">状态</span><i class="star"></i>
 					<select id="zhuangtai" class="sbox_select">
 						<option value="1">正常</option>
@@ -746,6 +747,7 @@ $(function(){
 		suoshujiaose = suoshujiaose.length > 1 ? suoshujiaose.join(',') : suoshujiaose[0] || '' ;
 		var lianxiPhone = $('#lianxiPhone').val() || '';
 		var youxiangEmail = $('#youxiangEmail').val() || '';
+		var suozaidi = $('#suozaidi').val() || '';
 		var zhuangtai = $('#zhuangtai').val() || '';
 		if(xingming == ''){Utils.alert('姓名不能为空！');return false;}
 		//if(pic == ''){Utils.alert('头像不能为空！');return false;}
@@ -768,6 +770,7 @@ $(function(){
 		condi.roles  = suoshujiaose;
 		condi.phone  = lianxiPhone;
 		condi.email  = youxiangEmail;
+		condi.mailing_address  = suozaidi;
 		//condi.state  = zhuangtai;
 		var url = Base.serverUrl + "user/add";
 		if(is == 'change'){condi.id = id;url = Base.serverUrl + "user/update";}
@@ -874,12 +877,13 @@ $(function(){
 						+'<tr>'
 							+'<th style="min-width:30px;">编号</th>'
 							+'<th style="min-width:30px;">姓名</th>'
-							+'<th style="min-width:30px;">账号</th>'
+							//+'<th style="min-width:30px;">账号</th>'
 							+'<th style="min-width:30px;">头像</th>'
 							+'<th style="min-width:52px;">所属部门</th>'
 							+'<th style="min-width:52px;">所属角色</th>'
 							+'<th style="min-width:52px;">联系方式</th>'
 							+'<th style="min-width:30px;">状态</th>'
+							+'<th style="min-width:30px;">快递地址</th>'
 							+'<th style="min-width:150px;">操作</th>'
 						+'</tr>';
 					var con = data.content || [];
@@ -894,17 +898,19 @@ $(function(){
 						var phone = d.phone || '';//
 						var email = d.email || '';//
 						var state_str = d.state_str || '';//
+						var mailing_address = d.mailing_address || '';//
 						var state = d.state || '';//
 						var isBindWechat = d.isBindWechat || '';//
 						html+='<tr>'
 							+'<td>'+id+'</td>'
 							+'<td>'+name+'</td>'
-							+'<td>'+email+'</td>'
+							//+'<td>'+email+'</td>'
 							+'<td><i style="background:url(\''+icons+'\') no-repeat center center;background-size:contain;" class="head_img"></i></td>'
 							+'<td>'+department+'</td>'
 							+'<td>'+roles+'</td>'
 							+'<td>'+phone+'</td>'
 							+'<td>'+state_str+'</td>'
+							+'<td>'+mailing_address+'</td>'
 							+'<td class="last">'
 								+ '<a href="javascript:;" onclick="change(\''+id+'\')" class="cao_btn cao_btn1">修改</a>'
 								//+'<a href="javascript:;" onclick="deleteIt(\''+id+'\')" class="cao_btn cao_btn5">删除</a>'
@@ -1159,6 +1165,7 @@ $(function(){
 					$('#lianxiPhone').val(d.phone || '');
 					$('#youxiangEmail').val(d.email || '');
 					$('#zhuangtai').val(d.state || '');
+					$('#suozaidi').val(d.mailing_address || '');
 
 					//弹窗
 					var tips = '';//判断弹窗标题
