@@ -165,8 +165,8 @@
 						<option value="">所属部门</option>
 					</select>
 				</div>	
-				<div class="sbox_c"><span class="slable">账号</span><i class="star"></i><input id="youxiangEmail" class="sbox_input" type="text"/></div>
-				<div class="sbox_c"><span class="slable">快递地址</span><i class="star"></i><input id="suozaidi" class="sbox_input" type="text"/></div>
+				<!-- <div class="sbox_c"><span class="slable">账号</span><i class="star"></i><input id="youxiangEmail" class="sbox_input" type="text"/></div> -->
+				<div class="sbox_c"><span class="slable">快递地址</span><i class="star"></i><textarea id="suozaidi" style="height:35px;" class="sbox_input"></textarea></div>
 				<!-- <div class="sbox_c"><span class="slable">状态</span><i class="star"></i>
 					<select id="zhuangtai" class="sbox_select">
 						<option value="1">正常</option>
@@ -746,7 +746,7 @@ $(function(){
 		var suoshujiaose = $('#suoshujiaose').val() || '';
 		suoshujiaose = suoshujiaose.length > 1 ? suoshujiaose.join(',') : suoshujiaose[0] || '' ;
 		var lianxiPhone = $('#lianxiPhone').val() || '';
-		var youxiangEmail = $('#youxiangEmail').val() || '';
+		//var youxiangEmail = $('#youxiangEmail').val() || '';
 		var suozaidi = $('#suozaidi').val() || '';
 		var zhuangtai = $('#zhuangtai').val() || '';
 		if(xingming == ''){Utils.alert('姓名不能为空！');return false;}
@@ -769,7 +769,7 @@ $(function(){
 		condi.department  = suoshubumen;
 		condi.roles  = suoshujiaose;
 		condi.phone  = lianxiPhone;
-		condi.email  = youxiangEmail;
+		//condi.email  = youxiangEmail;
 		condi.mailing_address  = suozaidi;
 		//condi.state  = zhuangtai;
 		var url = Base.serverUrl + "user/add";
@@ -1163,7 +1163,7 @@ $(function(){
 					$('#suoshujiaose').val(_ro).select2();
 					//valchoiseDanwei('.choiseDanwei3',_ro);//选择角色弹窗 赋值
 					$('#lianxiPhone').val(d.phone || '');
-					$('#youxiangEmail').val(d.email || '');
+					//$('#youxiangEmail').val(d.email || '');
 					$('#zhuangtai').val(d.state || '');
 					$('#suozaidi').val(d.mailing_address || '');
 

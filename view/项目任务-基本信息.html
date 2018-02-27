@@ -131,6 +131,7 @@
 				<div class="sbox_c"><span class="slable">收件人</span><i class="star">*</i><input id="receiver" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">收件信息</span><i class="star">*</i><input id="receiverInfo" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">客户快递单号</span><i class="star">*</i><input id="expressNum" class="sbox_input" type="text"/></div>
+				<div class="sbox_c"><span class="slable">快递时间</span><i class="star">*</i><input id="sendTime" class="sbox_input" type="text"/></div>
 				<div class="sbox_c"><span class="slable">备注</span><i class="star"></i><textarea id="remark" style="height:35px;" class="sbox_input"></textarea></div>
 				<div class="sbox_btn_div">
 					<a href="javascript:;" id="noBtn3" onclick="closeSbox()" class="sbox_btn btn1">取消</a>
@@ -255,7 +256,8 @@ $(function(){
 					reloadSbox();//初始化弹窗
 					//赋值
 					setCondiVal(d,'.xiugaizhongxin','.sbox_c');
-					
+					var sendTime = getDate(d.sendTime || '');
+					$('#sendTime').val(sendTime);
 					//弹窗
 					var tips = '';//判断弹窗标题
 					tips = '快递信息';
@@ -744,7 +746,21 @@ $(function(){
 		 //end.start = datas //将结束日的初始值设定为开始日
 	  }
 	};
+	//加载时间控件
+	var timeControl2 = {
+	  elem: '#sendTime',
+	  format: 'YYYY-MM-DD',
+	  //min: laydate.now(), //设定最小日期为当前日期
+	  max: '2099-06-16', //最大日期
+	  istime: true,
+	  istoday: false,
+	  choose: function(datas){
+		 //end.min = datas; //开始日选好后，重置结束日的最小日期
+		 //end.start = datas //将结束日的初始值设定为开始日
+	  }
+	};
 	laydate(timeControl1);	
+	laydate(timeControl2);	
 	
 	
 });
