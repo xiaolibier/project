@@ -1329,7 +1329,10 @@ $(function(){
 			$(id).find('.common_radio').each(function(){//遍历查找 name相同的
 				var _name = $(this).attr('name') || '';
 				var _val = $(this).attr('val') || '';
-				if(_name == name && name != '' && val == _val && _val != ''){
+				var _html = $(this).html() || '';
+				var _text = _html.split('</i>')[1] || '';
+				var rval = _val != '' ? _val : _text;
+				if(_name == name && name != '' && val == rval && rval != ''){
 					$(this).addClass('active');
 				}
 			});
@@ -1338,7 +1341,10 @@ $(function(){
 			$('.common_radio').each(function(){//遍历查找 name相同的
 				var _name = $(this).attr('name') || '';
 				var _val = $(this).attr('val') || '';
-				if(_name == name && name != '' && val == _val && _val != ''){
+				var _html = $(this).html() || '';
+				var _text = _html.split('</i>')[1] || '';
+				var rval = _val != '' ? _val : _text;
+				if(_name == name && name != '' && val == rval && rval != ''){
 					$(this).addClass('active').siblings('.common_radio').removeClass('active');
 				}
 			})
