@@ -293,8 +293,10 @@ $(function(){
 	}
 
 
-	//定义图片上传交互
+	//定义图片上传交互 预览
 	$('.xiangmuguanli').on('click','.head_img_spam .head_imgs',function(){
+		var src = $(this).siblings('.head_img_tips').attr('src') || '';
+		if(src.indexOf('.pdf') > -1){parent.window.open(src);return false;}
 		$(this).siblings('.hide_head_imgs,.head_img_bg').fadeIn();
 	});
 	$('.xiangmuguanli').on('click','.head_img_spam .hide_head_imgs,.head_img_spam .head_img_bg',function(){
@@ -310,6 +312,7 @@ $(function(){
 			$(aid).parents('.head_img_spam').removeClass('active');
 			$(aid).siblings('.head_imgs,.hide_head_imgs').css({'background':'url("../public/img/add1.png") no-repeat center center','background-size':'contain'});
 		}else{
+			if(src.indexOf('.pdf') > -1){src="../public/img/pdf.png";}
 			$(aid).attr('src',src);
 			$(aid).parents('.head_img_spam').addClass('active');
 			$(aid).siblings('.head_imgs,.hide_head_imgs').css({'background':'url('+src+') no-repeat center center','background-size':'contain'});
@@ -438,8 +441,10 @@ $(function(){
 					var domain = up.getOption('domain');
 					var res = JSON.parse(info.response);
 					var sourceLink = 'http://'+domain +"/"+ res.key; //获取上传成功后的文件的Url
+					var sourceLink2 = sourceLink; //pdf文件
+					if(sourceLink2.indexOf('.pdf') > -1){sourceLink2="../public/img/pdf.png";}
 					$('#'+bid).attr('src',sourceLink);
-					$('#'+bid).siblings('.head_imgs').css({'background':'url('+sourceLink+') no-repeat center center','background-size':'contain'});
+					$('#'+bid).siblings('.head_imgs').css({'background':'url('+sourceLink2+') no-repeat center center','background-size':'contain'});
 					$('#'+bid).parents('.head_img_spam').addClass('active');
 					$('#'+bid).siblings('.hide_head_imgs').css({'background':'url('+sourceLink+') no-repeat center center','background-size':'contain'});
 					Utils.alert('上传成功！');

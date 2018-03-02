@@ -209,7 +209,7 @@
 		<div class="module_div mdiv9">
 			<div class="con_d"><span class="lable need"><i class="sucess_dui"></i><i class="list_xu">9</i></span><i class="x"></i>
 			<span class="vert">国地税三方协议</span></div>
-			<div class="con_d type2"><span class="lable need"></span><i class="x">*</i>
+			<!-- <div class="con_d type2"><span class="lable need"></span><i class="x">*</i>
 				<div class="head_img_spam">
 					<i info="放大图" class="hide_head_imgs"></i>
 					<div info="放大图背景" class="head_img_bg"></div>
@@ -224,9 +224,12 @@
 					<div info="上传后提示背景" class="head_img_tips_bg"></div>
 					<div info="上传后提示" id="threePartyPic2" class="head_img_tips">重新上传</div>
 				</div>
-			</div>
+			</div> -->
+			<div class="con_d type2"><span class="lable need"></span><i class="x"></i>
+			<div id="gpassBtn" class="check_box" style="margin-bottom:14px;"><i class="i"></i>办理完成</div></div>
 			<div class="con_d type2"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan"></span>上传时间：<span class="shanchuanspan"></span>
-			<a href="javascript:;" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">确认</a></div>
+				<!-- <a href="javascript:;" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">确认</a> -->
+			</div>
 		</div>
 		
 		<div class="module_div mdiv10">
@@ -373,6 +376,14 @@ $(function(){
 		uploadToQiniu(upbtn);*/
 	}
 
+	//国地税三方 复选框 办理完成
+	$('#gpassBtn').off().on('click',function(){
+		var condi = {};
+		var moduleid = $('.mdiv9').attr('aid') || '';
+		if(!$(this).hasClass('active'))uploadModules(condi,moduleid,'');//确认更新
+	});
+	
+	
 	//初始化弹窗
 	function reloadSbox(){
 		$('.xiugaizhongxin input,.xiugaizhongxin textarea').val('');//清空弹窗
@@ -602,6 +613,8 @@ $(function(){
 						$(this).find('.jingspan').html(agent);
 						$(this).find('.shanchuanspan').html(uploadTime);
 						if(agent != ''){$(this).find('.sucess_dui').addClass('show');}else{$(this).find('.sucess_dui').removeClass('show');}
+						if(agent != '' && $(this).find('#gpassBtn').length > 0){$(this).find('#gpassBtn').addClass('active');}
+						
 						//定义确认按钮 更新
 						if($(this).find('.creat_forse').length > 0 && is == ''){
 							$(this).find('.creat_forse').off().on('click',function(){
