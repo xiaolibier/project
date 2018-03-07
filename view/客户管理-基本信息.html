@@ -218,8 +218,9 @@ $(function(){
 				else{
 					var msg = data.message || "保存失败";
 					Utils.alert(msg);
-					$('#create_new_btn').on('click',function(){changeOrCreateProject(is)});
+					
 				}
+				$('#create_new_btn').on('click',function(){changeOrCreateProject(is)});
 				//g.httpTip.hide();
 			},
 			error:function(data,status){
