@@ -17,6 +17,7 @@
 		.xiangmuguanli .pro_w{color:#ffffff;}
 		.sucess_dui{vertical-align:middle;display:inline-block;display:none;width:50px;height:25px;background:url('../public/img/dui.png') no-repeat center center;background-size:contain;}
 		.sucess_dui.show{display:inline-block;}
+		.pdf_file_name{padding:0 5px;color:#1D2438;}
 	</style>
 </head>
 <body class="xiangmuguanli renwuguanli xiangmujibenxinxi">
@@ -51,13 +52,15 @@
 			<div class="con_d"><span class="lable need"><i class="sucess_dui"></i><i class="list_xu">1</i></span><i class="x"></i>
 			<span class="vert">上传客户签字资料的扫描件</span></div>
 			<div class="con_d type2"><span class="lable need"></span><i class="x">*</i>
-				<div class="head_img_spam">
+				<a href="javascript:;" style="margin:15px 0;" id="customerSign" class="cao_btn cao_btn2">上传PDF文件</a>
+				<a href="javascript:;" target="_blank" class="pdf_file_name"></a>
+				<!-- <div class="head_img_spam">
 					<i info="放大图" class="hide_head_imgs"></i>
 					<div info="放大图背景" class="head_img_bg"></div>
 					<i info="原图" class="head_imgs"></i>
 					<div info="上传后提示背景" class="head_img_tips_bg"></div>
 					<div info="上传后提示" id="customerSign" class="head_img_tips">重新上传</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="con_d type2"><span class="lable need"></span><i class="x"></i>经办人：<span class="jingspan"></span>上传时间：<span class="shanchuanspan"></span>
 			<a href="javascript:;" style="float:none;margin-left:12px;vertical-align:middle;" class="creat_forse">确认</a></div>
@@ -380,7 +383,9 @@ $(function(){
 	$('#gpassBtn').off().on('click',function(){
 		var condi = {};
 		var moduleid = $('.mdiv9').attr('aid') || '';
-		if(!$(this).hasClass('active'))uploadModules(condi,moduleid,'');//确认更新
+		var status = $('#gpassBtn').hasClass('active') ? '未完成' : '已完成';
+		condi.status = status;
+		uploadModules(condi,moduleid,'');//确认更新
 	});
 	
 	
@@ -606,14 +611,25 @@ $(function(){
 						$(this).attr('aid',id);//存模块id
 						var title = dd.title || '';
 						var agent = dd.agent || '';
+						var status = dd.status || '';
 						var taxRegistration = getDate((dd.taxRegistration || ''),'2');
 						var uploadTime = getDate(dd.uploadTime || '');
 						setCondiVal(dd,'.mdiv'+n);//赋值
+						//判断是上传pdf那个
+						var obj = $(this).find('.pdf_file_name') || [];
+						if(obj.length > 0){
+							var itname = obj.siblings('.cao_btn2').attr('id') || '';
+							var _src = dd[itname] || '';
+							obj.siblings('.cao_btn2').attr('arc',_src);
+							obj.attr('href',_src);
+							var filename = _src.indexOf('/') > -1 ? _src.split('/').pop() || '' : '' ;
+							obj.html(filename);
+						}
 						if($(this).find('#taxRegistration').length > 0){$(this).find('#taxRegistration').val(taxRegistration);}
 						$(this).find('.jingspan').html(agent);
 						$(this).find('.shanchuanspan').html(uploadTime);
 						if(agent != ''){$(this).find('.sucess_dui').addClass('show');}else{$(this).find('.sucess_dui').removeClass('show');}
-						if(agent != '' && $(this).find('#gpassBtn').length > 0){$(this).find('#gpassBtn').addClass('active');}
+						if(status == '已完成' && $(this).find('#gpassBtn').length > 0){$(this).find('#gpassBtn').addClass('active');}
 						
 						//定义确认按钮 更新
 						if($(this).find('.creat_forse').length > 0 && is == ''){
@@ -621,6 +637,15 @@ $(function(){
 								if($(this).hasClass('shenfenzhengbtn') || $(this).hasClass('paizhaoqingdanbtn')){return false;}
 								var condi = {};
 								condi = setInfoCondi(condi,'.mdiv'+n);
+								//判断是上传pdf那个
+								var _obj = $(this).parents('.module_div').find('.pdf_file_name') || [];
+								console.log(_obj);
+								if(_obj.length > 0){
+									var _src = _obj.siblings('.cao_btn2').attr('src') || '';
+									var itname = _obj.siblings('.cao_btn2').attr('id') || '';
+									condi[itname] = _src;
+									console.log(itname);
+								}
 								/*var _null = true;
 								for(var child in condi){
 									var child_it = condi[child] || '';
