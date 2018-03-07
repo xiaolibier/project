@@ -24,6 +24,10 @@
 	<ul style="width:356px;" class="choiseDanwei choiseDanwei5">
 		<li>加载失败</li>
 	</ul>
+	<!-- 园区开票接口人 -->
+	<ul style="width:356px;" class="choiseDanwei choiseDanwei6">
+		<li>加载失败</li>
+	</ul>
 	<div class="content_box1">
 
 		<div class="con_d"><span class="lable need">园区名称</span><i class="x">*</i><input id="name" class="common_input" type="text" /></div>
@@ -34,6 +38,8 @@
 				<option value="">加载失败</option>
 			</select>
 		</div>
+		<div class="con_d"><span class="lable need">园区办公固定电话</span><i class="x"></i><input id="fixedPhone" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">园区开票接口人</span><i class="x">*</i><input id="ticketPerson" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">启始注册地址段</span><i class="x">*</i><input id="regAddress" class="common_input" type="text" /></div>
 		<div id="needCA" class="con_d"><span class="lable need">是否需要CA证书</span><i class="x">*</i>
 			<div val='是' class="common_radio shiradio" name="needCA"><i class="i"></i>是</div>
@@ -41,22 +47,38 @@
 		</div>
 		<div class="con_d pu_hide"><span class="lable need">CA证书金额</span><i class="x"></i><input id="caPrice" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">税控盘费用</span><i class="x">*</i><input id="taxPanelPrice" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">发票信息</span><i class="x">*</i>
+		<div class="con_d"><span class="lable need">地方留存比例</span><i class="x">*</i>
 			<table class="fapiaotable">
 				<tr>
 					<td>增值税比例</td>
-					<td><input id="vatRadio" class="common_input shuifeibili1" type="text" />%</td>
+					<td><select id="vatRadio" style="width:78px;" class="common_input shuifeibili1" type="text" >
+						<option value="">请选择</option>
+						<option value="3">3</option>
+						<option value="6">6</option>
+						<option value="11">11</option>
+						<option value="17">17</option>
+					</select>%</td>
 				</tr>
 				<tr>
-					<td>附加税比例</td>
+					<td>增值税附加税比例</td>
 					<td><input id="appendedRadio" class="common_input shuifeibili2" type="text" />%</td>
 				</tr>
 				<tr>
-					<td>企业所得税核定征收比例</td>
+					<td>所得税（企业和个人）</td>
+					<td><input id="incomeRadio" class="common_input shuifeibili3" type="text" />%</td>
+				</tr>
+				
+			</table>
+		</div>
+		<div class="con_d"><span class="lable need">奖励比例</span><i class="x">*</i><input id="rewardRadio" class="common_input" style="width:70px;" type="text" /> %</div>
+		<div class="con_d"><span class="lable need">核定增收比例</span><i class="x">*</i>
+			<table class="fapiaotable">
+				<tr>
+					<td>企业所得税核定比例</td>
 					<td><input id="bidRadio" class="common_input shuifeibili3" type="text" />%</td>
 				</tr>
 				<tr>
-					<td>生产经营所得税核定征收比例</td>
+					<td>生产经营个人所得税核定比例</td>
 					<td><input id="poiRadio" class="common_input shuifeibili4" type="text" />%</td>
 				</tr>
 				
@@ -139,7 +161,8 @@
 			</select>
 		</div>
 		<div class="con_d"><span class="lable need">地区税务编号</span><i class="x"></i><input id="ltbCode" class="common_input" type="text" /></div>
-		<div class="con_d"><span class="lable need">电子税务局网址</span><i class="x"></i><input id="etbWeb" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">国税电子税务局网址</span><i class="x"></i><input id="stateEtbWeb" class="common_input" type="text" /></div>
+		<div class="con_d"><span class="lable need">地税电子税务局网址</span><i class="x"></i><input id="localEtbWeb" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">国税密码</span><i class="x"></i><input id="stbPassword" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">地税密码</span><i class="x"></i><input id="ltbPassword" class="common_input" type="text" /></div>
 		<div class="con_d"><span class="lable need">税控保存地</span><i class="x"></i><input id="taxControlAddress" class="common_input" type="text" /></div>
@@ -200,6 +223,8 @@ $(function(){
 	
 	setSearchRole('.choiseDanwei4','','li');//给商务经理 选框赋值
 	setGetSearchInput('#header','.choiseDanwei4');//定义可以搜索下拉的
+	setSearchRole('.choiseDanwei6','','li');//给商务经理 选框赋值
+	setGetSearchInput('#ticketPerson','.choiseDanwei6');//定义可以搜索下拉的
 	setSearchRole('#agents','','option','id');//给商务经理 选框赋值
 	<!-- setGetSearchInput('#agent','.choiseDanwei5');//定义可以搜索下拉的 -->
 	//定义控件
@@ -290,6 +315,7 @@ $(function(){
 	//修改保存项目信息
 	function changeOrCreateProject(is){
 		var headerid = $('#header').attr('tipid') || '';
+		var ticketPersonId = $('#ticketPerson').attr('tipid') || '';
 		var agentid = $('#agent').attr('tipid') || '';
 		var agentIds = $('#agents').val() || '';
 		var agents = $('#agents option:selected').text() || '';
@@ -300,6 +326,7 @@ $(function(){
 		condi = setInfoCondi(condi,'.content_box1');//传值和校验
 		if(condi == false){return false;}
 		condi.headerId = headerid;
+		condi.ticketPersonId = ticketPersonId;
 		condi.agentId = agentid;
 		condi.agents = agents;
 		condi.agentIds = agentIds;
@@ -333,8 +360,9 @@ $(function(){
 				else{
 					var msg = data.message || "保存失败";
 					Utils.alert(msg);
-					$('#create_new_btn').on('click',function(){changeOrCreateProject(is)});
+					
 				}
+				$('#create_new_btn').on('click',function(){changeOrCreateProject(is)});
 				//g.httpTip.hide();
 			},
 			error:function(data,status){
@@ -370,6 +398,7 @@ $(function(){
 					var d = data.result || [];
 					setCondiVal(d,'.content_box1');//给输入框 赋值
 					$('#header').attr('tipid',d.headerId || '');
+					$('#ticketPerson').attr('tipid',d.ticketPersonId || '');
 					$('#agent').attr('tipid',d.agentId || '');
 					pzcompare();//判断是选择的ca证书是否
 					//园区经办人 赋值
