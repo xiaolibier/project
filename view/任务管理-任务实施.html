@@ -17,7 +17,9 @@
 		.xiangmuguanli .pro_w{color:#ffffff;}
 		.sucess_dui{vertical-align:middle;display:inline-block;display:none;width:50px;height:25px;background:url('../public/img/dui.png') no-repeat center center;background-size:contain;}
 		.sucess_dui.show{display:inline-block;}
-		.pdf_file_name{padding:0 5px;color:#1D2438;text-decoration:underline;}
+		.pdf_file_name{display:inline-block;padding:0 22px 0 5px;color:#1D2438;text-decoration:underline;position:relative;}
+		.del_file{position:absolute;width:18px;height:18px;right:0px;background:url('../public/img/xx.png') no-repeat center center;background-size:contain;display:none;}
+		.pdf_file_name:hover .del_file{display:inline-block;}
 	</style>
 </head>
 <body class="xiangmuguanli renwuguanli xiangmujibenxinxi">
@@ -378,7 +380,50 @@ $(function(){
 		/*var upbtn = ['customerSign','businessLicense','sealPic','signatureCardPic','accountLicencePic','bankCardPasswordPic','taxPanelInvoicePic','threePartyPic1','threePartyPic2','attachment'];
 		uploadToQiniu(upbtn);*/
 	}
+	
+	//删除 第一项图片
+	$('.pdf_file_name').on('click','.del_file',function(){
+		$('.pdf_file_name').removeAttr('href').html('').siblings('.cao_btn2').removeAttr('arc');
+		var aid = $('.pdf_file_name').parents('.module_div').attr('aid') || '';
+		var condi = {};
+		condi.id = aid;
+		var url = Base.serverUrl + "landingTask/module/clear";
+		//g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			timeout: 30000, //超时时间设置，单位毫秒
+			type:"GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			dataType:'json',
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var d = data.result || {};
+					Utils.alert('删除成功！');
+					getModule();//获取所有模块
+				}
+				else{
+					var msg = data.message || "删除失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data,status){
+				//g.httpTip.hide();
+				if(status=='timeout'){
+		　　　　　  Utils.alert("超时");
+		　　　　}
+			}
+		});
 
+	});
+	
+	
 	//国地税三方 复选框 办理完成
 	$('#gpassBtn').off().on('click',function(){
 		var condi = {};
@@ -623,6 +668,7 @@ $(function(){
 							obj.siblings('.cao_btn2').attr('arc',_src);
 							obj.attr('href',_src);
 							var filename = _src.indexOf('/') > -1 ? _src.split('/').pop() || '' : '' ;
+							filename += '<span class="del_file"></span>';
 							obj.html(filename);
 						}
 						if($(this).find('#taxRegistration').length > 0){$(this).find('#taxRegistration').val(taxRegistration);}
@@ -639,12 +685,10 @@ $(function(){
 								condi = setInfoCondi(condi,'.mdiv'+n);
 								//判断是上传pdf那个
 								var _obj = $(this).parents('.module_div').find('.pdf_file_name') || [];
-								console.log(_obj);
 								if(_obj.length > 0){
 									var _src = _obj.siblings('.cao_btn2').attr('src') || '';
 									var itname = _obj.siblings('.cao_btn2').attr('id') || '';
 									condi[itname] = _src;
-									console.log(itname);
 								}
 								/*var _null = true;
 								for(var child in condi){

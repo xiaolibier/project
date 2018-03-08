@@ -454,7 +454,8 @@ $(function(){
 					var sourceLink2 = sourceLink; //pdf文件
 					if(sourceLink2.indexOf('.pdf') > -1){sourceLink2="../public/img/pdf.png";}
 					$('#'+bid).attr('src',sourceLink);
-					$('#'+bid).siblings('.pdf_file_name').html(file_name).attr('href',sourceLink);
+					var ff2 = file_name + '<span class="del_file"></span>';//删除按钮
+					$('#'+bid).siblings('.pdf_file_name').html(ff2).attr('href',sourceLink);
 					$('#'+bid).siblings('.head_imgs').css({'background':'url('+sourceLink2+') no-repeat center center','background-size':'contain'});
 					$('#'+bid).parents('.head_img_spam').addClass('active');
 					$('#'+bid).siblings('.hide_head_imgs').css({'background':'url('+sourceLink+') no-repeat center center','background-size':'contain'});
