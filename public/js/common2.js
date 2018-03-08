@@ -380,8 +380,8 @@ $(function(){
 			//container: 'container',// 上传区域DOM ID，默认是browser_button的父元素
 			//drop_element: 'container',// 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
 			max_file_size: '1000mb',// 最大文件体积限制
-			unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
-			//save_key: false,
+			unique_names: false, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+			save_key: false,
 			//flash_swf_url: 'bower_components/plupload/js/Moxie.swf',//引入flash，相对路径
 			dragdrop: true, // 开启可拖曳上传
 			chunk_size: '4mb',// 分块上传时，每块的体积
@@ -432,6 +432,14 @@ $(function(){
 			  'UploadComplete': function() {//队列文件处理完毕后，处理相关的事情
 					
 			  },
+				'Key': function(up, file) {
+					// 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+					// 该配置必须要在 unique_names: false , save_key: false 时才生效
+
+					//var key = "12312";
+					// do something with key here
+					//return key
+				},
 			  'FileUploaded': function(up, file, info) {// 每个文件上传成功后，处理相关的事情
 				//var progress = new FileProgress(file, 'fsUploadProgress');
 				//console.log("response:", info.response);
@@ -440,11 +448,12 @@ $(function(){
 					$('.ecvc_progress_div').remove();
 					var domain = up.getOption('domain');
 					var res = JSON.parse(info.response);
+					var file_name = file.name || res.key;
 					var sourceLink = 'http://'+domain +"/"+ res.key; //获取上传成功后的文件的Url
 					var sourceLink2 = sourceLink; //pdf文件
 					if(sourceLink2.indexOf('.pdf') > -1){sourceLink2="../public/img/pdf.png";}
 					$('#'+bid).attr('src',sourceLink);
-					$('#'+bid).siblings('.pdf_file_name').html(res.key).attr('href',sourceLink);
+					$('#'+bid).siblings('.pdf_file_name').html(file_name).attr('href',sourceLink);
 					$('#'+bid).siblings('.head_imgs').css({'background':'url('+sourceLink2+') no-repeat center center','background-size':'contain'});
 					$('#'+bid).parents('.head_img_spam').addClass('active');
 					$('#'+bid).siblings('.hide_head_imgs').css({'background':'url('+sourceLink+') no-repeat center center','background-size':'contain'});
