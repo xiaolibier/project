@@ -307,7 +307,7 @@ $(function(){
 		var condi = {};
 		condi.ids = ids;//当前页
 		condi.number = 1000;//
-		var url = Base.serverUrl + "project/search";
+		var url = Base.serverUrl + "customer/search";
 		//g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -336,6 +336,11 @@ $(function(){
 							+'<th style="min-width:52px;">发票信息</th>'
 							+'<th style="min-width:60px;">创建人/创建时间</th>'
 							+'<th style="min-width:52px;">所属管家</th>'
+							+'<th style="min-width:52px;">发票名称</th>'
+							+'<th style="min-width:52px;">发票税号</th>'
+							+'<th style="min-width:52px;">邮寄地址</th>'
+							+'<th style="min-width:52px;">收件人</th>'
+							+'<th style="min-width:52px;">收件人电话</th>'
 							+'<th style="min-width:26px;">备注</th>'
 						+'</tr>';
 					var con = data || [];
@@ -349,6 +354,11 @@ $(function(){
 						var contacts = d.contacts || '';//
 						var invoiceInfo = d.invoiceInfo || '';//
 						var housekeeper = d.housekeeper || '';//
+						var invoiceName = d.invoiceName || '';//
+						var invoiceTaxPayerId = d.invoiceTaxPayerId || '';//
+						var invoiceMailingAddress = d.invoiceMailingAddress || '';//
+						var invoiceReceiver = d.invoiceReceiver || '';//
+						var invoiceReceiverPhone = d.invoiceReceiverPhone || '';//
 						var creator = d.creatorName || '';//
 						var remark = d.remark || '';//
 						var create_time = getDate((d.create_time || ''),'2');
@@ -362,6 +372,11 @@ $(function(){
 							+'<td>'+invoiceInfo+'</td>'
 							+'<td>'+ccstr+'</td>'
 							+'<td>'+housekeeper+'</td>'
+							+'<td>'+invoiceName+'</td>'
+							+'<td>'+invoiceTaxPayerId+'</td>'
+							+'<td>'+invoiceMailingAddress+'</td>'
+							+'<td>'+invoiceReceiver+'</td>'
+							+'<td>'+invoiceReceiverPhone+'</td>'
 							+'<td>'+remark+'</td>'
 						+'</tr>';
 					}	
