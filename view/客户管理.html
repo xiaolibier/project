@@ -494,7 +494,7 @@ $(function(){
 						var housekeeper = d.housekeeper || '';//
 						var creator = d.creatorName || '';//
 						var remark = d.remark || '';//
-						var create_time = getDate((d.create_time || ''),'2');
+						var create_time = getDate((d.createTime || ''));
 						var ccstr = creator != '' & create_time != '' ? creator+'/'+create_time : creator+create_time;
 						var stra = '';
 						//判断当前项是否选中
